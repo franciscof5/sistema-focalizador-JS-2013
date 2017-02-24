@@ -1,0 +1,16 @@
+{
+	"name": "f5sites/sistema-focalizador-JS-2013",
+	"description": "Focalizador JS have the development shortly stopped due to new requirements incompatible with JS, then a new project was started to replace JAVASCRIPT functions to PHP/WP native functions. These old version was maintened public for portfolio porpouse an maybe integrate with new JS scripts. WordPress F5 Sites DEV projects.",
+	"type": "wordpress-theme",
+	"authors": [
+		{
+			"name": "Francisco Matelli Matulovic",
+			"email": "francisco@f5sites.com",
+			"homepage": "http://franciscomat.com"
+		}
+	],
+	"require": {
+    		"composer/installers": "~1.0",
+	        "php": ">=5.2.4"
+        }
+}
