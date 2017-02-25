@@ -17,7 +17,7 @@
 <script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/tips.js" type="text/javascript"></script>
 <!--Pomodoros, our script-->
 <script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/pomodoro-functions.js" type="text/javascript"></script>
-<!--Select 2-->
+<!--Select 2
 <script type="text/javascript">
 
 jQuery(document).ready( function($) { 
@@ -35,7 +35,7 @@ jQuery(document).ready( function($) {
 </script>
 <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.js"></script>
 <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2_locale_pt-BR.js"></script>
-<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.css" rel="stylesheet"/>
+<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.css" rel="stylesheet"/>-->
 
 <div id="pomodoro-painel">		
 		

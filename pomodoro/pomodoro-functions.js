@@ -68,7 +68,7 @@ function load_pomodoro_clipboard () {
 		post_id_box.value = rex[6];
 		secundos = rex[7].slice(0, -1);
 		change_status(secundos);
-		alert("secundos");
+		//alert("secundos");
 		//secundos = secundos.substring(rex[5], str.length - 1);
 		
 		if(status_box.value=="pending") {
@@ -384,32 +384,53 @@ function flip_number(force) {
 	}*/
 	
 	if( m2 != m2_current || force){
-		flip('minutesUpRight', 'minutesDownRight', m2, 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Up/Right/', 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Down/Right/');
+		flip('minutesUpRight', 'minutesDownRight', m2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Right/');
 		m2_current = m2;
 		
-		flip('minutesUpLeft', 'minutesDownLeft', m1, 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Up/Left/', 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Down/Left/');
+		flip('minutesUpLeft', 'minutesDownLeft', m1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Left/');
 		m1_current = m1;
 	}
 	if (s2 != s2_current || force){
-		flip('secondsUpRight', 'secondsDownRight', s2, 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Up/Right/', 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Down/Right/');
+		flip('secondsUpRight', 'secondsDownRight', s2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Right/');
 		s2_current = s2;
 		
-		flip('secondsUpLeft', 'secondsDownLeft', s1, 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Up/Left/', 'http://pomodoros.com.br/wp-content/themes/darwin-buddypress-buddypack/pomodoro/Double/Down/Left/');
+		flip('secondsUpLeft', 'secondsDownLeft', s1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Left/');
 		s1_current = s1;
 	}
 }
 
 function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
-	var upperBackId = upperId+"Back";
-	jQuery(upperId).src = jQuery(upperBackId).src;
-	jQuery(upperId).css("height", "64px");
-	jQuery(upperId).css("visibility", "visible");
-	jQuery(upperBackId).src = pathUpper+parseInt(changeNumber)+".png";
-	
-	jQuery(lowerId).src = pathLower+parseInt(changeNumber)+".png";
-	jQuery(lowerId).css("height", "0px");
-	jQuery(lowerId).css("visibility", "visible");
+	//var upperBackId = upperId+"Back";
 
+	var upperBackId = jQuery("#"+upperId+"Back");
+	var upperId     = jQuery("#"+upperId);
+	var lowerBackId = jQuery("#"+lowerId+"Back");
+	var lowerId     = jQuery("#"+lowerId);
+
+	upperId.css("height", "64px");
+	upperId.attr("src", upperBackId.attr("src"));
+	upperBackId.attr("src", pathUpper+parseInt(changeNumber)+".png");
+	upperId.animate({"height": "0"});
+	
+	lowerId.css("height", "64px");
+	lowerId.attr("src", lowerBackId.attr("src"));
+	lowerBackId.attr("src", pathLower+parseInt(changeNumber)+".png");
+	lowerId.css("margin-top", "0");
+	lowerId.animate({"height": "0", "margin-top": "50px"});
+	//lowerId.animate({});
+	
+	//lowerId.animate({height:20, "top:64px", marginTop:0},200)
+	//lowerId.animate({top: '-=1px'});
+
+	//jQuery(lowerId).src = pathLower+parseInt(changeNumber)+".png";
+	//jQuery(lowerId).css("height", "0px");
+	//jQuery(lowerId).css("visibility", "visible");
+
+
+	//upperBackId.animate({"height": "64px"});
+
+	//upperId.animate({"visibility": "hidden"});
+	//upperBackId.animate({"visibility": "visible"});
 	/*var flipUpper = new Fx.Tween(upperId, {duration: 200, transition: Fx.Transitions.Sine.easeInOut});
 	flipUpper.addEvents({
 		'complete': function(){
@@ -520,7 +541,7 @@ function load_model(qualmodelo) {
 soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/assets/soundmanager2.swf';
 soundManager.onready(function() {
 	// Ready to use; soundManager.createSound() etc. can now be called.
-	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/crank-2.mp3',});
+	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/crank-2.mp3',});
 	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/telephone-ring-1.mp3',});
 	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/magic-chime-02.mp3',});
 });
