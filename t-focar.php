@@ -7,8 +7,8 @@
 <?php locate_template( array( 's-pomodoros.php' ), true ); ?>
 <div class="content_pomodoro">
 
-<!--MooTools-->
-<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>
+<!--MooTools
+<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>-->
 <!--jQuery-->
 <!--script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/jquery-1.11.0.min.js" type="text/javascript"></script-->
 <!--Sound System-->
@@ -33,9 +33,9 @@ jQuery(document).ready( function($) {
 
 
 </script>
-<script src="<?php echo bloginfo('stylesheet_directory'); ?>/_inc/select2/select2.js"></script>
-<script src="<?php echo bloginfo('stylesheet_directory'); ?>/_inc/select2/select2_locale_pt-BR.js"></script>
-<link href="<?php echo bloginfo('stylesheet_directory'); ?>/_inc/select2/select2.css" rel="stylesheet"/>
+<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.js"></script>
+<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2_locale_pt-BR.js"></script>
+<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.css" rel="stylesheet"/>
 
 <div id="pomodoro-painel">		
 		

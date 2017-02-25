@@ -24,8 +24,8 @@
 	var secondsRemaining = 0;//pomodoroTime;
 	var interval_clock=false;
 }
-//With that line mootools can use the selector ($) and jQuery use the selector (jQuery), without conflict
-jQuery.noConflict();
+//With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
+//jQuery.noConflict();
 
 //Check if has running pomodoros
 //function check_for_running_pomodoro () {};
@@ -40,7 +40,15 @@ jQuery(document).ready(function () {
 	jQuery("#tags_box").change(function() {
 		update_pomodoro_clipboard();
 	})
+	
+	/*jQuery.getScript( "../assets/jQuery-1.2.js", function( data, textStatus, jqxhr ) {
+		console.log( data ); // Data returned
+		console.log( textStatus ); // Success
+		console.log( jqxhr.status ); // 200
+		console.log( "Load was performed." );
+	});*/
 	load_pomodoro_clipboard();
+	//<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/jQuery-1.2.js" type="text/javascript"></script>
 });
 
 function load_pomodoro_clipboard () {
@@ -283,10 +291,11 @@ function change_status(txt) {
 
 //Function to change button text and color
 function change_button (valueset, colorset) {
-	var button = $("action_button_id");
+	var button = jQuery("action_button_id");
 	button.value=valueset;
-	button.set('morph', {duration: 2000});
-	button.morph({/*'border': '2px solid #F00',*/'background-color': colorset});
+	button.animate({'background-color': colorset});
+	//button.set('morph', {duration: 2000});
+	//button.morph({/*'border': '2px solid #F00',*/'background-color': colorset});
 }
 
 //
@@ -348,13 +357,21 @@ function reset_pomodoro_session() {
 }
 
 //Function to "light" one pomodoro
-function turn_on_pomodoro_indicator (pomo) {var pomo = $(pomo);pomo.set('morph', {duration: 2000});pomo.morph({'background-position': '-30px','background-color': '#FFF'});}
+function turn_on_pomodoro_indicator (pomo) {
+	var pomo = jQuery(pomo);
+	pomo.animate({'background-position': '-30px','background-color': '#FFF'});
+}
 
 //Function to restart the pomodoros
 function turn_off_pomodoros_indicators () {
-	var pomo1 = $("pomoindi1");var pomo2 = $("pomoindi2");var pomo3 = $("pomoindi3");var pomo4 = $("pomoindi4");
-	pomo1.set('morph', {duration: 4000});pomo2.set('morph', {duration: 2000});pomo3.set('morph', {duration: 3000});pomo4.set('morph', {duration: 1200});
-	pomo1.morph({'background-position': '0px','background-color': '#EEEEEE'});pomo2.morph({'background-position': '0px','background-color': '#EEEEEE'});pomo3.morph({'background-position': '0px','background-color': '#EEEEEE'});pomo4.morph({'background-position': '0px','background-color': '#EEEEEE'});
+	var pomo1 = jQuery("pomoindi1");
+	var pomo2 = jQuery("pomoindi2");
+	var pomo3 = jQuery("pomoindi3");
+	var pomo4 = jQuery("pomoindi4");
+	pomo1.animate({'background-position': '0px','background-color': '#EEEEEE'});
+	pomo2.animate({'background-position': '0px','background-color': '#EEEEEE'});
+	pomo3.animate({'background-position': '0px','background-color': '#EEEEEE'});
+	pomo4.animate({'background-position': '0px','background-color': '#EEEEEE'});
 }
 
 //Functions to make the effect on the clock
@@ -384,31 +401,31 @@ function flip_number(force) {
 
 function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
 	var upperBackId = upperId+"Back";
-	$(upperId).src = $(upperBackId).src;
-	$(upperId).setStyle("height", "64px");
-	$(upperId).setStyle("visibility", "visible");
-	$(upperBackId).src = pathUpper+parseInt(changeNumber)+".png";
+	jQuery(upperId).src = jQuery(upperBackId).src;
+	jQuery(upperId).css("height", "64px");
+	jQuery(upperId).css("visibility", "visible");
+	jQuery(upperBackId).src = pathUpper+parseInt(changeNumber)+".png";
 	
-	$(lowerId).src = pathLower+parseInt(changeNumber)+".png";
-	$(lowerId).setStyle("height", "0px");
-	$(lowerId).setStyle("visibility", "visible");
+	jQuery(lowerId).src = pathLower+parseInt(changeNumber)+".png";
+	jQuery(lowerId).css("height", "0px");
+	jQuery(lowerId).css("visibility", "visible");
 
-	var flipUpper = new Fx.Tween(upperId, {duration: 200, transition: Fx.Transitions.Sine.easeInOut});
+	/*var flipUpper = new Fx.Tween(upperId, {duration: 200, transition: Fx.Transitions.Sine.easeInOut});
 	flipUpper.addEvents({
 		'complete': function(){
 			var flipLower = new Fx.Tween(lowerId, {duration: 200, transition: Fx.Transitions.Sine.easeInOut});
 				flipLower.addEvents({
 					'complete': function(){	
 						lowerBackId = lowerId+"Back";
-						$(lowerBackId).src = $(lowerId).src;
-						$(lowerId).setStyle("visibility", "hidden");
-						$(upperId).setStyle("visibility", "hidden");
+						jQuery(lowerBackId).src = jQuery(lowerId).src;
+						jQuery(lowerId).css("visibility", "hidden");
+						jQuery(upperId).css("visibility", "hidden");
 					}				});					
 				flipLower.start('height', 64);
 				
 		}
 	});
-	flipUpper.start('height', 0);
+	flipUpper.start('height', 0);*/
 }
 
 //The real life at pomodoros: jQuery calling php function on functions.php
@@ -500,12 +517,12 @@ function load_model(qualmodelo) {
 }
 
 //Sound configuration
-soundManager.url = '../assets/soundmanager2.swf';
+soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/assets/soundmanager2.swf';
 soundManager.onready(function() {
 	// Ready to use; soundManager.createSound() etc. can now be called.
-	active_sound = soundManager.createSound({id: 'mySound2',url: 'http://localhost/pomodoros.com.br/pomodoros/wp-content/themes/darwin-buddypress-buddypack/pomodoro/sounds/crank-2.mp3',});
-	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'http://localhost/pomodoros.com.br/pomodoros/wp-content/themes/darwin-buddypress-buddypack/pomodoro/sounds/telephone-ring-1.mp3',});
-	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'http://localhost/pomodoros.com.br/pomodoros/wp-content/themes/darwin-buddypress-buddypack/pomodoro/sounds/magic-chime-02.mp3',});
+	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/crank-2.mp3',});
+	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/telephone-ring-1.mp3',});
+	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/magic-chime-02.mp3',});
 });
 soundManager.onerror = function() {alert(txt_sound_error+"...");}
 
