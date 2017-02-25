@@ -60,6 +60,6 @@
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-	<?php locate_template( array( 'sidebar.php' ), true ) ?>
+	<?php #locate_template( array( 'sidebar.php' ), true ) ?>
 
 <?php get_footer() ?>

@@ -85,7 +85,7 @@
 				<?php }  ?>
 				<!--a title="Fator produtividade" href="<?php bloginfo('url'); ?>/produtividade/"><div href="" id="icone-gauge">&nbsp;</div></a-->
 				<?php if ( is_user_logged_in() ) { ?> 
-					<div class="contem-icone"><a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->display_name  ?>"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Produtividade</span></a></div>
+					<div class="contem-icone"><a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_firstname  ?>"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Produtividade</span></a></div>
 				<?php } else { ?> 
 					<!--div class="contem-icone"><a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->display_name  ?>"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Produtividade</span></a></div-->
 					<!--div class="contem-icone"><a title="Fator produtividade (apenas para usuários registrados)" href="<?php bloginfo('url'); ?>/assinar/fator-produtividade"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Assinar</span></a></div-->
@@ -98,7 +98,7 @@
 				<br />
 				<?php $r = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts"); echo $r." pomodoros"; */?> 
 			</div>
-			<div style="float:right;padding: 5px 10px;margin-right: 50px;">
+			<div style="float:right;padding: 5px 10px;margin-right: 120px;">
 				 <?php if ( !is_user_logged_in() ) { ?> 
 					<button  title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</button>
 					<a title="Criar uma conta Pomodoros.com.br" href="/register"><button>Registre-se</button></a>
