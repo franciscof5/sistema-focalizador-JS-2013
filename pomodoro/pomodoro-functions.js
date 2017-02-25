@@ -302,16 +302,19 @@ function change_button (valueset, colorset) {
 function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
-	stop_clock();
+	//if(!is_pomodoro)is_pomodoro=true;
+	if(is_pomodoro)is_pomodoro=false;
 	change_status(txt_interrupted_countdowns);
 	//convertSeconds(0);
 	//flip_number();
 	change_button(textPomodoro, "#063");
-	secondsRemaining=0;
+	//secondsRemaining=0;
 	secondsRemaining = pomodoroTime;
+	stop_clock();
+	//alert(pomodoroTime);
 	//is_interrupt_button=false;
 	//if(!is_pomodoro)is_pomodoro=true;
-	if(!is_pomodoro)is_pomodoro=true;
+	
 }
 
 //Auxiliar function to countdown_clock() function
