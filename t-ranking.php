@@ -1,5 +1,5 @@
-<?php
-/*Template Name: Ranking*/
+<?php/
+*Template Name: Ranking*/
 ?>
 <?php get_header() ?>
 
@@ -66,8 +66,10 @@ jQuery( document ).ready(function() {
 
     <div class="padder">
 <?php
-echo do_shortcode('[widgets_on_pages id="authors"]');
+#echo do_shortcode('[widgets_on_pages id="authors"]');
 ?>
+<h3>Ranking under maintence</h3>
+<p>Check out top 25 on sidebar</p>
 </div>
 </div><!-- #content -->
 	
