@@ -27,7 +27,10 @@ get_header( 'buddypress' ); ?>
 				//all_posts = $wpdb->query('SELECT * FROM `wp_posts` WHERE `post_author` = '.$user_id.' GROUP BY DATE (`post_date`)');
 				//$all_posts = query_posts('author=1');
 				//$all_posts = $wpdb->query('SELECT `ID` FROM `wp_posts` WHERE `post_author` = '.$user_id.'');
-				$all_posts = $wpdb->get_results('SELECT `ID` FROM `wp_posts` WHERE `post_author` = '.bp_displayed_user_id().'');
+				global $wpdb;
+				$all_posts = $wpdb->get_results('SELECT `ID` FROM `pomodoros_posts` WHERE `post_author` = '.bp_displayed_user_id().'');
+				//var_dump($wpdb);die;
+
 				$all_tags = array();
 				foreach ($all_posts as $value) {
 					//var_dump($value->ID)." [ ] ";
@@ -48,15 +51,15 @@ get_header( 'buddypress' ); ?>
 				} ?>
 				<h3>Projetos (<?php echo count($all_tags); ?>)</h3>
 				
-				<ul>
+				
 				<?php foreach ($all_tags as $slug) {
-					echo "<li><a href=".get_bloginfo("url")."/projeto/$slug>{$slug}</a></li>";
+					echo "<a href=".get_bloginfo("url")."/projeto/$slug>{$slug}</a>, ";
 				} ?>
-				</ul>
+				
 				
 				<?php
 				//var_dump($all_tags);
-				die;
+				//die;
 
 				/*$html = '<div class="post_tags">';
 				foreach ( $tags as $tag ) {
