@@ -6,6 +6,15 @@ POMODOROS JAVASCRIPT
 /pomodoro
 Inside the directory everything related to the clock
 
+HOT TO USE
+Fresh install a wordpress and use it as main theme, some configuration need to be done on widgets
+
+PLUGINS
+It requires Buddypress
+
+ADVANTAGES
+Keep timetrack of your projects and storing data in local databases
+
 
 ORIGINATED FROM
 
