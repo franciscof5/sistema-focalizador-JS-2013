@@ -16,7 +16,15 @@ add_action('wp_ajax_save_modelnow', 'save_modelnow');
 add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action( 'admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
+add_action('init', 'theme_scripts');
 
+function theme_scripts() {	
+	//jquery colors
+	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
+	//alertify
+	wp_enqueue_script("alertify-js", get_bloginfo("stylesheet_directory")."/assets/alertify.min.js");
+	wp_enqueue_style('alertify-css', get_bloginfo("stylesheet_directory")."/assets/alertify.core_and_default_merged.css", __FILE__);
+}
 #
 function reset_configurations () {
 	delete_user_meta(get_current_user_id(), "pomodoroAtivo");

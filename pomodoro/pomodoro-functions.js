@@ -31,24 +31,18 @@
 //function check_for_running_pomodoro () {};
 
 jQuery(document).ready(function () {
+	//
+	load_pomodoro_clipboard();
+	//
 	jQuery("#title_box").change(function() {
 		update_pomodoro_clipboard();
-	})
+	});
 	jQuery("#description_box").change(function() {
 		update_pomodoro_clipboard();
-	})
+	});
 	jQuery("#tags_box").change(function() {
 		update_pomodoro_clipboard();
-	})
-	
-	/*jQuery.getScript( "../assets/jQuery-1.2.js", function( data, textStatus, jqxhr ) {
-		console.log( data ); // Data returned
-		console.log( textStatus ); // Success
-		console.log( jqxhr.status ); // 200
-		console.log( "Load was performed." );
-	});*/
-	load_pomodoro_clipboard();
-	//<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/jQuery-1.2.js" type="text/javascript"></script>
+	});
 });
 
 function load_pomodoro_clipboard () {
@@ -157,15 +151,15 @@ function action_button() {
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
 		pomodoro_completed_sound.play();
-		update_pomodoro_clipboard();
+		//update_pomodoro_clipboard();
 		interrupt();
 	} else {
 		//The user clicked on Pomodoro or Rest button
 		start_clock();
-		update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data
+		//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data
 		if(is_pomodoro) {
 			
-			update_pomodoro_clipboard("pending");
+			//update_pomodoro_clipboard("pending");
 			change_status(txt_started_countdown);
 		}
 		else {
@@ -286,14 +280,17 @@ function stop_clock() {
 
 //Function to show status warnings at bottom of the clock
 function change_status(txt) {
+	console.log("change_status: " + txt);
+	alertify.log(txt);
 	document.getElementById("div_status").innerHTML=txt;
 }
 
 //Function to change button text and color
 function change_button (valueset, colorset) {
-	var button = jQuery("action_button_id");
-	button.value=valueset;
-	button.animate({'background-color': colorset});
+	var button = jQuery("#action_button_id");
+	//var button = document.getElementById("action_button_id");
+	button.val(valueset);
+	button.animate({'background-color': colorset}, 2000);
 	//button.set('morph', {duration: 2000});
 	//button.morph({/*'border': '2px solid #F00',*/'background-color': colorset});
 }
