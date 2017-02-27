@@ -20,7 +20,7 @@
 			    <br />
 			    Maitaned by <a href="http://www.grupof.com">GrupoF</a>
 			    <br />
-			    Visit our <a href="http://www.grupof.com/pomodoros.com.br">Blog</a>
+			    Visit our <a href="http://grupof.com.br/category/fnetwork/pomodoros-com-br/">Blog</a>
 			    </p>
 			    <?php /*<p><?php printf( __( '%s is proudly powered by <a href="http://mu.wordpress.org">WordPress MU</a>, <a href="http://buddypress.org">BuddyPress</a>', 'buddypress' ), bloginfo('name') ); ?> and <a href="http://www.avenueb2.com">Avenue B2</a></p>*/ ?>
 			</div>
