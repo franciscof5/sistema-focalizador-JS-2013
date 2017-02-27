@@ -13,7 +13,15 @@
 				</div>
 			<?php } ?>
 			<div id="footer-info">
-			    <p id="assinatura">Desenvolvido por F5 Sites <br /> <a href="http://www.f5sites.com">www.f5sites.com</a></p>
+			    <p id="assinatura">
+			    Developed by <a href="http://www.franciscomat.com">Francisco Mat</a> 
+			    <br /> 
+			    Hosted by <a href="http://www.f5sites.com">F5 Sites</a>
+			    <br />
+			    Maitaned by <a href="http://www.grupof.com">GrupoF</a>
+			    <br />
+			    Visit our <a href="http://www.grupof.com/pomodoros.com.br">Blog</a>
+			    </p>
 			    <?php /*<p><?php printf( __( '%s is proudly powered by <a href="http://mu.wordpress.org">WordPress MU</a>, <a href="http://buddypress.org">BuddyPress</a>', 'buddypress' ), bloginfo('name') ); ?> and <a href="http://www.avenueb2.com">Avenue B2</a></p>*/ ?>
 			</div>
 		<?php do_action( 'bp_footer' ) ?>
