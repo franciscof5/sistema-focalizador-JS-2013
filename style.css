@@ -5,27 +5,45 @@ Description: Sistema Focalizador JS foi feito para o site Pomodoros, based in Da
 Version: 2013
 Author: Francisco Matelli Matulovic
 Author URI: http://www.franciscomat.com
+Template: bp-default
 Tags: red, pomodoros, social, buddypress
 */
 
 /*
 Based in: Pomodoros v2013 (/html-disabled/pomodoros.com.br);
-Theme Name: Darwin (BuddyPress BuddyPack)
-Theme URI: http://www.avenueb2.com
-Description: A theme from the Avenue BuddyPress BuddyPack (B2)
-Version: 1.2.1
-Author: Michael Kuhlmann
-Author URI: http://www.michaelkuhlmann.com
-Template: bp-default
-Tags: buddypress, red, white, flexible-width, two-columns
+ThemeName: Darwin (BuddyPress BuddyPack)
+ThemeURI: http://www.avenueb2.com
+Description1: A theme from the Avenue BuddyPress BuddyPack (B2)
+Version1: 1.2.1
+Author1: Michael Kuhlmann
+AuthorURI1: http://www.michaelkuhlmann.com
+
+Tags1: buddypress, red, white, flexible-width, two-columns
+*/
+/*
+ThemeName2: Pomodoros
+ThemeURI2: http://www.pomodoros.com.br
+Description2: Tema para o site Pomodoros, based in Darwin.
+Version2: 0.1
+Author2: Francisco Matelli
+AuthorURI2: http://www.franciscomatelli.com
+Template2: bp-default
+Tags2: red, pomodoros, social, buddypress
+//REMOVIDO PARA TESTAR -> Template: bp-default
 */
 
-/*@import url(  _inc/css/reset.css ); ../../plugins/buddypress/bp-themes/bp-default/*/
+/*
+principal light color: #093;
+principal dark color: #096;
+@import url( ../../plugins/buddypress/bp-themes/bp-default/_inc/css/reset.css );
+*/
+
 @import url(pomodoro/pomodoro.css );
 
-.mdc-theme-switcher {
-    top: 0px;
-    left: 0;
+/*fot stick footer*/
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
 /*f5sites*/
@@ -63,10 +81,7 @@ div#sidebar {width:24%;}
 .Authors a {height: 36px;overflow: hidden; /*display: inline-block;*/}
 .Authors li {margin-bottom:20px;}
 
-/*FOOTER*/
-#footer {margin: 0;}
-#footer-info {float:left: width:400px;}
-#footer-contact-form {float:right; width:300px;}
+/**/
 
 .clear:after {
   clear:both;
@@ -81,92 +96,120 @@ div#sidebar {width:24%;}
 .editfield {width:300px;float:right;}
 
 #loginlogbox {
-display:none;
-width: 180px;
-height: 210px;
-position: absolute;
-background: #FFFFFF;
-border: solid 2px #DDD;
-z-index: 20;
-/*left: 1070px;*/
-right:18%;
-top: 45px;
-border-radius: 10px;
-padding: 30px;
-opacity: 0.95;
-filter:alpha(opacity=95); /* For IE8 and earlier */
+	display:none;
+	width: 180px;
+	height: 210px;
+	position: absolute;
+	background: #FFFFFF;
+	border: solid 2px #DDD;
+	z-index: 20;
+	/*left: 1070px;*/
+	right:18%;
+	top: 45px;
+	border-radius: 10px;
+	padding: 30px;
+	opacity: 0.95;
+	filter:alpha(opacity=95); /* For IE8 and earlier */
 }
 #loginlogbox p label {
-color: #999;
-font-weight: bold;
-display:block;
+	color: #999;
+	font-weight: bold;
+	display:block;
 }
 #loginlogbox input[type="text"],#loginlogbox input[type="password"] {width:160px;}
 #loginlogbox input[type="submit"] {top: -10px;position: relative;}
 .widget_loginlogout #loginform {display:none;}
 
 #settingsbox {
-display:none;
-width: 420px;
-position: absolute;
-background: #FFFFFF;
-border: solid 2px #DDD;
-z-index: 20;
-/*left: 1070px;*/
-right:18%;
-top: 45px;
-border-radius: 10px;
-padding: 30px;
-opacity: 0.95;
-filter:alpha(opacity=95); /* For IE8 and earlier */
+	display:none;
+	width: 420px;
+	position: absolute;
+	background: #FFFFFF;
+	border: solid 2px #DDD;
+	z-index: 20;
+	/*left: 1070px;*/
+	right:18%;
+	top: 45px;
+	border-radius: 10px;
+	padding: 30px;
+	opacity: 0.95;
+	filter:alpha(opacity=95); /* For IE8 and earlier */
 }
 
 textarea, input[type="text"] {background:#FFF;width: 100%;}
 
 html { 
   /*background: url(images/bck_studas.jpeg) no-repeat center center fixed; */
-  /*background: #EEE;*/
+  /*background: #EEE;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 #fotofundo {
-display:none;
-background-position: 50% 50%;
-background-attachment: fixed;
-background-repeat: no-repeat;
--webkit-background-size: cover;
-background-size: cover;
-height:100%;
-width: 100% !important;
-position: relative;
-/*background: url('images/bck_studas.jpeg') #543;
-position: absolute;
-/*left: 0;*/
-z-index: -1;
+	display:none;
+	background-position: 50% 50%;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	height:100%;
+	width: 100% !important;
+	background: url('images/bck_studas.jpeg') #543;
+	position: relative;
+	/*position: absolute;
+	/*left: 0;*/
+	z-index: -1;
+}
+#wrapper {
+	/*STICK FOOTER*/
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	
+	/*margin-bottom: -200px;
+	/*max-width: 1000px; /*sera que precisa*
+	background: rgba(255,255,255,0.9);*/
+	max-width: 1250px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #content_inicio {
-/*padding-top: 40px;*/
-background:transparent;
+	/*padding-top: 40px;*/
+	position:relative;
+	background:transparent;
+	/*margin-bottom: -200px;*/
+	
+	max-width: 1250px;
+	margin-left: auto;
+	margin-right: auto;
+	/*height: 100%;*/
 }
+
 #content_inicio li{
 	list-style: none;
 }
 /*REMENDO PORQUE NAO LOGADO NAO MOSTRA CONTAINER*/
 #login{
-background:#FFF;
-margin-top: 70px;
-width: 320px;
-padding: 20px;
-margin: auto;
-top: 110px;
-position: relative;
-border-radius: 20px;
-padding-bottom: 8px;
+	background:#FFF;
+	margin-top: 70px;
+	width: 220px;
+	padding: 20px;
+	margin: auto;
+	margin-bottom: 20px;
+	/*top: 110px;*/
+	position: relative;
+	border-radius: 20px;
+	padding-bottom: 8px;
 }
-
+#login #loginform input[type=text] {
+	width: 200px;
+}
+#login #nav {
+	float:none;
+	margin-top: 10px;
+}
 .circulo {
 padding:20px;
 background:#FFF;
@@ -181,34 +224,28 @@ float: left;
 opacity:0.95;
 filter:alpha(opacity=95); /* For IE8 and earlier */
 }
-.circulo h3 {margin: 5px 0 8px 0;font-weight: bold;}
+.circulo h3 {
+	font-family: 'Lilita One',cursive;
+	margin: 5px 0 8px 0;
+	font-size: 22px;
+	/*color: #093;*/
+	/*font-weight: bold;*/
+}
 .circulo ul li {list-style-type: square;}
 #content_register {
-width: 800px;
-margin: 0 auto 60px auto;
-background: #FFF;
-border: solid 2px #DDD;
-top: 60px;
-position: relative;
-border-radius: 20px;
-opacity: 0.9;
-filter:alpha(opacity=90); /* For IE8 and earlier */
+	width: 800px;
+	margin: 0 auto 60px auto;
+	background: #FFF;
+	border: solid 2px #DDD;
+	top: 60px;
+	position: relative;
+	border-radius: 20px;
+	opacity: 0.9;
+	filter:alpha(opacity=90); /* For IE8 and earlier */
 }
 .editfield {float:left !important;}
 .field-visibility-settings-notoggle, .field-visibility-settings-toggle {display:none;}
 
-#assinatura {
-background:#FFF;
-font-weight: bold;
-color: rgb(51, 51, 51);
-border: solid 2px #DDD;
-width: 200px;
-margin: 0 auto;
-padding: 10px;
-border-radius: 20px;
-opacity: 0.9;
-filter:alpha(opacity=90); /* For IE8 and earlier */
-}
 
 /* OUTRAS MODIFICACOES*/
 #contem-modelos ul {
@@ -315,7 +352,40 @@ li.activity-item  {
 #chart_gauges_div table tbody tr td div {margin: 0px auto;}
 
 
+/* RANKING */
+#authors ul li {
+	height: 68px;
+	border: 1px solid #CCC;
+	border-radius: 10px;
+	margin: 0 0 5px 0;
+}
+#authors ul li:nth-child(1) { border: 0;}
+/*#authors ul li div {
+	float: left;
+}*/
+#authors ul li img {
+	border-radius: 10px;
+}
+#authors ul li div:nth-child(2) {
+	margin: -22px 0 0 80px;
+}
+#authors ul li h3 {
+	margin-top: 30px;
+	width: 80%;
+	white-space: nowrap;
+	overflow: hidden;
+}
 
+#authors ul li:nth-child(even) {
+	background: #EEE;
+}
+#authors ul li span {
+	float: right;
+	font-size: 22px;
+	margin: 15px;
+	color: #006633;
+	font-family: "Lilita One", cursive;
+}
 
 
 /* > Global Elements
@@ -333,6 +403,9 @@ body {
 	/*max-width: 1250px; f5sites*/
 	margin: 0 auto;
 	padding-top: 0 !important; /* Remove the top padding space for the admin bar in this theme */
+	/*ajusta configuracoes do tema anterior*/
+	width: 100% !important; 
+	max-width: 100% !important;
 }
 	body.activity-permalink {
 		min-width: 500px;
@@ -360,7 +433,14 @@ h4 {
 
 a { color: #093; /*#bc1800; f5sites*/ text-decoration: none;}
 
-.padder { padding: 15px; }
+/*.padder { 
+	width: 73%;
+	float: right;
+	padding: 15px;
+	background: #FFF;
+	border-radius: 10px;
+}*/
+
 .clear { clear: left; }
 
 p {	margin-bottom: 15px; }
@@ -371,7 +451,7 @@ img.avatar {
 }
 
 .ajax-loader {
-	background: url( images/ajax-loader.gif ) center left no-repeat !important;
+	background: url( ../images/ajax-loader.gif ) center left no-repeat !important;
 	padding: 8px;
 	display: none;
 }
@@ -507,14 +587,26 @@ margin: 0 auto;
 #icone-foc {background:url("images/icones-topo.png"); background-position: -280px 0px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-foc {background:url("images/icones-topo.png"); background-position: -280px 40px;}
 
-#linha-fundo {
+#icone-calend {background:url("images/icones-topo.png"); background-position: -320px 0px; height:40px; width:40px;float:left;}
+.contem-icone:hover #icone-calend {background:url("images/icones-topo.png"); background-position: -320px 40px;}
+
+/*#linha-fundo-home {
+	position:absolute;
+	width:100%;
+	border-top: 41px #093 solid;
+	height:251px;
+	background:#FFF;
+	border-bottom: 50px rgba(0,0,0,0.8) solid;
+	left:0;
+}*/
+#linha-fundo-home, #linha-fundo {
 	position:absolute;
 	width:100%;
 	height:41px;
 	background:#093;
 	left:0;
 }
-
+#slider {margin-top: -14px;}
 /* > Navigation
 -------------------------------------------------------------- */
 
@@ -671,13 +763,16 @@ div#sidebar {
 
 div#content {
 	float: right; /*f5sites*/
-	width: 75% ;  /*500px f5sites 80%*/
-        max-width: 1000px;
-       background: rgba(255,255,255,0.9);
+	width: 74% ;  /*500px f5sites 80%*/
+	/*max-width: 1000px;*/
+	background: rgba(255,255,255,0.9);
+	border-radius: 15px;
+	margin-bottom: 20px;
 }
 
 div#content .padder {
 	border: 0 !important; /*francisco @f5sites*/
+
 	margin-left: 0;
  margin-right: 0px;
 }
@@ -884,7 +979,7 @@ div.item-list-tabs {
 			font-weight: bold;
 		}
 			div.item-list-tabs ul li.loading a {
-				background-image: url( images/ajax-loader.gif );
+				background-image: url( ../images/ajax-loader.gif );
 				background-position: 92% 50%;
 				background-repeat: no-repeat;
 				padding-right: 30px;
@@ -901,7 +996,7 @@ div.item-list-tabs {
 
         div.item-list-tabs#user-subnav a,
 	div.item-list-tabs#group-subnav a{
-	background: url( images/white-grad.png ) top left repeat-x;
+	background: url( ../images/white-grad.png ) top left repeat-x;
 	border: 1px solid #ccc;
 	padding: 2px 8px;
         color: #111;
@@ -1005,7 +1100,7 @@ form.standard-form#signup_form div div.error {
 
 a.button, input[type=submit], input[type=button],
 ul.button-nav li a, div.generic-button a {
-	background: #222 url(images/gray-line.gif) top left repeat-x;
+	background: #222 url(../images/gray-line.gif) top left repeat-x;
 	border: 1px solid #000;
 	padding: 5px 10px;
 	text-decoration: none;
@@ -1235,7 +1330,7 @@ table.forum tr.sticky td a {
 
 	table.forum tr.closed td.td-title {
 		padding-left: 35px;
-		background-image: url( images/closed.png );
+		background-image: url( ../images/closed.png );
 		background-position: 15px 50%;
 		background-repeat: no-repeat;
 	}
@@ -1416,7 +1511,7 @@ ul.activity-list li {
 	margin-left: 70px;
 	margin-bottom: 15px;
 	padding-left: 25px;
-	background: url( images/replyto_arrow.gif ) 7px 0 no-repeat;
+	background: url( ../images/replyto_arrow.gif ) 7px 0 no-repeat;
 }
 	.activity-list li .activity-inreplyto > p {
 		margin: 0;
@@ -1524,7 +1619,7 @@ div.activity-meta {
 	border-radius: 4px;
 }
 	.activity-list div.activity-meta a.loading {
-		background-image: url( images/ajax-loader.gif );
+		background-image: url( ../images/ajax-loader.gif );
 		background-position: 95% 50%;
 		padding-right: 25px;
 		background-repeat: no-repeat;
@@ -1655,7 +1750,7 @@ div.activity-comments ul, div.activity-comments ul li {
 		}
 
 		div.activity-comments form.loading {
-			background-image: url( images/ajax-loader.gif );
+			background-image: url( ../images/ajax-loader.gif );
 			background-position: 2% 95%;
 			background-repeat: no-repeat;
 		}
@@ -2002,16 +2097,61 @@ ol.commentlist li {
 -------------------------------------------------------------- */
 
 #footer {
-	/*padding: 75px 0 0 0;*/
-	margin-top: 20px;
-	/*francisco @f5sites*/
-	text-align: center;
-	color: #bbb;
+	height: 420px;
 }
-	#footer a {
-		color: #777;
-	}
+#wrapper {
+	margin: 0 auto -420px;
+}
+.push {
+	height: 420px;
+	clear: both;
+}
 
+#footer {
+	color: #bbb;
+	clear: both;
+	background: #2D2D2D;
+	margin: 0 !important;
+}
+	#footer a:hover {
+		color: #FFF;
+	}
+	#footer-content {
+		max-width: 1250px;
+		margin: 0 auto;
+	}
+		#footer-content .links {
+			float: left;
+		}
+		#footer-content .link-group {
+			float: left;
+			margin: 0 20px;
+		}
+		#footer-content h3 {
+			color:#FFF;
+			font-family: 'Lilita One',cursive;
+			font-size: 20px;
+		}
+		#footer-content #footer-contact-form {
+			float:right;
+			width:auto;
+			margin-right: 25px;
+		}
+		#footer-content a {
+			color: #777;
+		}
+		#footer-content a:hover {
+			color: 093;
+		}
+		#footer-content input[type=text], #footer-content input[type=email], #footer-content  textarea {
+			background: #b6b6b6;
+			color: #333 !important;
+			width: 200px;
+		}
+		#footer-content input[type=submit] {
+			background: #093;
+
+		}
 
 
 
@@ -2123,7 +2263,7 @@ visibility: hidden; /*f5sites*/
 	padding: 0;
 	float: left;
 	position: relative;
-	background: url( images/admin-menu-arrow.gif ) 88% 53% no-repeat;
+	background: url( ../images/admin-menu-arrow.gif ) 88% 53% no-repeat;
 	padding-right: 11px;
 }
 	#wp-admin-bar ul li.no-arrow {
@@ -2145,7 +2285,7 @@ visibility: hidden; /*f5sites*/
 }
 
 #wp-admin-bar ul.main-nav li:hover, #wp-admin-bar ul.main-nav li.sfhover, #wp-admin-bar ul.main-nav li ul li.sfhover {
-	background: #bd1900 url(images/nav-bg.gif) repeat-x;
+	background: #bd1900 url(../images/nav-bg.gif) repeat-x;
 }
 
 /* second-level lists */

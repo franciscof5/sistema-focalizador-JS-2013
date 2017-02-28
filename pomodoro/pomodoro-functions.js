@@ -53,7 +53,7 @@ function load_pomodoro_clipboard () {
 	};
 	jQuery.post(ajaxurl, data, function(response) {
 		rex = response.split("$^$ ");
-		change_status(rex[0]);
+		//change_status(rex[0]);
 		title_box.value = rex[1];
 		tags_box.value  = rex[2];
 		description_box.value = rex[3];
@@ -61,7 +61,7 @@ function load_pomodoro_clipboard () {
 		status_box.value = rex[5];
 		post_id_box.value = rex[6];
 		secundos = rex[7].slice(0, -1);
-		change_status(secundos);
+		//change_status(secundos);
 		//alert("secundos");
 		//secundos = secundos.substring(rex[5], str.length - 1);
 		

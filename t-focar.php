@@ -1,5 +1,40 @@
 <?php
 /* Template Name: Focar */
+
+#require_once 'gcalendar/autoload.php';
+#$client = new Google_Client();
+// OAuth2 client ID and secret can be found in the Google Developers Console.
+
+#$client = new Google_Client();
+/*$client->setApplicationName("Client_Library_Examples");
+$client->setDeveloperKey("YOUR_APP_KEY");
+
+$service = new Google_Service_Books($client);
+$optParams = array('filter' => 'free-ebooks');
+$results = $service->volumes->listVolumes('Henry David Thoreau', $optParams);
+
+foreach ($results as $item) {
+echo $item['volumeInfo']['title'], "<br /> \n";
+}*/
+#$client->setClientId('aaaaaaaaaaaaaaaa');
+#$client->setClientSecret('bbbbbbbbbbb');
+#$client->setRedirectUri('https://pomodoros.com.br/oauth2callback');
+#$client->addScope('https://www.googleapis.com/auth/calendar');
+
+#$service = new Google_Service_Calendar($client);
+
+#$authUrl = $client->createAuthUrl();
+
+//Request authorization
+#print "Please visit:\n$authUrl\n\n";
+#print "Please enter the auth code:\n";
+#$authCode = trim(fgets(STDIN));
+
+// Exchange authorization code for access token
+#$accessToken = $client->authenticate($authCode);
+#echo $client->setAccessToken($accessToken);
+//die;
+
 ?>
 <?php get_header() ?>
 
