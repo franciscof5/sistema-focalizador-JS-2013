@@ -148,15 +148,15 @@
 		<?php do_action( 'bp_before_container' ) ?>
 <?php
 //get the language file
-/*if(function_exists(qtrans_getLanguage)){
-   if(qtrans_getLanguage() == "en")
+if(function_exists(qtranxf_getLanguage)){
+   if(qtranxf_getLanguage() == "en")
 	$filelang="en.js";
-   else if(qtrans_getLanguage() == "pt")
+   else if(qtranxf_getLanguage() == "pt")
 	$filelang="pt-br.js";
 } else {
 	//If the function doesnt exists then call the default language
 	$filelang="pt-br.js";
-}<script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/languages/<?php echo $filelang ?>" type="text/javascript"></script>
+}
 ?>
-
+<script src="<?php bloginfo('stylesheet_directory'); ?>/languages/<?php echo $filelang ?>" type="text/javascript"></script>
 
