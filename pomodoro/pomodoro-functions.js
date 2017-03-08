@@ -207,7 +207,7 @@ function complete() {
 			change_status(txt_bigrest_countdown);
 			secondsRemaining=bigRestTime;
 			changeTitle("GRANDE DESCANSO");
-			turn_off_pomodoros_indicators();
+			reset_indicators();
 		} else {
 			//normal rest
 			pomodoro_actual++;
@@ -317,7 +317,7 @@ function reset_pomodoro_session() {
 	interrupt();
 	pomodoro_actual=1;
 	session_reseted_sound.play();
-	turn_off_pomodoros_indicators();
+	reset_indicators();
 	//changeTitle("Sessão de pomodoros reiniciada...");
 	change_status("Pronto, sessão reiniciada. O sistema está pronto para uma nova contagem!");
 }
@@ -330,15 +330,11 @@ function turn_on_pomodoro_indicator (indicator_number) {
 }
 
 //Function to restart the pomodoros
-function turn_off_pomodoros_indicators () {
-	var pomo1 = jQuery("pomoindi1");
-	var pomo2 = jQuery("pomoindi2");
-	var pomo3 = jQuery("pomoindi3");
-	var pomo4 = jQuery("pomoindi4");
-	pomo1.animate({'background-position': '0px','background-color': '#EEEEEE'});
-	pomo2.animate({'background-position': '0px','background-color': '#EEEEEE'});
-	pomo3.animate({'background-position': '0px','background-color': '#EEEEEE'});
-	pomo4.animate({'background-position': '0px','background-color': '#EEEEEE'});
+function reset_indicators() {
+	jQuery("#pomoindi1").animate({'background-position': '0px','background-color': '#EEEEEE'});
+	jQuery("#pomoindi2").animate({'background-position': '0px','background-color': '#EEEEEE'});
+	jQuery("#pomoindi3").animate({'background-position': '0px','background-color': '#EEEEEE'});
+	jQuery("#pomoindi4").animate({'background-position': '0px','background-color': '#EEEEEE'});
 }
 
 //Functions to make the effect on the clock
