@@ -1,5 +1,89 @@
 <?php
+//
+function get_author_post_tags_wpa78489($author_id,$taxonomy = 'post_tag'){
+    //get author's posts
+    $posts = get_posts(array(
+        'author' => $author_id,
+        'posts_per_page' => -1,
+        'fields' => 'ids'
+        )
+    );
 
+    $ts = array();
+
+    //loop over the post and count the tags
+    foreach ((array)$posts as $p_id) {
+        $tags = wp_get_post_terms( $p_id, $taxonomy);
+        foreach ((array)$tags as $tag) {
+            if (isset($tags[$tag->term_id])){ //if its already set just increment the count
+                $ts[$tag->term_id]['count'] = $ts[$tag->term_id]['count']  + 1;
+            }else{ //set the term name start the count
+                $ts[$tag->term_id] = array('count' => 1, 'name' => $tag->name, 'slug' => $tag->slug);
+            }
+        }
+    }
+
+    //so now $ts holds a list of arrays which each hold the name and the count of posts 
+    //that author have in that term/tag, so we just need to display it
+    $url = get_author_posts_url($author_id);
+    #echo '<ul>';
+    foreach ($ts as $term_id => $term_args) {
+        echo '<span class="count">'.$term_args['count'].'</span> <a href="'.add_query_arg('tag',$term_args['slug'],$url).'">'.$term_args['name'].'</a>, ';
+    }
+    #echo '</ul>';
+}
+
+function user_object_productivity ($user_id) {
+	//echo "<script>alert($user_id);</script>";
+	$user_id = (empty($user_id)) ? get_current_user_id() : $user_id;
+	//$SEMPRE = $TRINTADIAS = $MES = $SETEDIAS = $SEMANA = $HOJE = array ();
+	//$SEMPRE = $TRINTADIAS = $MES = $SETEDIAS = $SEMANA = $HOJE = array ();
+	//variaveis assistentes
+	$data_registro_do_usuario = strtotime(date("Y-m-d", strtotime(get_userdata($user_id)->user_registered)));
+	$now = time();
+	global $wpdb;
+	$datediff = $now - $data_registro_do_usuario;//must exist, MUST!
+
+	/*It must be splitted because it uses itself values, and it cant be accessed in real time*/
+	$SEMPRE['totalDias'] = floor($datediff/(60*60*24));
+	$SEMPRE['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' GROUP BY DATE (`post_date`)');
+	$SEMPRE['diasFolga'] = $SEMPRE['totalDias'] - $SEMPRE ['diasTrabalhados'];
+	$SEMPRE['fatorProdutividade'] = round($SEMPRE['diasTrabalhados']/$SEMPRE['totalDias'], 2);
+	
+	$TRINTADIAS['totalDias'] = 30;
+	$TRINTADIAS['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' AND post_date > DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY DATE (`post_date`)');
+	$TRINTADIAS['diasFolga'] = $TRINTADIAS['totalDias'] - $TRINTADIAS['diasTrabalhados'];
+	$TRINTADIAS['fatorProdutividade'] = round($TRINTADIAS['diasTrabalhados']/$TRINTADIAS['totalDias'], 2);
+
+	$MES['totalDias'] = date("j");
+	$MES['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$MES['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	$MES['diasFolga'] = $MES['totalDias'] - $MES['diasTrabalhados'];
+	$MES['fatorProdutividade'] = round($MES['diasTrabalhados']/$MES['totalDias'], 2);
+
+	$SETEDIAS['totalDias'] = 7;
+	$SETEDIAS['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$SETEDIAS['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	$SETEDIAS ['diasFolga'] = $SETEDIAS['totalDias'] - $SETEDIAS['diasTrabalhados'];
+	$SETEDIAS ['fatorProdutividade'] = round($SETEDIAS['diasTrabalhados']/$SETEDIAS['totalDias'], 2);
+	
+	$SEMANA['totalDias'] = date('w') + 1;
+	$SEMANA['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$SEMANA['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	//Its to prevent a very intersting bug, when there are 2 posts with less than 24 hours of difference but are published at 2 differents days, it will result in a 2 posts for 1 day, grouped by date, because there are 2 differente days
+	($SEMANA['diasTrabalhados']>$SEMANA['totalDias']) ? $SEMANA['diasTrabalhados'] = $SEMANA['totalDias'] : $SEMANA['diasTrabalhados'];
+	$SEMANA['diasFolga'] = $SEMANA['totalDias'] - $SEMANA['diasTrabalhados'];
+	$SEMANA['fatorProdutividade'] = round($SEMANA['diasTrabalhados']/$SEMANA['totalDias'], 2);
+
+	$new_object_productivity = array(
+		"sempre" => $SEMPRE,
+		"trintadias" => $TRINTADIAS,
+		"mes" => $MES,
+		"setedias" => $SETEDIAS,
+		"semana" => $SEMANA
+	);
+	//var_dump($new_object_productivity);
+	return $new_object_productivity;
+}
+
+//
 add_filter('show_admin_bar', '__return_false'); 
 add_action( 'login_form_middle', 'add_lost_password_link' );
 add_action( 'admin_menu', 'edit_admin_menus' ); 

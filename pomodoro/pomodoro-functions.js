@@ -34,13 +34,7 @@ jQuery(document).ready(function () {
 	//
 	load_pomodoro_clipboard();
 	//
-	jQuery("#title_box").change(function() {
-		update_pomodoro_clipboard();
-	});
-	jQuery("#description_box").change(function() {
-		update_pomodoro_clipboard();
-	});
-	jQuery("#tags_box").change(function() {
+	jQuery("#title_box, #description_box, #tags_box").change(function() {
 		update_pomodoro_clipboard();
 	});
 });
@@ -146,40 +140,35 @@ function update_pomodoro_clipboard (post_stts) {
 	}*/
 }
 
-//There only one button at the page, all the actions (trigglers) start here
+//Only one button trigger all actions for timmer manager
 function action_button() {
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
-		pomodoro_completed_sound.play();
-		//update_pomodoro_clipboard();
 		interrupt();
 	} else {
 		//The user clicked on Pomodoro or Rest button
 		start_clock();
-		//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data
-		if(is_pomodoro) {
-			
-			//update_pomodoro_clipboard("pending");
-			change_status(txt_started_countdown);
-		}
-		else {
-			change_status(txt_normalrest_countdown);
-		}
-		//The end of the big rest, the indicators light has to reset
-		if(pomodoro_actual==1)
-		turn_off_pomodoros_indicators();
 	}
+	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data		
 }
 
-//Make the code more legible
+//Start countdown
 function start_clock() {
 	active_sound.play();
 	//post_status="future;"
 	//Chage button to "interrupt"
 	//is_interrupt_button=true;
 	change_button(textInterrupt, "#0F0F0F");
-	//
 	interval_clock = setInterval('countdown_clock()', intervalMiliseconds);
+
+	//is_pomodoros is when using 25min for focusing
+	if(is_pomodoro) {	
+		//update_pomodoro_clipboard("pending");
+		change_status(txt_started_countdown);
+	}
+	else {
+		change_status(txt_normalrest_countdown);
+	}
 }
 
 //Function called every second when pomodoros are running
@@ -197,21 +186,8 @@ function countdown_clock (){
 	changeTitle();
 	//
 	document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
-
 }
 
-function getRadioCheckedValue(radio_name){
-   var oRadio = document.forms["pomopainel"].elements[radio_name];
-	//alert(oRadio.length);
-   for(var i = 0; i < oRadio.length; i++)
-   {
-      if(oRadio[i].checked)
-      {
-         return oRadio[i].value;
-      }
-   }
-   return '';
-}
 
 //This is the reason of all the code, the time when user complete a pomodoro, these satisfaction!
 function complete() {
@@ -221,7 +197,7 @@ function complete() {
 	stop_clock();	
 	changeTitle("Pomodoro completado!");
 	if(is_pomodoro) {
-		turn_on_pomodoro_indicator("pomoindi"+pomodoro_actual);
+		turn_on_pomodoro_indicator(pomodoro_actual);
 		savepomo();
 		is_pomodoro = false;
 		if(pomodoro_actual==pomodoros_to_big_rest) {
@@ -231,6 +207,7 @@ function complete() {
 			change_status(txt_bigrest_countdown);
 			secondsRemaining=bigRestTime;
 			changeTitle("GRANDE DESCANSO");
+			turn_off_pomodoros_indicators();
 		} else {
 			//normal rest
 			pomodoro_actual++;
@@ -239,7 +216,6 @@ function complete() {
 			secondsRemaining=restTime;
 			changeTitle("Hora do intervalo");
 		}
-		
 	} else {
 		change_button(textPomodoro, "#063");
 		change_status(txt_completed_rest);
@@ -247,22 +223,13 @@ function complete() {
 		secondsRemaining=pomodoroTime;
 		changeTitle("Pomodoro completado!");
 	}
-	
 }
 
-//Change the <title> of the document
-function changeTitle (novotity) {
-	if(!novotity) {
-		var task_name = document.getElementById('title_box');
-		document.title = Math.round(m1)+""+Math.round(m2)+":"+s1+""+s2 + " - " + task_name.value;
-	} else {
-		document.title = novotity;
-	}
-}
 
 //Just stop de contdown_clock function at certains moments
 function stop_clock() {
 	window.clearInterval(interval_clock);
+	pomodoro_completed_sound.play();
 	interval_clock=false;
 	update_pomodoro_clipboard();
 	//alert(is_pomodoro);
@@ -275,7 +242,6 @@ function stop_clock() {
 	flip_number(true);
 	document.getElementById("secondsRemaining_box").value=pomodoroTime+"s";//pomodoroTime
 	//is_interrupt_button = false;
-	
 }
 
 //Function to show status warnings at bottom of the clock
@@ -357,9 +323,10 @@ function reset_pomodoro_session() {
 }
 
 //Function to "light" one pomodoro
-function turn_on_pomodoro_indicator (pomo) {
-	var pomo = jQuery(pomo);
-	pomo.animate({'background-position': '-30px','background-color': '#FFF'});
+function turn_on_pomodoro_indicator (indicator_number) {
+	//var pomo = ;
+	//console.log("turn_on_pomodoro_indicator:"+indicator_number);
+	jQuery("#pomoindi"+indicator_number).animate({'background-position': '-30px','background-color': '#FFF'});
 }
 
 //Function to restart the pomodoros
@@ -538,6 +505,30 @@ function load_model(qualmodelo) {
 	document.getElementById("action_button_id").focus();
 	change_status(txt_loading_model);
 }
+
+//Change the <title> of the document
+function changeTitle (novotity) {
+	if(!novotity) {
+		var task_name = document.getElementById('title_box');
+		document.title = Math.round(m1)+""+Math.round(m2)+":"+s1+""+s2 + " - " + task_name.value;
+	} else {
+		document.title = novotity;
+	}
+}
+
+function getRadioCheckedValue(radio_name){
+   var oRadio = document.forms["pomopainel"].elements[radio_name];
+	//alert(oRadio.length);
+   for(var i = 0; i < oRadio.length; i++)
+   {
+      if(oRadio[i].checked)
+      {
+         return oRadio[i].value;
+      }
+   }
+   return '';
+}
+
 
 //Sound configuration
 soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/assets/soundmanager2.swf';

@@ -2,53 +2,65 @@
 <div class="sidebar" id="sidebar_pomodoro">
 	<div class="padder">
 		<li>
-			<h3 class="widget-title">Estatísticas de <?php get_currentuserinfo(); echo $current_user->user_firstname; ?> </h3>
-			Membro ha dias:
-			Dias de trabalho:
-			Dias sem trabalho:
-			Produtividade:
-			Pomodoros/dia
-			-Hoje
-			-Ultima semana
-			-Ultimo mes
-			-Ultimo ano
-			-Desde o comeco
-
-			[COMUNIDADE]
-			Pomodoros/dia
-			-Hoje
-			-Ultima semana
-			-Ultimo mes
-			-Ultimo ano
-			-Desde o comeco
-
+			<?php 
+			global $current_user;
+			get_currentuserinfo(); 
+			?>
+			<h3 class="widget-title">Estatísticas de <?php  echo $current_user->display_name; ?> </h3>
+			<?php 
+			$produtividade_usuario = user_object_productivity(bp_displayed_user_id());
+			?>
+			<h4>Registro</h4>
+			<ul>
+				<li>Membro ha dias: <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> </li>
+				<li>Dias de trabalho: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']; ?> </li>
+				<li>Dias sem trabalho: <?php echo $produtividade_usuario["sempre"]['diasFolga']; ?> </li>
+			</ul>
+			<h4>Produtividade</h4>
+			<p>Dia trabalhados/total dias no período, fator desempenho (%)</p>
+			<ul>
+				<!--li>Hoje :<?php echo $produtividade_usuario["semana"]['totalDias']; ?> </li-->
+				<li>Ultimos sete dias: <?php echo $produtividade_usuario["setedias"]['diasTrabalhados']."/7".", ".($produtividade_usuario["setedias"]['fatorProdutividade']*100)."%"; ?> </li>
+				<li>Mes atual: <?php echo $produtividade_usuario["mes"]['diasTrabalhados']."/".$produtividade_usuario["mes"]['totalDias'].", ".($produtividade_usuario["mes"]['fatorProdutividade']*100)."%"; ?> </li>
+				<li>Desde o comeco: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']."/".$produtividade_usuario["sempre"]['totalDias'].", ".($produtividade_usuario["sempre"]['fatorProdutividade']*100)."%"; ?> </li>
+			</ul>
 			<?php
-			/*$author_query = array('posts_per_page' => '-1','author' => $current_user->ID);
+			/*
+			<h4>Comunidade</h4>
+			<p>Pomodoros/dia</p>
+			<ul>
+			<li>Hoje :<?php echo  ?> </li>
+			<li>Ultima semana :<?php echo  ?> </li>
+			<li>Ultimo mes :<?php echo  ?> </li>
+			<li>Ultimo ano :<?php echo  ?> </li>
+			<li>Desde o comeco :<?php echo  ?> </li>
+			</ul>
+			$author_query = array('posts_per_page' => '-1','author' => $current_user->ID);
 			$author_posts = new WP_Query($author_query);
 			while($author_posts->have_posts()) : $author_posts->the_post();
 			?>
 			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>       
 			
 			<?php           
-			endwhile;*/
+			endwhile;
 			?>	
 			<p><?php the_author_posts(); ?> pomodoros </p>
 			<?php
 			//get all posts for an author, then collect all categories
 			//for those posts, then display those categories
-			$cat_array = array();			
+			/*$cat_array = array();			
 			$author_posts = new WP_Query( 'author="'.get_current_user_id().'"&post_status=any&nopaging=true' );
 			// The Loop
 			if ( $author_posts->have_posts() ) {
 			       /* while ( $author_posts->have_posts() ) {
 					$author_posts->the_post();
-				}*/
+				}*
 				//echo $author_posts->post_count;
 			} else {
 				echo  "Você ainda não completou nenhum pomodoro";
 			}
-			/* Restore original Post Data */
-			wp_reset_postdata();
+			/* Restore original Post Data *
+			wp_reset_postdata();*/
 			/*if( $author_posts ) {
 				echo count($author_posts);
 				/*  foreach ($author_posts as $author_post ) {
@@ -62,6 +74,13 @@
 			//$cat_ids = implode(',', $cat_array);
 			//wp_list_categories('include='.$cat_ids.'&title_li=Author Categories');
 			?>
+		</li>
+		<li>
+		<h3 class="widget-title">Seus projetos</h3>
+		<p><?php
+		get_author_post_tags_wpa78489(get_current_user_id());
+		?>
+		</p>
 		</li>
 	<?php dynamic_sidebar( 'pomodoros' ); ?>
 	
