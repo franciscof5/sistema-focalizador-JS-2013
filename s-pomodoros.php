@@ -1,5 +1,5 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
-<div class="sidebar" id="sidebar_pomodoro">
+<div id="sidebar_pomodoro" class="sidebar col-xs-6 col-sm-6 col-md-3 hidden-xs" >
 	<div class="padder">
 		<li>
 			<?php 

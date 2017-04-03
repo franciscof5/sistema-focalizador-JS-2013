@@ -22,18 +22,29 @@
 		<link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'>
 		<?php wp_head(); ?>
 	<link href="<?php echo bloginfo('stylesheet_directory'); ?>/_inc/select2/select2.css" rel="stylesheet"/>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+	<!--[if lt IE 9]>
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
+	<![endif]-->
+
+
+	<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.css" rel="stylesheet"/>
+	<script type="text/javascript" src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.js"></script>
 </head>
 
 <?php if (function_exists('mbj_notify_bar_display')) { mbj_notify_bar_display(); }?>
 <?php if (function_exists("activate_maintenance_mode")) { activate_maintenance_mode();} ?>
 
-<body <?php body_class() ?> id="bp-default">
-<a href="https://github.com/franciscof5/sistema-focalizador-JS-2013"><img style="position: absolute; top: 0; right: 0; border: 0;z-index:999999999;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-	<div id="wrapper">
+<body <?php #body_class() ?> id="bp-default22">
+<a class="github-fork-ribbon" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
+<span id='linha-fundo'></span>
+	<div id="wrapper" class="container-fluid">
+
 		<?php do_action( 'bp_before_header' ) ?>
 		
 			<!--span id='linha-fundo<?php if (is_front_page()) echo "-home" ?>'></span-->
-			<span id='linha-fundo'></span>
+			
 		<?php //} ?>
 		<script type="text/javascript">
 			jQuery().ready(function($) {
@@ -50,7 +61,7 @@
 				});
 			});
 		</script>
-		<div id="header">			
+		<div id="header" class="row">			
 			<div id="header-content">
 				<div style="height: 40px;width: 140px;float: left;">
 					<a title="Pomodoros.com.br" href="<?php bloginfo('url'); ?>">
@@ -160,3 +171,5 @@ if(function_exists(qtranxf_getLanguage)){
 ?>
 <script src="<?php bloginfo('stylesheet_directory'); ?>/languages/<?php echo $filelang ?>" type="text/javascript"></script>
 
+
+<div class="row">

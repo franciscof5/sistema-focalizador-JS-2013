@@ -39,8 +39,8 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 <?php get_header() ?>
 
 <?php get_sidebar(); ?>
-<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
-<div class="content_pomodoro">
+
+<div class="content_pomodoro col-xs-12 col-sm-6">
 
 <!--MooTools
 <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>-->
@@ -123,7 +123,7 @@ jQuery(document).ready( function($) {
 	<img src="<?php bloginfo('stylesheet_directory'); ?>/images/mascote_foca.png" />
 	<br />
 
-	<form name="pomopainel">
+	<form name="pomopainel" id="pomopainel">
 		<label><script>document.write(txt_write_task_title)</script></label><br />
 		<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33"></input><br />
 		
@@ -372,9 +372,8 @@ jQuery(document).ready( function($) {
 	*/
 	?>
 </div>
-
 </div><!-- #content -->
-
+<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
 <?php //if (is_user_logged_in()) { ?>
 
 	

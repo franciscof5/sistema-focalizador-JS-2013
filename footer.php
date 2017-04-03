@@ -1,6 +1,8 @@
-			<div class="push"></div>
+			
+			</div>
 		</div> <!-- #wrapper #2D2D2D-->
-
+		<div class="row">
+		<div class="push"></div>
 		<?php do_action( 'bp_after_container' ) ?>
 
 		

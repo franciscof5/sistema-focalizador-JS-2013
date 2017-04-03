@@ -1,6 +1,6 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
-<div id="sidebar" class="sidebar" role="complementary">
+<div id="sidebar22" class="sidebar col-xs-3 hidden-sm hidden-xs" role="complementary">
 	<div class="padder">
 
 	<?php do_action( 'bp_inside_before_sidebar' ); ?>
@@ -66,7 +66,7 @@
 		</div>
 	<?php endif; ?>
 
-	<?php dynamic_sidebar( 'sidebar-1' ); ?>
+	<?php dynamic_sidebar( 'geral' ); ?>
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 

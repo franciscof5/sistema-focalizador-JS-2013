@@ -34,7 +34,7 @@ var txt_animating2 = "OOOOO filho da mãe... isso dói, essa ponta desse mouse p
 
 //Frases da interface do painel
 var txt_write_task_title = "Tarefa:";
-var txt_write_task_desc = "O que você precisa fazer para terminar a tarefa?";
+var txt_write_task_desc = "Anotações:";
 var txt_write_task_tags = "Nome do projeto ou disciplina:";
 var txt_write_task_category = "Que tipo de tarefa é essa?";
 var txt_write_task_privacy = "Privacidade";

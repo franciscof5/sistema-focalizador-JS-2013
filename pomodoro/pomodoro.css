@@ -29,13 +29,13 @@
 #lista-projetos:hover {height:60px;}*/
 
 /**/
-#pomodoro-relogio {padding:10px;height:220px;width:270px;background:#EEE;}
+#pomodoro-relogio {padding:10px;height:220px;width:290px;background:#EEE;margin:0 auto;}
 
 #action_button_id {background-color:#063;/*margin:5px 0px 10px 100px;*/margin:5px 0 10px 10px;height:30px;width:242px;}
 
 .pomoindi {background:url("../images/pomodoro-indicator.png");height:30px;width:30px;/*position:absolute;*/float:left;right:370px;margin:10px auto;border:2px solid transparent;}
 
-#pomolist {margin:0 auto; width:140px}
+#pomolist {margin:0 auto; width:220px;}
 #pomoindi1 {top:90px;}
 #pomoindi2 {top:120px;}
 #pomoindi3 {top:150px;}

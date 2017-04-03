@@ -5,30 +5,30 @@ Description: Sistema Focalizador JS foi feito para o site Pomodoros, based in Da
 Version: 2013
 Author: Francisco Matelli Matulovic
 Author URI: http://www.franciscomat.com
-Template: bp-default
 Tags: red, pomodoros, social, buddypress
 */
 
 /*
-Based in: Pomodoros v2013 (/html-disabled/pomodoros.com.br);
-ThemeName: Darwin (BuddyPress BuddyPack)
-ThemeURI: http://www.avenueb2.com
-Description1: A theme from the Avenue BuddyPress BuddyPack (B2)
-Version1: 1.2.1
-Author1: Michael Kuhlmann
-AuthorURI1: http://www.michaelkuhlmann.com
+1Templ1ate: bp-default
+1Based in: Pomodoros v2013 (/html-disabled/pomodoros.com.br);
+1ThemeName: Darwin (BuddyPress BuddyPack)
+1ThemeURI: http://www.avenueb2.com
+1Description1: A theme from the Avenue BuddyPress BuddyPack (B2)
+1Version1: 1.2.1
+1Author1: Michael Kuhlmann
+1AuthorURI1: http://www.michaelkuhlmann.com
 
-Tags1: buddypress, red, white, flexible-width, two-columns
+1Tags1: buddypress, red, white, flexible-width, two-columns
 */
 /*
-ThemeName2: Pomodoros
-ThemeURI2: http://www.pomodoros.com.br
-Description2: Tema para o site Pomodoros, based in Darwin.
-Version2: 0.1
-Author2: Francisco Matelli
-AuthorURI2: http://www.franciscomatelli.com
-Template2: bp-default
-Tags2: red, pomodoros, social, buddypress
+2ThemeName2: Pomodoros
+2ThemeURI2: http://www.pomodoros.com.br
+2Description2: Tema para o site Pomodoros, based in Darwin.
+2Version2: 0.1
+2Author2: Francisco Matelli
+2AuthorURI2: http://www.franciscomatelli.com
+2Templ2ate2: bp-default
+2Tags2: red, pomodoros, social, buddypress
 //REMOVIDO PARA TESTAR -> Template: bp-default
 */
 
@@ -40,12 +40,12 @@ principal dark color: #096;
 
 @import url(pomodoro/pomodoro.css );
 
-/*fot stick footer*/
+/*fot stick footer
 html, body {
   height: 100%;
   margin: 0;
 }
-
+*/
 /*f5sites*/
 .register_div_box {padding:10px 15px;margin:10px auto;min-height:110px;}
 .register_div_box:hover {background:#EEE;}
@@ -57,8 +57,8 @@ html, body {
 #rbox2 {height:480px;}
 .content_default {float: right;width: 70%; background: rgba(255,255,255, 0.9);}
 
-div#sidebar {width:24%;}
-#sidebar_pomodoro {float:right; width: 300px;margin-left: 0;margin-top: 0px;border-right: 1px solid #d8dee9;}
+/*div#sidebar {width:24%;}
+#sidebar_pomodoro {float:right; width: 300px;margin-left: 0;margin-top: 0px;border-right: 1px solid #d8dee9;}*/
 #sidebar_pomodoro h3 {
 		margin: 25px -15px 10px -8px;
 		background: #f9f9f9;;
@@ -69,11 +69,22 @@ div#sidebar {width:24%;}
                 color: #111;
                 font-weight: bold;
 	}
-.sidebar {background: rgba(255,255,255, 0.8);border-radius:15px !important;}
+.sidebar {background: rgba(255,255,255, 0.8);/*border-radius:15px !important;*/}
 
-.content_pomodoro {width:500px;padding:0;margin:0 auto;border-radius:15px !important;background: rgba(255,255,255, 0.8);}
+.content_pomodoro {
+	/*border-radius:15px !important;*/
+	background: rgba(255,255,255, 0.5);
+}	
+#pomodoro-painel {width:290px;margin:0 auto 30px auto;padding: 30px 0 50px 0;}
+/*.content_pomodoro {width:500px;padding:0;margin:0 auto;border-radius:15px !important;background: rgba(255,255,255, 0.8);}
 .content_nosidebar {background:#FFF;border-radius:10px; padding:40px;font-size:12px;margin:5px 0 40px 0;}
-#pomodoro-painel {width:290px;margin:0 auto 30px auto;padding: 30px 0 50px 0;} 
+ */
+#pomopainel {
+	background: rgba(255,255,255, 0.8);
+	padding: 20px 22px;
+	margin-top: 30px;
+	border-radius: 15px;
+}
 #secondsRemaining_box{width: 50px;text-align: center;background: transparent;border: none; float:left;}
 
 .content_estatisticas {padding:40px 300px;}
@@ -392,20 +403,25 @@ li.activity-item  {
 -------------------------------------------------------------- */
 
 body {
+	background: url("images/gray-background.jpg") top left;
+
+}
+
+body {
 	/*background: #EEE; fsites
-	background: transparent;*/
+	background: transparent;
 	background: url("images/gray-background.jpg") top left;
 	font-size: 12px;
 	font-family: Tahoma, Verdana, sans-serif;
 	line-height: 160%;
 	color: #333;
 	/*width:90%;*/
-	/*max-width: 1250px; f5sites*/
+	/*max-width: 1250px; f5sites
 	margin: 0 auto;
 	padding-top: 0 !important; /* Remove the top padding space for the admin bar in this theme */
-	/*ajusta configuracoes do tema anterior*/
+	/*ajusta configuracoes do tema anterior
 	width: 100% !important; 
-	max-width: 100% !important;
+	max-width: 100% !important;*/
 }
 	body.activity-permalink {
 		min-width: 500px;
@@ -476,9 +492,9 @@ span.activity, div#message p {
 -------------------------------------------------------------- */
 
 #header {
-width: 100%;
+/*width: 100%;*/
 height: 40px;
-background: #093;
+background: #222;
 top:0;
 left:0;
 	/*position: fixed;*/
@@ -566,28 +582,28 @@ margin: 0 auto;
 .contem-icone {position: relative;}
 #icones-topo {background:top; height:40px;}
 
-#icone-amigo {background:url("images/icones-topo.png") top left; height:40px; width:40px;float:left;}
-.contem-icone:hover #icone-amigo {background:url("images/icones-topo.png") bottom left;}
+#icone-amigo {background:url("images/icones-topo.png"); background-position: 0px -40px; height:40px; width:40px;float:left;}
+.contem-icone:hover #icone-amigo {background:url("images/icones-topo.png") ;background-position: 0px -40px;}
 
-#icone-balao {background:url("images/icones-topo.png"); background-position: -40px 0px; height:40px; width:40px;float:left;}
+#icone-balao {background:url("images/icones-topo.png"); background-position: -40px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-balao {background:url("images/icones-topo.png"); background-position: -40px 40px;}
 
-#icone-mural {background:url("images/icones-topo.png"); background-position: -80px 0px; height:40px; width:40px;float:left;}
+#icone-mural {background:url("images/icones-topo.png"); background-position: -80px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-mural {background:url("images/icones-topo.png"); background-position: -80px 40px;}
 
-#icone-pontos {background:url("images/icones-topo.png"); background-position: -120px 0px; height:40px; width:40px;float:left;}
+#icone-pontos {background:url("images/icones-topo.png"); background-position: -120px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-pontos {background:url("images/icones-topo.png"); background-position: -120px 40px;}
 
-#icone-gauge {background:url("images/icones-topo.png"); background-position: -200px 0px; height:40px; width:40px;float:left;}
+#icone-gauge {background:url("images/icones-topo.png"); background-position: -200px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-gauge {background:url("images/icones-topo.png"); background-position: -200px 40px;}
 
-#icone-rank {background:url("images/icones-topo.png"); background-position: -240px 0px; height:40px; width:40px;float:left;}
+#icone-rank {background:url("images/icones-topo.png"); background-position: -240px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-rank {background:url("images/icones-topo.png"); background-position: -240px 40px;}
 
-#icone-foc {background:url("images/icones-topo.png"); background-position: -280px 0px; height:40px; width:40px;float:left;}
+#icone-foc {background:url("images/icones-topo.png"); background-position: -280px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-foc {background:url("images/icones-topo.png"); background-position: -280px 40px;}
 
-#icone-calend {background:url("images/icones-topo.png"); background-position: -320px 0px; height:40px; width:40px;float:left;}
+#icone-calend {background:url("images/icones-topo.png"); background-position: -320px -40px; height:40px; width:40px;float:left;}
 .contem-icone:hover #icone-calend {background:url("images/icones-topo.png"); background-position: -320px 40px;}
 
 /*#linha-fundo-home {
@@ -602,9 +618,10 @@ margin: 0 auto;
 #linha-fundo-home, #linha-fundo {
 	position:absolute;
 	width:100%;
-	height:41px;
-	background:#093;
+	height:40px;
+	background:#222;/*093*/
 	left:0;
+	z-index: -1;
 }
 #slider {margin-top: -14px;}
 /* > Navigation
@@ -674,13 +691,13 @@ top: 60px;
 -------------------------------------------------------------- */
 
 div#sidebar {
-	float: left;
-        /*width: 230px; f5sites 230px antes*/
+	/*float: left;
+        width: 230px; f5sites 230px antes*
 	margin-left: 0;
 	margin-top: 0px;
-        border-right: 1px solid #d8dee9;
+        border-right: 1px solid #d8dee9;*/
 }
-	div#sidebar div#sidebar-me img.avatar {
+	/*div#sidebar,*/ div#sidebar-me img.avatar {
 		float: left;
 		margin: 0 15px 15px 0;
 	}
@@ -771,10 +788,10 @@ div#content {
 }
 
 div#content .padder {
-	border: 0 !important; /*francisco @f5sites*/
+	/*border: 0 !important; francisco @f5sites
 
 	margin-left: 0;
- margin-right: 0px;
+ margin-right: 0px;*/
 }
 	div#content .left-menu {
 		float: left;
@@ -2153,25 +2170,6 @@ ol.commentlist li {
 
 		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-body {
-	padding-top: 25px;
-}
 
 #wp-admin-bar {
 visibility: hidden; /*f5sites*/
