@@ -69,7 +69,7 @@
 		<?php do_action( 'bp_after_footer' ) ?>
 
 		<?php wp_footer(); ?>
-
+<a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
 	</body>
 
 </html>

@@ -37,7 +37,7 @@
 <?php if (function_exists("activate_maintenance_mode")) { activate_maintenance_mode();} ?>
 
 <body <?php #body_class() ?> id="bp-default22">
-<a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
+
 <script type="text/javascript">
 	var noSleep = new NoSleep();
 
