@@ -114,8 +114,8 @@ img.avatar {
 
 #loginlogbox {
 	display:none;
-	width: 180px;
-	height: 210px;
+	width: 25%;
+	height: 320px;
 	position: absolute;
 	background: #FFFFFF;
 	border: solid 2px #DDD;
@@ -503,8 +503,8 @@ height: 40px;
 background: #222;
 top:0;
 left:0;
-	/*position: fixed;*/
-	color: #fff;
+	/*position: fixed;
+	color: #fff;*/
 	/*background: transparent; /*#eee;  /* url(pomodoro-banner-1250x125-antigo.jpg) repeat-x; /* url(darwin-sample.gif*/
 	margin-bottom: 14px;
 	padding-top: 1px;	
@@ -520,10 +520,10 @@ left:0;
 	color: #FFF;
 	display: none;
 }
-#header-content {
+/*#header-content {
 width: 1250px;
 margin: 0 auto;
-}
+}*/
 	body.activity-permalink #header { height: 65px; }
 
 	#header #search-bar {
@@ -580,7 +580,7 @@ margin: 0 auto;
 	position: absolute;
 	margin-right: 10px;
 	top: 10px;
-	background: #006633;
+	background: #025AA5; /*#006633;*/
 	padding: 10px;
 	border-radius: 5px;
 	z-index: 20;
@@ -1131,7 +1131,7 @@ form.standard-form#signup_form div div.error {
 /* > Buttons
 -------------------------------------------------------------- */
 
-a.button, input[type=submit], input[type=button],
+/*a.button, input[type=submit], input[type=button],*/
 ul.button-nav li a, div.generic-button a {
 	background: #222 url(../images/gray-line.gif) top left repeat-x;
 	border: 1px solid #000;

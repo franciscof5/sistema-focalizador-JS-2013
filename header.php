@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
 	<head profile="http://gmpg.org/xfn/11">
@@ -37,7 +37,7 @@
 <?php if (function_exists("activate_maintenance_mode")) { activate_maintenance_mode();} ?>
 
 <body <?php #body_class() ?> id="bp-default22">
-<a class="github-fork-ribbon" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
+<a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
 <script type="text/javascript">
 	var noSleep = new NoSleep();
 
@@ -118,12 +118,12 @@
 					<br />
 					<?php $r = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts"); echo $r." pomodoros"; */?> 
 				</div>
-				<div style="float:right;padding: 5px 10px;margin-right: 120px;">
+				<div style="float:right;">
 					 <?php if ( !is_user_logged_in() ) { ?> 
-						<button  title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</button>
-						<a title="Criar uma conta Pomodoros.com.br" href="/register"><button>Registre-se</button></a>
+						<button class="btn btn-link" title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</button>
+						<a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" >Registre-se</a>
 					<?php } else { ?> 
-						<a title="Desconectar-se" href="<?php echo wp_logout_url(); ?>"><button>Sair</button></a>
+						<a class="btn btn-link" title="Desconectar-se" href="<?php echo wp_logout_url(); ?>">Sair</a>
 						<!--button title="Configurar tempo" id="settings_panel"  style="padding: 2px 15px;float: left;margin: 0 4px;"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/settings-icon.png" /></button-->
 					<?php } 
 					//TOUR IDEIA - VOCE SABIA QUE O POMODOROS.COM.BR É FEITO COM POMODOROS.COM.BR - Aqui todos os colaboradores e fornecedores utilizam o sistema. Nós fazemos o pomodoros usando o pomodoros. Perguntamos para Francisco Matelli, programador do sistema, como era usar a ferramenta. "Do ponto de vista técnico é muito interessante, levando em conta que é uma aplicaćão na nuvem, enquanto estamos programando melhorias para a nova versão, usamos a versão antiga. Depois que a versão na nuvem é atualizada, basta atualizar o navegador e comećamos a trabalhar com a última versão do sistema. O grande segredo, e também grande dificuldade, é fazer essa transićão ser imperceptível para o usuário, não se pode perder nenhuma informaćão durante essas atualizaćões. Por isso que temos sempre duas versões do sistema rolando. Temos até uma terceira versão, porém não posso falar sobre esse projeto nesse momento."
