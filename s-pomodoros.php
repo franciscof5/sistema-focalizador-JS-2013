@@ -10,13 +10,13 @@
 			<?php 
 			$produtividade_usuario = user_object_productivity(bp_displayed_user_id());
 			?>
-			<h4>Registro</h4>
+			<!--h4>Registro</h4>
 			<ul>
 				<li>Membro ha dias: <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> </li>
 				<li>Dias de trabalho: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']; ?> </li>
 				<li>Dias sem trabalho: <?php echo $produtividade_usuario["sempre"]['diasFolga']; ?> </li>
 			</ul>
-			<h4>Produtividade</h4>
+			<h4>Produtividade</h4-->
 			<p>Dia trabalhados/total dias no período, fator desempenho (%)</p>
 			<ul>
 				<!--li>Hoje :<?php echo $produtividade_usuario["semana"]['totalDias']; ?> </li-->
