@@ -39,8 +39,10 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 <?php get_header() ?>
 
 <?php get_sidebar(); ?>
-
+<?php if (is_user_logged_in()) { ?>
 <div class="content_pomodoro col-xs-12 col-sm-6">
+
+
 
 <!--MooTools
 <script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>-->
@@ -374,7 +376,13 @@ jQuery(document).ready( function($) {
 </div>
 </div><!-- #content -->
 <?php locate_template( array( 's-pomodoros.php' ), true ); ?>
-<?php //if (is_user_logged_in()) { ?>
-
+<?php	} else { ?>
+	<div class="col-md-9 col-sm-9 sidebar">
+		<h2 class="bg-danger">Acesso restrito a usuários</h2>
+		<div style="width: 400px; margin: 0 auto;">
+			<?php #wp_login_form(); ?>
+		</div>
+	</div>
+<?php	} ?>
 	
 <?php get_footer() ?>

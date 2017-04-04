@@ -2,7 +2,6 @@
 			</div>
 		</div> <!-- #wrapper #2D2D2D-->
 		<div class="row">
-		<div class="push"></div>
 		<?php do_action( 'bp_after_container' ) ?>
 
 		
@@ -69,7 +68,7 @@
 		<?php do_action( 'bp_after_footer' ) ?>
 
 		<?php wp_footer(); ?>
-<a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
+<!--a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a-->
 	</body>
 
 </html>
