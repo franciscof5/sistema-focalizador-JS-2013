@@ -38,6 +38,24 @@
 
 <body <?php #body_class() ?> id="bp-default22">
 <a class="github-fork-ribbon" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a>
+<script type="text/javascript">
+	var noSleep = new NoSleep();
+
+	function enableNoSleep() {
+			noSleep.enable();
+	document.removeEventListener('touchstart', enableNoSleep, false);
+	}
+
+	// Enable wake lock.
+	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+	document.addEventListener('touchstart', enableNoSleep, false);
+
+	// ...
+
+	// Disable wake lock at some point in the future.
+	// (does not need to be wrapped in any user input event handler)
+	noSleep.disable();
+</script>
 <span id='linha-fundo'></span>
 	<div id="wrapper" class="container-fluid">
 

@@ -87,9 +87,9 @@ function user_object_productivity ($user_id) {
 add_filter('show_admin_bar', '__return_false'); 
 add_action( 'login_form_middle', 'add_lost_password_link' );
 add_action( 'admin_menu', 'edit_admin_menus' ); 
-add_action('init', 'myStartSession', 1);
-add_action('wp_logout', 'myEndSession');
-add_action('wp_login', 'myEndSession');
+#add_action('init', 'myStartSession', 1);
+#add_action('wp_logout', 'myEndSession');
+#add_action('wp_login', 'myEndSession');
 add_action('wp_ajax_save_progress', 'save_progress');
 add_action('wp_ajax_nopriv_save_progress', 'save_progress');
 add_action('wp_ajax_load_pomo', 'load_pomo');
@@ -108,6 +108,10 @@ function theme_scripts() {
 	//alertify
 	wp_enqueue_script("alertify-js", get_bloginfo("stylesheet_directory")."/assets/alertify.min.js");
 	wp_enqueue_style('alertify-css', get_bloginfo("stylesheet_directory")."/assets/alertify.core_and_default_merged.css", __FILE__);
+	
+	//no sleep
+	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
+	#die;
 	//bootstrap
 	#wp_register_script ('bootstrap-js', get_stylesheet_directory_uri() . '/assets/bootstrap.min.js', array( 'jquery' ),'1.0.0',true);
 
@@ -176,7 +180,7 @@ function edit_admin_menus() {
 	$menu[5][0] = 'Pomodoros'; // Change Posts to Pomodoros
 }  
 
-function myStartSession() {
+/*function myStartSession() {
 	if(!session_id()) {
 		session_start();
 	}
@@ -185,7 +189,7 @@ function myStartSession() {
 
 function myEndSession() {
     session_destroy ();
-}
+}*/
 
 
 function save_progress () {
