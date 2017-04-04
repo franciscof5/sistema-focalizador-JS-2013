@@ -1,8 +1,15 @@
-<?php get_header() ?>
+<?php get_header();;
+/*
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-     /* google.load("visualization", "1.1", {packages:["calendar"]});
-      google.setOnLoadCallback(drawChart);
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>  ?>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>*/ ?>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+
+		
+    <!--script type="text/javascript">
+     
+     google.load("visualization", "1.1", {packages:["calendar"]});
+     google.setOnLoadCallback(drawChart);
 
    function drawChart() {
        var dataTable = new google.visualization.DataTable();
@@ -33,15 +40,72 @@
          height: 350,
        };
 
-       chart.draw(dataTable, options);*/
+       chart.draw(dataTable, options);
    }
-    </script>
+    </script-->
+    <script type="text/javascript">
+      //google.charts.load("current", {packages:[]});
+      //google.charts.setOnLoadCallback(drawChart);
 
-<style type="text/css">
+	   function drawChart2() {
+	       var dataTable = new google.visualization.DataTable();
+	       dataTable.addColumn({ type: 'date', id: 'Date' });
+	       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+	       dataTable.addRows([
+	          [ new Date(2012, 3, 13), 37032 ],
+	          [ new Date(2012, 3, 14), 38024 ],
+	          [ new Date(2012, 3, 15), 38024 ],
+	          [ new Date(2012, 3, 16), 38108 ],
+	          [ new Date(2012, 3, 17), 38229 ],
+	          // Many rows omitted for brevity.
+	          [ new Date(2013, 9, 4), 38177 ],
+	          [ new Date(2013, 9, 5), 38705 ],
+	          [ new Date(2013, 9, 12), 38210 ],
+	          [ new Date(2013, 9, 13), 38029 ],
+	          [ new Date(2013, 9, 19), 38823 ],
+	          [ new Date(2013, 9, 23), 38345 ],
+	          [ new Date(2013, 9, 24), 38436 ],
+	          [ new Date(2013, 9, 30), 38447 ]
+	        ]);
+
+	       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+
+	       var options = {
+	         title: "Red Sox Attendance",
+	         height: 350,
+	       };
+
+	       chart.draw(dataTable, options);
+	   }
+
+			google.load('visualization', '1', {packages:['gauge','calendar']});
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+				['Label', 'Value'],
+				["prod.", <?php echo $fatorProdutividadeProjeto; ?>]
+			]);
+
+			var options = {
+				width: 400, height: 220,
+				redFrom: 90, redTo: 100,
+				yellowFrom:75, yellowTo: 90,
+				greenFrom:50, greenTo: 75,
+				minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('projeto_produtividade_div'));
+				chart.draw(data, options);
+				//drawChart2();
+			}
+		</script>
+
+<!--style type="text/css">
 	ul.item-list li.activity-item {width: 16% !important;}
 </style>
-<div class="content_nosidebar">
 
+<div id="calendar_basic" style="width: 1000px; height: 350px;"></div-->
+<div class="content_nosidebar container-fluid">
 	<?php do_action( 'bp_before_blog_home' ) ?>
 
 	<!--div id="calendar_basic" style="width: 100%; height: 350px;"></div-->
@@ -113,49 +177,34 @@
 		}*/
 		//die;
 		?>
-
-		<h1>Projeto: <?php echo $projetoNome; ?></h1>
-		<h3>Líder do projeto: </h3>
-		<p>Tempo de trabalho: <strong><?php echo $projetoHorasTrabalhadas; ?>h</strong></p>
-		<p>Total de pomodoros completados neste projeto: <strong><?php echo $projetoTotalPomodoros; ?></strong></p>
-		<p>Quantidades de colaboradores: <strong><?php echo $projetoColaboradores; ?> pessoas</strong></p>
-		<p>Duração do projeto: <strong><?php echo $projetoDuracao; ?> dias</strong></p>
-		<p>Dias trabalhados neste projeto: <strong><?php echo $projetoDiasTrabalhados; ?> dias</strong></p>
-		<p>Fator produtividade do projeto: <strong><?php echo $fatorProdutividadeProjeto = round($projetoDiasTrabalhados/$projetoDuracao*100) ?></strong></p>
-		<p>Data do primeiro pomodoro: <strong><?php echo $projetoInicio; ?></strong></p>
-		<p>Data do último pomodoro: <strong><?php echo $projetoFinal; ?></strong></p>
-		<h3>Stats</h3>
-		<p>Média de pomodoros/total de dias: <strong><?php echo round($projetoTotalPomodoros/$projetoDuracao, 2); ?> pomodoros</strong></p>
-		<p>Média de horas de trabalho/total de dias: <strong><?php echo round($projetoHorasTrabalhadas/$projetoDuracao, 2); ?>h</strong></p>
-		<p>Média de pomodoros/dias trabalhados: <strong><?php echo round($projetoTotalPomodoros/$projetoDiasTrabalhados, 2); ?> pomodoros</strong></p>
-		<p>Média de horas de trabalho/dias trabalhados: <strong><?php echo round($projetoHorasTrabalhadas/$projetoDiasTrabalhados, 2); ?>h</strong></p>
-		<h3>Fator produtividade do projeto</h3>
-		<script type='text/javascript' src='https://www.google.com/jsapi'></script>
-		<script type='text/javascript'>
-			google.load('visualization', '1', {packages:['gauge']});
-			google.setOnLoadCallback(drawChart);
-			function drawChart() {
-			var data = google.visualization.arrayToDataTable([
-				['Label', 'Value'],
-				["prod.", <?php echo $fatorProdutividadeProjeto; ?>]
-			]);
-
-			var options = {
-				width: 400, height: 220,
-				redFrom: 90, redTo: 100,
-				yellowFrom:75, yellowTo: 90,
-				greenFrom:50, greenTo: 75,
-				minorTicks: 5
-			};
-
-			var chart = new google.visualization.Gauge(document.getElementById('projeto_produtividade_div'));
-				chart.draw(data, options);
-			}
-		</script>
+		<div class="row">
+			<h1>Projeto: <?php echo $projetoNome; ?></h1>
+			<h3>Líder do projeto: </h3>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<p>Tempo de trabalho: <strong><?php echo $projetoHorasTrabalhadas; ?>h</strong></p>
+				<p>Total de pomodoros completados neste projeto: <strong><?php echo $projetoTotalPomodoros; ?></strong></p>
+				<p>Quantidades de colaboradores: <strong><?php echo $projetoColaboradores; ?> pessoas</strong></p>
+				<p>Duração do projeto: <strong><?php echo $projetoDuracao; ?> dias</strong></p>
+				<p>Dias trabalhados neste projeto: <strong><?php echo $projetoDiasTrabalhados; ?> dias</strong></p>
+				<p>Fator produtividade do projeto: <strong><?php echo $fatorProdutividadeProjeto = round($projetoDiasTrabalhados/$projetoDuracao*100) ?></strong></p>
+				<p>Data do primeiro pomodoro: <strong><?php echo $projetoInicio; ?></strong></p>
+				<p>Data do último pomodoro: <strong><?php echo $projetoFinal; ?></strong></p>
+			</div>
+			<div class="col-sm-6">
+				<h3>Stats</h3>
+				<p>Média de pomodoros/total de dias: <strong><?php echo round($projetoTotalPomodoros/$projetoDuracao, 2); ?> pomodoros</strong></p>
+				<p>Média de horas de trabalho/total de dias: <strong><?php echo round($projetoHorasTrabalhadas/$projetoDuracao, 2); ?>h</strong></p>
+				<p>Média de pomodoros/dias trabalhados: <strong><?php echo round($projetoTotalPomodoros/$projetoDiasTrabalhados, 2); ?> pomodoros</strong></p>
+				<p>Média de horas de trabalho/dias trabalhados: <strong><?php echo round($projetoHorasTrabalhadas/$projetoDiasTrabalhados, 2); ?>h</strong></p>
+				<h3>Fator produtividade do projeto</h3>
+			</div>
+		</div>
 		<div id='projeto_produtividade_div'></div>
 		<h2>Lista de tarefas</h2>
 		<p>Todas as tarefas feitas nesse projeto, organizadas por data:</p>
-		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});
 			google.setOnLoadCallback(drawChart);
@@ -178,7 +227,7 @@
 		</script>
 		<div id="donutchart" style="width: 100%; height: 600px;"></div>
 
-		<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+		<!--script type='text/javascript' src='https://www.google.com/jsapi'></script-->
 		<script type='text/javascript'>
 			google.load('visualization', '1', {packages:['table']});
 			google.setOnLoadCallback(drawTable);
@@ -262,13 +311,14 @@
 		</ul-->
 		<hr />
 		<h2>Mural do projeto</h2>
+		<div class="row">
 		<?php if ( have_posts() ) : ?>
 			<ul id="activity-stream" class="activity-list item-list">
 				<?php while (have_posts()) : the_post(); ?>
 				
 				<?php do_action( 'bp_before_blog_post' ) ?>
 				
-				<li class="activity-item">
+				<li class="activity-item col-xs-4 col-sm-3 col-md-2">
 					<div class="activity-avatar">
 						<!--a href="http://pomodoros.com.br/colegas/thais/">
 						<img src="http://www.gravatar.com/avatar/db64ee70f74329fd462a3d436eb40c72?d=http://pomodoros.com.br/wp-content/plugins/buddypress/bp-core/images/mystery-man.jpg&amp;s=50&amp;r=G" alt="Thais B" class="avatar user-825-avatar" height="50" width="50">
@@ -285,17 +335,22 @@
 								<a href="<?php echo bp_core_get_userlink( bp_loggedin_user_id(), false, true ); ?>" title="<?php echo bp_core_get_user_displayname( bp_loggedin_user_id() ); ?>"><?php echo bp_core_get_user_displayname( bp_loggedin_user_id() ); ?></a> completou um pomodoro, <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
 								<a href="<?php the_permalink() ?>" class="view activity-time-since" title="Ver Discussão">
 								<!--span class="time-since">21 horas, 21 minutos atrás</span></a-->
-								<?php printf( '<span class="time-since">%4$s</span></a>', the_time() ); //bp_get_activity_comment_date_recorded() ?>
+								<?php 
+								#human_time_diff(
+								#echo the_time();
+								echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' atrás'; 
+								#printf( '<span class="time-since">%4$s</span></a>', the_time() ); 
+								#bp_get_activity_comment_date_recorded(); ?>
 							</p>
 						</div>
-						<div class="activity-meta">
+						<!--div class="activity-meta">
 							<a href="http://pomodoros.com.br/mural/favorite/3050/?_wpnonce=c0fa7588b3" class="button fav bp-secondary-action" title="Marcar como Favorito">Favorito</a>
 							<a href="http://pomodoros.com.br/mural/delete/3050?_wpnonce=eb2bbc793e" class="button item-button bp-secondary-action delete-activity confirm" rel="nofollow">Excluir</a>		
-						</div>
+						</div-->
 					</div>
 				</li>
 				
-				<? /*
+				<?php /*
 				<div class="post" id="post-<?php the_ID(); ?>">
 					<div class="author-box">
 						<?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
@@ -318,6 +373,7 @@
 				<?php do_action( 'bp_after_blog_post' ) ?>
 				<?php endwhile; ?>
 			</ul>
+			</div>
 			<?php 
 			//echo '</div>';
 			?>

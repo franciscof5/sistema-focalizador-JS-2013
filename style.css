@@ -91,11 +91,10 @@ img.avatar {
 .content_nosidebar {	
 	background:rgba(255,255,255, 0.8);
 	border-radius:10px;
-	padding:10px 30px;
+	padding:10px 30px !important;
 	font-size:12px;
-	margin:5px 0 40px 0;
 	width: 90%;
-	margin: 0 auto;
+	margin: 0 auto !important;
 }
  
 #pomopainel {
@@ -288,16 +287,14 @@ border-radius: 15px;
 text-align:center;
 margin:10px 0 0 0;
 }
-
+.google-visualization-table {
+	width: 100%;
+}
 /* ITES MODIFICADOS ALTERADOS EDITADOS DOS ORIGINAIS */
 ul.activity-list > li:first-child {
     padding-top: 20px;
 }
-ul.item-list li.activity-item {
-    width: 25%;
-    float: left;
-    border: 0;
-}
+
 ul.item-list li.load-more {
 	position: relative;
 	width: 80%;
@@ -306,18 +303,19 @@ ul.item-list li.load-more {
 	left: 10%;
 	top: 10px;
 }
-.activity-meta {
-	display: none;
+ul {
+    padding: 0;
+    list-style-type: none;
 }
-li.activity-item  {
-	/*border-radius: 30px;*/
+/*li.activity-item  {
+	border-radius: 30px;*
 	border-radius: 48px 60px;
 	width: 25%;
 	float: left;
 	/**
 	background: #CCC;
-	position: relative;*/
-}
+	position: relative;*
+}*/
 .activity-header p {
 	height: 50px;
 	margin: 2px 0px 0px -10px;
@@ -326,7 +324,7 @@ li.activity-item  {
 	vertical-align: bottom;
 	padding: 5px 4px;
 	position: absolute;
-	width: 110%;
+	/*width: 110%;*/
 }
 .activity-header p a:first-child {
 	display: none;
@@ -351,8 +349,20 @@ li.activity-item  {
 	background: #98d;
 }
 
-#activity-mentions {display: none;}
+#activity-mentions {display: none;}*/
 
+ul.activity-list > li:first-child {
+    padding-top: 20px;
+}
+/*ul.item-list li.activity-item {
+    width: 25%;
+    float: left;
+    border: 0;
+}*/
+
+.activity-meta {
+	display: none;
+}
 /**/
 .estats_box {
 	/*width:180px; 
