@@ -11,7 +11,7 @@
 
 		<div id="sidebar-me">
 			<a href="<?php echo bp_loggedin_user_domain(); ?>">
-				<?php bp_loggedin_user_avatar( 'type=thumb&width=40&height=40' ); ?>
+				<?php bp_loggedin_user_avatar( 'type=thumb&width=80&height=80' ); ?>
 			</a>
 
 			<h4><?php echo bp_core_get_userlink( bp_loggedin_user_id() ); ?></h4>

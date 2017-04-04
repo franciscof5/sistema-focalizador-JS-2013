@@ -46,6 +46,12 @@ html, body {
   margin: 0;
 }
 */
+img.avatar {
+	float: left;
+	font-family: arial;
+	font-size: 10px;
+	border-radius: 50px;
+}
 /*f5sites*/
 .register_div_box {padding:10px 15px;margin:10px auto;min-height:110px;}
 .register_div_box:hover {background:#EEE;}
@@ -59,7 +65,7 @@ html, body {
 
 /*div#sidebar {width:24%;}
 #sidebar_pomodoro {float:right; width: 300px;margin-left: 0;margin-top: 0px;border-right: 1px solid #d8dee9;}*/
-#sidebar_pomodoro h3 {
+/*#sidebar_pomodoro h3,*/ .sidebar h3 {
 		margin: 25px -15px 10px -8px;
 		background: #f9f9f9;;
 		padding: 4px 8px;
@@ -70,7 +76,7 @@ html, body {
                 font-weight: bold;
 	}
 .sidebar {background: rgba(255,255,255, 0.8);/*border-radius:15px !important;*/}
-
+.sidebar li {width: 100%;clear: both;}
 .content_pomodoro {
 	/*border-radius:15px !important;*/
 	background: rgba(255,255,255, 0.5);
@@ -696,7 +702,17 @@ div#sidebar {
 	margin-left: 0;
 	margin-top: 0px;
         border-right: 1px solid #d8dee9;*/
-}
+}	
+	div#sidebar-me {
+		height: 60px;
+		/*clear: both;*/
+	}
+	.qtranxs_widget {
+		float: left;
+	    /*margin: -36px 12px 0 0;*/
+	    margin: -36px 0 0 50px;
+	    width: auto !important;
+	}
 	/*div#sidebar,*/ div#sidebar-me img.avatar {
 		float: left;
 		margin: 0 15px 15px 0;
