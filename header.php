@@ -70,12 +70,14 @@
 					$(this).hide();
 				});*/
 				$( ".contem-icone " ).mouseenter(function() {
-					$( ".icone-legenda" ).hide(0);
+					$( ".icone-legenda" ).hide(100);
 					if(!$(this).find( ".icone-legenda" ).is(":animated"))
 					$(this).find( ".icone-legenda" ).show(400);
 					/*$(this).*/
 				});
-				
+				$( ".contem-icone" ).mouseout(function() {
+					$( ".icone-legenda" ).hide(100);
+				});
 			});
 		</script>
 		<div id="header" class="row">	
