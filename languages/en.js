@@ -1,10 +1,10 @@
 //English
 
 //Action button
-var textPomodoro = "FOCUS!";
-var textRest = "Rest!";
-var textBigRest = "Big rest!";
-var textInterrupt = "Interrupt!";
+var textPomodoro = "FOCUS";
+var textRest = "REST";
+var textBigRest = "BIR REST";
+var textInterrupt = "INTERRUPT";
 
 //Mat status
 var txt_mat_introducing = "Hello, my name is Foca, and I am here to help, write down the task you are working on and click on FOCAR!";
@@ -30,6 +30,10 @@ var txt_write_task_privacy = "Privacy";
 var txt_last_pomodoros_heading = "20 last pomodoros:";
 var txt_last_pomodoros_of_community = "Last pomodoros";
 var txt_total_pomodoros_of_community = "Completed pomodoros";
+
+//Sidebar
+var txt_sidebar_stats = "Statistics from";
+var txt_sidebar_projects = "Your projects";
 
 //Registration
 var txt_register_heading = "Use your facebook or create a free account";

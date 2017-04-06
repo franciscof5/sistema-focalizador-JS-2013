@@ -77,7 +77,7 @@ jQuery(document).ready( function($) {
 <div id="pomodoro-painel">		
 		
 	<div id="pomodoro-relogio">							
-	<form><input type="button" value="FOCAR!" onclick="action_button()" id="action_button_id" tabindex="1" /></form>
+	<form><input type="button" value="loading..." onclick="action_button()" id="action_button_id" tabindex="1" disabled="disabled" /></form>
 
 	<div id="relogio">
 

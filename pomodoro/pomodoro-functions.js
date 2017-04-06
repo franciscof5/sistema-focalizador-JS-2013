@@ -30,13 +30,15 @@
 //Check if has running pomodoros
 //function check_for_running_pomodoro () {};
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function ($) {
 	//
 	load_pomodoro_clipboard();
 	//
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
 		update_pomodoro_clipboard();
 	});
+	jQuery("#action_button_id").val(textPomodoro);
+	jQuery("#action_button_id").prop('disabled', false);
 });
 
 function load_pomodoro_clipboard () {
@@ -158,7 +160,7 @@ function start_clock() {
 	//post_status="future;"
 	//Chage button to "interrupt"
 	//is_interrupt_button=true;
-	change_button(textInterrupt, "#0F0F0F");
+	change_button(textInterrupt, "#006633");
 	interval_clock = setInterval('countdown_clock()', intervalMiliseconds);
 
 	//is_pomodoros is when using 25min for focusing
@@ -270,7 +272,7 @@ function interrupt() {
 	change_status(txt_interrupted_countdowns);
 	//convertSeconds(0);
 	//flip_number();
-	change_button(textPomodoro, "#063");
+	change_button(textPomodoro, "#0F0F0F");
 	//secondsRemaining=0;
 	secondsRemaining = pomodoroTime;
 	stop_clock();

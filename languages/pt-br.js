@@ -2,9 +2,9 @@
 
 //Botão de ação
 var textPomodoro = "FOCAR!";
-var textRest = "Descansar!";
-var textBigRest = "Grande descanso!";
-var textInterrupt = "Interromper!";
+var textRest = "DESCANSAR!";
+var textBigRest = "GRANDE DESCANSO";
+var textInterrupt = "INTERROMPER";
 
 //Frases de status do Mate
 var txt_mat_introducing = "Olá, eu sou o foca Loggo, estou aqui para te ajudar, escreva a tarefa que irá realizar e clique em FOCAR!"
@@ -41,6 +41,10 @@ var txt_write_task_privacy = "Privacidade";
 var txt_last_pomodoros_heading = "Últimos 20 pomodoros:";
 var txt_last_pomodoros_of_community = "Últimos pomodoros";
 var txt_total_pomodoros_of_community = "Pomodoros completados";
+
+//Sidebar
+var txt_sidebar_stats = "Estatísticas de";
+var txt_sidebar_projects = "Seus projetos";
 
 //Registro
 var txt_register_heading = "Conecte pelo facebook ou crie uma conta";

@@ -6,7 +6,7 @@
 			global $current_user;
 			get_currentuserinfo(); 
 			?>
-			<h3 class="widget-title">Estatísticas de <?php  echo $current_user->display_name; ?> </h3>
+			<h3 class="widget-title"><script>document.write(txt_sidebar_stats)</script> <?php echo $current_user->display_name; ?> </h3>
 			<?php 
 			$produtividade_usuario = user_object_productivity(bp_displayed_user_id());
 			?>
@@ -76,7 +76,7 @@
 			?>
 		</li>
 		<li>
-		<h3 class="widget-title">Seus projetos</h3>
+		<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
 		<p><?php
 		get_author_post_tags_wpa78489(get_current_user_id());
 		?>
