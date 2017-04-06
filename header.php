@@ -57,7 +57,7 @@
 	noSleep.disable();
 </script>
 <span id='linha-fundo'></span>
-	<div id="wrapper" class="container-fluid">
+	<div id="wrapper" class="container-fluid content">
 
 		<?php do_action( 'bp_before_header' ) ?>
 		
@@ -79,7 +79,7 @@
 				});
 			});
 		</script>
-		<div id="header" class="row">			
+		<div id="header" class="row">	
 			<div id="header-content">
 				<div style="height: 40px;width: 140px;float: left;">
 					<a title="Pomodoros.com.br" href="<?php bloginfo('url'); ?>">

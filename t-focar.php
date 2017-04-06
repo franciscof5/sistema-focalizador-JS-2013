@@ -169,7 +169,7 @@ jQuery(document).ready( function($) {
 	<div id="contem-modelos">
 	<?php
 	$args = array(
-              'post_type' => 'post',
+              'post_type' => 'projectimer_focus',
               'post_status' => 'pending',
               'author'   => get_current_user_id(),
               //'orderby'   => 'title',

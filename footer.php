@@ -1,19 +1,22 @@
 			
 			</div>
 		</div> <!-- #wrapper #2D2D2D-->
-		<div class="row">
+		
 		<?php do_action( 'bp_after_container' ) ?>
 
 		
 
 		<?php do_action( 'bp_before_footer' ) ?>
 
-		<div id="footer">
-			<div id="footer-content">
-				<?php if (is_user_logged_in()) { ?><?php } ?>
+		<div id="footer" class="row">
+			<div id="footer-content" class="row">
+
 				
-				<div class="links">
-					<div class="link-group">
+					<div class="col-sm-3">
+						<h3>Nossos blog</h3>
+							<?php echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
+						</div>
+					<div class="col-sm-3">
 						<h3>Páginas</h3>
 						<ul>
 							<li><a href="<?php bloginfo('url'); ?>">Início</a></li>
@@ -28,15 +31,12 @@
 						</ul>
 						<?php //wp_list_pages("title_li=&include=8,3096,381,4814"); ?>
 					</div>
-					<!--div class="link-group">
-						<h3>Blog</h3>
-						<?php  ?>
-					</div-->
-					<div class="link-group">
+					
+					<div class="col-sm-3 contem_last_pomodoros">
 						<h3>Últimos pomodoros</h3>
-						<?php $recent_posts = wp_get_recent_posts("numberposts=6&post_status=publish");
+						<?php $recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
 						foreach( $recent_posts as $recent ){
-							echo '<li><a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
+							echo '<li>'.get_avatar(get_the_author_meta( 'ID' ), 24 )."<a href='/colegas/".get_the_author_meta( "user_login", get_the_author_meta( 'ID' ) )."'>".get_the_author_meta( 'display_name',get_the_author_meta( 'ID' ) ).'</a> - <a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
 						} ?>
 					</div>
 					<!--div class="link-group">
@@ -48,23 +48,34 @@
 							<li>+55 15 33333527.77777267</li>
 						</ul>
 					</div-->
-				</div>
-				<div id="footer-contact-form">
+				
+				<div id="footer-contact-form" class="col-sm-3">
 					<h3>Fale conosco</h3>
-					<?php echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); ?>
+					<?php if(!is_user_logged_in()) { ?>
+						<p class="bg-danger">Acesse sua conta para usar o formulário de contato</p>
+					<?php } else { ?>
+						
+						<?php echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); ?>
+					<?php } ?>
 				</div>
-				<div style="clear:both; width:100%">
-					<p style="float:left;">Desenvolvido por <a href="<?php bloginfo('url'); ?>/colegas/francisco/">Francisco Matelli</a> | F5 Sites | <a href="http://www.f5sites.com">www.f5sites.com</a></p>
-					<p style="float:right;">Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>
-				</div>
+
+				
 				<!--div id="footer-info">
 				    <p id="assinatura">Desenvolvido por F5 Sites <br /> <a href="http://www.f5sites.com">www.f5sites.com</a></p>
 				    <?php /*<p><?php printf( __( '%s is proudly powered by <a href="http://mu.wordpress.org">WordPress MU</a>, <a href="http://buddypress.org">BuddyPress</a>', 'buddypress' ), bloginfo('name') ); ?> and <a href="http://www.avenueb2.com">Avenue B2</a></p>*/ ?>
 				</div-->
 				<?php do_action( 'bp_footer' ) ?>
 			</div>
-		</div>
-
+		
+				<div  class="row">
+					<div class="col-sm-6">
+						<p>Desenvolvido por <a href="<?php bloginfo('url'); ?>/colegas/francisco/">Francisco Matelli</a> | F5 Sites | <a href="http://www.f5sites.com">www.f5sites.com</a></p>
+					</div>
+					<div class="col-sm-6">
+						<p>Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>
+					</div>
+				</div>
+				</div>
 		<?php do_action( 'bp_after_footer' ) ?>
 
 		<?php wp_footer(); ?>

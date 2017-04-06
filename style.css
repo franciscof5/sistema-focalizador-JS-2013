@@ -65,6 +65,7 @@ img.avatar {
 
 #sidebar-user-pass {width:148px;}
 #rbox2 {height:480px;}
+.content {width: 90%;}
 .content_default {float: right;width: 70%; background: rgba(255,255,255, 0.9);}
 
 /*div#sidebar {width:24%;}
@@ -695,14 +696,19 @@ div#sidebar {
 }	
 	div#sidebar-me {
 		height: 60px;
-		/*clear: both;*/
+		
 	}
-	.qtranxs_widget {
+		/*clear: both;*/
+	
+	div#sidebar-me h4 {
+		padding-top: 20px;
+	}
+	/*.qtranxs_widget {
 		float: left;
-	    /*margin: -36px 12px 0 0;*/
+	    /*margin: -36px 12px 0 0;*
 	    margin: -36px 0 0 50px;
 	    width: auto !important;
-	}
+	}*/
 	/*div#sidebar,*/ div#sidebar-me img.avatar {
 		float: left;
 		margin: 0 15px 15px 0;
@@ -2146,7 +2152,7 @@ ol.commentlist li {
 		#footer-content .links {
 			float: left;
 		}
-		#footer-content .link-group {
+		#footer-content  {
 			float: left;
 			margin: 0 20px;
 		}
@@ -2155,10 +2161,14 @@ ol.commentlist li {
 			font-family: 'Lilita One',cursive;
 			font-size: 20px;
 		}
-		#footer-content #footer-contact-form {
+		/*#footer-content #footer-contact-form {
 			float:right;
 			width:auto;
 			margin-right: 25px;
+		}*/
+		#footer-content {
+			width: 90%;
+			margin: 0 auto;
 		}
 		#footer-content a {
 			color: #777;
@@ -2175,8 +2185,19 @@ ol.commentlist li {
 			background: #093;
 
 		}
-
-
+		.contem_last_pomodoros li {
+			line-height: 24px;
+			padding: 3px 5px;
+			margin-bottom: 3px;
+			background: #222;
+			border-radius: 5px;
+		}
+		.contem_last_pomodoros img {
+			margin-right: 5px;
+		}
+.wprss-feed-meta {
+	display: none;
+}
 #wp-admin-bar {
 visibility: hidden; /*f5sites*/
 	position: fixed;

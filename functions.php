@@ -100,7 +100,9 @@ add_action('wp_ajax_save_modelnow', 'save_modelnow');
 add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action( 'admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
+add_action( 'init', 'createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN' );
 add_action('init', 'theme_scripts');
+
 
 function theme_scripts() {	
 	//jquery colors
@@ -204,6 +206,7 @@ function save_progress () {
 	$tagsinput = explode(" ", $_POST['post_tags']);
 	
 	$my_post = array(
+		'post_type' => 'projectimer_focus',
 		'post_title' => $_POST['post_titulo'],
 		'post_content' => $_POST['post_descri'],
 		'post_status' => $_POST['post_priv'],
@@ -226,8 +229,10 @@ function load_pomo () {
 		
 		//If there is no active post, look for any type of post, for the current user
 		$args = array(
+			'post_type' => 'projectimer_focus',
 			'author' => get_current_user_id(),
 			'posts_per_page' => 1
+
 		);
 		$any_post = get_posts($args);
 		
@@ -286,6 +291,7 @@ function update_pomo () {
 	if($_POST['ignora_data']) {
 		echo "com o pomodoro rolando. ";
 		$my_post = array(
+			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
 			'post_content' => $_POST['post_descri'],
 			'post_category' => array(1, $_POST['post_cat']),
@@ -300,6 +306,7 @@ function update_pomo () {
 	} else {
 		echo "com o relógio parado. ";
 		$my_post = array(
+			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
 			'post_content' => $_POST['post_descri'],
 			'post_category' => array(1, $_POST['post_cat']),
@@ -345,6 +352,7 @@ function save_modelnow () {
 	} else {
 		$tagsinput = explode(" ", $_POST['post_tags']);	
 		$my_post = array(
+			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
 			'post_content' => $_POST['post_descri'],
 			'post_status' => "pending",
@@ -375,5 +383,46 @@ register_sidebar( array(
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
+
+function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
+	
+	if ( ! post_type_exists( "projectimer_focus" ) ) {
+		$labelFocus = array(
+			'name'  => __( 'Focus',' projectimer-plugin' ), 
+			'singular_name' => __( 'Focus',    ' projectimer-plugin' ),
+			'add_new'    => __( 'Add New', ' projectimer-plugin' ),
+			'add_new_item'  => __( 'Add New Focus',    ' projectimer-plugin' ),
+			'edit'  => __( 'Edit', ' projectimer-plugin' ),
+			'edit_item'  => __( 'Edit Focus', ' projectimer-plugin' ),
+			'new_item'   => __( 'New Focus', ' projectimer-plugin' ),
+			'view'  => __( 'View Focus', ' projectimer-plugin' ),
+			'view_item'  => __( 'View Focus', ' projectimer-plugin' ),
+			'search_items'  => __( 'Search Focus', ' projectimer-plugin' ),
+			'not_found'  => __( 'No Focus found', ' projectimer-plugin' ),
+			'not_found_in_trash' => __( 'No Focus found in Trash', ' projectimer-plugin' ),
+			'parent'     => __( 'Parent Focus',     ' projectimer-plugin' ),
+		);
+		
+		$postTypeFocusParams = array(
+			'labels'  => $labelFocus,
+			'singular_label'  => __( 'Focus', ' projectimer-plugin' ),
+			'public'  => true,
+			//'show_ui' => true,
+			'menu_icon' => WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__)) . '/images/projectimer-focus-icon.png',
+			'description' => 'Post type for Projectimer Plugin',
+			'menu_position'   => 20,
+			'can_export' => true,
+			'hierarchical'    => false,
+			'capability_type' => 'post',
+			'rewrite' => array( 'slug' => 'cycle', 'with_front' => false ),
+			'query_var'  => true,
+			'taxonomies' => array('post_tag'),
+			'supports'   => array( 'title', 'content', 'editor', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields' )
+		);
+
+		register_post_type("projectimer_focus", $postTypeFocusParams);
+	}
+}
+
 
 ?>
