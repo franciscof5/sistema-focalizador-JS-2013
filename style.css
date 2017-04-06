@@ -564,6 +564,17 @@ margin: 0 auto;
 		}
 /* > LOGO E ICONES F5 SITES BY
 -------------------------------------------------------------- */
+#pomoNavbar a {
+	color: #FFF;
+	font-weight: 600;
+}
+#pomoNavbar li {
+	/*height: 40px;*/
+	line-height: 40px;
+}
+.navbar-inverse {
+	border:0 !important;
+}
 #pomodoros-topo {float:left; /*width:205px;*/ height:40px;}
 .icone-legenda {
 	/*font-family: 'Lilita One', cursive;*/
@@ -576,8 +587,12 @@ margin: 0 auto;
 	border-radius: 5px;
 	left: 40px;
 	z-index: 9999;
+	display: none;
+	color: #FFF;
+	font-weight: 600;
 }
-.contem-icone {position: relative;}
+.contem-icone {position: relative;
+}
 #icones-topo {background:top; height:40px;}
 
 #icone-amigo {background:url("images/icones-topo.png"); background-position: 0px -40px; height:40px; width:40px;float:left;}
@@ -616,8 +631,8 @@ margin: 0 auto;
 #linha-fundo-home, #linha-fundo {
 	position:absolute;
 	width:100%;
-	height:40px;
-	background:#222;/*093*/
+	height:52px;
+	background:#111;/*093*/
 	left:0;
 	z-index: -1;
 }

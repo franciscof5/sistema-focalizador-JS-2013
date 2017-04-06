@@ -80,59 +80,84 @@
 				});
 			});
 		</script>
-		<div id="header" class="row">	
-			<div id="header-content">
-				<div style="height: 40px;width: 140px;float: left;">
-					<a title="Pomodoros.com.br" href="<?php bloginfo('url'); ?>">
+		<nav class="navbar navbar-inverse ">
+		  <div class="container-fluid">
+		    <div class="navbar-header" style="margin-top: 5px">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pomoNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="" title="Pomodoros.com.br" href="<?php bloginfo('url'); ?>">
 						<img src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" id="pomodoros-topo">
-						<!--span style="font-family: 'Lilita One',cursive;float: left;color: #FFF;font-size: 32px;top: 10px;position: absolute;left: 0px;">
-							pomodoros
-						</span-->
 					</a>
-				</div>
+		    </div>
+		    <ul class="collapse navbar-collapse" style="margin-top: 5px"  id="pomoNavbar">
+		      <?php if ( is_user_logged_in() ) { ?> 
+		      <li>
+		      	<div class="contem-icone ">
+		      	<a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador">
+		      		
+		      			<div href="" id="icone-foc">&nbsp;</div>
+		      			<span class="icone-legenda">Focar</span>
+		      		</div>
+		      		<span class="hidden-sm hidden-md">Focar</span>
+		      	</a>
+		       </li>
+		       <li>
+		       	<div class="contem-icone ">
+		       		<a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_login  ?>">
+		       		
+		       			<div href="" id="icone-gauge">&nbsp;</div>
+		       			<span class="icone-legenda">Produtividade</span>
+		       		</div>
+		       		<span class="hidden-sm hidden-md">Produtividade</span>
+		       	</a>
+		       </li>
+		      <?php } ?>
+		      <li>
+		      	<div class="contem-icone ">
+		      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
+		      		<div href="" id="icone-amigo">&nbsp;</div>
+		      		<span class="icone-legenda">Colegas</span>
+		      		</div>
+		      		<span class="hidden-sm hidden-md">Focar</span>
+		      	</a>
+		      </li>
+		      <li>
+		      	<div class="contem-icone">
+		      	<a title="Ranking dos mais produtivos" href="<?php bloginfo('url'); ?>/ranking/">
+		      		<div href="" id="icone-rank">&nbsp;</div>
+		      		<span class="icone-legenda">Ranking</span>
+		      		</div>
+		      		<span class="hidden-sm hidden-md">Ranking</span>
+		      	</a>
+			  </li>
+		      <li>
+		      	<div class="contem-icone">
+		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/">
+		      		<div href="" id="icone-calend">&nbsp;</div>
+		      		<span class="icone-legenda">Calendário</span>
+		      		</div>
+		      		<span class="hidden-sm hidden-md">Calendário</span>
+		      	</a>
+		      </li>
+		    
+		    <ul class="nav navbar-nav  navbar-right">
+		      <?php if ( !is_user_logged_in() ) { ?> 
+		      <li><a title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</a></li>
+		      <li><a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" >Registre-se</a></li>
+		      <?php } else { ?> 
+		      <li><a title="Desconectar-se" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
+		    
+		      <?php } ?>
+		    </ul>
 
-				<?php if ( is_user_logged_in() ) { ?> 
-					<div class="contem-icone"><a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador"><div href="" id="icone-foc">&nbsp;</div><span class="icone-legenda">Focar</span></a></div>
-				<?php } ?>
-				<div class="contem-icone"><a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos"><div href="" id="icone-amigo">&nbsp;</div><span class="icone-legenda">Colegas</span></a></div>
-				<!--div class="contem-icone"><a title="Mural de pomodoros" href="<?php bloginfo('url'); ?>/mural/"><div href="" id="icone-mural">&nbsp;</div><span class="icone-legenda">Mural</span></a></div-->
-				<?php if(is_user_logged_in()) { ?>
-					
-					<!--a title="Comunidades" href="<?php bloginfo('url'); ?>/groups/"><div href="" id="icone-balao">&nbsp;</div></a-->
-					
-					<!--a title="Prêmios" href="<?php bloginfo('url'); ?>/pontos/"><div href="" id="icone-pontos">&nbsp;</div></a-->
-					
-				<?php }  else { ?>
-				<?php }  ?>
-				<!--a title="Fator produtividade" href="<?php bloginfo('url'); ?>/produtividade/"><div href="" id="icone-gauge">&nbsp;</div></a-->
-				<?php if ( is_user_logged_in() ) { ?> 
-					<div class="contem-icone"><a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_login  ?>"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Produtividade</span></a></div>
-				<?php } else { ?> 
-					<!--div class="contem-icone"><a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->display_name  ?>"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Produtividade</span></a></div-->
-					<!--div class="contem-icone"><a title="Fator produtividade (apenas para usuários registrados)" href="<?php bloginfo('url'); ?>/assinar/fator-produtividade"><div href="" id="icone-gauge">&nbsp;</div><span class="icone-legenda">Assinar</span></a></div-->
-				<?php } ?>
-				<div class="contem-icone"><a title="Ranking dos mais produtivos" href="<?php bloginfo('url'); ?>/ranking/"><div href="" id="icone-rank">&nbsp;</div><span class="icone-legenda">Ranking</span></a></div>
-				<div class="contem-icone"><a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/"><div href="" id="icone-calend">&nbsp;</div><span class="icone-legenda">Calendário</span></a></div>
-				<!--div class="contem-icone"><a title="Cronograma de entregas" href="<?php bloginfo('url'); ?>/calendar/"><div href="" id="icone-calend">&nbsp;</div><span class="icone-legenda">Entregas</span></a></div-->
-				<div style="float: left;margin-left: 40px;">
-					<?php /*$result = count_users(); echo $result['total_users']; ?>  membros
-					<br />
-					<?php $r = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts"); echo $r." pomodoros"; */?> 
-				</div>
-				<div style="float:right;">
-					 <?php if ( !is_user_logged_in() ) { ?> 
-						<button class="btn btn-link" title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</button>
-						<a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" >Registre-se</a>
-					<?php } else { ?> 
-						<a class="btn btn-link" title="Desconectar-se" href="<?php echo wp_logout_url(); ?>">Sair</a>
-						<!--button title="Configurar tempo" id="settings_panel"  style="padding: 2px 15px;float: left;margin: 0 4px;"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/settings-icon.png" /></button-->
-					<?php } 
-					//TOUR IDEIA - VOCE SABIA QUE O POMODOROS.COM.BR É FEITO COM POMODOROS.COM.BR - Aqui todos os colaboradores e fornecedores utilizam o sistema. Nós fazemos o pomodoros usando o pomodoros. Perguntamos para Francisco Matelli, programador do sistema, como era usar a ferramenta. "Do ponto de vista técnico é muito interessante, levando em conta que é uma aplicaćão na nuvem, enquanto estamos programando melhorias para a nova versão, usamos a versão antiga. Depois que a versão na nuvem é atualizada, basta atualizar o navegador e comećamos a trabalhar com a última versão do sistema. O grande segredo, e também grande dificuldade, é fazer essa transićão ser imperceptível para o usuário, não se pode perder nenhuma informaćão durante essas atualizaćões. Por isso que temos sempre duas versões do sistema rolando. Temos até uma terceira versão, porém não posso falar sobre esse projeto nesse momento."
-					?> 
-					<!--a title="Como usar o site Pomodoros.com.br!" href="#"><button>Tour</button></a-->
-				</div>
-			</div>
-		</div><!-- #header -->
+		    </ul>
+		  </div>		
+		 
+		</nav>
+		
 
 		<div id="loginlogbox">
 			<?php wp_login_form(); ?>
