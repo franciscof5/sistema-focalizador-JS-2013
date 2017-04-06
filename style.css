@@ -574,7 +574,8 @@ margin: 0 auto;
 	background: #025AA5; /*#006633;*/
 	padding: 10px;
 	border-radius: 5px;
-	z-index: 20;
+	left: 40px;
+	z-index: 9999;
 }
 .contem-icone {position: relative;}
 #icones-topo {background:top; height:40px;}
