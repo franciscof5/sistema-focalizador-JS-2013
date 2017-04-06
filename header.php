@@ -31,6 +31,8 @@
 
 	<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.css" rel="stylesheet"/>
 	<script type="text/javascript" src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
 <?php if (function_exists('mbj_notify_bar_display')) { mbj_notify_bar_display(); }?>
