@@ -113,7 +113,7 @@
 	<?php
 		//override query parameters
 		global $query_string;
-		$query = query_posts( $query_string . '&posts_per_page=5000000' );
+		$query = query_posts( $query_string . '&posts_per_page=5000000&post_type=projectimer_focus' );
 		//var_dump(count($query));
 		?>
 		<?php

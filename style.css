@@ -255,7 +255,7 @@ opacity:0.85;
 filter:alpha(opacity=85); /* For IE8 and earlier */
 }
 .circulo h3 {
-	font-family: 'Lilita One',cursive;
+	/*font-family: 'Lilita One',cursive;*/
 	margin: 5px 0 8px 0;
 	font-size: 22px;
 	/*color: #093;*/
@@ -566,7 +566,7 @@ margin: 0 auto;
 -------------------------------------------------------------- */
 #pomodoros-topo {float:left; /*width:205px;*/ height:40px;}
 .icone-legenda {
-	font-family: 'Lilita One', cursive;
+	/*font-family: 'Lilita One', cursive;*/
 	font-size: 15px;
 	position: absolute;
 	margin-right: 10px;
@@ -2158,7 +2158,7 @@ ol.commentlist li {
 		}
 		#footer-content h3 {
 			color:#FFF;
-			font-family: 'Lilita One',cursive;
+			/*font-family: 'Lilita One',cursive;*/
 			font-size: 20px;
 		}
 		/*#footer-content #footer-contact-form {

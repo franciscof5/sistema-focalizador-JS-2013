@@ -3,6 +3,7 @@
 function get_author_post_tags_wpa78489($author_id,$taxonomy = 'post_tag'){
     //get author's posts
     $posts = get_posts(array(
+    	'post_type' => "projectimer_focus",
         'author' => $author_id,
         'posts_per_page' => -1,
         'fields' => 'ids'
@@ -86,7 +87,7 @@ function user_object_productivity ($user_id) {
 //
 add_filter('show_admin_bar', '__return_false'); 
 add_action( 'login_form_middle', 'add_lost_password_link' );
-add_action( 'admin_menu', 'edit_admin_menus' ); 
+#add_action( 'admin_menu', 'edit_admin_menus' ); 
 #add_action('init', 'myStartSession', 1);
 #add_action('wp_logout', 'myEndSession');
 #add_action('wp_login', 'myEndSession');
@@ -177,7 +178,7 @@ function my_remove_menu_pages() {
 	}
 }
 
-function edit_admin_menus() {  
+/*function edit_admin_menus() {  
 	global $menu;  
 	$menu[5][0] = 'Pomodoros'; // Change Posts to Pomodoros
 }  
