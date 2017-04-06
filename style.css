@@ -577,15 +577,18 @@ margin: 0 auto;
 }
 #pomodoros-topo {float:left; /*width:205px;*/ height:40px;}
 .icone-legenda {
-	/*font-family: 'Lilita One', cursive;*/
+	/*font-family: 'Lilita One', cursive;
+	
+	
+	*/
 	font-size: 15px;
-	position: absolute;
+	left: 40px;
 	margin-right: 10px;
 	top: 10px;
 	background: #025AA5; /*#006633;*/
 	padding: 10px;
 	border-radius: 5px;
-	left: 40px;
+	position: relative;
 	z-index: 9999;
 	display: none;
 	color: #FFF;

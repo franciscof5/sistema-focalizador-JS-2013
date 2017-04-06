@@ -98,59 +98,74 @@
 		      <?php if ( is_user_logged_in() ) { ?> 
 		      <li>
 		      	<div class="contem-icone ">
-		      	<a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador">
+		      		<a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador">
+		      			<div href="" id="icone-foc"><span class="icone-legenda">Focar</span></div>
 		      		
-		      			<div href="" id="icone-foc">&nbsp;</div>
-		      			<span class="icone-legenda">Focar</span>
-		      		</div>
 		      		<span class="hidden-sm hidden-md">Focar</span>
-		      	</a>
+		      		</a>
+		      	</div>
 		       </li>
+
 		       <li>
 		       	<div class="contem-icone ">
 		       		<a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_login  ?>">
 		       		
-		       			<div href="" id="icone-gauge">&nbsp;</div>
-		       			<span class="icone-legenda">Produtividade</span>
-		       		</div>
-		       		<span class="hidden-sm hidden-md">Produtividade</span>
-		       	</a>
+		       			<div href="" id="icone-gauge">
+		       				<span class="icone-legenda">Produtividade</span>
+		       			</div>
+		       			
+		       		
+		       			<span class="hidden-sm hidden-md">Produtividade</span>
+		       		</a>
+		       	</div>
 		       </li>
+
 		      <?php } ?>
 		      <li>
 		      	<div class="contem-icone ">
-		      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
-		      		<div href="" id="icone-amigo">&nbsp;</div>
-		      		<span class="icone-legenda">Colegas</span>
-		      		</div>
-		      		<span class="hidden-sm hidden-md">Focar</span>
-		      	</a>
+			      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
+			      		<div href="" id="icone-amigo">
+			      			<span class="icone-legenda">Colegas</span>
+			      		</div>
+			      		
+			      		<span class="hidden-sm hidden-md">Colegas</span>
+			      		
+			      		
+			      	</a>
+			    </div>
 		      </li>
+
 		      <li>
 		      	<div class="contem-icone">
 		      	<a title="Ranking dos mais produtivos" href="<?php bloginfo('url'); ?>/ranking/">
-		      		<div href="" id="icone-rank">&nbsp;</div>
-		      		<span class="icone-legenda">Ranking</span>
+		      		<div href="" id="icone-rank">
+		      			<span class="icone-legenda">Ranking</span>
 		      		</div>
+		      		
 		      		<span class="hidden-sm hidden-md">Ranking</span>
 		      	</a>
+		      	</div>
 			  </li>
+
 		      <li>
 		      	<div class="contem-icone">
 		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/">
-		      		<div href="" id="icone-calend">&nbsp;</div>
-		      		<span class="icone-legenda">Calendário</span>
+		      		<div href="" id="icone-calend">
+		      			<span class="icone-legenda">Calendário</span>
 		      		</div>
+		      		
+		      		
 		      		<span class="hidden-sm hidden-md">Calendário</span>
 		      	</a>
+		      	</div>
 		      </li>
 		    
 		    <ul class="nav navbar-nav  navbar-right">
 		      <?php if ( !is_user_logged_in() ) { ?> 
-		      <li><a title="Acessar sua conta" id="login_login" tabindex="1" />Entrar</a></li>
+		      <li><a title="Acessar sua conta" class="btn btn-link" id="login_login" tabindex="1" />Entrar</a></li>
 		      <li><a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" >Registre-se</a></li>
 		      <?php } else { ?> 
-		      <li><a title="Desconectar-se" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
+		      <li><a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
 		    
 		      <?php } ?>
 		    </ul>
