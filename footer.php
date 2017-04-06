@@ -36,7 +36,8 @@
 						<h3>Últimos pomodoros</h3>
 						<?php $recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
 						foreach( $recent_posts as $recent ){
-							echo '<li>'.get_avatar(get_the_author_meta( 'ID' ), 24 )."<a href='/colegas/".get_the_author_meta( "user_login", get_the_author_meta( 'ID' ) )."'>".get_the_author_meta( 'display_name',get_the_author_meta( 'ID' ) ).'</a> - <a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
+							
+							echo '<li>'.get_avatar($recent['post_author'], 24 )."<a href='/colegas/".get_the_author_meta( "user_login", $recent['post_author'] )."'>".get_the_author_meta( 'display_name',$recent['post_author'] ).'</a> - <a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
 						} ?>
 					</div>
 					<!--div class="link-group">
