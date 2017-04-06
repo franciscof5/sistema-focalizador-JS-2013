@@ -17,12 +17,16 @@
 		color: #666;
 		font-size: 16px;
 		font-weight: 600;
+		overflow: hidden;
+		white-space: nowrap;
+		position: absolute;
+
 	}
 	#authors ul li:nth-child(1) { border: 0;}
 	/*#authors ul li div {
 		float: left;
 	}*/
-	.ta-custom ul li img {
+	#authors ul li img {
 		border-radius: 10px;
 	}
 	#authors ul li div:nth-child(2) {
