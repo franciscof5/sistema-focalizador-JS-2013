@@ -22,11 +22,11 @@
 	/*#authors ul li div {
 		float: left;
 	}*/
-	#authors ul li img {
+	.ta-custom ul li img {
 		border-radius: 10px;
 	}
 	#authors ul li div:nth-child(2) {
-		margin: -22px 0 0 80px;
+		/*margin: -22px 0 0 80px;*/
 	}
 	#authors ul li h3 {
 		margin-top: 30px;
