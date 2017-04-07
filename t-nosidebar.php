@@ -3,7 +3,7 @@
 ?>
 <?php get_header() ?>
 
-<div class="content_nosidebar">
+<div class="content_nosidebar col-xs-12">
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 				<h2 class="pagetitle"><?php the_title(); ?></h2>

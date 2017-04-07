@@ -24,8 +24,8 @@ var txt_save_error = "Error establishing connection, are you connected to intern
 
 //Frases da interface do painel
 var txt_write_task_title = "Task title:";
-var txt_write_task_desc = "What do you need to do to get it done?";
-var txt_write_task_tags = "Project:";
+var txt_write_task_desc = "Notes";
+var txt_write_task_tags = "Project or discipline:";
 var txt_write_task_category = "What kind of taks is that?";
 var txt_write_task_privacy = "Privacy";
 var txt_last_pomodoros_heading = "20 last pomodoros:";
