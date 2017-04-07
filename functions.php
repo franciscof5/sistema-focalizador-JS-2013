@@ -83,7 +83,7 @@ function user_object_productivity ($user_id) {
 	//var_dump($new_object_productivity);
 	return $new_object_productivity;
 }
-date_default_timezone_set('America/Sao_Paulo');
+//date_default_timezone_set('America/Sao_Paulo');
 //
 add_filter('show_admin_bar', '__return_false'); 
 add_action( 'login_form_middle', 'add_lost_password_link' );

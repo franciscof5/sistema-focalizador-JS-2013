@@ -66,6 +66,9 @@ function load_pomodoro_clipboard () {
 		//alert("secundosRemainingFromPHP");
 		//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
 		
+		if(secundosRemainingFromPHP<0)
+			secundosRemainingFromPHP*=-1;
+
 		if(status_box.value=="pending") {
 			//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
 			if(secundosRemainingFromPHP) {
