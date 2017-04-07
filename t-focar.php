@@ -40,375 +40,376 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 
 <?php get_sidebar(); ?>
 <?php if (is_user_logged_in()) { ?>
+
 <div class="content_pomodoro col-xs-12 col-sm-6">
 
 
 
-<!--MooTools
-<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>-->
-<!--jQuery-->
-<!--script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/jquery-1.11.0.min.js" type="text/javascript"></script-->
-<!--Sound System-->
-<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/soundmanager2-nodebug-jsmin.js" type="text/javascript"></script>
-<!--Tips->
-<script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/tips.js" type="text/javascript"></script>
-<!--Pomodoros, our script-->
-<script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/pomodoro-functions.js" type="text/javascript"></script>
-<!--Select 2
-<script type="text/javascript">
+	<!--MooTools
+	<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/mootools-1.2.js" type="text/javascript"></script>-->
+	<!--jQuery-->
+	<!--script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/jquery-1.11.0.min.js" type="text/javascript"></script-->
+	<!--Sound System-->
+	<script src="<?php bloginfo('stylesheet_directory'); ?>/assets/soundmanager2-nodebug-jsmin.js" type="text/javascript"></script>
+	<!--Tips->
+	<script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/tips.js" type="text/javascript"></script>
+	<!--Pomodoros, our script-->
+	<script src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/pomodoro-functions.js" type="text/javascript"></script>
+	<!--Select 2
+	<script type="text/javascript">
 
-jQuery(document).ready( function($) { 
-	$("#tags_box").select2({
-		placeholder: "Select a State",
-		allowClear: true,
-		tags:["red", "green", "blue"]
-		/*tags:["red", "green", "blue"],
-		tokenSeparators: [",", " "]*/
-	}); 
-	//$(document).attr('title', 'Focalizador - Pomodoros.com.br');
-});
+	jQuery(document).ready( function($) { 
+		$("#tags_box").select2({
+			placeholder: "Select a State",
+			allowClear: true,
+			tags:["red", "green", "blue"]
+			/*tags:["red", "green", "blue"],
+			tokenSeparators: [",", " "]*/
+		}); 
+		//$(document).attr('title', 'Focalizador - Pomodoros.com.br');
+	});
 
 
-</script>
-<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.js"></script>
-<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2_locale_pt-BR.js"></script>
-<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.css" rel="stylesheet"/>-->
+	</script>
+	<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.js"></script>
+	<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2_locale_pt-BR.js"></script>
+	<link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/select2/select2.css" rel="stylesheet"/>-->
 
-<div id="pomodoro-painel">		
+	<div id="pomodoro-painel">		
+			
+		<div id="pomodoro-relogio">							
+		<form><input type="button" value="loading..." onclick="action_button()" id="action_button_id" tabindex="1" disabled="disabled" /></form>
+
+		<div id="relogio">
+
+			<div id="back">
+			<div id="upperHalfBack">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
+				<img id="minutesUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" class="asd" /><img id="minutesUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img id="secondsUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+			</div>
+			<div id="lowerHalfBack">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
+				<img id="minutesDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+				<img id="secondsDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+			</div>
+			</div>
+			<div id="front">
+			<div id="upperHalf">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
+				<img id="minutesUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="minutesUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+				<img id="secondsUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
+			</div>
+			<div id="lowerHalf">
+				<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
+				<img id="minutesDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+				<img id="secondsDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
+			</div>
+			</div>
+		</div><!--fecha relogio-->
 		
-	<div id="pomodoro-relogio">							
-	<form><input type="button" value="loading..." onclick="action_button()" id="action_button_id" tabindex="1" disabled="disabled" /></form>
-
-	<div id="relogio">
-
-		<div id="back">
-		<div id="upperHalfBack">
-			<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-			<img id="minutesUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" class="asd" /><img id="minutesUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-			<img id="secondsUpLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-		</div>
-		<div id="lowerHalfBack">
-			<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-			<img id="minutesDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-			<img id="secondsDownLeftBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRightBack" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-		</div>
-		</div>
-		<div id="front">
-		<div id="upperHalf">
-			<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-			<img id="minutesUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="minutesUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-			<img id="secondsUpLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Left/0.png" /><img id="secondsUpRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Up/Right/0.png"/>
-		</div>
-		<div id="lowerHalf">
-			<img src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/spacer.png" />
-			<img id="minutesDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="minutesDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-			<img id="secondsDownLeft" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Left/0.png" /><img id="secondsDownRight" src="<?php bloginfo('stylesheet_directory'); ?>/pomodoro/Double/Down/Right/0.png" />
-		</div>
-		</div>
-	</div><!--fecha relogio-->
-	
-	<input type="text" disabled="disabled" id="secondsRemaining_box">
-	
-	<ul id="pomolist">
-		<li class="pomoindi" id="pomoindi1">&nbsp;</li>							
-		<li class="pomoindi" id="pomoindi2">&nbsp;</li>
-		<li class="pomoindi" id="pomoindi3">&nbsp;</li>
-		<li class="pomoindi" id="pomoindi4">&nbsp;</li>
-	</ul>
-	
-	<button onclick="reset_pomodoro_session()" style="margin: 13px 0 0 17px;">0</button>
-	
-	</div><!--fecha pomodoros painel-->
-	<br />
-	
-	<div id="div_status"><script>document.write(txt_mat_introducing)</script></div>
-	<img src="<?php bloginfo('stylesheet_directory'); ?>/images/mascote_foca.png" />
-	<br />
-
-	<form name="pomopainel" id="pomopainel">
-		<label><script>document.write(txt_write_task_title)</script></label><br />
-		<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33"></input><br />
+		<input type="text" disabled="disabled" id="secondsRemaining_box">
 		
-		<label><script>document.write(txt_write_task_tags)</script></label>
-		<!--select id="tags_box" tabindex="3">
-			<option></option>
-			<option value="AL">Alabama</option>
-			<option value="WY">Wyoming</option>
-			<option value="AL">Alabama</option>
-			<option value="WY">Wyoming</option>
-		</select-->
-		<input type="text" size="46" id="tags_box" maxlength="20" tabindex="3"></input>
-		<br />
-		<label><script>document.write(txt_write_task_desc)</script></label>
-		<textarea rows="4" cols="34" id="description_box" tabindex="4"></textarea><br />
-		
-		<input type="hidden" id="data_box">
-		<input type="hidden" id="status_box">
-		<input type="hidden" id="post_id_box">
-		<input type="hidden" id="pomodoroAtivoBox" value='<?php echo get_user_meta(get_current_user_id(), "pomodoroAtivo", true); ?>'>
-		
-		<br />
-		<label><script>document.write(txt_write_task_category)</script></label><br />
-		<ul>
-			<li><input type="radio" name="cat_vl" value="26">Estudo</li>
-			<li><input type="radio" name="cat_vl" value="27">Trabalho</li>
-			<li><input type="radio" name="cat_vl" value="28">Pessoal</li>
+		<ul id="pomolist">
+			<li class="pomoindi" id="pomoindi1">&nbsp;</li>							
+			<li class="pomoindi" id="pomoindi2">&nbsp;</li>
+			<li class="pomoindi" id="pomoindi3">&nbsp;</li>
+			<li class="pomoindi" id="pomoindi4">&nbsp;</li>
 		</ul>
-		<label><script>document.write(txt_write_task_privacy)</script></label><br />
-		<ul>
-			<li><input type="radio" name="priv_vl" value="publish" CHECKED>Público - todos podem ver.</li>
-			<li><input type="radio" name="priv_vl" value="private" >Privado - somente você pode ver. </li>
+		
+		<button onclick="reset_pomodoro_session()" style="margin: 13px 0 0 17px;">0</button>
+		
+		</div><!--fecha pomodoros painel-->
+		<br />
+		
+		<div id="div_status"><script>document.write(txt_mat_introducing)</script></div>
+		<img src="<?php bloginfo('stylesheet_directory'); ?>/images/mascote_foca.png" />
+		<br />
+
+		<form name="pomopainel" id="pomopainel">
+			<label><script>document.write(txt_write_task_title)</script></label><br />
+			<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33"></input><br />
+			
+			<label><script>document.write(txt_write_task_tags)</script></label>
+			<!--select id="tags_box" tabindex="3">
+				<option></option>
+				<option value="AL">Alabama</option>
+				<option value="WY">Wyoming</option>
+				<option value="AL">Alabama</option>
+				<option value="WY">Wyoming</option>
+			</select-->
+			<input type="text" size="46" id="tags_box" maxlength="20" tabindex="3"></input>
+			<br />
+			<label><script>document.write(txt_write_task_desc)</script></label>
+			<textarea rows="4" cols="34" id="description_box" tabindex="4"></textarea><br />
+			
+			<input type="hidden" id="data_box">
+			<input type="hidden" id="status_box">
+			<input type="hidden" id="post_id_box">
+			<input type="hidden" id="pomodoroAtivoBox" value='<?php echo get_user_meta(get_current_user_id(), "pomodoroAtivo", true); ?>'>
+			
+			<br />
+			<label><script>document.write(txt_write_task_category)</script></label><br />
+			<ul>
+				<li><input type="radio" name="cat_vl" value="26">Estudo</li>
+				<li><input type="radio" name="cat_vl" value="27">Trabalho</li>
+				<li><input type="radio" name="cat_vl" value="28">Pessoal</li>
+			</ul>
+			<label><script>document.write(txt_write_task_privacy)</script></label><br />
+			<ul>
+				<li><input type="radio" name="priv_vl" value="publish" CHECKED>Público - todos podem ver.</li>
+				<li><input type="radio" name="priv_vl" value="private" >Privado - somente você pode ver. </li>
+			</ul>
+			<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
+		</form>
+		
+		
+		
+		<!--ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+		  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
 		</ul>
-		<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
-	</form>
-	
-	
-	
-	<!--ul class="nav nav-tabs">
-	  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-	  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-	</ul>
 
-	<div class="tab-content">
-	  <div id="home" class="tab-pane fade in active">
-	    <h3>HOME</h3>
-	    <p>Some content.</p>
-	  </div>
-	  <div id="menu1" class="tab-pane fade">
-	    <h3>Menu 1</h3>
-	    <p>Some content in menu 1.</p>
-	  </div>
+		<div class="tab-content">
+		  <div id="home" class="tab-pane fade in active">
+		    <h3>HOME</h3>
+		    <p>Some content.</p>
+		  </div>
+		  <div id="menu1" class="tab-pane fade">
+		    <h3>Menu 1</h3>
+		    <p>Some content in menu 1.</p>
+		  </div>
 
-	</div-->
+		</div-->
 
-	<h3>Tarefas modelo</h3>
-	<p>Ficou mais fácil recomeçar uma tarefa, salve a tarefa como um modelo e reutilize quantas vezes quiser. Confira sua lista de modelos:</p>
-	
-	<div id="contem-modelos" class="row">
-	<?php
-	$args = array(
-              'post_type' => 'projectimer_focus',
-              'post_status' => 'pending',
-              'author'   => get_current_user_id(),
-              //'orderby'   => 'title',
-              'order'     => 'ASC',
-              'posts_per_page' => 14,
-            );
-	$the_query = new WP_Query( $args );
-	
-	while ( $the_query->have_posts() ) : $the_query->the_post();
-		$counter = $post->ID;
-		echo '<ul id="modelo-carregado-'.$counter.'" class="row">';
-		#the_title("<input type='text' value='","' disabled=disabled id=bxtitle$counter /><br />");
-		$taglist = "";
-		#echo "<input type='text' value='".get_the_content()."' disabled=disabled id=bxcontent$counter /><br />";
-		//http://stackoverflow.com/questions/2809567/showing-tags-in-wordpress-without-link
-		$posttags = get_the_tags();
-		  if ($posttags) {
-		    foreach($posttags as $tag) {
-		    	$taglist.=$tag->name;
-			#echo "<input type='text' value='".$tag->name."' disabled=disabled  id=bxtag$counter />";
-		    }
-		}
-		echo "<div class='col-xs-9'>";
-		echo "<strong>".$taglist."</strong> ".get_the_title().", ".get_the_content();
-		echo "</div>";
-		echo "<div class='col-xs-3'>";
-		echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><hr style='margin:2px;'/> <input type='button' class='btn btn-xs btn-warning' value='concluir' onclick='delete_model($counter)'>";
-		echo "</div>";
-		echo '</li>';
-		echo '</ul>';
+		<h3>Tarefas modelo</h3>
+		<p>Ficou mais fácil recomeçar uma tarefa, salve a tarefa como um modelo e reutilize quantas vezes quiser. Confira sua lista de modelos:</p>
 		
-	endwhile;
-	// Reset Post Data
-	wp_reset_postdata();
-	?>
-	</div>
-
-	
-	
-	<?php/*
-	get_currentuserinfo();
-	if(current_user_can('administrator')) {
-	?>
-	<?php } ?>
-	</div>
-	
-	<?php
-	/* 
-	
-	turn_off_pomodoros_indicators ();
-	
-	/
-	echo '<li>';
-	the_title("<input type='text' value='","' disabled=disabled />");
-	echo "<input type='text' value='".get_the_content()."' disabled=disabled />";
-	the_tags("<input type='text' value='", "","' disabled=disabled />");
-	echo "<p><input type='button' value='Usar' onclick='load_model(the_title())'><input type='button' value='Del'></p>";
-	echo '</li>';
-	
-	the_title("<input type='text' value='","' disabled=disabled />");
-	echo the_tags(' [').']';
-	echo the_excerpt();
-	echo "<input type='button' value='Usar' onclick='load_model(the_title())'><input type='button' value='Del'>";
-	<input type="button" value="Salvar sessão como modelo" />
-	
-	<h3>Agora você pode visualizar e editar sua produção.</h3>
-	<a href="http://pomodoros.com.br/wp-admin/edit.php" alt="Acessar painel">PAINEL DE PRODUÇÃO</a>
-	
-	STRIKE OU BOLD 
-	
-	<script type="text/javascript" language="javascript">
-		var tmpText = '';
-		jQuery(document).ready(function(){
-		        tmpText = '';
-		        jQuery('#btn_bold').click(function(){bold(tmpText);});
-		        jQuery('textarea').bind('mouseup', function(){
-		                  tmpText = '';
-		                  if(window.getSelection){
-		                    tmpText = window.getSelection().toString();
-		                  }else if(document.getSelection){
-		                    tmpText = document.getSelection().toString();
-		                  }else if(document.selection){
-		                    tmpText = document.selection.createRange().text;
-		                  }
-		        });
-		});
-		
-		function bold(str)
-		{
-		        jQuery('textarea').val($('textarea').val().replace(str,'**'+str+'**'));
-		}
-		</script>
-	<button type="button" id="btn_bold">bold it</button>
-	
-	/*
-	<h3>Agora você pode visualizar e editar toda sua produção.</h3>
-	<a href="http://pomodoros.com.br/wp-admin/edit.php" alt="Acessar painel">PAINEL DE PRODUÇÃO</a>
-	<input type="button" onclick="javascript:getRadioCheckedValue('cat_vl')" value="ADAS">
-	
-	<?php
-	<h5>Configurar tempos (em breve)</h5>
-	<p>Pomodoro: 25 min</p>
-	<p>Intervalo: 5 min</p>
-	
-	<h3><script>document.write(txt_last_pomodoros_heading)</script></h3>
-	<!--ul id="points_completed"-->
-	
-	<?php
-	//$arDates = get_user_meta(get_current_user_id(), "point_date", $single = false);
-	//$arDescr = get_user_meta(get_current_user_id(), "point_desc", $single = false);
-	//$todays_date = date("Y-m-d H:i:s");
-	//$today = strtotime($todays_date);
-	
-	//Get all the pomodoros completed by the user
-	//$pomodoros_completed = get_user_meta(get_current_user_id(), "pomodoro_completed", $single = false);
-	$pomodoros_completed = $wpdb->get_results('SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='.get_current_user_id().' AND  `meta_key` =  "pomodoro_completed" ORDER BY umeta_id DESC');
-	
-	date_default_timezone_set("Brazil/East");
-	//to group data
-	$actual_day = date("d");
-	$actual_month = date("m");
-	$actual_year = date("Y");
-	//These is used to arranje data in the algorithim
-	$last_day_used_in_this_function = $actual_day;
-	$last_month_used_in_this_function = $actual_month;
-	$last_year_used_in_this_function = $actual_year;
-	//The array start with 0, that's why $total_pomos_of_day starts with 0 instead of 1
-	//$actual_pomodoro=0;
-	$actual_pomodoro=count($pomodoros_completed);
-	//$actual_pomodoro=0;
-	$total_pomos_of_day = 0;
-	$total_pomos_of_month = 0;
-	$total_pomos_of_year = 0;
-	//The first thing that stats show is the pomodoro of the actual day, we must open a div
-	echo "<div class='hidden_mouse_over'><strong>Today</strong>";
-	//I cant explain that's function on detail, i made it step by step withou planning
-	foreach ($pomodoros_completed as $key) {
-		//The pomodoro has 2 information, data and description separated by "|"
-		list($data, $desc) = explode("|", $key->meta_value);
-		//Is necessary to separate the day and the hour manage information
-		list($year_month_day, $hour) = explode(" ", $data);
-		//echo $data;
-		//Group pomodoros by year
-		list($year, $month, $day) = explode("-", $year_month_day);
-		//At these point we have 5 variables from 1 pomodoros, year, month, day, hour, desc		
-		
-		//That part of code organize the data in parts
-		if($year==$last_year_used_in_this_function) {
-			if($year==$actual_year) {
-				if($month==$actual_month) {
-					if($day!==$last_day_used_in_this_function) {
-						echo "Total of day:".$total_pomos_of_day."</div><br /><div class='hidden_mouse_over'><strong>Day: ".$day."</strong>";
-						//reset
-						$total_pomos_of_day=0;
-					}
-					echo "<li><strong>".$hour."</strong> - ".$desc."</li>";	
-					$last_day_used_in_this_function = $day;
-					$podeecho=true;
-				} else {
-					/*
-					if($podeecho){
-					//POG
-					echo "Total of day:".$total_pomos_of_day."</div><br /><b>Last months</b></br>";
-					$podeecho=false;
-					}
-					
-					if($month==$last_month_used_in_this_function) {
-						echo $last_month_used_in_this_function.", pomodoros completed: ".$total_pomos_of_month."<br/>";
-					}else{
-						$total_pomos_of_month= 1;
-					}
-					$last_month_used_in_this_function = $month;*
+		<div id="contem-modelos" class="row">
+			<?php
+			$args = array(
+		              'post_type' => 'projectimer_focus',
+		              'post_status' => 'pending',
+		              'author'   => get_current_user_id(),
+		              //'orderby'   => 'title',
+		              'order'     => 'ASC',
+		              'posts_per_page' => 14,
+		            );
+			$the_query = new WP_Query( $args );
+			
+			while ( $the_query->have_posts() ) : $the_query->the_post();
+				$counter = $post->ID;
+				echo '<ul id="modelo-carregado-'.$counter.'" class="row">';
+				#the_title("<input type='text' value='","' disabled=disabled id=bxtitle$counter /><br />");
+				$taglist = "";
+				#echo "<input type='text' value='".get_the_content()."' disabled=disabled id=bxcontent$counter /><br />";
+				//http://stackoverflow.com/questions/2809567/showing-tags-in-wordpress-without-link
+				$posttags = get_the_tags();
+				  if ($posttags) {
+				    foreach($posttags as $tag) {
+				    	$taglist.=$tag->name;
+					#echo "<input type='text' value='".$tag->name."' disabled=disabled  id=bxtag$counter />";
+				    }
 				}
-			}
-		} //else {
-			//echo $last_year_used_in_this_function."=".$total_pomos_of_year."<br/>";
-			//$total_pomos_of_year = 1;
-		//}
-		$last_year_used_in_this_function = $year;
-		//
-		$total_pomos_of_day++;
-		$total_pomos_of_month++;
-		$total_pomos_of_year++;
-		$actual_pomodoro--;
-		//$actual_pomodoro++;
-		
-	}
-	//A complete list
-	//$pomodoros_completed2 = get_user_meta(get_current_user_id(), "pomodoro_completed");
-	//$pomodoros_completed2 = $wpdb->get_results("SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='1' AND  `meta_key` = 'pomodoro_completed' ORDER BY umeta_id");
-	$pomodoros_completed2 = $wpdb->get_results('SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='.get_current_user_id().' AND  `meta_key` =  "pomodoro_completed" ORDER BY umeta_id');
-	
-	$actual_pomodoro2=count($pomodoros_completed2);
-	//$actual_pomodoro2=0;
-	echo "</div><br/>";
-	echo "<div class='hidden_mouse_over'>Complete list<br/><ul>";
-	foreach ($pomodoros_completed2 as $key) {
-		//list($data, $desc) = explode("|", $pomodoros_completed2[$actual_pomodoro2]);
-		//echo "<li>".$data." - ".$desc."</li>";
-		//$actual_pomodoro2++;
-		//echo $pomodoros_completed2[$actual_pomodoro2];
-		echo "<li>".$key->meta_value."</li>";
-		$actual_pomodoro2--;
-	}
-	echo "</ul></div>";
-	
-	//echo "Total of day:".$total_pomos_of_day;
-	?>
-	<!--/ul-->	
-	*/
-	?>
-	
-<!-- #content -->
-<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
-<?php	#} else { ?>
-	<div class="col-md-9 col-sm-9 sidebar">
-		<h2 class="bg-danger">Acesso restrito a usuários</h2>
-		<div style="width: 400px; margin: 0 auto;">
-			<?php #wp_login_form(); ?>
+				echo "<div class='col-xs-9'>";
+				echo "<strong>".$taglist."</strong> ".get_the_title().", ".get_the_content();
+				echo "</div>";
+				echo "<div class='col-xs-3'>";
+				echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><hr style='margin:2px;'/> <input type='button' class='btn btn-xs btn-warning' value='concluir' onclick='delete_model($counter)'>";
+				echo "</div>";
+				echo '</li>';
+				echo '</ul>';
+				
+			endwhile;
+			// Reset Post Data
+			wp_reset_postdata();
+			?>
 		</div>
-	</div>
-<?php	#} ?>
+		</div>
+	</div><!-- #content -->
+	<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
+
+	<?php } else { ?>
+		<div class="col-md-9 col-sm-9 sidebar">
+			<h2 class="bg-danger">Acesso restrito a usuários</h2>
+			<div style="width: 400px; margin: 0 auto;">
+				<?php #wp_login_form(); ?>
+			</div>
+		</div>
+	<?php } ?>
 	
 <?php get_footer() ?>
+
+<?php 
+		/*
+		get_currentuserinfo();
+		if(current_user_can('administrator')) {
+		?>
+		<?php } ?>
+		</div>
+		
+		<?php
+		/* 
+		
+		turn_off_pomodoros_indicators ();
+		
+		/
+		echo '<li>';
+		the_title("<input type='text' value='","' disabled=disabled />");
+		echo "<input type='text' value='".get_the_content()."' disabled=disabled />";
+		the_tags("<input type='text' value='", "","' disabled=disabled />");
+		echo "<p><input type='button' value='Usar' onclick='load_model(the_title())'><input type='button' value='Del'></p>";
+		echo '</li>';
+		
+		the_title("<input type='text' value='","' disabled=disabled />");
+		echo the_tags(' [').']';
+		echo the_excerpt();
+		echo "<input type='button' value='Usar' onclick='load_model(the_title())'><input type='button' value='Del'>";
+		<input type="button" value="Salvar sessão como modelo" />
+		
+		<h3>Agora você pode visualizar e editar sua produção.</h3>
+		<a href="http://pomodoros.com.br/wp-admin/edit.php" alt="Acessar painel">PAINEL DE PRODUÇÃO</a>
+		
+		STRIKE OU BOLD 
+		
+		<script type="text/javascript" language="javascript">
+			var tmpText = '';
+			jQuery(document).ready(function(){
+			        tmpText = '';
+			        jQuery('#btn_bold').click(function(){bold(tmpText);});
+			        jQuery('textarea').bind('mouseup', function(){
+			                  tmpText = '';
+			                  if(window.getSelection){
+			                    tmpText = window.getSelection().toString();
+			                  }else if(document.getSelection){
+			                    tmpText = document.getSelection().toString();
+			                  }else if(document.selection){
+			                    tmpText = document.selection.createRange().text;
+			                  }
+			        });
+			});
+			
+			function bold(str)
+			{
+			        jQuery('textarea').val($('textarea').val().replace(str,'**'+str+'**'));
+			}
+			</script>
+		<button type="button" id="btn_bold">bold it</button>
+		
+		/*
+		<h3>Agora você pode visualizar e editar toda sua produção.</h3>
+		<a href="http://pomodoros.com.br/wp-admin/edit.php" alt="Acessar painel">PAINEL DE PRODUÇÃO</a>
+		<input type="button" onclick="javascript:getRadioCheckedValue('cat_vl')" value="ADAS">
+		
+		<?php
+		<h5>Configurar tempos (em breve)</h5>
+		<p>Pomodoro: 25 min</p>
+		<p>Intervalo: 5 min</p>
+		
+		<h3><script>document.write(txt_last_pomodoros_heading)</script></h3>
+		<!--ul id="points_completed"-->
+		
+		<?php
+		//$arDates = get_user_meta(get_current_user_id(), "point_date", $single = false);
+		//$arDescr = get_user_meta(get_current_user_id(), "point_desc", $single = false);
+		//$todays_date = date("Y-m-d H:i:s");
+		//$today = strtotime($todays_date);
+		
+		//Get all the pomodoros completed by the user
+		//$pomodoros_completed = get_user_meta(get_current_user_id(), "pomodoro_completed", $single = false);
+		$pomodoros_completed = $wpdb->get_results('SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='.get_current_user_id().' AND  `meta_key` =  "pomodoro_completed" ORDER BY umeta_id DESC');
+		
+		date_default_timezone_set("Brazil/East");
+		//to group data
+		$actual_day = date("d");
+		$actual_month = date("m");
+		$actual_year = date("Y");
+		//These is used to arranje data in the algorithim
+		$last_day_used_in_this_function = $actual_day;
+		$last_month_used_in_this_function = $actual_month;
+		$last_year_used_in_this_function = $actual_year;
+		//The array start with 0, that's why $total_pomos_of_day starts with 0 instead of 1
+		//$actual_pomodoro=0;
+		$actual_pomodoro=count($pomodoros_completed);
+		//$actual_pomodoro=0;
+		$total_pomos_of_day = 0;
+		$total_pomos_of_month = 0;
+		$total_pomos_of_year = 0;
+		//The first thing that stats show is the pomodoro of the actual day, we must open a div
+		echo "<div class='hidden_mouse_over'><strong>Today</strong>";
+		//I cant explain that's function on detail, i made it step by step withou planning
+		foreach ($pomodoros_completed as $key) {
+			//The pomodoro has 2 information, data and description separated by "|"
+			list($data, $desc) = explode("|", $key->meta_value);
+			//Is necessary to separate the day and the hour manage information
+			list($year_month_day, $hour) = explode(" ", $data);
+			//echo $data;
+			//Group pomodoros by year
+			list($year, $month, $day) = explode("-", $year_month_day);
+			//At these point we have 5 variables from 1 pomodoros, year, month, day, hour, desc		
+			
+			//That part of code organize the data in parts
+			if($year==$last_year_used_in_this_function) {
+				if($year==$actual_year) {
+					if($month==$actual_month) {
+						if($day!==$last_day_used_in_this_function) {
+							echo "Total of day:".$total_pomos_of_day."</div><br /><div class='hidden_mouse_over'><strong>Day: ".$day."</strong>";
+							//reset
+							$total_pomos_of_day=0;
+						}
+						echo "<li><strong>".$hour."</strong> - ".$desc."</li>";	
+						$last_day_used_in_this_function = $day;
+						$podeecho=true;
+					} else {
+						/*
+						if($podeecho){
+						//POG
+						echo "Total of day:".$total_pomos_of_day."</div><br /><b>Last months</b></br>";
+						$podeecho=false;
+						}
+						
+						if($month==$last_month_used_in_this_function) {
+							echo $last_month_used_in_this_function.", pomodoros completed: ".$total_pomos_of_month."<br/>";
+						}else{
+							$total_pomos_of_month= 1;
+						}
+						$last_month_used_in_this_function = $month;*
+					}
+				}
+			} //else {
+				//echo $last_year_used_in_this_function."=".$total_pomos_of_year."<br/>";
+				//$total_pomos_of_year = 1;
+			//}
+			$last_year_used_in_this_function = $year;
+			//
+			$total_pomos_of_day++;
+			$total_pomos_of_month++;
+			$total_pomos_of_year++;
+			$actual_pomodoro--;
+			//$actual_pomodoro++;
+			
+		}
+		//A complete list
+		//$pomodoros_completed2 = get_user_meta(get_current_user_id(), "pomodoro_completed");
+		//$pomodoros_completed2 = $wpdb->get_results("SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='1' AND  `meta_key` = 'pomodoro_completed' ORDER BY umeta_id");
+		$pomodoros_completed2 = $wpdb->get_results('SELECT * FROM  `wp_usermeta` WHERE  `user_id` ='.get_current_user_id().' AND  `meta_key` =  "pomodoro_completed" ORDER BY umeta_id');
+		
+		$actual_pomodoro2=count($pomodoros_completed2);
+		//$actual_pomodoro2=0;
+		echo "</div><br/>";
+		echo "<div class='hidden_mouse_over'>Complete list<br/><ul>";
+		foreach ($pomodoros_completed2 as $key) {
+			//list($data, $desc) = explode("|", $pomodoros_completed2[$actual_pomodoro2]);
+			//echo "<li>".$data." - ".$desc."</li>";
+			//$actual_pomodoro2++;
+			//echo $pomodoros_completed2[$actual_pomodoro2];
+			echo "<li>".$key->meta_value."</li>";
+			$actual_pomodoro2--;
+		}
+		echo "</ul></div>";
+		
+		//echo "Total of day:".$total_pomos_of_day;
+		?>
+		<!--/ul-->	
+		*/
+		?>

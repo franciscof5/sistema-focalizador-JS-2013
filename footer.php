@@ -36,7 +36,7 @@
 						<h3>Últimos pomodoros</h3>
 						<?php $recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
 						foreach( $recent_posts as $recent ){
-							
+
 							echo '<li>'.get_avatar($recent['post_author'], 24 )."<a href='/colegas/".get_the_author_meta( "user_login", $recent['post_author'] )."'>".get_the_author_meta( 'display_name',$recent['post_author'] ).'</a> - <a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
 						} ?>
 					</div>
@@ -70,10 +70,10 @@
 		
 				<div  class="row">
 					<div class="col-sm-6">
-						<p>Desenvolvido por <a href="<?php bloginfo('url'); ?>/colegas/francisco/">Francisco Matelli</a> | F5 Sites | <a href="http://www.f5sites.com">www.f5sites.com</a></p>
+						<p>Developed by <a href="https://www.franciscomat.com">Francisco Mat</a>, Hosted by <a href="https://www.f5sites.com/pomodoros">F5 Sites</a>, Fork us <a href="https://github.com/franciscof5/sistema-focalizador-JS-2013">on GitHub</a></p>
 					</div>
 					<div class="col-sm-6">
-						<p>Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>
+						<p style="text-align: right;">Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>
 					</div>
 				</div>
 				</div>
