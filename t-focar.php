@@ -159,14 +159,32 @@ jQuery(document).ready( function($) {
 			<li><input type="radio" name="priv_vl" value="publish" CHECKED>Público - todos podem ver.</li>
 			<li><input type="radio" name="priv_vl" value="private" >Privado - somente você pode ver. </li>
 		</ul>
+		<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
 	</form>
 	
-	<input type="button" value="Guardar tarefa modelo" onclick="save_model()" id="botao-salvar-modelo" />
 	
+	
+	<!--ul class="nav nav-tabs">
+	  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+	  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+	</ul>
+
+	<div class="tab-content">
+	  <div id="home" class="tab-pane fade in active">
+	    <h3>HOME</h3>
+	    <p>Some content.</p>
+	  </div>
+	  <div id="menu1" class="tab-pane fade">
+	    <h3>Menu 1</h3>
+	    <p>Some content in menu 1.</p>
+	  </div>
+
+	</div-->
+
 	<h3>Tarefas modelo</h3>
 	<p>Ficou mais fácil recomeçar uma tarefa, salve a tarefa como um modelo e reutilize quantas vezes quiser. Confira sua lista de modelos:</p>
 	
-	<div id="contem-modelos">
+	<div id="contem-modelos" class="row">
 	<?php
 	$args = array(
               'post_type' => 'projectimer_focus',
@@ -180,18 +198,24 @@ jQuery(document).ready( function($) {
 	
 	while ( $the_query->have_posts() ) : $the_query->the_post();
 		$counter = $post->ID;
-		echo '<ul id="modelo-carregado-'.$counter.'">';
-		the_title("<input type='text' value='","' disabled=disabled id=bxtitle$counter /><br />");
-
-		echo "<input type='text' value='".get_the_content()."' disabled=disabled id=bxcontent$counter /><br />";
+		echo '<ul id="modelo-carregado-'.$counter.'" class="row">';
+		#the_title("<input type='text' value='","' disabled=disabled id=bxtitle$counter /><br />");
+		$taglist = "";
+		#echo "<input type='text' value='".get_the_content()."' disabled=disabled id=bxcontent$counter /><br />";
 		//http://stackoverflow.com/questions/2809567/showing-tags-in-wordpress-without-link
 		$posttags = get_the_tags();
 		  if ($posttags) {
 		    foreach($posttags as $tag) {
-			echo "<input type='text' value='".$tag->name."' disabled=disabled  id=bxtag$counter />";
+		    	$taglist.=$tag->name;
+			#echo "<input type='text' value='".$tag->name."' disabled=disabled  id=bxtag$counter />";
 		    }
 		}
-		echo "<p><input type='button' value='usar modelo' onclick='load_model($counter)'>&nbsp; <input type='button' value='arquivar' onclick='delete_model($counter)'></p>";
+		echo "<div class='col-xs-9'>";
+		echo "<strong>".$taglist."</strong> ".get_the_title().", ".get_the_content();
+		echo "</div>";
+		echo "<div class='col-xs-3'>";
+		echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><hr style='margin:2px;'/> <input type='button' class='btn btn-xs btn-warning' value='concluir' onclick='delete_model($counter)'>";
+		echo "</div>";
 		echo '</li>';
 		echo '</ul>';
 		
@@ -199,9 +223,11 @@ jQuery(document).ready( function($) {
 	// Reset Post Data
 	wp_reset_postdata();
 	?>
+	</div>
+
 	
 	
-	<?php
+	<?php/*
 	get_currentuserinfo();
 	if(current_user_can('administrator')) {
 	?>
@@ -373,16 +399,16 @@ jQuery(document).ready( function($) {
 	<!--/ul-->	
 	*/
 	?>
-</div>
-</div><!-- #content -->
+	
+<!-- #content -->
 <?php locate_template( array( 's-pomodoros.php' ), true ); ?>
-<?php	} else { ?>
+<?php	#} else { ?>
 	<div class="col-md-9 col-sm-9 sidebar">
 		<h2 class="bg-danger">Acesso restrito a usuários</h2>
 		<div style="width: 400px; margin: 0 auto;">
 			<?php #wp_login_form(); ?>
 		</div>
 	</div>
-<?php	} ?>
+<?php	#} ?>
 	
 <?php get_footer() ?>

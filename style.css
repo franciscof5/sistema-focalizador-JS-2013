@@ -280,7 +280,8 @@ filter:alpha(opacity=85); /* For IE8 and earlier */
 /* OUTRAS MODIFICACOES*/
 #contem-modelos ul {
 background: none repeat scroll 0% 0% rgb(255, 255, 255);
-padding: 22px 22px 12px 22px;
+/*padding: 22px 22px 12px 22px;*/
+padding:20px !important;
 margin: 5px 0px;
 border-radius: 15px;
 }

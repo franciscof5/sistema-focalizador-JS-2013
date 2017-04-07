@@ -8,6 +8,7 @@ var textInterrupt = "INTERROMPER";
 
 //Frases de status do Mate
 var txt_mat_introducing = "Olá, eu sou o foca Loggo, estou aqui para te ajudar, escreva a tarefa que irá realizar e clique em FOCAR!"
+var txt_mat_load_return = "Carreguei o seu pomodoro ativo, clique em FOCAR para iniciar a contagem. Última sessão há ";
 var txt_started_countdown = "Contagem ativada. Agora você deve se concentrar na sua tarefa. Nada pode te atrapalhar, evite interrupções!";
 var txt_salving_pomodoros = "Salvando pomodoro...";
 var txt_interrupted_countdowns = "Contagem interrompida! Ative o relógio quanto estiver pronto!";
@@ -45,6 +46,11 @@ var txt_total_pomodoros_of_community = "Pomodoros completados";
 //Sidebar
 var txt_sidebar_stats = "Estatísticas de";
 var txt_sidebar_projects = "Seus projetos";
+
+//Buttons
+var txt_register = "Registre-se";
+var txt_login = "Entrar";
+var txt_logout = "Sair";
 
 //Registro
 var txt_register_heading = "Conecte pelo facebook ou crie uma conta";

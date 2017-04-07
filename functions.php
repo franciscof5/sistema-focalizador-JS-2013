@@ -104,7 +104,6 @@ add_action('wp_logout','go_home');
 add_action( 'init', 'createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN' );
 add_action('init', 'theme_scripts');
 
-
 function theme_scripts() {	
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
@@ -114,6 +113,18 @@ function theme_scripts() {
 	
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
+
+	if(function_exists(qtranxf_getLanguage)){
+	   if(qtranxf_getLanguage() == "en")
+		$filelang="en.js";
+	   else if(qtranxf_getLanguage() == "pt")
+		$filelang="pt-br.js";
+	} else {
+		//If the function doesnt exists then call the default language
+		$filelang="pt-br.js";
+	}
+
+	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
 	#die;
 	//bootstrap
 	#wp_register_script ('bootstrap-js', get_stylesheet_directory_uri() . '/assets/bootstrap.min.js', array( 'jquery' ),'1.0.0',true);
@@ -135,7 +146,7 @@ function reset_configurations () {
 }
 
 function add_lost_password_link() {
-    return '<a href="/wp-login.php?action=lostpassword">Esqueci a senha!</a>';
+    return '<a href="/wp-login.php?action=lostpassword">Esqueci a senha (forgot password)</a>';
 }
 
 function go_home(){

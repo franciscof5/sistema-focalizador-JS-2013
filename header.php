@@ -162,11 +162,16 @@
 		    
 		    <ul class="nav navbar-nav  navbar-right">
 		      <?php if ( !is_user_logged_in() ) { ?> 
-		      <li><a title="Acessar sua conta" class="btn btn-link" id="login_login" tabindex="1" />Entrar</a></li>
-		      <li><a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" >Registre-se</a></li>
+		      <li>
+		      	<a title="Acessar sua conta" class="btn btn-link" id="login_login" tabindex="1" /><script>document.write(txt_login);</script></a>
+		      </li>
+		      <li>
+		      	<a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" ><script>document.write(txt_register)</script></a>
+		      </li>
 		      <?php } else { ?> 
-		      <li><a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>">Sair</a></li>
-		    
+		      <li>
+		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>"><script>document.write(txt_logout)</script></a>
+		      </li>
 		      <?php } ?>
 		    </ul>
 
@@ -218,19 +223,7 @@
 
 		<?php do_action( 'bp_after_header' ) ?>
 		<?php do_action( 'bp_before_container' ) ?>
-<?php
-//get the language file
-if(function_exists(qtranxf_getLanguage)){
-   if(qtranxf_getLanguage() == "en")
-	$filelang="en.js";
-   else if(qtranxf_getLanguage() == "pt")
-	$filelang="pt-br.js";
-} else {
-	//If the function doesnt exists then call the default language
-	$filelang="pt-br.js";
-}
-?>
-<script src="<?php bloginfo('stylesheet_directory'); ?>/languages/<?php echo $filelang ?>" type="text/javascript"></script>
+
 
 
 <div class="row">

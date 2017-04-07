@@ -79,7 +79,7 @@ function load_pomodoro_clipboard () {
 			}
 		} else if (status_box.value=="draft") {
 			secondsRemaining = pomodoroTime;
-			change_status("Carreguei o seu pomodoro ativo, clique em FOCAR para iniciar a contagem. Última sessão há " +  Math.round(((secundos/60)/60)) + " horas.");	
+			change_status(txt_mat_load_return +  Math.round(((secundos/60)/60)) + " h");	
 		}
 		document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 		//Functions to make the effect of flip on countdown_clock

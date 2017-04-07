@@ -8,6 +8,7 @@ var textInterrupt = "INTERRUPT";
 
 //Mat status
 var txt_mat_introducing = "Hello, my name is Foca, and I am here to help, write down the task you are working on and click on FOCAR!";
+var txt_mat_load_return = "I loaded the last activity from your, just hit FOCUS button and start to work. Last session was ";
 var txt_started_countdown = "Timmer started!";
 var txt_salving_pomodoros = "Saving progress...";
 var txt_interrupted_countdowns = "Timmer stopped, restart it when you are ready!";
@@ -34,6 +35,11 @@ var txt_total_pomodoros_of_community = "Completed pomodoros";
 //Sidebar
 var txt_sidebar_stats = "Statistics from";
 var txt_sidebar_projects = "Your projects";
+
+//Buttons
+var txt_register = "Register";
+var txt_login = "Login";
+var txt_logout = "Logout";
 
 //Registration
 var txt_register_heading = "Use your facebook or create a free account";
