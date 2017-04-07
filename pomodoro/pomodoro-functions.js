@@ -45,32 +45,41 @@ function load_pomodoro_clipboard () {
 	////procura se já tiver algum post published
 	change_status("Estou baixando os dados da sua conta...");	
 	var data = {
-		action: 'load_pomo'
+		action: 'load_pomo',
+		//dataType: "json"
 	};
+	//alert("AAAA ");
 	jQuery.post(ajaxurl, data, function(response) {
-		rex = response.split("$^$ ");
+		//alert(response.slice( 0, - 1 ));
+		//rex = response.split("$^$ ");
 		//change_status(rex[0]);
-		title_box.value = rex[1];
-		tags_box.value  = rex[2];
-		description_box.value = rex[3];
-		data_box.value = rex[4];
-		status_box.value = rex[5];
-		post_id_box.value = rex[6];
-		secundos = rex[7].slice(0, -1);
-		//change_status(secundos);
-		//alert("secundos");
-		//secundos = secundos.substring(rex[5], str.length - 1);
+		var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
+		//alert(postReturned['post_title']);
+		title_box.value = postReturned['post_title'];
+		tags_box.value  = postReturned['post_tags'];
+		description_box.value = postReturned['post_content'];
+		data_box.value = postReturned['post_data'];
+		status_box.value = postReturned['post_status'];
+		post_id_box.value = postReturned['ID'];
+		secundosRemainingFromPHP = postReturned['secs'];
+		//change_status(secundosRemainingFromPHP);
+		//alert("secundosRemainingFromPHP");
+		//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
 		
 		if(status_box.value=="pending") {
-			if(secundos) {
+			//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
+			if(secundosRemainingFromPHP) {
 				//pomodoroTime = 18000;
-				if(secundos>pomodoroTime) {
+				//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
+				if(secundosRemainingFromPHP>pomodoroTime) {
 					secondsRemaining = pomodoroTime;
-					change_status("Você perdeu um pomodoro na última sessão. Você iniciou esse pomodoro há " + Math.round(((secundos/60)/60)) + " horas.");	
+					delete_model(rex[6]);
+					change_status("Você perdeu um pomodoro na última sessão. Você iniciou esse pomodoro há " + Math.round(((secundosRemainingFromPHP/60)/60)) + " horas.");	
 				} else {
-					secondsRemaining = pomodoroTime - secundos;
+					secondsRemaining = secundosRemainingFromPHP;
 					//alert(secondsRemaining + " d " + pomodoroTime);
-					change_status("Você fechou o navegador com o pomodoro rolando, já se passaram " + Math.round(secundos/60) + " minutos");	
+					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
+					change_status("Você fechou o navegador com o pomodoro rolando, já se passaram " + Math.round(secundosRemainingFromPHP/60) + " minutos");	
 					
 					//alert(secondsRemaining);
 					start_clock();
@@ -79,13 +88,13 @@ function load_pomodoro_clipboard () {
 			}
 		} else if (status_box.value=="draft") {
 			secondsRemaining = pomodoroTime;
-			change_status(txt_mat_load_return +  Math.round(((secundos/60)/60)) + " h");	
+			change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 		}
 		document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
-		//alert(secundos);
-		//secondsRemaining -= secundos;
+		//alert(secundosRemainingFromPHP);
+		//secondsRemaining -= secundosRemainingFromPHP;
 	});
 	if(secondsRemaining==0)
 	secondsRemaining = pomodoroTime;
@@ -95,7 +104,7 @@ function load_pomodoro_clipboard () {
 	/*if(secondsRemaining!=pomodoroTime) {
 		alert("POMODORO ROLANDO"+secondsRemaining);
 	}*/
-	//alert(secundos);
+	//alert(secundosRemainingFromPHP);
 }
 
 function update_pomodoro_clipboard (post_stts) {
@@ -111,9 +120,10 @@ function update_pomodoro_clipboard (post_stts) {
 		post_tags: tags_box.value,
 		post_cat: postcat,
 		//post_id: post_id_box.value,
-		post_data: data_box.value,
+		//post_data: data_box.value,
 		post_priv: privornot,
 	};
+	
 	if(interval_clock) {
 		//alert(interval_clock);
 		data["ignora_data"]=true;
@@ -165,7 +175,7 @@ function start_clock() {
 
 	//is_pomodoros is when using 25min for focusing
 	if(is_pomodoro) {	
-		//update_pomodoro_clipboard("pending");
+		update_pomodoro_clipboard("pending");
 		change_status(txt_started_countdown);
 	}
 	else {
@@ -492,15 +502,16 @@ function delete_model(qualmodelo) {
 }
 
 function load_model(qualmodelo) {
-	document.getElementById("title_box").value = document.getElementById("bxtitle"+qualmodelo).value;
-	document.getElementById("description_box").value = document.getElementById("bxcontent"+qualmodelo).value;
+	//alert(jQuery("#bxtitle"+qualmodelo).text());
+	jQuery("#title_box").val(jQuery("#bxtitle"+qualmodelo).text());
+	jQuery("#description_box").val(jQuery("#bxcontent"+qualmodelo).text());
 	
-	if(document.getElementById("bxtag"+qualmodelo))
-	document.getElementById("tags_box").value = document.getElementById("bxtag"+qualmodelo).value;
+	if(jQuery("#bxtag"+qualmodelo))
+	jQuery("#tags_box").val(jQuery("#bxtag"+qualmodelo).text());
 	else
-	document.getElementById("tags_box").value = "";
+	jQuery("#tags_box").val("");
 	
-	document.getElementById("action_button_id").focus();
+	jQuery("#action_button_id").focus();
 	change_status(txt_loading_model);
 }
 

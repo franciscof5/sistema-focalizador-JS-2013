@@ -212,7 +212,7 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 				    }
 				}
 				echo "<div class='col-xs-9'>";
-				echo "<strong>".$taglist."</strong> ".get_the_title().", ".get_the_content();
+				echo "<strong id=bxtag$counter>".$taglist."</strong> <span id=bxtitle$counter>".get_the_title()."</span>, <span id=bxcontent$counter>".get_the_content()."</span>";
 				echo "</div>";
 				echo "<div class='col-xs-3'>";
 				echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><hr style='margin:2px;'/> <input type='button' class='btn btn-xs btn-warning' value='concluir' onclick='delete_model($counter)'>";

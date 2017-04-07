@@ -83,7 +83,7 @@ function user_object_productivity ($user_id) {
 	//var_dump($new_object_productivity);
 	return $new_object_productivity;
 }
-
+date_default_timezone_set('America/Sao_Paulo');
 //
 add_filter('show_admin_bar', '__return_false'); 
 add_action( 'login_form_middle', 'add_lost_password_link' );
@@ -216,7 +216,7 @@ function save_progress () {
 	}
 	
 	$tagsinput = explode(" ", $_POST['post_tags']);
-	
+	$agora = date("Y-m-d H:i:s");
 	$my_post = array(
 		'post_type' => 'projectimer_focus',
 		'post_title' => $_POST['post_titulo'],
@@ -224,7 +224,8 @@ function save_progress () {
 		'post_status' => $_POST['post_priv'],
 		'post_category' => array(1, $_POST['post_cat']),
 		'post_author' => $current_user->ID,
-		'tags_input' => array($_POST['post_tags'])
+		'tags_input' => array($_POST['post_tags']),
+		'post_date' => $agora
 		//'post_category' => array(0)
 	);
 	wp_insert_post( $my_post );
@@ -237,7 +238,7 @@ function load_pomo () {
 	//checa se já existe um rascunho, caso não cria o primeiro
 	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 	
-	if($pomodoroAtivo=="") {
+	/*if($pomodoroAtivo=="") {
 		
 		//If there is no active post, look for any type of post, for the current user
 		$args = array(
@@ -262,7 +263,7 @@ function load_pomo () {
 				echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
 			}
 		}
-	} else {
+	} else {*/
 		//O cara já tem um pomodoroAtivo, só carregar	
 		//$res = get_posts($args);
 		$post = get_post($pomodoroAtivo);
@@ -271,21 +272,34 @@ function load_pomo () {
 		//if($post->post_status=="pending") {
 		$post->post_date;
 		//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
-		$timeFirst  = strtotime($post->post_date);
+		$timePost  = strtotime($post->post_date);
 		//echo " i ";
-		$timeSecond = strtotime(date("Y-m-d H:i:s"));
+		$agora = strtotime(date("Y-m-d H:i:s"));
 		
 		//echo " S:";
-		$secs = ($timeSecond - $timeFirst);
+		$secs = ($timePost - $agora);
 
 		/*$date = new DateTime( $post->post_date_gmt );
 		$date2 = new DateTime( "2014-01-13 04:29:10" );
 		echo " s2:".$diffInSeconds = $date2->getTimestamp() - $date->getTimestamp();*/
 		//$secs = 1000;
 		//} 
-		echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
+		$postReturned['post_title'] = $post->post_title;
+		$postReturned['post_tags'] = $tags[0]->name;
+		$postReturned['post_content'] = $post->post_content;
+		$postReturned['ID'] = $post->ID;
+		$postReturned['post_date'] = $post->post_date;
+		$postReturned['post_status'] = $post->post_status;
+		$postReturned['secs'] = $secs;
+
+		//
+
+		//header('Content-type: application/json');//CRUCIAL
+		echo json_encode($postReturned);
+		
+		#echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
 		//}
-	}
+	//}
 
 	/*} else {
 		//O cara ainda não tem pomodoroAtivo
@@ -297,11 +311,11 @@ function load_pomo () {
 function update_pomo () {
 	//echo "update_pomo";
 	$tagsinput = explode(" ", $_POST['post_tags']);
-	//$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 	$agora = date("Y-m-d H:i:s");
 	
 	if($_POST['ignora_data']) {
-		echo "com o pomodoro rolando. ";
+		//echo "com o pomodoro rolando. ";
 		$my_post = array(
 			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
@@ -312,11 +326,11 @@ function update_pomo () {
 			'post_status' => "pending",
 			'edit_date' => true,
 			//'post_date' => $agora
-			'post_date' => $_POST["post_data"]
+			//'post_date' => $_POST["post_data"]
 			//'post_category' => array(0)
 		);
 	} else {
-		echo "com o relógio parado. ";
+		//echo "com o relógio parado. ";
 		$my_post = array(
 			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
@@ -342,19 +356,26 @@ function update_pomo () {
 		$save_progress = wp_insert_post( $my_post );
 		update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 		$pomodoroAtivo = $save_progress;
-		echo "Salvando pela primeira vez.";
+		//echo "Salvando pela primeira vez.";
 	} else {
 		//Atualiza o pomodoro ativo
 		$my_post["ID"] = $pomodoroAtivo;
 		$save_progress = wp_update_post( $my_post );
-		echo "Atualizando seu pomodoro ativo.";
+		//echo "Atualizando seu pomodoro ativo.";
 		//SO USADA PARA TESTES
 		//update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 	}
 
 	//RETORNANDO VALORES
 	$post_atual_pega_data = get_post($pomodoroAtivo);
-	echo "$^$ ".$post_atual_pega_data->post_status."$^$ ".$post_atual_pega_data->post_date;
+	//echo "$^$ ".$post_atual_pega_data->post_status."$^$ ".$post_atual_pega_data->post_date;
+	$postReturned['post_status'] = $post_atual_pega_data->post_status;
+	$postReturned['post_date'] = $post_atual_pega_data->post_date;
+
+	//
+
+	header('Content-type: application/json');//CRUCIAL
+	echo json_encode($postReturned);
 	
 }
 
