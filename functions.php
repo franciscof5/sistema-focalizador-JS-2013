@@ -274,7 +274,8 @@ function load_pomo () {
 		//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
 		$timePost  = strtotime($post->post_date);
 		//echo " i ";
-		$agora = strtotime(date("Y-m-d H:i:s"));
+		//date_default_timezone_set('America/Sao_Paulo');
+		$agora = strtotime(current_time("Y-m-d H:i:s"));
 		
 		//echo " S:";
 		$secs = ($timePost - $agora);
@@ -291,6 +292,8 @@ function load_pomo () {
 		$postReturned['post_date'] = $post->post_date;
 		$postReturned['post_status'] = $post->post_status;
 		$postReturned['secs'] = $secs;
+		$postReturned['agora'] = $agora;
+		
 
 		//
 

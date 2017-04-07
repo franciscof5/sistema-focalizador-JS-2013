@@ -76,10 +76,10 @@ function load_pomodoro_clipboard () {
 				//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
 				if(secundosRemainingFromPHP>pomodoroTime) {
 					secondsRemaining = pomodoroTime;
-					delete_model(rex[6]);
+					delete_model(postReturned['ID']);
 					change_status("Você perdeu um pomodoro na última sessão. Você iniciou esse pomodoro há " + Math.round(((secundosRemainingFromPHP/60)/60)) + " horas.");	
 				} else {
-					secondsRemaining = secundosRemainingFromPHP;
+					secondsRemaining = pomodoroTime-secundosRemainingFromPHP;
 					//alert(secondsRemaining + " d " + pomodoroTime);
 					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
 					change_status("Você fechou o navegador com o pomodoro rolando, já se passaram " + Math.round(secundosRemainingFromPHP/60) + " minutos");	
