@@ -104,6 +104,12 @@ add_action('wp_logout','go_home');
 add_action( 'init', 'createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN' );
 add_action('init', 'theme_scripts');
 
+function default_page() {
+  return '/focar';
+}
+
+add_filter('login_redirect', 'default_page');
+
 function theme_scripts() {	
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
