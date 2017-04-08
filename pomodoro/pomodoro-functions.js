@@ -20,7 +20,7 @@
 
 	//Pomodoro session control vars
 	var pomodoro_actual = 1;
-	var is_pomodoro = true;
+	var is_pomodoro = true; //is_pomodoros is when using timer for focusing (otherwise ir resting)
 	var secondsRemaining = 0;//pomodoroTime;
 	var interval_clock=false;
 }
@@ -170,18 +170,16 @@ function action_button() {
 //Start countdown
 function start_clock() {
 	active_sound.play();
-	//post_status="future;"
-	//Chage button to "interrupt"
-	//is_interrupt_button=true;
-	change_button(textInterrupt, "#006633");
+	//TODO: post_status="future;"
 	interval_clock = setInterval('countdown_clock()', intervalMiliseconds);
 
 	//is_pomodoros is when using 25min for focusing
-	if(is_pomodoro) {	
+	if(is_pomodoro) {
+		change_button(textInterrupt, "#006633");//Chage button to "interrupt"
 		update_pomodoro_clipboard("pending");
 		change_status(txt_started_countdown);
-	}
-	else {
+	} else {
+		change_button(textInterrupt, "#990000");//Chage button to "interrupt"
 		change_status(txt_normalrest_countdown);
 	}
 }
@@ -218,21 +216,21 @@ function complete() {
 		if(pomodoro_actual==pomodoros_to_big_rest) {
 			//big rest
 			pomodoro_actual=1;
-			change_button(textBigRest, "#0F0");
+			change_button(textBigRest, "#0F0F0F");
 			change_status(txt_bigrest_countdown);
 			secondsRemaining=bigRestTime;
 			changeTitle("GRANDE DESCANSO");
-			reset_indicators();
+			reset_indicators_display();
 		} else {
 			//normal rest
 			pomodoro_actual++;
-			change_button(textRest, "#990000");
+			change_button(textRest, "#0F0F0F");
 			change_status(txt_normalrest_countdown);
 			secondsRemaining=restTime;
 			changeTitle("Hora do intervalo");
 		}
 	} else {
-		change_button(textPomodoro, "#063");
+		change_button(textPomodoro, "#0F0F0F");
 		change_status(txt_completed_rest);
 		is_pomodoro=true;
 		secondsRemaining=pomodoroTime;
@@ -332,7 +330,7 @@ function reset_pomodoro_session() {
 	interrupt();
 	pomodoro_actual=1;
 	session_reseted_sound.play();
-	reset_indicators();
+	reset_indicators_display();
 	//changeTitle("Sessão de pomodoros reiniciada...");
 	change_status("Pronto, sessão reiniciada. O sistema está pronto para uma nova contagem!");
 }
@@ -345,7 +343,7 @@ function turn_on_pomodoro_indicator (indicator_number) {
 }
 
 //Function to restart the pomodoros
-function reset_indicators() {
+function reset_indicators_display() {
 	jQuery("#pomoindi1").animate({'background-position': '0px','background-color': '#EEEEEE'});
 	jQuery("#pomoindi2").animate({'background-position': '0px','background-color': '#EEEEEE'});
 	jQuery("#pomoindi3").animate({'background-position': '0px','background-color': '#EEEEEE'});
