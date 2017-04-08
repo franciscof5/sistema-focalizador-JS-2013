@@ -8,6 +8,7 @@ var textInterrupt = "INTERRUPT";
 
 //Mat status
 var txt_mat_introducing = "Hello, my name is Foca, and I am here to help, write down the task you are working on and click on FOCAR!";
+var txt_loading_initial_data = "Dowloading your data...";
 var txt_mat_load_return = "I loaded the last activity from your, just hit FOCUS button and start to work. Last session was ";
 var txt_started_countdown = "Timmer started!";
 var txt_salving_pomodoros = "Saving progress...";

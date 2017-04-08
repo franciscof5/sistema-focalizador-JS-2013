@@ -43,7 +43,7 @@ jQuery(document).ready(function ($) {
 
 function load_pomodoro_clipboard () {
 	////procura se já tiver algum post published
-	change_status("Estou baixando os dados da sua conta...");	
+	change_status(txt_loading_initial_data);	
 	var data = {
 		action: 'load_pomo',
 		//dataType: "json"

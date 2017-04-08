@@ -8,6 +8,7 @@ var textInterrupt = "INTERROMPER";
 
 //Frases de status do Mate
 var txt_mat_introducing = "Olá, eu sou o foca Loggo, estou aqui para te ajudar, escreva a tarefa que irá realizar e clique em FOCAR!"
+var txt_loading_initial_data = "Baixando os dados da sua conta...";
 var txt_mat_load_return = "Carreguei o seu pomodoro ativo, clique em FOCAR para iniciar a contagem. Última sessão há ";
 var txt_started_countdown = "Contagem ativada. Agora você deve se concentrar na sua tarefa. Nada pode te atrapalhar, evite interrupções!";
 var txt_salving_pomodoros = "Salvando pomodoro...";

@@ -242,7 +242,7 @@ function save_progress () {
 #
 function load_pomo () {
 	//checa se já existe um rascunho, caso não cria o primeiro
-	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+	
 	
 	/*if($pomodoroAtivo=="") {
 		
@@ -272,7 +272,16 @@ function load_pomo () {
 	} else {*/
 		//O cara já tem um pomodoroAtivo, só carregar	
 		//$res = get_posts($args);
-		$post = get_post($pomodoroAtivo);
+		$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+		if($pomodoroAtivo=="") {
+			$last_post = get_most_recent_post_of_user( get_current_user_id() );
+			$pomodoroAtivo = $last_post->post_id;
+			#get_most_recent_post_of_user( $user_id );
+		} else {
+			$post = get_post($pomodoroAtivo);
+		}
+		
+		//var_dump($post);die;
 		$tags = wp_get_post_tags($post->ID);
 		
 		//if($post->post_status=="pending") {
