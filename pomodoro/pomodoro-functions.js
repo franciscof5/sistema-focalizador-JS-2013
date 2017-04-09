@@ -53,6 +53,11 @@ function load_pomodoro_clipboard () {
 		//alert(response.slice( 0, - 1 ));
 		//rex = response.split("$^$ ");
 		//change_status(rex[0]);
+		if(response==0) {
+			alert("Escreva sua tarefa abaixo, vamos salvar os dados");
+		} else {
+
+		
 		var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
 		//alert(postReturned['post_title']);
 		title_box.value = postReturned['post_title'];
@@ -94,6 +99,7 @@ function load_pomodoro_clipboard () {
 			change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 		}
 		document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
+		}
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
 		//alert(secundosRemainingFromPHP);
