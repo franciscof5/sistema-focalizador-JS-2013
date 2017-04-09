@@ -273,15 +273,18 @@ function load_pomo () {
 		//O cara já tem um pomodoroAtivo, só carregar	
 		//$res = get_posts($args);
 		$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
-		if($pomodoroAtivo=="") {
-			$last_post = get_most_recent_post_of_user( get_current_user_id() );
-			$pomodoroAtivo = $last_post->post_id;
+		if(!$pomodoroAtivo) {
+			//$last_post = get_most_recent_post_of_user( get_current_user_id() );
+			//$pomodoroAtivo = $last_post->post_id;
 			#get_most_recent_post_of_user( $user_id );
+			$pomodoroAtivo = 1;//INITIAL POMODORO
 		} else {
 			$post = get_post($pomodoroAtivo);
+			if(!$post)
+			$pomodoroAtivo = 2;//LOST POMODORO
 		}
 		
-		//var_dump($post);die;
+		//var_dump($post);
 		$tags = wp_get_post_tags($post->ID);
 		
 		//if($post->post_status=="pending") {
@@ -313,6 +316,7 @@ function load_pomo () {
 		//
 
 		//header('Content-type: application/json');//CRUCIAL
+		if($pomodoroAtivo)
 		echo json_encode($postReturned);
 		
 		#echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
