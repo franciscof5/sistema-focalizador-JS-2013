@@ -233,8 +233,9 @@ html {
 	border-radius: 20px;
 	padding-bottom: 8px;
 }
-#login #loginform input[type=text] {
+#loginform input[type="text"], #loginform input[type="password"] {
 	width: 200px;
+	display: block;
 }
 #login #nav {
 	float:none;
@@ -2146,7 +2147,7 @@ ol.commentlist li {
 -------------------------------------------------------------- */
 
 #footer {
-	height: 420px;
+	/*height: 420px;*/
 }
 #wrapper {
 	margin: 0 auto -420px;

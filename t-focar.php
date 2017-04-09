@@ -39,10 +39,10 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 <?php get_header() ?>
 
 <?php get_sidebar(); ?>
-<?php if (is_user_logged_in()) { ?>
+
 
 <div class="content_pomodoro col-xs-12 col-sm-6">
-
+	<?php if (is_user_logged_in()) { ?>
 
 
 	<!--MooTools
@@ -225,19 +225,24 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 			wp_reset_postdata();
 			?>
 		</div>
-		</div>
-	</div><!-- #content -->
+	</div>
+	
 	<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
 
 	<?php } else { ?>
-		<div class="col-md-9 col-sm-9 sidebar">
-			<h2 class="bg-danger">Acesso restrito a usuários</h2>
-			<div style="width: 400px; margin: 0 auto;">
-				<?php #wp_login_form(); ?>
+	<div class="col-md-12 col-sm-9 sidebar">
+		<h2 class="bg-danger">Acesso restrito a usuários</h2>
+		<div style="width: 400px; margin: 0 auto;">
+			<?php wp_login_form(); ?>
+			<div style="margin-top:-10px;">
+				<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 			</div>
 		</div>
+	</div>
 	<?php } ?>
+
 	
+</div><!-- #content -->
 <?php get_footer() ?>
 
 <?php 

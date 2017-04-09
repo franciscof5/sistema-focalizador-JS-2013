@@ -59,7 +59,7 @@
 	noSleep.disable();
 </script>
 <span id='linha-fundo'></span>
-	<div id="wrapper" class="container-fluid content">
+<div id="wrapper" class="container-fluid content">
 
 		<?php do_action( 'bp_before_header' ) ?>
 		
@@ -226,4 +226,4 @@
 
 
 
-<div class="row">
+	<div class="row">
