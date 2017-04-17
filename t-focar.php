@@ -227,9 +227,14 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 		</div>
 	</div>
 	
-	<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
+	
 
-	<?php } else { ?>
+	
+
+	
+</div><!-- #content -->
+<?php locate_template( array( 's-pomodoros.php' ), true ); ?>
+<?php } else { ?>
 	<div class="col-md-12 col-sm-9 sidebar">
 		<h2 class="bg-danger">Acesso restrito a usuários</h2>
 		<div style="width: 400px; margin: 0 auto;">
@@ -240,9 +245,6 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 		</div>
 	</div>
 	<?php } ?>
-
-	
-</div><!-- #content -->
 <?php get_footer() ?>
 
 <?php 

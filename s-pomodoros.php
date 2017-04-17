@@ -83,7 +83,10 @@
 		</p>
 		</li>
 	<?php dynamic_sidebar( 'pomodoros' ); ?>
-	
+	</div><!-- .padder -->
+</div><!-- #sidebar -->
+
+<?php do_action( 'bp_after_sidebar' ); ?>
 	<?php /*
 	<h3><script>document.write(txt_tips_heading)</script></h3>
 	<p><script>document.write(txt_tips_description)</script></p>
@@ -101,7 +104,4 @@
 		<li id="dica_10"><script>document.write(txt_tips_last)</script></li>
 	</ul>
 	*/ ?>
-	</div>
-</div><!-- #sidebar -->
-
-<?php do_action( 'bp_after_sidebar' ); ?>
+	
