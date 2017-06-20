@@ -249,7 +249,7 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 
 <?php 
 		/*
-		get_currentuserinfo();
+		wp_get_current_user();
 		if(current_user_can('administrator')) {
 		?>
 		<?php } ?>

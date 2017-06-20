@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+<!DOCTYPE html <?php language_attributes(); ?>>
 
-<html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes(); ?>>
+<!--html xmlns="http://www.w3.org/1999/xhtml"-->
 	<head profile="http://gmpg.org/xfn/11">
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
-		<title><?php bp_page_title() ?></title>
+		<title><?php the_title(); #bp_page_title() ?></title>
 		<?php do_action( 'bp_head' ) ?>
 		<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats -->
 		<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen" />
 		<?php if ( function_exists( 'bp_sitewide_activity_feed_link' ) ) : ?>
 			<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> | <?php _e('Site Wide Activity RSS Feed', 'buddypress' ) ?>" href="<?php bp_sitewide_activity_feed_link() ?>" />
 		<?php endif; ?>
-		<?php if ( function_exists( 'bp_member_activity_feed_link' ) && bp_is_member() ) : ?>
+		<?php if ( function_exists( 'bp_member_activity_feed_link' ) && bp_is_user() ) : ?>
 			<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> | <?php bp_displayed_user_fullname() ?> | <?php _e( 'Activity RSS Feed', 'buddypress' ) ?>" href="<?php bp_member_activity_feed_link() ?>" />
 		<?php endif; ?>
 		<?php if ( function_exists( 'bp_group_activity_feed_link' ) && bp_is_group() ) : ?>

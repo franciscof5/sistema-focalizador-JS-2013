@@ -34,7 +34,7 @@ echo " <script type='text/javascript'>
 
 	<div class="content_nosidebar">
 	<!--h2>Sobre voce</h2>
-	<p>Estatísticas de <?php get_currentuserinfo(); echo $current_user->user_firstname; ?></p>
+	<p>Estatísticas de <?php wp_get_current_user(); echo $current_user->user_firstname; ?></p>
 	<p>Inicio da viagem no laborioso mundo de Pomodoros.com.br: <strong><?php echo date("d, F, Y", strtotime(get_userdata(get_current_user_id( ))->user_registered)); ?></strong></p-->
 	<h1>Fator prod.</h1>
 	<p>Nos manter produtivos ao longo do tempo exige muito controle, com nossos exclusivos mostradores de produtividade, baseados em dias trabalhados, você recoloca seu projeto nos trilhos.</p>

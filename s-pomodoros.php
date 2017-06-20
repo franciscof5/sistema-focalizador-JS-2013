@@ -4,7 +4,7 @@
 		<li>
 			<?php 
 			global $current_user;
-			get_currentuserinfo(); 
+			wp_get_current_user(); 
 			?>
 			<h3 class="widget-title"><script>document.write(txt_sidebar_stats)</script> <?php echo $current_user->display_name; ?> </h3>
 			<?php 

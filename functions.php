@@ -120,7 +120,7 @@ function theme_scripts() {
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
 
-	if(function_exists(qtranxf_getLanguage)){
+	if(function_exists("qtranxf_getLanguage")){
 	   if(qtranxf_getLanguage() == "en")
 		$filelang="en.js";
 	   else if(qtranxf_getLanguage() == "pt")
@@ -161,7 +161,7 @@ function go_home(){
 }
 
 function my_remove_menu_pages() {
-	get_currentuserinfo();
+	wp_get_current_user();
 	if(!current_user_can('administrator')) {
 		remove_menu_page('link-manager.php');
 		remove_menu_page('themes.php');

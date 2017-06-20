@@ -7,7 +7,7 @@
 
 	<?php if ( is_user_logged_in() ) : ?>
 
-		<?php do_action( 'bp_before_sidebar_me' ); ?>
+		<?php do_action( 'before_sidebar' ); ?>
 
 		<div id="sidebar-me">
 			<a href="<?php echo bp_loggedin_user_domain(); ?>">
