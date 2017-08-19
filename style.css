@@ -573,6 +573,11 @@ margin: 0 auto;
 #pomoNavbar li {
 	/*height: 40px;*/
 	line-height: 40px;
+	float: left;
+	border-radius: 10px;
+	background: #2a2a2a;
+	padding-right: 10px;
+	margin-right: 5px;
 }
 .navbar-inverse {
 	border:0 !important;
