@@ -1,8 +1,8 @@
 /*
-Theme Name: Sistema Focalizador JS (2013)
+Theme Name: Sistema Focalizador JavaScript ES6
 Theme URI: http://www.pomodoros.com.br
 Description: Sistema Focalizador JS foi feito para o site Pomodoros, based in Darwin.
-Version: 2013
+Version: 0.1
 Author: Francisco Matelli Matulovic
 Author URI: http://www.franciscomat.com
 Tags: red, pomodoros, social, buddypress
@@ -30,6 +30,8 @@ Tags: red, pomodoros, social, buddypress
 2Templ2ate2: bp-default
 2Tags2: red, pomodoros, social, buddypress
 //REMOVIDO PARA TESTAR -> Template: bp-default
+
+3ThemeName: Sistema Focalizador JS (2013)
 */
 
 /*
@@ -39,6 +41,10 @@ principal dark color: #096;
 */
 
 @import url(pomodoro/pomodoro.css );
+
+@media (min-width: 1200px) {
+
+}
 
 .btn-link {
 	color: #FFF !important;
@@ -577,7 +583,8 @@ margin: 0 auto;
 	border-radius: 10px;
 	background: #2a2a2a;
 	padding-right: 10px;
-	margin-right: 5px;
+	margin:8px 5px 0 0;
+	height: 40px;
 }
 .navbar-inverse {
 	border:0 !important;
