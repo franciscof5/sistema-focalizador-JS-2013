@@ -72,7 +72,7 @@
 		
 				<div  class="row">
 					<div class="col-sm-6">
-						<p>Developed by <a href="https://www.franciscomat.com">Francisco Mat</a>, Hosted by <a href="https://www.f5sites.com/pomodoros">F5 Sites</a>, Fork us <a href="https://github.com/franciscof5/sistema-focalizador-JS-2013">on GitHub</a></p>
+						<p>Developed by <a href="https://www.franciscomat.com">Francisco Mat</a>, Hosted by <a href="https://www.f5sites.com/pomodoros">F5 Sites</a>, Fork us <a href="https://github.com/franciscof5/sistema-focalizador-javascript">on GitHub</a></p>
 					</div>
 					<div class="col-sm-6">
 						<p style="text-align: right;">Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>

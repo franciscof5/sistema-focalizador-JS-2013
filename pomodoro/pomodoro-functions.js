@@ -366,19 +366,19 @@ function flip_number(force) {
 	}*/
 	//alert(m1 + " cur:" + m1_current);
 	if( m2 != m2_current || force){
-		flip('minutesUpRight', 'minutesDownRight', m2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Right/');
+		flip('minutesUpRight', 'minutesDownRight', m2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
 		m2_current = m2;
 	}
 	if( m1 != m1_current || force){	
-		flip('minutesUpLeft', 'minutesDownLeft', m1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Left/');
+		flip('minutesUpLeft', 'minutesDownLeft', m1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
 		m1_current = m1;
 	}
 	if (s2 != s2_current || force){
-		flip('secondsUpRight', 'secondsDownRight', s2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Right/');
+		flip('secondsUpRight', 'secondsDownRight', s2, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Right/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Right/');
 		s2_current = s2;
 	}
 	if (s1 != s1_current || force){
-		flip('secondsUpLeft', 'secondsDownLeft', s1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/Double/Down/Left/');
+		flip('secondsUpLeft', 'secondsDownLeft', s1, 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Up/Left/', 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/Double/Down/Left/');
 		s1_current = s1;
 	}
 }
@@ -547,12 +547,12 @@ function getRadioCheckedValue(radio_name){
 
 
 //Sound configuration
-soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/assets/soundmanager2.swf';
+soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/assets/soundmanager2.swf';
 soundManager.onready(function() {
 	// Ready to use; soundManager.createSound() etc. can now be called.
-	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/crank-2.mp3',});
-	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/telephone-ring-1.mp3',});
-	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-JS-2013/pomodoro/sounds/magic-chime-02.mp3',});
+	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
+	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/telephone-ring-1.mp3',});
+	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
 });
 soundManager.onerror = function() {alert(txt_sound_error+"...");}
 
