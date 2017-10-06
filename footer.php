@@ -1,7 +1,9 @@
 			
 			</div>
 		</div> <!-- #wrapper #2D2D2D-->
-		
+		<br style="clear:both;" />
+		&nbsp;
+		<br />
 		<?php do_action( 'bp_after_container' ) ?>
 
 		
