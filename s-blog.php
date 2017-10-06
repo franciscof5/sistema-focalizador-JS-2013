@@ -1,7 +1,7 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
 <!--div id="sidebar22" class="sidebar col-xs-3 hidden-sm hidden-xs" role="complementary"-->
-<div id="sidebar22" class="sidebar col-xs-3  hidden-xs" role="complementary">
+<div id="sidebar-blog" class="sidebar col-xs-3  hidden-xs" role="complementary">
 	<div class="padder">
 
 	<?php do_action( 'bp_inside_before_sidebar' ); ?>
@@ -67,14 +67,17 @@
 		</div>
 	<?php endif; ?>
 
-	<?php dynamic_sidebar( 'geral' ); ?>
+	<?php #dynamic_sidebar( 'geral' ); ?>
 
 
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
+	<hr style="clear: both" />
+	
+	<?php do_shortcode('[rpwe]');  ?>
+	<?php the_widget('WP_Widget_Recent_Posts');  ?>
 
-	<?php  do_shortcode('[bc_members amount="16"]');  ?>
-	</div><!-- .padder -->
+		</div><!-- .padder -->
 </div><!-- #sidebar -->
 
 <?php do_action( 'bp_after_sidebar' ); ?>

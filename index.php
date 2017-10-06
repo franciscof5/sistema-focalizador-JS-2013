@@ -2,7 +2,12 @@
 
 	<div id="content" class="content_default">
 		<div class="padder">
-
+		<?php if(is_home()) { ?>
+			<h3>BLOG DO POMODOROS</h3>
+			<p>Novidades e histórico do projeto, no ar desde 2010</p>
+			<hr />
+		<?php } ?>
+		
 		<?php do_action( 'bp_before_blog_home' ) ?>
 
 		<div class="page" id="blog-latest">
@@ -60,6 +65,6 @@
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-	<?php locate_template( array( 't-sidebar-blog.php' ), true ) ?>
+	<?php locate_template( array( 's-blog.php' ), true ) ?>
 
 <?php get_footer() ?>

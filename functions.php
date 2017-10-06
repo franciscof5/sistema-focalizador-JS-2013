@@ -83,9 +83,15 @@ function user_object_productivity ($user_id) {
 	//var_dump($new_object_productivity);
 	return $new_object_productivity;
 }
+
+
+
 //date_default_timezone_set('America/Sao_Paulo');
 //
+#ADMIN can view the bar finally
+if(!current_user_can('administrator'))
 add_filter('show_admin_bar', '__return_false'); 
+
 add_action( 'login_form_middle', 'add_lost_password_link' );
 #add_action( 'admin_menu', 'edit_admin_menus' ); 
 #add_action('init', 'myStartSession', 1);
@@ -427,7 +433,15 @@ function save_modelnow () {
 		die();
 	}
 }
-
+/*register_sidebar( array(
+	'name' => __( 'blog'),
+	'id' => 'blog',
+	'description' => __( 'blog sidebar'),
+	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+	'after_widget' => '</li>',
+	'before_title' => '<h3 class="widget-title">',
+	'after_title' => '</h3>',
+) );*/
 register_sidebar( array(
 	'name' => __( 'pomodoros'),
 	'id' => 'pomodoros',
