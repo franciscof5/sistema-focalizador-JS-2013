@@ -3,8 +3,30 @@
 	<div id="content" class="content_default  col-xs-12 col-sm-9">
 		<div class="padder">
 		<?php if(is_home()) { ?>
+			
 			<h3>BLOG DO POMODOROS</h3>
-			<p>Novidades e histórico do projeto, no ar desde 2010</p>
+			
+			<p>Novidades e histórico do projeto, no ar desde 2010.</p>
+			
+			<?php if(is_user_logged_in()) { ?>
+				<?php $current_user = wp_get_current_user(); ?>
+				<?php $recent = get_posts(array(
+				    'author'=>$current_user->ID,
+				    'post_type'=>'projectimer_focus',
+				    'orderby'=>'date',
+				    'order'=>'desc',
+				    'numberposts'=>1
+				));
+				if( $recent ){
+				  $title = ", sua tarefa mais recente é <i>".get_the_title($recent[0]->ID)."</i>";
+				}else{
+				  $title = ", você ainda não começou nenhuma tarefa"; //No published posts
+				} ?>
+				<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>
+			<?php } else { ?>
+				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online</a>.</p>
+			<?php } ?>
+			
 			<hr />
 		<?php } ?>
 		
