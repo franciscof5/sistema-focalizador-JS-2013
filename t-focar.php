@@ -34,7 +34,17 @@ echo $item['volumeInfo']['title'], "<br /> \n";
 #$accessToken = $client->authenticate($authCode);
 #echo $client->setAccessToken($accessToken);
 //die;
-
+/*$args = array(
+	'post_type' => 'projectimer_focus',
+	'post_status' => 'pending',
+	'author'   => get_current_user_id(),
+	//'orderby'   => 'title',
+	'order'     => 'ASC',
+	'posts_per_page' => 14,
+);
+$the_query = new WP_Query( $args );
+var_dump($the_query);*/
+#die;
 ?>
 <?php get_header() ?>
 
