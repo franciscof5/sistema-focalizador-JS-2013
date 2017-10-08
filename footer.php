@@ -41,11 +41,24 @@
 					
 					<div class="col-sm-3 contem_last_pomodoros">
 						<h3>Últimos pomodoros</h3>
-						<?php $recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
-						foreach( $recent_posts as $recent ){
+						<?php if(!is_user_logged_in()) { ?>
+						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para ver pomodoros recentes</p>
+						<?php } else { ?>
+							
+							<?php 
+							
+							#$recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
+							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 3, 'post_status' => 'publish' ); 
+							$recent_posts = get_posts( $args );
 
-							echo '<li>'.get_avatar($recent['post_author'], 24 )."<a href='/colegas/".get_the_author_meta( "user_login", $recent['post_author'] )."'>".get_the_author_meta( 'display_name',$recent['post_author'] ).'</a> - <a href="' . get_permalink($recent["ID"]) . '" title="Look '.esc_attr($recent["post_title"]).'" >' .   $recent["post_title"].'</a> </li> ';
-						} ?>
+							foreach( $recent_posts as $recent ){
+
+								#echo '<li>'.get_avatar($recent->post_author, 24)."<a href='/colegas/".get_the_author_meta( "user_login", $recent->post_author )."'>".get_the_author_meta( 'display_name', $recent->post_author ).'</a> - <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #WITH NAME
+								
+								echo '<li>'.get_avatar($recent->post_author, 24).' : <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
+							} ?>
+						<?php } ?>
+						
 					</div>
 					<!--div class="link-group">
 						<h3>Telefones</h3>
@@ -60,7 +73,7 @@
 				<div id="footer-contact-form" class="col-sm-3">
 					<h3>Fale conosco</h3>
 					<?php if(!is_user_logged_in()) { ?>
-						<p class="bg-danger">Acesse sua conta para usar o formulário de contato</p>
+						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para usar o formulário de contato</p>
 					<?php } else { ?>
 						
 						<?php echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); ?>
