@@ -2161,6 +2161,11 @@ ol.commentlist li {
 #footer {
 	/*height: 420px;*/
 }
+
+#footer .widgettitle {
+	display: none;
+}
+
 #wrapper {
 	margin: 0 auto -420px;
 }

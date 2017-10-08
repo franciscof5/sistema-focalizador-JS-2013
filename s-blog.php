@@ -74,7 +74,7 @@
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 	<hr style="clear: both" />
 	
-	<?php do_shortcode('[rpwe]');  ?>
+	<?php #do_shortcode('[rpwe]');  ?>
 	<?php the_widget('WP_Widget_Recent_Posts');  ?>
 
 		</div><!-- .padder -->

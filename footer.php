@@ -16,7 +16,12 @@
 				
 					<div class="col-sm-3">
 						<h3>Nossos blog</h3>
-							<?php echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
+						
+						<?php the_widget('WP_Widget_Recent_Posts', 'number=10');  
+						#'before_title' => '<span class="hidden">','after_title' => '</span>',
+						?>
+
+							<?php #echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
 						</div>
 					<div class="col-sm-3">
 						<h3>Páginas</h3>
