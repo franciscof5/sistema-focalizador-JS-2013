@@ -163,7 +163,7 @@
 		    <ul class="nav navbar-nav navbar-right">
 		      <?php if ( !is_user_logged_in() ) { ?> 
 		      <li>
-		      	<a title="Acessar sua conta" class="btn btn-link" id="login_login" tabindex="1" style="padding-top: 10px;" /><script>document.write(txt_login);</script></a>
+		      	<a title="Acessar sua conta" class="btn btn-link abrir_login" id="login_login" tabindex="1" style="padding-top: 10px;" /><script>document.write(txt_login);</script></a>
 		      </li>
 		      <li>
 		      	<a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" style="padding-top: 10px;" ><script>document.write(txt_register)</script></a>
@@ -209,15 +209,7 @@
 			<h3>Marcador de ponto</h3>
 			<p>Ativar marcador de entrada e saída de expediente?</p>
 		</div>
-		<script type="text/javascript">
-			jQuery( "#login_login" ).click(function() {
-				jQuery( "#loginlogbox" ).toggle("slow");
-			});
-			jQuery( "#settings_panel" ).click(function() {
-				jQuery( "#settingsbox" ).toggle("slow");
-			});
-			
-		</script>
+		
 		<?php do_action( 'bp_header' ) ?>
 
 

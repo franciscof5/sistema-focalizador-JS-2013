@@ -24,7 +24,8 @@
 				} ?>
 				<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>
 			<?php } else { ?>
-				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online</a>.</p>
+				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online. </a></p>
+				<p>Se já possui um usuário, <a id="testes" href="#" class="abrir_login">acesse sua conta</a></p>
 			<?php } ?>
 			
 			<hr />
