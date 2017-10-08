@@ -92,6 +92,9 @@ img.avatar {
 	/*border-radius:15px !important;*/
 	background: rgba(255,255,255, 0.5);
 }	
+#sidebar-blog {
+	border-radius: 15px;
+}
 #pomodoro-painel {width:290px;margin:0 auto 30px auto;padding: 30px 0 50px 0;}
 /*.content_pomodoro {width:500px;padding:0;margin:0 auto;border-radius:15px !important;background: rgba(255,255,255, 0.8);}
 */
@@ -825,7 +828,7 @@ div#sidebar {
 
 div#content {
 	float: right; /*f5sites*/
-	width: 74% ;  /*500px f5sites 80%*/
+	/*width: 74% ;  /*500px f5sites 80%*/
 	/*max-width: 1000px;*/
 	background: rgba(255,255,255,0.9);
 	border-radius: 15px;
