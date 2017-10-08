@@ -3,8 +3,8 @@
 	<div id="content" class="content_default  col-xs-12 col-sm-9">
 		<div class="padder">
 		<?php if(is_home()) { ?>
-			
-			<h3>BLOG DO POMODOROS</h3>
+			<div id="blog-welcome">
+			<h4>BLOG DO POMODOROS</h4>
 			
 			<p>Novidades e histórico do projeto, no ar desde 2010.</p>
 			
@@ -27,7 +27,7 @@
 				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online. </a></p>
 				<p>Se já possui um usuário, <a id="testes" href="#" class="abrir_login">acesse sua conta</a></p>
 			<?php } ?>
-			
+			</div>
 			<hr />
 		<?php } ?>
 		
