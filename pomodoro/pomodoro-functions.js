@@ -54,11 +54,13 @@ function load_pomodoro_clipboard () {
 		//rex = response.split("$^$ ");
 		//change_status(rex[0]);
 		if(response==0) {
-			alert("Escreva sua tarefa abaixo, vamos salvar os dados");
+			alertify.error("Tarefa não encontrada");
+			change_status("Não encontrei nenhuma tarefa iniciada, escreva abaixo e clique em FOCAR acima para iniciar.");	
 		} else {
 
 		
 		var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
+		
 		//alert(postReturned['post_title']);
 		title_box.value = postReturned['post_title'];
 		tags_box.value  = postReturned['post_tags'];
@@ -73,7 +75,7 @@ function load_pomodoro_clipboard () {
 		
 		if(secundosRemainingFromPHP<0)
 			secundosRemainingFromPHP*=-1;
-
+		//alert(secundosRemainingFromPHP);
 		if(status_box.value=="pending") {
 			//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
 			if(secundosRemainingFromPHP) {
@@ -117,8 +119,9 @@ function load_pomodoro_clipboard () {
 }
 
 function update_pomodoro_clipboard (post_stts) {
+	//alert("update_pomodoro_clipboard");
 	//if(!title_box.value==undefined) { nao precisa porque só chama quando alterar o título
-	change_status("Salvando modificações feitas no pomodoro ativo...");
+	change_status("Salvando modificações feitas na tarefa atual...");
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
 

@@ -278,7 +278,7 @@ function load_pomo () {
 	} else {*/
 		//O cara já tem um pomodoroAtivo, só carregar	
 		//$res = get_posts($args);
-		$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+		#$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 		//if(!$pomodoroAtivo) {
 			//$last_post = get_most_recent_post_of_user( get_current_user_id() );
 			//$pomodoroAtivo = $last_post->post_id;
@@ -286,7 +286,21 @@ function load_pomo () {
 			//$pomodoroAtivo = 1;//INITIAL POMODORO
 			//$post = get_post($pomodoroAtivo);
 		//} else {
-		$post = get_post($pomodoroAtivo);
+		#$post = get_post($pomodoroAtivo);
+
+
+		#date_default_timezone_set('America/Sao_Paulo');
+		$args = array(
+		              'post_type' => 'projectimer_focus',
+		              'post_status' => 'draft',
+		              'author'   => get_current_user_id(),
+		              //'orderby'   => 'title',
+		              //'order'     => 'ASC',
+		              'posts_per_page' => 1,
+		            );
+		$post = get_posts($args); #new WP_Query( $args );
+		#var_dump($post);die;
+
 		if(!$post) {
 			//$pomodoroAtivo = 2;//LOST POMODORO
 			reset_configurations();
@@ -294,35 +308,35 @@ function load_pomo () {
 			//$post = get_post($pomodoroAtivo);
 		} else {
 
-
+			$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $post[0]->ID);
 			
 		//}
 		
 		//var_dump($post);
-		$tags = wp_get_post_tags($post->ID);
+		$tags = wp_get_post_tags($post[0]->ID);
 		
-		//if($post->post_status=="pending") {
-		$post->post_date;
+		//if($post[0]->post_status=="pending") {
+		$post[0]->post_date;
 		//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
-		$timePost  = strtotime($post->post_date);
+		$timePost  = strtotime($post[0]->post_date);
 		//echo " i ";
-		//date_default_timezone_set('America/Sao_Paulo');
+		
 		$agora = strtotime(current_time("Y-m-d H:i:s"));
 		
 		//echo " S:";
 		$secs = ($timePost - $agora);
 
-		/*$date = new DateTime( $post->post_date_gmt );
+		/*$date = new DateTime( $post[0]->post_date_gmt );
 		$date2 = new DateTime( "2014-01-13 04:29:10" );
 		echo " s2:".$diffInSeconds = $date2->getTimestamp() - $date->getTimestamp();*/
 		//$secs = 1000;
 		//} 
-		$postReturned['post_title'] = $post->post_title;
+		$postReturned['post_title'] = $post[0]->post_title;
 		$postReturned['post_tags'] = $tags[0]->name;
-		$postReturned['post_content'] = $post->post_content;
-		$postReturned['ID'] = $post->ID;
-		$postReturned['post_date'] = $post->post_date;
-		$postReturned['post_status'] = $post->post_status;
+		$postReturned['post_content'] = $post[0]->post_content;
+		$postReturned['ID'] = $post[0]->ID;
+		$postReturned['post_date'] = $post[0]->post_date;
+		$postReturned['post_status'] = $post[0]->post_status;
 		$postReturned['secs'] = $secs;
 		$postReturned['agora'] = $agora;
 		
