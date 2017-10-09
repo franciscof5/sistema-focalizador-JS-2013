@@ -97,17 +97,17 @@ img.avatar {
 	margin-bottom: 10px;
 }
 #sidebar-blog {
-	border-radius: 15px;
-	/*background: #BBB;*/
-	border-right: 2px dotted #333;
+	/*border-radius: 15px;
+	background: #BBB;
+	border-right: 2px dotted #333;*/
 }
 #sidebar-blog .widgettitle {
 	color: #333;
 	font-size: 16px;
 }
 #blog-welcome {
-	background: #DDD;
-	border: 2px dotted #333;
+	background: rgba(255,255,255, 0.8);
+	/*border: 2px dotted #333;*/
 	border-radius: 10px;
 	padding: 5px 20px 5px 20px;
 }
@@ -844,11 +844,12 @@ div#sidebar {
 -------------------------------------------------------------- */
 
 div#content {
-	/*float: right; f5sites*/
+	float: right;
 	/*width: 74% ;  /*500px f5sites 80%*/
-	/*max-width: 1000px;*/
-	background: rgba(255,255,255,0.9);
-	border-radius: 15px;
+	/*max-width: 1000px;*
+	background: rgba(255,255,255,0.9);*/
+	/*border-radius: 15px;*/
+	background: rgba(255,255,255, 0.5);
 	margin-bottom: 20px;
 }
 #content_members {
