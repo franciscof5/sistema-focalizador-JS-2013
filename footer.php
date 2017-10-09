@@ -48,7 +48,7 @@
 							<?php 
 							
 							#$recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
-							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 3, 'post_status' => 'publish' ); 
+							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 9, 'post_status' => 'publish' ); 
 							$recent_posts = get_posts( $args );
 
 							foreach( $recent_posts as $recent ){
