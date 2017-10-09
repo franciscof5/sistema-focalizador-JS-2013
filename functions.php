@@ -310,42 +310,42 @@ function load_pomo () {
 
 			$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $post[0]->ID);
 			
-		//}
-		
-		//var_dump($post);
-		$tags = wp_get_post_tags($post[0]->ID);
-		
-		//if($post[0]->post_status=="pending") {
-		$post[0]->post_date;
-		//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
-		$timePost  = strtotime($post[0]->post_date);
-		//echo " i ";
-		
-		$agora = strtotime(current_time("Y-m-d H:i:s"));
-		
-		//echo " S:";
-		$secs = ($timePost - $agora);
+			//}
+			
+			//var_dump($post);
+			$tags = wp_get_post_tags($post[0]->ID);
+			
+			//if($post[0]->post_status=="pending") {
+			$post[0]->post_date;
+			//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
+			$timePost  = strtotime($post[0]->post_date);
+			//echo " i ";
+			
+			$agora = strtotime(current_time("Y-m-d H:i:s"));
+			
+			//echo " S:";
+			$secs = ($timePost - $agora);
 
-		/*$date = new DateTime( $post[0]->post_date_gmt );
-		$date2 = new DateTime( "2014-01-13 04:29:10" );
-		echo " s2:".$diffInSeconds = $date2->getTimestamp() - $date->getTimestamp();*/
-		//$secs = 1000;
-		//} 
-		$postReturned['post_title'] = $post[0]->post_title;
-		$postReturned['post_tags'] = $tags[0]->name;
-		$postReturned['post_content'] = $post[0]->post_content;
-		$postReturned['ID'] = $post[0]->ID;
-		$postReturned['post_date'] = $post[0]->post_date;
-		$postReturned['post_status'] = $post[0]->post_status;
-		$postReturned['secs'] = $secs;
-		$postReturned['agora'] = $agora;
-		
+			/*$date = new DateTime( $post[0]->post_date_gmt );
+			$date2 = new DateTime( "2014-01-13 04:29:10" );
+			echo " s2:".$diffInSeconds = $date2->getTimestamp() - $date->getTimestamp();*/
+			//$secs = 1000;
+			//} 
+			$postReturned['post_title'] = $post[0]->post_title;
+			$postReturned['post_tags'] = $tags[0]->name;
+			$postReturned['post_content'] = $post[0]->post_content;
+			$postReturned['ID'] = $post[0]->ID;
+			$postReturned['post_date'] = $post[0]->post_date;
+			$postReturned['post_status'] = $post[0]->post_status;
+			$postReturned['secs'] = $secs;
+			$postReturned['agora'] = $agora;
+			
 
-		//
+			//
 
-		//header('Content-type: application/json');//CRUCIAL
-		//if($pomodoroAtivo)
-		echo json_encode($postReturned);
+			//header('Content-type: application/json');//CRUCIAL
+			//if($pomodoroAtivo)
+			echo json_encode($postReturned);
 		}
 		#echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
 		//}
@@ -359,12 +359,25 @@ function load_pomo () {
 }
 
 function update_pomo () {
-	//echo "update_pomo";
+	//UPDATE DRAFT POMODOROS ON TASK FORM
+	$args = array(
+	          'post_type' => 'projectimer_focus',
+	          'post_status' => 'draft',
+	          'author'   => get_current_user_id(),
+	          //'orderby'   => 'title',
+	          //'order'     => 'ASC',
+	          'posts_per_page' => 1,
+	        );
+	$post = get_posts($args); #new WP_Query( $args );
+
+	#var_dump($post);die;
+	#$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+	$pomodoroAtivo =  $post[0]->ID;
+
 	$tagsinput = explode(" ", $_POST['post_tags']);
-	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
-	$agora = date("Y-m-d H:i:s");
+	//$agora = date("Y-m-d H:i:s");
 	
-	if($_POST['ignora_data']) {
+	/*if($_POST['ignora_data']) {
 		//echo "com o pomodoro rolando. ";
 		$my_post = array(
 			'post_type' => 'projectimer_focus',
@@ -379,8 +392,76 @@ function update_pomo () {
 			//'post_date' => $_POST["post_data"]
 			//'post_category' => array(0)
 		);
-	} else {
+	} else {*/
 		//echo "com o relógio parado. ";
+		$my_post = array(
+			'ID'	=> $pomodoroAtivo,
+			#'post_type' => 'projectimer_focus',
+			'post_title' => $_POST['post_titulo'],
+			'post_content' => $_POST['post_descri'],
+			'post_category' => array(1, $_POST['post_cat']),
+			//'post_author' => get_current_user_id(),
+			'tags_input' => array($_POST['post_tags']),
+			//'post_status' => "draft",
+			//'edit_date' => true,
+			//'post_date' => $agora
+			//'post_date' => $_POST["post_data"]
+			//'post_category' => array(0)
+		);
+	//}
+	//if($_POST["post_status"]!="") {
+	//	$my_post["post_status"] = $_POST["post_status"];
+	//}
+	
+	//$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+
+	#if(function_exists("force_database_aditional_tables_share")) {
+	#	force_database_aditional_tables_share();
+	#}
+	if($pomodoroAtivo=="") {
+		//Não tem pomodoro ativo
+		$save_progress = wp_insert_post( $my_post );
+		update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
+		$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
+		//$pomodoroAtivo = "NAO ACHOU";
+		//$pomodoroAtivo = $save_progress;
+		//echo "Salvando pela primeira vez.";
+	} else {
+		//Atualiza o pomodoro ativo
+		//$my_post["ID"] = $pomodoroAtivo;
+		$save_progress = wp_update_post( $my_post );
+		//echo "Atualizando seu pomodoro ativo.";
+		//SO USADA PARA TESTES
+		//update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
+	}
+
+	//RETORNANDO VALORES
+	#$post_atual_pega_data = get_post($pomodoroAtivo);
+
+	//echo "$^$ ".$post_atual_pega_data->post_status."$^$ ".$post_atual_pega_data->post_date;
+	$postReturned['post_status'] = $post_atual_pega_data[0]->post_status;
+	$postReturned['post_date'] = $post_atual_pega_data[0]->post_date;
+	$postReturned['ID'] = $post_atual_pega_data[0]->ID;
+	$postReturned['pomodoroAtivo'] = $pomodoroAtivo;
+	//$postReturned['psot_atual_pega_data'] = $my_post;
+	$postReturned['save_progress'] = $save_progress;
+	
+
+	//
+
+	header('Content-type: application/json');//CRUCIAL
+	echo json_encode($postReturned);
+	
+}
+
+function update_pomo_active () {
+	//echo "update_pomo";
+	$tagsinput = explode(" ", $_POST['post_tags']);
+	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
+	$agora = date("Y-m-d H:i:s");
+	
+	/*if($_POST['ignora_data']) {
+		//echo "com o pomodoro rolando. ";
 		$my_post = array(
 			'post_type' => 'projectimer_focus',
 			'post_title' => $_POST['post_titulo'],
@@ -388,16 +469,32 @@ function update_pomo () {
 			'post_category' => array(1, $_POST['post_cat']),
 			'post_author' => get_current_user_id(),
 			'tags_input' => array($_POST['post_tags']),
-			'post_status' => "draft",
+			'post_status' => "pending",
+			'edit_date' => true,
+			//'post_date' => $agora
+			//'post_date' => $_POST["post_data"]
+			//'post_category' => array(0)
+		);
+	} else {*/
+		//echo "com o relógio parado. ";
+		$my_post = array(
+			//'ID'	=> $pomodoroAtivo;
+			'post_type' => 'projectimer_focus',
+			'post_title' => $_POST['post_titulo'],
+			'post_content' => $_POST['post_descri'],
+			'post_category' => array(1, $_POST['post_cat']),
+			'post_author' => get_current_user_id(),
+			'tags_input' => array($_POST['post_tags']),
+			//'post_status' => "draft",
 			'edit_date' => true,
 			'post_date' => $agora
 			//'post_date' => $_POST["post_data"]
 			//'post_category' => array(0)
 		);
-	}
-	if($_POST["post_status"]!="") {
-		$my_post["post_status"] = $_POST["post_status"];
-	}
+	//}
+	//if($_POST["post_status"]!="") {
+	//	$my_post["post_status"] = $_POST["post_status"];
+	//}
 	
 	//$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 
@@ -417,10 +514,15 @@ function update_pomo () {
 	}
 
 	//RETORNANDO VALORES
-	$post_atual_pega_data = get_post($pomodoroAtivo);
+	$post_atual_pega_data = get_posts($pomodoroAtivo);
 	//echo "$^$ ".$post_atual_pega_data->post_status."$^$ ".$post_atual_pega_data->post_date;
-	$postReturned['post_status'] = $post_atual_pega_data->post_status;
-	$postReturned['post_date'] = $post_atual_pega_data->post_date;
+	$postReturned['post_status'] = $post_atual_pega_data[0]->post_status;
+	$postReturned['post_date'] = $post_atual_pega_data[0]->post_date;
+	$postReturned['ID'] = $post_atual_pega_data[0]->ID;
+	$postReturned['pomodoroAtivo'] = $pomodoroAtivo;
+	$postReturned['post_atual_pega_data'] = $my_post;
+	$postReturned['save_progress'] = $save_progress;
+	
 
 	//
 

@@ -61,7 +61,7 @@ function load_pomodoro_clipboard () {
 		
 		var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
 		
-		//alert(postReturned['post_title']);
+		//alert(postReturned['ID']);
 		title_box.value = postReturned['post_title'];
 		tags_box.value  = postReturned['post_tags'];
 		description_box.value = postReturned['post_content'];
@@ -148,6 +148,7 @@ function update_pomodoro_clipboard (post_stts) {
 	jQuery.post(ajaxurl, data, function(response) {
 		rex = response.split("$^$ ");
 		change_status("Os dados foram salvados " + rex[0]);
+		alert(response['ID']);
 		status_box.value = rex[1];
 		data_box.value = rex[2].slice(0, -1);
 		//title_box.value = rex[0];
