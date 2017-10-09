@@ -1,5 +1,5 @@
 <?php get_header() ?>
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
 	<!--div id="content" class="content_default"-->
 	<div class="content_nosidebar col-xs-12">
 		<div class="padder">

@@ -93,9 +93,13 @@ img.avatar {
 	/*border-radius:15px !important;*/
 	background: rgba(255,255,255, 0.5);
 }	
+.widget_recent_entries li {
+	margin-bottom: 10px;
+}
 #sidebar-blog {
 	border-radius: 15px;
-	background: #BBB;
+	/*background: #BBB;*/
+	border-right: 2px dotted #333;
 }
 #sidebar-blog .widgettitle {
 	color: #333;
@@ -103,6 +107,7 @@ img.avatar {
 }
 #blog-welcome {
 	background: #DDD;
+	border: 2px dotted #333;
 	border-radius: 10px;
 	padding: 5px 20px 5px 20px;
 }
@@ -839,12 +844,18 @@ div#sidebar {
 -------------------------------------------------------------- */
 
 div#content {
-	float: right; /*f5sites*/
+	/*float: right; f5sites*/
 	/*width: 74% ;  /*500px f5sites 80%*/
 	/*max-width: 1000px;*/
 	background: rgba(255,255,255,0.9);
 	border-radius: 15px;
 	margin-bottom: 20px;
+}
+#content_members {
+	background: rgba(255,255,255,0.9);
+	border-radius: 15px;
+	margin-bottom: 20px;
+	padding: 20px;
 }
 
 div#content .padder {
