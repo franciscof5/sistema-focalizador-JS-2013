@@ -11,13 +11,25 @@
 			
 			<?php if(is_user_logged_in()) { ?>
 				<?php $current_user = wp_get_current_user(); ?>
-				<?php $recent = get_posts(array(
+				<?php 
+				/*$recent = get_posts(array(
 				    'author'=>$current_user->ID,
 				    'post_type'=>'projectimer_focus',
-				    'orderby'=>'date',
-				    'order'=>'desc',
+				    'post_statys' => 'draft',
+				    #'orderby'=>'date',
+				    #'order'=>'desc',
 				    'numberposts'=>1
-				));
+				));*/
+				$args = array(
+		              'post_type' => 'projectimer_focus',
+		              'post_status' => 'draft',
+		              'author'   => get_current_user_id(),
+		              //'orderby'   => 'title',
+		              //'order'     => 'ASC',
+		              'posts_per_page' => 1,
+		            );
+				$recent = get_posts($args); #new WP_Query( $args );
+				#var_dump($post);die;
 				if( $recent ){
 				  $title = ", sua tarefa mais recente é <i>".get_the_title($recent[0]->ID)."</i>";
 				}else{
