@@ -75,7 +75,7 @@
 	<hr style="clear: both" />
 	
 	<?php #do_shortcode('[rpwe]');  ?>
-	<?php the_widget('WP_Widget_Recent_Posts');  ?>
+	<?php the_widget('WP_Widget_Recent_Posts', 'title=Posts Recentes');  ?>
 
 		</div><!-- .padder -->
 </div><!-- #sidebar -->
