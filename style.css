@@ -101,13 +101,17 @@ img.avatar {
 	background: #BBB;
 	border-right: 2px dotted #333;*/
 }
-#sidebar-blog .woocommerce .products li {
+#sidebar-blog .woocommerce .products li, #footer-content .woocommerce .products li {
 	width: 100%;
 }
-#sidebar-blog .woocommerce .products .woocommerce-LoopProduct-link {
+#footer-content .woocommerce .products li {
+	margin-top:20px;
+}
+#sidebar-blog .woocommerce .products .woocommerce-LoopProduct-link, #footer-content .woocommerce .products .woocommerce-LoopProduct-link {
 	clear: both;
 }
-#sidebar-blog .woocommerce .products .button {
+
+#sidebar-blog .woocommerce .products .button, #footer-content .woocommerce .products .button {
 	/*background: #3F3;
 	width: 100%;
 	*/

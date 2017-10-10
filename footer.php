@@ -12,8 +12,18 @@
 
 		<div id="footer" class="row">
 			<div id="footer-content" class="row">
+					<div class="col-sm-3">
+						<?php
+						global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+						$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
 
-				
+						echo do_shortcode('[product id="4530"]');  
+
+						//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+						$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
+						//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);
+						?>
+					</div>
 					<div class="col-sm-3">
 						<h3>Nossos blog</h3>
 						
@@ -23,7 +33,7 @@
 
 							<?php #echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
 						</div>
-					<div class="col-sm-3">
+					<!--div class="col-sm-3">
 						<h3>Páginas</h3>
 						<ul>
 							<li><a href="<?php bloginfo('url'); ?>">Início</a></li>
@@ -37,7 +47,7 @@
 							<li><a href="<?php bloginfo('url'); ?>/calendar">Calendário</a></li>
 						</ul>
 						<?php //wp_list_pages("title_li=&include=8,3096,381,4814"); ?>
-					</div>
+					</div-->
 					
 					<div class="col-sm-3 contem_last_pomodoros">
 						<h3>Últimos pomodoros</h3>
