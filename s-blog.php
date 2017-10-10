@@ -78,14 +78,19 @@
 	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
 
-	echo do_shortcode('[product id="4530"]');  ?>
+	echo do_shortcode('[product id="4530"]');  
+
+	//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
+	//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);
+	?>
 	<?php
-	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	/*global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
 	 do_shortcode('[recent_products per_page="12" columns="4"]');  ?>
 	<?php do_shortcode('[recent_products per_page="12" columns="4"]');  ?>	
-	<?php do_shortcode('[product id="3966"]');  ?>
-	
+	<?php do_shortcode('[product id="3966"]');*/  ?>
+
 	<?php dynamic_sidebar( 'blog' ); ?>
 	<?php #the_widget('WP_Widget_Recent_Posts', 'title=Posts Recentes');  ?>
 
