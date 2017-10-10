@@ -219,14 +219,43 @@ function myEndSession() {
 
 
 function save_progress () {
-	$pomo_completed = date("Y-m-d H:i")."|".$_POST['descri'];
-	$save_progress = add_user_meta(get_current_user_id(), "pomodoro_completed", $pomo_completed);
-	if($save_progress) {
+	//$pomo_completed = date("Y-m-d H:i")."|".$_POST['descri'];
+	//$save_progress = add_user_meta(get_current_user_id(), "pomodoro_completed", $pomo_completed);
+	
+	/*if($save_progress) {
 		echo "true";
 	} else {
 		echo "false";
-	}
+	}*/
+
+	/*$args = array(
+	    'post_type' => 'projectimer_focus',
+	    'post_status' => 'draft',
+	    'author'   => get_current_user_id(),
+	    //'orderby'   => 'title',
+	    //'order'     => 'ASC',
+	    'posts_per_page' => 1,
+	);
+	$post = get_posts($args); #new WP_Query( $args );
+	echo $post[0]->ID;*/
+	#revert_database_schema();
+	#global $wpdb;
+	#global $table_prefix;
+	#$prefix=$table_prefix;
 	
+	#
+	/*$wpdb->posts=$prefix."posts";
+	$wpdb->postmeta=$prefix."postmeta";
+	$wpdb->terms=$prefix."terms";
+	$wpdb->term_taxonomy=$prefix."term_taxonomy";
+	$wpdb->term_relationships=$prefix."term_relationships";
+	$wpdb->termmeta=$prefix."termmeta";
+	$wpdb->taxonomy=$prefix."taxonomy";*/
+	//var_dump($wpdb);
+	#force_database_aditional_tables_share();
+	//
+	if(!$_POST['post_priv'])
+		$_POST['post_priv']="publish";
 	$tagsinput = explode(" ", $_POST['post_tags']);
 	$agora = date("Y-m-d H:i:s");
 	$my_post = array(
@@ -237,10 +266,19 @@ function save_progress () {
 		'post_category' => array(1, $_POST['post_cat']),
 		'post_author' => $current_user->ID,
 		'tags_input' => array($_POST['post_tags']),
-		'post_date' => $agora
+		'post_date' => $agora,
+		'post_date_gmt' => $agora,
 		//'post_category' => array(0)
 	);
-	wp_insert_post( $my_post );
+	echo wp_insert_post( $my_post );
+	/*$sql = "INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES ";
+	$sql .= "(' ','".$current_user->ID."',"."'".$agora."',"."'".$agora."',"."'".$_POST['post_descri']."',"."'".$_POST['post_titulo']."',"."'".$post_excerpt."',"."'".$post_status."',"."'".$comment_status."',"."'".$ping_status."',"."'".$posd_password."',"."'".$post_name."',"."'".$to_ping."',"."'".$pinged."',"."'".$post_modified."',"."'".$post_modified_gmt."',"."'".$post_content_filtered."',"."'".$post_parent."',"."'".$guid."',"."'".$menu_order."',"."'projectimer_focus',"."'".$post_mime_type."',"."'".$comment_count."'),";
+
+	$res = mysql_query($sql); 
+	if($res): print 'Successful Insert'; else: print 'Unable to update table'; endif;
+	*/
+	
+	#echo do_action( "save_post_projectimer_focus", int $post_ID, WP_Post $post, bool $update )
 	
 	die(); 
 }
