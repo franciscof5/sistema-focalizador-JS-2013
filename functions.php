@@ -254,6 +254,9 @@ function save_progress () {
 	//var_dump($wpdb);
 	#force_database_aditional_tables_share();
 	//
+	#define(FORCE_NOT_PUBLISH_SHARED, true);
+	global $force_publish_post_not_shared;
+	$force_publish_post_not_shared = true;
 	if(!$_POST['post_priv'])
 		$_POST['post_priv']="publish";
 	$tagsinput = explode(" ", $_POST['post_tags']);

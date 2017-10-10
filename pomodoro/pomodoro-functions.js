@@ -439,6 +439,8 @@ function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
 
 //The real life at pomodoros: jQuery calling php function on functions.php
 function savepomo() {
+	
+
 	change_status(txt_salving_progress);	
 	
 	var postcat=getRadioCheckedValue("cat_vl");
