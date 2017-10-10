@@ -590,7 +590,7 @@ function save_modelnow () {
 		die();
 	}
 }
-/*register_sidebar( array(
+register_sidebar( array(
 	'name' => __( 'blog'),
 	'id' => 'blog',
 	'description' => __( 'blog sidebar'),
@@ -598,7 +598,7 @@ function save_modelnow () {
 	'after_widget' => '</li>',
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
-) );*/
+) );
 register_sidebar( array(
 	'name' => __( 'pomodoros'),
 	'id' => 'pomodoros',

@@ -67,15 +67,27 @@
 		</div>
 	<?php endif; ?>
 
-	<?php #dynamic_sidebar( 'geral' ); ?>
+	
 
 
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 	<hr style="clear: both" />
+
+	<?php
+	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
+
+	echo do_shortcode('[product id="4530"]');  ?>
+	<?php
+	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
+	 do_shortcode('[recent_products per_page="12" columns="4"]');  ?>
+	<?php do_shortcode('[recent_products per_page="12" columns="4"]');  ?>	
+	<?php do_shortcode('[product id="3966"]');  ?>
 	
-	<?php #do_shortcode('[rpwe]');  ?>
-	<?php the_widget('WP_Widget_Recent_Posts', 'title=Posts Recentes');  ?>
+	<?php dynamic_sidebar( 'blog' ); ?>
+	<?php #the_widget('WP_Widget_Recent_Posts', 'title=Posts Recentes');  ?>
 
 		</div><!-- .padder -->
 </div><!-- #sidebar -->
