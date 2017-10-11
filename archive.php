@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-	<div id="content">
+	<div id="content" class="content_default  col-xs-12 col-sm-9">
 		<div class="padder">
 
 		<?php do_action( 'bp_before_archive' ); ?>
@@ -11,7 +11,7 @@
 
 			<?php if ( have_posts() ) : ?>
 
-				<?php bp_dtheme_content_nav( 'nav-above' ); ?>
+				<?php #bp_dtheme_content_nav( 'nav-above' ); ?>
 
 				<?php while (have_posts()) : the_post(); ?>
 
@@ -43,7 +43,7 @@
 
 				<?php endwhile; ?>
 
-				<?php bp_dtheme_content_nav( 'nav-below' ); ?>
+				<?php #bp_dtheme_content_nav( 'nav-below' ); ?>
 
 			<?php else : ?>
 
@@ -59,6 +59,6 @@
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-	<?php get_sidebar(); ?>
+	<?php locate_template( array( 's-blog.php' ), true );#get_sidebar("s-blog"); ?>
 
 <?php get_footer(); ?>

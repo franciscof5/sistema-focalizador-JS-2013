@@ -101,17 +101,18 @@ img.avatar {
 	background: #BBB;
 	border-right: 2px dotted #333;*/
 }
-#sidebar-blog .woocommerce .products li, #footer-content .woocommerce .products li {
-	width: 100%;
+/*#sidebar-blog */
+.woocommerce .products li, #footer-content .woocommerce .products li {
+	width: 100% !important;
 }
 #footer-content .woocommerce .products li {
 	margin-top:20px;
 }
-#sidebar-blog .woocommerce .products .woocommerce-LoopProduct-link, #footer-content .woocommerce .products .woocommerce-LoopProduct-link {
+.woocommerce .products .woocommerce-LoopProduct-link, #footer-content .woocommerce .products .woocommerce-LoopProduct-link {
 	clear: both;
 }
 
-#sidebar-blog .woocommerce .products .button, #footer-content .woocommerce .products .button {
+.woocommerce .products .button, #footer-content .woocommerce .products .button {
 	/*background: #3F3;
 	width: 100%;
 	*/
@@ -125,6 +126,11 @@ img.avatar {
 	float: right;
 	
 }
+
+.woocommerce-breadcrumb, .related {
+	display: none;
+}
+
 #sidebar-blog .widgettitle {
 	color: #333;
 	font-size: 16px;
@@ -864,11 +870,12 @@ div#sidebar {
 	}
 
 
-/* > Content
+/* > Content 98dwrapper
 -------------------------------------------------------------- */
 
 div#content {
 	float: right;
+	padding: 20px 40px;
 	/*width: 74% ;  /*500px f5sites 80%*/
 	/*max-width: 1000px;*
 	background: rgba(255,255,255,0.9);*/
@@ -2222,6 +2229,9 @@ ol.commentlist li {
 
 #wrapper {
 	margin: 0 auto -420px;
+}
+.corrigi_wrapper_negative_margin {
+	margin-bottom: 420px;
 }
 .push {
 	height: 420px;

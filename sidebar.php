@@ -67,9 +67,21 @@
 		</div>
 	<?php endif; ?>
 
+
+	
+
 	<?php dynamic_sidebar( 'geral' ); ?>
 
+<?php
+	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
+	echo '<h3 class="widget-title">Colabore</h3>';
+	echo do_shortcode('[product id="4530"]');  
 
+	//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+	$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
+	//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);
+	?>
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 
