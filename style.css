@@ -112,21 +112,28 @@ img.avatar {
 	clear: both;
 }
 
-.button, .woocommerce .products .button, #footer-content .woocommerce .products .button {
+/*button, */
+.woocommerce .products .button, #footer-content .woocommerce .products .button {
 	/*background: #3F3;
 	width: 100%;
 	*/
 	clear: both;
-	text-transform: uppercase  !important;
-	font-weight: bold  !important;
-	font-size: 15px  !important;
-	padding: 10px 15px  !important;
-	background: #333 !important;
-	color: #FFF !important;
 	float: right;
 	
+	/*font-weight: bold  !important;
+	font-size: 15px  !important;
+	text-transform: uppercase  !important;
+	background: #333 !important;
+	color: #FFF !important;*/
 }
-
+.button {
+	padding: 10px 15px  !important;
+	font-weight: bold  !important;
+	font-size: 15px  !important;
+	text-transform: uppercase  !important;
+	background: #333 !important;
+	color: #FFF !important;
+}
 .woocommerce-breadcrumb, .related {
 	display: none;
 }
