@@ -201,6 +201,13 @@ function my_remove_menu_pages() {
 	}
 }
 
+add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' ); 
+
+function woo_custom_order_button_text() {
+    return __( 'Realizar Doação', 'woocommerce' ); 
+}
+// removes Order Notes Title - Additional Information
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 /*function edit_admin_menus() {  
 	global $menu;  
 	$menu[5][0] = 'Pomodoros'; // Change Posts to Pomodoros

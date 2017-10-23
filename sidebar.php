@@ -75,9 +75,11 @@
 <?php
 	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
+	
 	echo '<h3 class="widget-title">Colabore</h3>';
+	#force_database_aditional_tables_share();
 	echo do_shortcode('[product id="4530"]');  
-
+	#revert_database_schema();
 	//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
 	//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);
