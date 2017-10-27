@@ -582,7 +582,9 @@ function update_pomo_active () {
 function save_modelnow () {
 	if(function_exists("revert_database_schema"))revert_database_schema();
 	if(isset($_POST['post_para_deletar'])) {
-		wp_delete_post($_POST['post_para_deletar']);
+		#echo "deletando: ".$_POST['post_para_deletar'];
+		echo wp_trash_post($_POST['post_para_deletar']);
+		#die;
 	} else {
 		$tagsinput = explode(" ", $_POST['post_tags']);	
 		$my_post = array(
@@ -595,7 +597,7 @@ function save_modelnow () {
 		);
 		$idofpost = wp_insert_post( $my_post );
 		echo $idofpost;
-		die();
+		#die();
 	}
 }
 register_sidebar( array(

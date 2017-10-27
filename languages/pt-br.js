@@ -26,8 +26,8 @@ var txt_salving_model = "Salvando modelo";
 var txt_salving_model_success = "Pronto, agora eu guardei o seu modelo e você poderá utilizar mais tarde quantas vezes quiser!";
 var txt_salving_model_task_null = "Sou eu que preciso de óculos ou você não escreveu nada no título da tarefa?";
 var txt_loading_model = "Economia de tempo é comigo, configurei a tarefa com base no modelo escolhido, hora de produzir!";
-var txt_deleting_model = "Deletando o modelo...";
-var txt_deleting_model_sucess = "Seu modelo foi movido para a lixeira, se você terminou uma tarefa meus parabéns!";
+var txt_deleting_model = "Concluido o modelo...";
+var txt_deleting_model_sucess = "Seu modelo foi concluído, se você terminou uma tarefa meus parabéns!";
 
 //
 var txt_animating = "Ueh você veio aqui pra me ver fazer gracinha ou pra trabalhar?";
