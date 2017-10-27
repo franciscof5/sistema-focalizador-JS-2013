@@ -86,16 +86,19 @@
 #var_dump(wp_enqueue_style( "$page-css", get_template_directory_uri() . '/css/calendar.css' ));
 #var_dump(wp_enqueue_style("$page-css", get_bloginfo("stylesheet_directory")."/css/$page.css", __FILE__));die;
 ?>
-<div class="content_nosidebar" style="width: 104%;left: -2%;">
+	
+<div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
 	<!--todo: chanve view to MENSAL and YEAR
 	todo:put button show only my records
 	todo:put on configuration optionS above
 	h2>Calenario mensal</h2>
 	<p>Visualizar <a>calendario anual</a></p-->
-	<?php
-	echo do_shortcode("[ranking-calendar]");
-	//echo do_shortcode("{events_calendar}");
-	?>
+	<?php if (is_user_logged_in()) { ?>
+	<?php echo do_shortcode("[ranking-calendar]"); ?>
+	<?php } else { ?>
+		<h3  style="margin:50px;">Acesso restrito</h3>
+		<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver o calendário da comunidade</p>
+	<?php } ?>
 </div><!-- #content -->
 
 <?php get_footer() ?>

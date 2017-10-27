@@ -120,7 +120,7 @@
 		       	</div>
 		       </li>
 
-		      <?php } ?>
+		     
 		      <li>
 		      	<div class="contem-icone ">
 			      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
@@ -159,7 +159,7 @@
 		      	</a>
 		      	</div>
 		      </li>
-		    
+		     <?php } ?>
 		    <ul class="nav navbar-nav navbar-right">
 		      <?php if ( !is_user_logged_in() ) { ?> 
 		      <li>

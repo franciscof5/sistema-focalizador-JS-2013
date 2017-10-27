@@ -1,7 +1,9 @@
 <?php get_header() ?>
 
 	<!--div id="content" class="content_default"-->
+
 	<div class="content_nosidebar col-xs-12">
+	<?php if (is_user_logged_in()) { ?>
 		<div class="padder">
 
 		<?php do_action( 'bp_before_blog_page' ) ?>
@@ -32,6 +34,10 @@
 		<?php do_action( 'bp_after_blog_page' ) ?>
 
 		</div><!-- .padder -->
+		<?php } else { ?>
+			<h3  style="margin:50px;">Acesso restrito</h3>
+			<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver a página</p>
+		<?php } ?>
 	</div><!-- #content -->
 	
 	<?php #locate_template( array( 'sidebar.php' ), true ) ?>

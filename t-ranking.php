@@ -148,20 +148,24 @@ jQuery( document ).ready(function() {
 
 });
 </script>
-<div class="content_nosidebar">
+
+<div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
+	<!--todo: chanve view to MENSAL and YEAR
+	todo:put button show only my records
+	todo:put on configuration optionS above
+	h2>Calenario mensal</h2>
+	<p>Visualizar <a>calendario anual</a></p-->
+	<?php if (is_user_logged_in()) { ?>
+	<?php echo do_shortcode('[widgets_on_pages id="authors"]'); ?>
+	<?php } else { ?>
+		<h3  style="margin:50px;">Acesso restrito</h3>
+		<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver o ranking</p>
+	<?php } #<br style="clear: both;"> ?>
+</div><!-- #content -->
 
 
-    <!--div class="padder">
-    <div class="row">
-    	<div class="col-sm-4 second">PRI</div>
-    	<div class="col-sm-4 first">PRI</div>
-    	<div class="col-sm-4 third">PRI</div>
-    </div-->
-<?php
-echo do_shortcode('[widgets_on_pages id="authors"]');
-?>
-<br style="clear: both;">
-</div>
+
+
 </div><!-- #content -->
 	
 <?php get_footer() ?>

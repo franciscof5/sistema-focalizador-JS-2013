@@ -13,6 +13,8 @@ get_header( 'buddypress' ); ?>
 
 	<div id="content_members">
 		<div class="padder">
+		<?php if (is_user_logged_in()) { ?>
+		
 
 		<?php do_action( 'bp_before_directory_members' ); ?>
 
@@ -84,10 +86,17 @@ get_header( 'buddypress' ); ?>
 
 		<?php do_action( 'bp_after_directory_members' ); ?>
 
+		
+		<?php } else { ?>
+			<div >
+			<h3  style="margin:50px;">Acesso restrito</h3>
+			<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver a lista de membros</p>
+			</div>
+		<?php } ?>
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
 	<?php do_action( 'bp_after_directory_members_page' ); ?>
-
-<?php get_sidebar( 'buddypress' ); ?>
+<br style="clear: both;margin-bottom: 380px;"> 
+<?php if (is_user_logged_in()) get_sidebar( 'buddypress' ); ?>
 <?php get_footer( 'buddypress' ); ?>
