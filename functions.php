@@ -580,6 +580,7 @@ function update_pomo_active () {
 }
 
 function save_modelnow () {
+	if(function_exists("revert_database_schema"))revert_database_schema();
 	if(isset($_POST['post_para_deletar'])) {
 		wp_delete_post($_POST['post_para_deletar']);
 	} else {

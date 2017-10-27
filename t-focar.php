@@ -195,21 +195,25 @@ var_dump($the_query);*/
 		<h3>Tarefas modelo</h3>
 		<p>Ficou mais fácil recomeçar uma tarefa, salve a tarefa como um modelo e reutilize quantas vezes quiser. Confira sua lista de modelos:</p>
 		
-		<div id="contem-modelos" class="row">
+		
+		<ul id="contem-modelos" class="row">
 			<?php
+			if(function_exists("revert_database_schema"))revert_database_schema();
+			#global $wpdb;
+			#var_dump($wpdb->posts);die;
 			$args = array(
 		              'post_type' => 'projectimer_focus',
 		              'post_status' => 'pending',
 		              'author'   => get_current_user_id(),
 		              //'orderby'   => 'title',
 		              'order'     => 'ASC',
-		              'posts_per_page' => 14,
+		              'posts_per_page' => -1,
 		            );
 			$the_query = new WP_Query( $args );
 			
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 				$counter = $post->ID;
-				echo '<ul id="modelo-carregado-'.$counter.'" class="row">';
+				echo '<li id="modelo-carregado-'.$counter.'" class="row">';
 				#the_title("<input type='text' value='","' disabled=disabled id=bxtitle$counter /><br />");
 				$taglist = "";
 				#echo "<input type='text' value='".get_the_content()."' disabled=disabled id=bxcontent$counter /><br />";
@@ -225,16 +229,17 @@ var_dump($the_query);*/
 				echo "<strong id=bxtag$counter>".$taglist."</strong> <span id=bxtitle$counter>".get_the_title()."</span>, <span id=bxcontent$counter>".get_the_content()."</span>";
 				echo "</div>";
 				echo "<div class='col-xs-3'>";
-				echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-warning' value='concluir' onclick='delete_model($counter)'>";
+				echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>";
 				echo "</div>";
 				echo '</li>';
-				echo '</ul>';
+				#echo '</ul>';
 				
 			endwhile;
 			// Reset Post Data
 			wp_reset_postdata();
 			?>
-		</div>
+		</ul>
+		<div class="row"></div>
 	</div>
 	
 	

@@ -86,7 +86,7 @@
 #var_dump(wp_enqueue_style( "$page-css", get_template_directory_uri() . '/css/calendar.css' ));
 #var_dump(wp_enqueue_style("$page-css", get_bloginfo("stylesheet_directory")."/css/$page.css", __FILE__));die;
 ?>
-<div class="content_nosidebar">
+<div class="content_nosidebar" style="width: 104%;left: -2%;">
 	<!--todo: chanve view to MENSAL and YEAR
 	todo:put button show only my records
 	todo:put on configuration optionS above

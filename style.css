@@ -342,14 +342,25 @@ filter:alpha(opacity=85); /* For IE8 and earlier */
 
 
 /* OUTRAS MODIFICACOES*/
-#contem-modelos ul {
-background: none repeat scroll 0% 0% rgb(255, 255, 255);
-/*padding: 22px 22px 12px 22px;*/
-padding:20px !important;
-margin: 5px 0px;
-border-radius: 15px;
+#contem-modelos {
+
+/*background: none repeat scroll 0% 0% rgb(255, 255, 255);padding: 22px 22px 12px 22px;*/
+/*padding:20px !important;
+margin: 5px 0px;*/
+
+border-radius: 5px;
 }
-#contem-modelos ul p{
+#contem-modelos li {
+	padding: 5px 10px;
+	background: none repeat scroll 0% 0% rgb(255, 255, 255);
+	overflow: hidden;
+	height: 30px !important;
+	margin-bottom: 5px;
+}
+#contem-modelos li:hover {
+	height: inherit !important;
+}
+#contem-modelos p{
 text-align:center;
 margin:10px 0 0 0;
 }
