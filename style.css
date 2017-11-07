@@ -42,6 +42,8 @@ principal dark color: #096;
 
 @import url(pomodoro/pomodoro.css );
 
+@import url(assets/fonts/stylesheet.css);
+
 @media (min-width: 1200px) {
 
 }
@@ -50,6 +52,21 @@ principal dark color: #096;
 	color: #FFF !important;
 }
 
+.posttitle, .widget-title {
+	font-family: Forte;
+}
+.widget-title {
+	font-size: 18px !important;
+}
+.posttitle a {
+	color: #333 !important;
+}
+.entry {
+	text-align: justify;
+}
+.date {
+	text-align: right;
+}
 /*fot stick footer
 html, body {
   height: 100%;
@@ -133,6 +150,7 @@ img.avatar {
 	text-transform: uppercase  !important;
 	background: #333 !important;
 	color: #FFF !important;
+	font-family: Forte;
 }
 .woocommerce-breadcrumb, .related {
 	display: none;
@@ -143,10 +161,10 @@ img.avatar {
 	font-size: 16px;
 }
 #blog-welcome {
-	background: rgba(255,255,255, 0.8);
-	/*border: 2px dotted #333;*/
-	border-radius: 10px;
-	padding: 5px 20px 5px 20px;
+	background: rgba(255,255,255, 0.5);
+	/*border: 2px dotted #333;
+	border-radius: 10px;*/
+	padding: 5px 20px 15px 20px;
 }
 
 #pomodoro-painel {width:290px;margin:0 auto 30px auto;padding: 30px 0 50px 0;}
@@ -663,6 +681,7 @@ margin: 0 auto;
 	
 	
 	*/
+	font-family: Forte;
 	font-size: 15px;
 	left: 40px;
 	margin-right: 10px;
@@ -2089,7 +2108,7 @@ div.post {
 		}
 		.author-box {
 			height: 70px;
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 	div.post div.post-content, div.comment-content {
 		/*margin-left: 105px; f5sites regra lazarenta*/

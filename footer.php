@@ -26,7 +26,15 @@
 					</div>
 					<div class="col-sm-3">
 						<h3>Nossos blog</h3>
-						
+						<?php 
+						#global $type;
+						#$type='notknow';
+						#if(function_exists('force_database_aditional_tables_share'))
+						#	force_database_aditional_tables_share(NULL);
+						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
+						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
+						?>
+					
 						<?php the_widget('WP_Widget_Recent_Posts', 'number=10');  
 						#'before_title' => '<span class="hidden">','after_title' => '</span>',
 						?>
@@ -86,7 +94,15 @@
 						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para usar o formulário de contato</p>
 					<?php } else { ?>
 						
-						<?php echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); ?>
+						<?php 
+						#global $type;
+						#$type='notknow';
+						if(function_exists('set_shared_database_schema'))
+							set_shared_database_schema();
+						#echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
+						echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
+						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
+						?>
 					<?php } ?>
 				</div>
 

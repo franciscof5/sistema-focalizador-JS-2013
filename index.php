@@ -5,7 +5,7 @@
 		<div class="padder">
 		<?php if(is_home()) { ?>
 			<div id="blog-welcome">
-			<h4>BLOG DO POMODOROS</h4>
+			<h3 style="font-family: Forte;">Blog do pomodoros</h3>
 			
 			<p>Novidades e histórico do projeto, no ar desde 2010.</p>
 			
@@ -58,16 +58,20 @@
 
 						<div class="author-box">
 							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
-							<p><?php printf( __( 'Por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) ) ?></p>
+							<p><?php 
+							#printf( __( 'Por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) )
+							printf( bp_core_get_userlink( $post->post_author ) ) 
+							?></p>
 						</div>
 
 						<div class="post-content">
 							<h2 class="posttitle"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddypress' ) ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-							<p class="date"><?php the_time("j \d\\e F \d\\e Y") ?> <em><?php _e( 'em', 'buddypress' ) ?> <?php the_category(', ') ?> <?php printf( __( 'por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) ) ?></em></p>
+							<p class="date"><?php the_time("j \d\\e F \d\\e Y") ?> <em><?php #_e( 'em', 'buddypress' ) ?> <?php #the_category(', ') ?> <?php #printf( __( 'por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) ) ?></em></p>
 
 							<div class="entry">
-								<?php the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
+								<?php the_excerpt("... continuar lendo.");
+								#the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
 							</div>
 
 							<p class="postmetadata"><span class="tags"><?php the_tags( __( 'Tags: ', 'buddypress' ), ', ', '<br />'); ?></span> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddypress' ), __( '1 Comment &#187;', 'buddypress' ), __( '% Comments &#187;', 'buddypress' ) ); ?></span></p>
