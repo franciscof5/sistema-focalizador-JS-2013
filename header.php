@@ -171,9 +171,10 @@
 		      </li>
 		      <?php } else { ?> 
 		      <li>
-		      	<li>
-		      	<a title="Ver Blog" class="btn btn-link" href="/" style="padding-top: 10px;">Blog</a>
+		      	<a title="Ver Blog" class="btn btn-link" href="/blog" style="padding-top: 10px;">Blog</a>
 		      	</li>
+		      <li>
+
 		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>" style="padding-top: 10px;"><script>document.write(txt_logout)</script></a>
 
 		      </li>
