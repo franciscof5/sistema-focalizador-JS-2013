@@ -67,6 +67,9 @@ principal dark color: #096;
 .date {
 	text-align: right;
 }
+.wpcf7-display-none {
+	display: none !important;
+}
 /*fot stick footer
 html, body {
   height: 100%;

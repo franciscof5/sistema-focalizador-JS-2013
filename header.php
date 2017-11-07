@@ -193,7 +193,8 @@
 				<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 			</div>
 		</div>
-		<div id="settingsbox">
+		<?php /*
+		<!--div id="settingsbox">
 			BOTAO FECHAR
 			<!--h3>Tempo do pomodoro:</h3>
 			<sub>Recomendamos aos usuários não mudarem o tempo dos pomodoros, se esforce para se adaptar aos 25 minutos que vale a pena</sub-->
@@ -214,7 +215,8 @@
 			<p>Crônometro convencional sem intervalo</p>
 			<h3>Marcador de ponto</h3>
 			<p>Ativar marcador de entrada e saída de expediente?</p>
-		</div>
+		</div-->*/
+		?>
 		
 		<?php do_action( 'bp_header' ) ?>
 

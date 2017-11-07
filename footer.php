@@ -74,7 +74,11 @@
 								#echo '<li>'.get_avatar($recent->post_author, 24)."<a href='/colegas/".get_the_author_meta( "user_login", $recent->post_author )."'>".get_the_author_meta( 'display_name', $recent->post_author ).'</a> - <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #WITH NAME
 								
 								echo '<li>'.get_avatar($recent->post_author, 24).' : <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
-							} ?>
+							}
+							#set_shared_database_schema();
+							if(function_exists('set_shared_database_schema'))
+								set_shared_database_schema();
+							 ?>
 						<?php } ?>
 						
 					</div>
@@ -97,11 +101,10 @@
 						<?php 
 						#global $type;
 						#$type='notknow';
-						if(function_exists('set_shared_database_schema'))
-							set_shared_database_schema();
-						echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
-						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
-
+						#if(function_exists('set_shared_database_schema'))
+						#	set_shared_database_schema();
+						#echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
+						echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
 						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
 						?>
 					<?php } ?>
