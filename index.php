@@ -70,8 +70,11 @@
 							<p class="date"><?php the_time("j \d\\e F \d\\e Y") ?> <em><?php #_e( 'em', 'buddypress' ) ?> <?php #the_category(', ') ?> <?php #printf( __( 'por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) ) ?></em></p>
 
 							<div class="entry">
-								<?php the_excerpt("... continuar lendo.");
-								#the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
+								<?php 
+								if(is_front_page())
+								the_excerpt("... continuar lendo.");
+								else
+								the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
 							</div>
 
 							<p class="postmetadata"><span class="tags"><?php the_tags( __( 'Tags: ', 'buddypress' ), ', ', '<br />'); ?></span> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddypress' ), __( '1 Comment &#187;', 'buddypress' ), __( '% Comments &#187;', 'buddypress' ) ); ?></span></p>

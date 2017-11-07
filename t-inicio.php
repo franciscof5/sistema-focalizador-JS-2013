@@ -5,7 +5,9 @@
 ?>
 <?php if (is_user_logged_in()) {
 		wp_redirect( home_url()."/focar" ); exit;
-	} ?>
+	} else {
+		wp_redirect( home_url()."/blog" ); exit;
+		} ?>
 <?php get_header() ?>
 
 <?php 

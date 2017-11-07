@@ -161,6 +161,7 @@
 		      </li>
 		     <?php } ?>
 		    <ul class="nav navbar-nav navbar-right">
+				
 		      <?php if ( !is_user_logged_in() ) { ?> 
 		      <li>
 		      	<a title="Acessar sua conta" class="btn btn-link abrir_login" id="login_login" tabindex="1" style="padding-top: 10px;" /><script>document.write(txt_login);</script></a>
@@ -170,7 +171,11 @@
 		      </li>
 		      <?php } else { ?> 
 		      <li>
+		      	<li>
+		      	<a title="Ver Blog" class="btn btn-link" href="/" style="padding-top: 10px;">Blog</a>
+		      	</li>
 		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>" style="padding-top: 10px;"><script>document.write(txt_logout)</script></a>
+
 		      </li>
 		      <?php } ?>
 		    </ul>
