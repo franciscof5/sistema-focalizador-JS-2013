@@ -71,7 +71,7 @@
 
 							<div class="entry">
 								<?php 
-								if(is_front_page())
+								if(!is_single())
 								the_excerpt("... continuar lendo.");
 								else
 								the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>

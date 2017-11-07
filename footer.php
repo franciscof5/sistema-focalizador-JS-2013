@@ -99,8 +99,9 @@
 						#$type='notknow';
 						if(function_exists('set_shared_database_schema'))
 							set_shared_database_schema();
-						#echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
-						echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
+						echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
+						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
+
 						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
 						?>
 					<?php } ?>
