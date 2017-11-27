@@ -1,9 +1,9 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
 <div id="sidebar_pomodoro" class="sidebar col-xs-6 col-sm-6 col-md-3 hidden-xs" class="collapse">
-	<button data-toggle="collapse" data-target="#sidebar_pomodoro_padder">Collapsible</button>
+	<center><button data-toggle="collapse" data-target="#sidebar_pomodoro_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center>
 	
-	<div class="padder" id="sidebar_pomodoro_padder">
+	<div class="padder collapse in" id="sidebar_pomodoro_padder">
 		<li>
 			<?php 
 			global $current_user;
