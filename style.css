@@ -54,6 +54,7 @@ principal dark color: #096;
 
 .posttitle, .widget-title {
 	font-family: Forte;
+	font-weight: 500 !important;
 }
 .widget-title {
 	font-size: 18px !important;
