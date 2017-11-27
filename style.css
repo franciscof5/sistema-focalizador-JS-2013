@@ -117,12 +117,12 @@ img.avatar {
 .widget_recent_entries li {
 	margin-bottom: 10px;
 }
-#sidebar-blog {
+#sidebar_blog {
 	/*border-radius: 15px;
 	background: #BBB;
 	border-right: 2px dotted #333;*/
 }
-/*#sidebar-blog */
+/*#sidebar_blog */
 .woocommerce .products li, #footer-content .woocommerce .products li {
 	width: 100% !important;
 }
@@ -160,7 +160,7 @@ img.avatar {
 	display: none;
 }
 
-#sidebar-blog .widgettitle {
+#sidebar_blog .widgettitle {
 	color: #333;
 	font-size: 16px;
 }
