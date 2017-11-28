@@ -2559,3 +2559,30 @@ visibility: hidden; /*f5sites*/
 #tab-description {
 	margin-top: 60px;
 }
+
+/**/
+.collapse.width {
+    height: auto;
+    -webkit-transition: width 0.35s ease;
+    -moz-transition: width 0.35s ease;
+    -o-transition: width 0.35s ease;
+    transition: width 0.35s ease;
+}
+/* arrow collpase */
+.collapse_button {
+    border: 0 none;
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    background: #FFF;
+}
+.collapse_button:hover {
+	color: #FFF;
+	background: #333;
+}
+.collapse_left {
+	right: -5px;
+}
+.collapse_righ {
+	left: -5px;
+}

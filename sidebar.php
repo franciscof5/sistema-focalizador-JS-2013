@@ -2,8 +2,9 @@
 
 <div id="sidebar22" class="sidebar col-xs-3 hidden-sm hidden-xs" role="complementary">
 	<center><button data-toggle="collapse" data-target="#sidebar22_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center>
+	<!--button data-toggle="collapse" data-target="#sidebar22_padder" class="collapse_button collapse_left" ><span class="glyphicon glyphicon-resize-horizontal"></span></button-->
 <!--div id="sidebar22" class="sidebar col-xs-3  hidden-xs" role="complementary"-->
-	<div class="padder collapse in" id="sidebar22_padder">
+	<div class="padder width collapse in" id="sidebar22_padder">
 
 	<?php do_action( 'bp_inside_before_sidebar' ); ?>
 
