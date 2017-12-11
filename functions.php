@@ -121,6 +121,7 @@ add_filter('login_redirect', 'default_page');
 function theme_scripts() {	
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
+	
 	//alertify
 	wp_enqueue_script("alertify-js", get_bloginfo("stylesheet_directory")."/assets/alertify.min.js");
 	wp_enqueue_style('alertify-css', get_bloginfo("stylesheet_directory")."/assets/alertify.core_and_default_merged.css", __FILE__);
@@ -129,11 +130,15 @@ function theme_scripts() {
 	wp_enqueue_script("bootstrap-js", get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.js");
 	wp_enqueue_style('bootstrap-css', get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css", __FILE__);
 	
-
+	//select2
+	wp_enqueue_script("select2-js", get_bloginfo("stylesheet_directory")."/assets/select2/select2.min.js");
+	wp_enqueue_script("select2-jsbr", get_bloginfo("stylesheet_directory")."/assets/select2/select2_locale_pt-BR.js");
+	wp_enqueue_style('select2-css', get_bloginfo("stylesheet_directory")."/assets/select2/select2.css", __FILE__);
 
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
 
+	//inter8
 	if(function_exists("qtranxf_getLanguage")){
 	   if(qtranxf_getLanguage() == "en")
 		$filelang="en.js";
@@ -145,21 +150,8 @@ function theme_scripts() {
 	}
 
 	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
-	#die;
-	//bootstrap
-	#wp_register_script ('bootstrap-js', get_stylesheet_directory_uri() . '/assets/bootstrap.min.js', array( 'jquery' ),'1.0.0',true);
-
-  	#var_dump(wp_enqueue_script('bootstrap-js'));die;
-  	#wp_enqueue_style
-	#wp_dequeue_style("bootstrap");
-	#wp_dequeue_script("bootstrap");
-	#var_dump(wp_print_styles());
-	#var_dump(wp_dequeue_style("bootstrap"));
-	#var_dump(wp_enqueue_style('bootstrap-css', get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css", __FILE__));die;
-	#var_dump(wp_enqueue_style("boostrap-css", get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css"));die;
-	#var_dump(wp_enqueue_style("boostrap-css"));die;
-	#var_dump(wp_enqueue_script("bootstrap-js", get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.js"));
 }
+
 #
 function reset_configurations () {
 	delete_user_meta(get_current_user_id(), "pomodoroAtivo");
