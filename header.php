@@ -31,16 +31,6 @@
 		
 		<!--link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'-->
 		<?php wp_head(); ?>
-	<!--link href="<?php echo bloginfo('stylesheet_directory'); ?>/_inc/select2/select2.css" rel="stylesheet"/-->
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
-	<!--[if lt IE 9]>
-	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.ie.min.css" />
-	<![endif]-->
-
-
-	<!--link href="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.css" rel="stylesheet"/>
-	<script type="text/javascript" src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/bootstrap.min.js"></script-->
 
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 </head>

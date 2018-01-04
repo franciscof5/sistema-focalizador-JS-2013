@@ -137,7 +137,7 @@ function theme_scripts() {
 
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
-
+#	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
 	if(function_exists("qtranxf_getLanguage")){
 	   if(qtranxf_getLanguage() == "en")
