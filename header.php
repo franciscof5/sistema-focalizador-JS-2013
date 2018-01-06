@@ -80,6 +80,22 @@
 				$( ".contem-icone" ).mouseout(function() {
 					$( ".icone-legenda" ).hide(100);
 				});
+				/**/
+				/*$("#settingsbutton").click(function(){
+					$("#settingsbox").toggle();
+				});
+				$("#settingsbox").blur(function(){
+				//$(document).click(function() {
+					$("#settingsbox").hide();
+				})*/
+				$('html').click(function (e) {
+				    if (e.target.id == 'settingsbutton') {
+				        //do something
+				        $("#settingsbox").toggle();
+				    } else {
+				        $("#settingsbox").hide();
+				    }
+				});
 			});
 		</script>
 		<nav class="navbar navbar-inverse ">
@@ -174,9 +190,10 @@
 		      	<a title="Ver Blog" class="btn btn-link" href="/blog" style="padding-top: 10px;">Blog</a>
 		      	</li-->
 		      <li>
-
+		      	<button title="Settings" id="settingsbutton" class="btn btn-link" href="/blog" style="padding-top: 10px;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+		      </li>
+		      <li>
 		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>" style="padding-top: 10px;"><script>document.write(txt_logout)</script></a>
-
 		      </li>
 		      <?php } ?>
 		    </ul>
@@ -193,14 +210,14 @@
 				<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 			</div>
 		</div>
-		<?php /*
-		<!--div id="settingsbox">
-			BOTAO FECHAR
+		
+		<div id="settingsbox">
+			X
 			<!--h3>Tempo do pomodoro:</h3>
 			<sub>Recomendamos aos usuários não mudarem o tempo dos pomodoros, se esforce para se adaptar aos 25 minutos que vale a pena</sub-->
-			<p>Você pode utilizar nossos sitema para medir o tempo de diversas maneiras, mas lembre-se, para participar dos sorteios de prêmios é preciso usar a configuraćão oficial</p>
+			<!--p>Você pode utilizar nossos sitema para medir o tempo de diversas maneiras, mas lembre-se, para participar dos sorteios de prêmios é preciso usar a configuraćão oficial</p-->
 			<p>VOLUME: </p>
-			<h3>Tipo de relógio</h3>
+			<!--h3>Tipo de relógio</h3>
 			<p>Técnica dos Pomodoros - Configuraćões oficiais [participa em sorteios]</p>
 			<p>Técnica dos Pomodoros - ConfiguraćÕes do usuário</p>
 			<div>
@@ -214,9 +231,8 @@
 			<p>Crônometro convencional com intervalo regressivo</p>
 			<p>Crônometro convencional sem intervalo</p>
 			<h3>Marcador de ponto</h3>
-			<p>Ativar marcador de entrada e saída de expediente?</p>
-		</div-->*/
-		?>
+			<p>Ativar marcador de entrada e saída de expediente?</p-->
+		</div>
 		
 		<?php do_action( 'bp_header' ) ?>
 
