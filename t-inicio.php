@@ -136,8 +136,9 @@
 				<div class="navigation">
 					<?php
 					$post_id = $post->ID; // Get current post ID
-$cat = get_the_category(); 
-$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
+#$cat = get_the_category(); 
+#$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
+$current_cat_id = get_cat_ID($_SERVER["HTTP_HOST"]);
 
 $args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
 $posts = get_posts($args);
