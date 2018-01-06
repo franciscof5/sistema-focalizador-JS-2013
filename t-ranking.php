@@ -6,14 +6,14 @@
 <?php #get_sidebar(); ?>
 
 <style type="text/css">
-	#authors ul li {
+	.top-authors-widget ul li {
 		height: 34px;
 		line-height: 34px;
 		border: 1px solid #CCC;
 		border-radius: 10px;
 		margin: 0 0 5px 0;
 	}
-	#authors ul li a {
+	.top-authors-widget ul li a {
 		color: #666;
 		font-size: 16px;
 		font-weight: 600;
@@ -22,28 +22,32 @@
 		position: absolute;
 
 	}
-	#authors ul li:nth-child(1) { border: 0;}
-	/*#authors ul li div {
+	.top-authors-widget ul li:nth-child(1) { border: 0;}
+	/*.top-authors-widget ul li div {
 		float: left;
 	}*/
-	#authors ul li img {
+	.top-authors-widget ul li img {
 		border-radius: 10px;
+		margin-right: 10px;
 	}
-	#authors ul li div:nth-child(2) {
+	.top-authors-widget ul li div:nth-child(2) {
 		/*margin: -22px 0 0 80px;*/
 	}
-	#authors ul li h3 {
+	.top-authors-widget ul li h3 {
 		margin-top: 30px;
 		width: 80%;
 		white-space: nowrap;
 		overflow: hidden;
 	}
 
-	/*#authors ul li:nth-child(odd) {*/
+	/*.top-authors-widget ul li:nth-child(odd) {*/
 	.ta-preset li:nth-child(odd) {
 		background: #CCC;
 	}
-	/*#authors ul li span {
+	.ta-preset li:nth-child(even) {
+		background: #EBEBEB;
+	}
+	/*.top-authors-widget ul li span {
 		float: right;
 		font-size: 22px;
 		margin: 15px;
@@ -106,7 +110,7 @@ jQuery( document ).ready(function() {
 		res = 40 + ((((qtddpomo/primeiro)/10)*6)*100);
 		//alert(res);
 		jQuery( this ).width( (res) + "%" );
-		jQuery( this ).css('backgroundColor', "CCC");
+		//jQuery( this ).css('backgroundColor', "CCC");
 		
 
 
@@ -156,7 +160,14 @@ jQuery( document ).ready(function() {
 	h2>Calenario mensal</h2>
 	<p>Visualizar <a>calendario anual</a></p-->
 	<?php if (is_user_logged_in()) { ?>
-	<?php echo do_shortcode('[widgets_on_pages id="authors"]'); ?>
+	<?php 
+	dynamic_sidebar( 'ranking' );
+	get_currentuserinfo();
+	#var_dump(do_shortcode('[widgets_on_pages id="authors"]')); 
+	#the_widget("Top_Authors_Widget");
+	#echo "<hr />";
+	echo "Ranking gerado em: ".get_the_time('j \d\e F \d\e Y').", via www.pomodoros.com.br/ranking. Usuário: ".$current_user->display_name.", ".$current_user->user_email;
+	?>
 	<?php } else { ?>
 		<h3  style="margin:50px;">Acesso restrito</h3>
 		<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver o ranking</p>

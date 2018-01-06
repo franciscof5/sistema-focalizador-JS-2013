@@ -610,24 +610,33 @@ register_sidebar( array(
 	'after_title' => '</h3>',
 ) );
 register_sidebar( array(
-	'name' => __( 'pomodoros'),
-	'id' => 'pomodoros',
-	'description' => __( 'Sidebar pomodoros'),
+	'name' => __( 'Geral Esquerda'),
+	'id' => 'geral',
+	'description' => __( 'Sidebar geral, fica na esquerda'),
 	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 	'after_widget' => '</li>',
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
 register_sidebar( array(
-	'name' => __( 'geral'),
-	'id' => 'geral',
-	'description' => __( 'Sidebar geral'),
+	'name' => __( 'Pomodoros Direita'),
+	'id' => 'pomodoros',
+	'description' => __( 'Fica na DIREITA em focus'),
 	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
 	'after_widget' => '</li>',
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
 
+register_sidebar( array(
+	'name' => __( 'Ranking'),
+	'id' => 'ranking',
+	'description' => __( 'apenas mostra o ranking'),
+	'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
+	'after_widget' => '</li>',
+	'before_title' => '<h3 class="widget-title">',
+	'after_title' => '</h3>',
+) );
 function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	
 	if ( ! post_type_exists( "projectimer_focus" ) ) {

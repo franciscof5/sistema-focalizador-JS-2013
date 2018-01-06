@@ -149,7 +149,7 @@
 
 		      <li>
 		      	<div class="contem-icone">
-		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/">
+		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendario/">
 		      		<div href="" id="icone-calend">
 		      			<span class="icone-legenda hidden-lg">Calendário</span>
 		      		</div>
