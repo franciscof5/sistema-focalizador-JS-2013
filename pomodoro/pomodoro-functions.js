@@ -557,7 +557,8 @@ soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizad
 soundManager.onready(function() {
 	// Ready to use; soundManager.createSound() etc. can now be called.
 	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
-	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/telephone-ring-1.mp3',});
+	//active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/77711__sorohanro__solo-trumpet-06in-f-90bpm.mp3',});
+	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3',});
 	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
 });
 soundManager.onerror = function() {alert(txt_sound_error+"...");}
