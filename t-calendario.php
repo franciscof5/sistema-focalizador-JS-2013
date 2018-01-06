@@ -1,5 +1,5 @@
 <?php
-/*Template Name: Calendar*/
+/*Template Name: Calendario*/
 ?>
 <?php get_header() ?>
 <script type="text/javascript">

@@ -1,6 +1,7 @@
 <?php
 /*Template Name: Ranking*/
 ?>
+
 <?php get_header() ?>
 
 <?php #get_sidebar(); ?>
@@ -178,5 +179,5 @@ jQuery( document ).ready(function() {
 
 
 </div><!-- #content -->
-	
+
 <?php get_footer() ?>

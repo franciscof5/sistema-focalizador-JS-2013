@@ -1,5 +1,7 @@
 <?php
 //
+remove_filter('template_redirect', 'redirect_canonical');
+//
 add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
 
 function get_author_post_tags_wpa78489($author_id,$taxonomy = 'post_tag'){
