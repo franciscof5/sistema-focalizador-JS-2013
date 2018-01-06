@@ -2586,3 +2586,11 @@ visibility: hidden; /*f5sites*/
 .collapse_righ {
 	left: -5px;
 }
+
+/**************RECET POSTS WIDGET *******************/
+h3.rpwe-title {
+	text-align: justify;
+}
+h3.rpwe-title a {
+	color: #222 !important;
+}
