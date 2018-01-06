@@ -170,9 +170,9 @@
 		      	<a href="/register" class="btn btn-link" role="button" aria-pressed="true" title="Criar uma conta Pomodoros.com.br" style="padding-top: 10px;" ><script>document.write(txt_register)</script></a>
 		      </li>
 		      <?php } else { ?> 
-		      <li>
+		      <!--li>
 		      	<a title="Ver Blog" class="btn btn-link" href="/blog" style="padding-top: 10px;">Blog</a>
-		      	</li>
+		      	</li-->
 		      <li>
 
 		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>" style="padding-top: 10px;"><script>document.write(txt_logout)</script></a>
