@@ -134,9 +134,47 @@
 				<?php endwhile; ?>
 
 				<div class="navigation">
+					<?php
+					$post_id = $post->ID; // Get current post ID
+$cat = get_the_category(); 
+$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
 
-					<div class="alignleft"><?php next_posts_link( __( '&larr; Previous Entries', 'buddypress' ) ) ?></div>
-					<div class="alignright"><?php previous_posts_link( __( 'Next Entries &rarr;', 'buddypress' ) ) ?></div>
+$args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
+$posts = get_posts($args);
+// Get IDs of posts retrieved by get_posts function
+$ids = array();
+foreach ($posts as $thepost) {
+    $ids[] = $thepost->ID;
+}
+// Get and Echo the Previous and Next post link within same Category
+$index = array_search($post->ID, $ids);
+$prev_post = $ids[$index-1];
+$next_post = $ids[$index+1];
+?>
+
+			<div class="alignright">
+			<?php if (!empty($prev_post)){ ?> <a class="previous-post" rel="prev" href="<?php echo get_permalink($prev_post) ?>"> <?php echo get_the_title($prev_post); ?>&rarr;</a> (<?php echo human_time_diff( get_the_time('U', $prev_post), current_time('timestamp') ) . ' atrás'; ?>)  <?php } ?>
+			</div>
+
+			<div class="alignleft">
+			<?php if (!empty($next_post)){ ?> <a class="next-post" rel="next" href="<?php echo get_permalink($next_post) ?>"> &larr; <?php echo get_the_title($next_post); ?> </a> (<?php echo human_time_diff( get_the_time('U', $next_post), current_time('timestamp') ) . ' atrás'; ?>) <?php } ?>
+			</div>
+			
+					<?php	#if(function_exists('force_database_aditional_tables_share')) {
+			       			#force_database_aditional_tables_share();
+			       		#}
+			       		#"328,344,339,409"
+			       		#previous_post_link('; %link', '%title', true);
+						#next_post_link('%link &raquo;', '%title', true);
+			       	?>
+					<!--div class="alignright"">
+						<?php next_post_link('%link >> ', '%title', TRUE); ?>
+						<?php #next_posts_link( __( '&larr; Previous Entries', 'buddypress' ) ) ?>
+					</div>
+					<div class="alignleft">
+						<?php previous_post_link('%link << ', '%title', TRUE);
+						#previous_posts_link( __( 'Next Entries &rarr;', 'buddypress' ) ) ?>
+					</div-->
 
 				</div>
 
