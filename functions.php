@@ -88,7 +88,9 @@ function user_object_productivity ($user_id) {
 	return $new_object_productivity;
 }
 
-
+if ( function_exists( 'add_theme_support' ) ) { 
+  add_theme_support( 'post-thumbnails' ); 
+}
 
 //date_default_timezone_set('America/Sao_Paulo');
 //

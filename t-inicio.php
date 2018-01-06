@@ -64,11 +64,36 @@
 					<?php do_action( 'bp_before_blog_post' ) ?>
 
 					<div class="post" id="post-<?php the_ID(); ?>">
-						<?php if ( has_post_thumbnail() ) : ?>
-						    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						        <?php the_post_thumbnail(); ?>
+
+				    <?php if(function_exists('set_shared_database_schema')) {
+			       			set_shared_database_schema();
+			       			#NEED TO SHARE TO SHOW POST CORRECTLY
+			       		}
+				        /*$post_thumbnail_id = get_post_thumbnail_id();
+				        $post_thumbnail_url = wp_get_attachment_url( $post_thumbnail_id );
+				        ?>
+				        <div class="post-image">
+				            <img title="image title" alt="thumb image" class="wp-post-image" src="<?php echo $post_thumbnail_url; ?>" style="width:100%; height:auto;">
+				        </div>
+
+						<?php  #if ( has_post_thumbnail() ) : */ ?>
+							<div style="background: #222;width: 100%;">
+							<center>
+						    <a style="margin:0 auto;" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+						       <?php 
+						       #add_filter( 'upload_dir', 'shared_upload_dir' );
+						       #var_dump(the_post_thumbnail('full'));
+						       if ( has_post_thumbnail() ) {
+						       		
+									the_post_thumbnail( array(500,200) );
+								}
+						       #echo get_the_ID();
+						       #var_dump(the_post_thumbnail(get_the_ID(), 'full')); 
+						       ?>
 						    </a>
-						<?php endif; ?>
+						    </center>
+						    </div>
+						<?php #endif;  ?>
 						<div class="author-box">
 							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '60' ); ?>
 							<?php
