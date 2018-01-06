@@ -43,12 +43,19 @@
 				<?php /*-<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>*/ 
 				$msg_saudacao = "Olá ".$current_user->display_name." ".$title.", <a href=/focar>acessar aplicativo online e focar</a>";
 				#$msg_saudacao = "OLA";
-				echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
+				#$msg_saudacao2="";
+				
 				?>
-			<?php } else { ?>
-				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online. </a></p>
-				<p>Se já possui um usuário, <a id="testes" href="#" class="abrir_login">acesse sua conta</a></p>
-			<?php } ?>
+			<?php } else {
+				$msg_saudacao = "Caro visitante, <a href=/register>crie sua conta GRÁTIS</a> para acessar o aplicativo online";
+				$msg_saudacao2 = "Se já possui um usuário, <a id=testes href=# class=abrir_login>acesse sua conta</a>";
+			} 
+			
+			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
+			if(isset($msg_saudacao2))
+			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao2."');</script>";
+			
+			?>
 			</div>
 			<hr />
 		<?php } ?>
