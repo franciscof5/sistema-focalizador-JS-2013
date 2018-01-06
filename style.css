@@ -5,7 +5,7 @@ Description: Sistema Focalizador JS foi feito para o site Pomodoros, based in Da
 Version: 0.1
 Author: Francisco Matelli Matulovic
 Author URI: http://www.franciscomat.com
-Tags: red, pomodoros, social, buddypress
+Tags: red, pomodoros, social, buddypress, thumbnail
 */
 
 /*
@@ -2102,17 +2102,17 @@ div.post {
 }
 	div.post div.author-box, div.comment-avatar-box {
 		float: left;
-		margin: 0 15px 15px 0;
+		margin: 0 5px 0px 0;
 		text-align: center;
-		width: 70px;
+		/*width: 70px;*/
 	}
 		div.post div.author-box img, div.comment-avatar-box img {
 			float: none;
 			border: 4px solid #fff;
 		}
 		.author-box {
-			height: 70px;
-			/*overflow: hidden;*/
+			/*height: 70px;
+			overflow: hidden;*/
 		}
 	div.post div.post-content, div.comment-content {
 		/*margin-left: 105px; f5sites regra lazarenta*/

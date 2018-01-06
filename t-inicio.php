@@ -39,7 +39,12 @@
 				}else{
 				  $title = ", você ainda não começou nenhuma tarefa"; //No published posts
 				} ?>
-				<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>
+				
+				<?php /*-<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>*/ 
+				$msg_saudacao = "Olá ".$current_user->display_name." ".$title.", <a href=/focar>acessar aplicativo online e focar</a>";
+				#$msg_saudacao = "OLA";
+				echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
+				?>
 			<?php } else { ?>
 				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online. </a></p>
 				<p>Se já possui um usuário, <a id="testes" href="#" class="abrir_login">acesse sua conta</a></p>
@@ -59,13 +64,19 @@
 					<?php do_action( 'bp_before_blog_post' ) ?>
 
 					<div class="post" id="post-<?php the_ID(); ?>">
-
+						<?php if ( has_post_thumbnail() ) : ?>
+						    <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+						        <?php the_post_thumbnail(); ?>
+						    </a>
+						<?php endif; ?>
 						<div class="author-box">
-							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
-							<p><?php 
+							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '60' ); ?>
+							<?php
+							#<p> 
 							#printf( __( 'Por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) )
-							printf( bp_core_get_userlink( $post->post_author ) ) 
-							?></p>
+							#printf( bp_core_get_userlink( $post->post_author ) );
+							#</p>
+							?>
 						</div>
 
 						<div class="post-content">

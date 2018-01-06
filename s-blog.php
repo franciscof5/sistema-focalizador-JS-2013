@@ -78,7 +78,8 @@
 	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
 
-	echo do_shortcode('[product id="4530"]');  
+	#if(gethostname()=="note-samsung")
+	#echo do_shortcode('[product id="4530"]');  
 
 	//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 	$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
