@@ -162,8 +162,23 @@ jQuery( document ).ready(function() {
 	<p>Visualizar <a>calendario anual</a></p-->
 	<?php if (is_user_logged_in()) { ?>
 	<?php 
-	dynamic_sidebar( 'ranking' );
-	get_currentuserinfo();
+	#dynamic_sidebar( 'ranking' );
+	#ta_widget_init();
+	#echo do_shortcode("[top-authors]");
+	$instance = array(
+		"title" => "Ranking (top 100)",
+		"count" => "100",
+		"exclude_roles" => array("administrator"),#
+		"include_post_types" => array("projectimer_focus"),
+		"preset" => "custom",
+		#"template" => "%gravatar_32% %firstname% %lastname% (%nrofposts%)",
+		"template" => '<li><a href="/colegas/%username%">%gravatar_32%  %firstname% %lastname% (%nrofposts%) </a>  </li>',
+		"before_list" => "<ul class='ta-preset ta-gravatar-list-count'>",
+		"after_list" => "</ul>",
+		"custom_id" => "",
+		"archive_specific" => false); 
+	the_widget("Top_Authors_Widget", $instance, "");
+	$current_user = wp_get_current_user();
 	#var_dump(do_shortcode('[widgets_on_pages id="authors"]')); 
 	#the_widget("Top_Authors_Widget");
 	#echo "<hr />";
