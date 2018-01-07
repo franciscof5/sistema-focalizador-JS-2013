@@ -32,9 +32,9 @@
 					
 					<div class="col-sm-3 contem_last_pomodoros">
 						<h3>Últimos pomodoros</h3>
-						<?php if(!is_user_logged_in()) { ?>
+						<?php /*#if(!is_user_logged_in()) { ?>
 						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para ver pomodoros recentes</p>
-						<?php } else { ?>
+						<?php } else {*/ ?>
 							
 							<?php 
 							
@@ -46,13 +46,13 @@
 
 								#echo '<li>'.get_avatar($recent->post_author, 24)."<a href='/colegas/".get_the_author_meta( "user_login", $recent->post_author )."'>".get_the_author_meta( 'display_name', $recent->post_author ).'</a> - <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #WITH NAME
 								
-								echo '<li>'.get_avatar($recent->post_author, 24).' : <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
+								echo '<li>'.get_avatar($recent->post_author, 24).' <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
 							}
 							#set_shared_database_schema();
 							if(function_exists('set_shared_database_schema'))
 								set_shared_database_schema();
 							 ?>
-						<?php } ?>
+						<?php #} ?>
 						
 					</div>
 					<!--div class="link-group">
@@ -148,21 +148,8 @@
 					</div>
 				</div>
 				</div>
-		<?php do_action( 'bp_after_footer' ) ?>
-
-		<?php wp_footer(); ?>
-		<script type="text/javascript">
-			jQuery( ".abrir_login" ).click(function() {
-				jQuery( "#loginlogbox" ).toggle("slow");
-			});
-			jQuery( "#settings_panel" ).click(function() {
-				jQuery( "#settingsbox" ).toggle("slow");
-			});
-			
-		</script>
-<!--a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a-->
-	</body>
-<style type="text/css">
+		
+		<style type="text/css">
 	.top-authors-widget ul li {
 		height: 34px;
 		line-height: 34px;
@@ -237,86 +224,93 @@ jQuery( document ).ready(function() {
 	largura = 800;
 	//primeiro = jQuery("li:nth-child(2)").find('span').text();
 	var regExp = /\(([^)]+)\)/;
-	primeiro = jQuery(".ta-preset li:nth-child(1)").text();
+	
+	//alert(primeiro);
+	//jQuery( ".top-authors-widget").find( "li" ).each(function(i) {
+	
+	if(jQuery( ".ta-preset li").length) {
+		primeiro = jQuery(".ta-preset li:nth-child(1)").text();
 	//var matches = parseInt(regExp.exec());
 	var matches = regExp.exec(primeiro);
 	var primeiro = parseInt(matches[1]);
-	//alert(primeiro);
-	//jQuery( ".top-authors-widget").find( "li" ).each(function(i) {
-		
-	jQuery( ".ta-preset li").each(
-		function(i, b) {
-		//alert(b);
-		//jQuery( "li" ).each(function(i) {
-		/*alert( jQuery(this).find('span').text() );
-		jQuery( this ).width( jQuery(this).find('span').text() );/
-		*/
-		//alert(i);
+		jQuery( ".ta-preset li").each(function(i, b) {
+			//alert(b);
+			//jQuery( "li" ).each(function(i) {
+			/*alert( jQuery(this).find('span').text() );
+			jQuery( this ).width( jQuery(this).find('span').text() );/
+			*/
+			//alert(i);
 
-		jQuery(this).prepend("<span class=pos>"+(i+1)+"</span>");
-		qtddpomo_parentisis = (jQuery(this).text());
-		//alert(qtddpomo_parentisis);
-		//var patt = /\((\d)\)/;
-		
-		//var qtddpomo = qtddpomo_parentisis.match(patt)[0].replace("(", "").replace(")","");
-		
-		
-		
-		var matches = regExp.exec(qtddpomo_parentisis);
+			jQuery(this).prepend("<span class=pos>"+(i+1)+"</span>");
+			qtddpomo_parentisis = (jQuery(this).text());
+			//alert(qtddpomo_parentisis);
+			//var patt = /\((\d)\)/;
+			
+			//var qtddpomo = qtddpomo_parentisis.match(patt)[0].replace("(", "").replace(")","");
+			
+			
+			
+			var matches = regExp.exec(qtddpomo_parentisis);
 
-		//matches[1] contains the value between the parentheses
-		//console.log(matches[1]);
+			//matches[1] contains the value between the parentheses
+			//console.log(matches[1]);
 
-		qtddpomo= parseInt(matches[1]);
-		//res = 25 + ((((qtddpomo/primeiro)/4)*3)*100);
-		//res = 50 + ((((qtddpomo/primeiro)/2)*1)*100);
-		
-		res = 80 + ((((qtddpomo/primeiro)/10)*2)*100);
-		//alert(res);
-		jQuery( this ).width( (res) + "%" );
-		//jQuery( this ).css('backgroundColor', "CCC");
-		
+			qtddpomo= parseInt(matches[1]);
+			//res = 25 + ((((qtddpomo/primeiro)/4)*3)*100);
+			//res = 50 + ((((qtddpomo/primeiro)/2)*1)*100);
+			
+			res = 80 + ((((qtddpomo/primeiro)/10)*2)*100);
+			//alert(res);
+			jQuery( this ).width( (res) + "%" );
+			//jQuery( this ).css('backgroundColor', "CCC");
+			
 
 
-		/*if(i>0) {
-			jQuery( this ).before( '<span style="float: left;font-family: Lilita One, cursive;width: 30px;font-size: 20px;line-height: 30px;text-align: center;background: #009933;color: #FFF;border-radius: 50px;padding: 0;margin: 20px 10px;">'+i+"</span" );
-		}*/
-	});
-	jQuery(".ta-preset li:nth-child(1)").css({
-			"background":"#FFF379",
+			/*if(i>0) {
+				jQuery( this ).before( '<span style="float: left;font-family: Lilita One, cursive;width: 30px;font-size: 20px;line-height: 30px;text-align: center;background: #009933;color: #FFF;border-radius: 50px;padding: 0;margin: 20px 10px;">'+i+"</span" );
+			}*/
+		});
+		jQuery(".ta-preset li:nth-child(1)").css({
+				"background":"#FFF379",
+				"color": "#9B7529",
+		});
+		jQuery(".ta-preset li:nth-child(1) .pos").css({
 			"color": "#9B7529",
-	});
-	jQuery(".ta-preset li:nth-child(1) .pos").css({
-		"color": "#9B7529",
-		"font-size": "30px"
-	});
-	jQuery(".ta-preset li:nth-child(1) a").css("color", "#9B7529");
+			"font-size": "30px"
+		});
+		jQuery(".ta-preset li:nth-child(1) a").css("color", "#9B7529");
 
 
-	jQuery(".ta-preset li:nth-child(2)").css({
-			"background":"#98969B",
-			"color": "#D0D8D7"
-	});
-	jQuery(".ta-preset li:nth-child(2) .pos").css({
-		"color": "#D0D8D7",
-		"font-size": "26px"
-	});
-	jQuery(".ta-preset li:nth-child(2) a").css("color", "#D0D8D7");
+		jQuery(".ta-preset li:nth-child(2)").css({
+				"background":"#98969B",
+				"color": "#D0D8D7"
+		});
+		jQuery(".ta-preset li:nth-child(2) .pos").css({
+			"color": "#D0D8D7",
+			"font-size": "26px"
+		});
+		jQuery(".ta-preset li:nth-child(2) a").css("color", "#D0D8D7");
 
 
-	jQuery(".ta-preset li:nth-child(3)").css({
-			"background":"#F1AB66",
-			"color": "#50352F"
-	});
-	jQuery(".ta-preset li:nth-child(3) .pos").css({
-		"color": "#50352F",
-		"font-size": "22px"
-	});
-	jQuery(".ta-preset li:nth-child(3) a").css("color", "#50352F");
+		jQuery(".ta-preset li:nth-child(3)").css({
+				"background":"#F1AB66",
+				"color": "#50352F"
+		});
+		jQuery(".ta-preset li:nth-child(3) .pos").css({
+			"color": "#50352F",
+			"font-size": "22px"
+		});
+		jQuery(".ta-preset li:nth-child(3) a").css("color", "#50352F");
+	}
 	
+
 	///******************************GAMB****************FAST CLONE*/************
-jQuery( ".ta-preset2 li").each(
-		function(i, b) {
+
+	primeiro2 = jQuery(".ta-preset2 li:nth-child(1)").text();
+	//var matches = parseInt(regExp.exec());
+	var matches2 = regExp.exec(primeiro2);
+	var primeiro2 = parseInt(matches2[1]);
+	jQuery( ".ta-preset2 li").each(function(i, b) {
 		//alert(b);
 		//jQuery( "li" ).each(function(i) {
 		/*alert( jQuery(this).find('span').text() );
@@ -342,7 +336,7 @@ jQuery( ".ta-preset2 li").each(
 		//res = 25 + ((((qtddpomo/primeiro)/4)*3)*100);
 		//res = 50 + ((((qtddpomo/primeiro)/2)*1)*100);
 		
-		res = 80 + ((((qtddpomo/primeiro)/10)*2)*100);
+		res = 80 + ((((qtddpomo/primeiro2)/10)*2)*100);
 		//alert(res);
 		jQuery( this ).width( (res) + "%" );
 		//jQuery( this ).css('backgroundColor', "CCC");
@@ -384,7 +378,20 @@ jQuery( ".ta-preset2 li").each(
 		"font-size": "22px"
 	});
 	jQuery(".ta-preset2 li:nth-child(3) a").css("color", "#50352F");
+			
+	/*jQuery( ".abrir_login" ).click(function() {
+		jQuery( "#loginlogbox" ).toggle("slow");
+	});
+	jQuery( "#settings_panel" ).click(function() {
+		jQuery( "#settingsbox" ).toggle("slow");
+	});*/
+});		
 
-});
 </script>
+<!--a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a-->
+	
+<?php do_action( 'bp_after_footer' ) ?>
+
+		<?php wp_footer(); ?>
+</body>
 </html>
