@@ -12,35 +12,8 @@
 
 		<div id="footer" class="row">
 			<div id="footer-content" class="row">
-					<div class="col-sm-3">
-						<?php
-						global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
-						$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
-
-						echo do_shortcode('[product id="4530"]');  
-
-						//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
-						$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
-						//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);
-						?>
-					</div>
-					<div class="col-sm-3">
-						<h3>Nossos blog</h3>
-						<?php 
-						#global $type;
-						#$type='notknow';
-						#if(function_exists('force_database_aditional_tables_share'))
-						#	force_database_aditional_tables_share(NULL);
-						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
-						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
-						?>
 					
-						<?php the_widget('WP_Widget_Recent_Posts', 'number=10');  
-						#'before_title' => '<span class="hidden">','after_title' => '</span>',
-						?>
-
-							<?php #echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
-						</div>
+					
 					<!--div class="col-sm-3">
 						<h3>Páginas</h3>
 						<ul>
@@ -91,7 +64,55 @@
 							<li>+55 15 33333527.77777267</li>
 						</ul>
 					</div-->
-				
+				<div class="col-sm-3">
+						<h3>Ranking Top 7</h3>
+						<?php
+						$instance = array(
+							"title" => "",
+							"count" => "7",
+							"exclude_roles" => array("administrator"),#
+							"include_post_types" => array("projectimer_focus"),
+							"preset" => "custom",
+							#"template" => "%gravatar_32% %firstname% %lastname% (%nrofposts%)",
+							"template" => '<li><a href="/colegas/%username%">%gravatar_32%  %firstname% %lastname% (%nrofposts%) </a>  </li>',
+							"before_list" => "<ul class='ta-preset2 ta-gravatar-list-count'>",
+							"after_list" => "</ul>",
+							"custom_id" => "",
+							"archive_specific" => false); 
+						the_widget("Top_Authors_Widget", $instance, "");
+						?>
+						<?php
+						/*global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+						$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
+
+						echo do_shortcode('[product id="4530"]');  
+
+						//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
+						$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
+						//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);*/
+						?>
+					</div>
+				<div class="col-sm-3">
+						<h3>Nosso blog</h3>
+						<?php 
+						#global $type;
+						#$type='notknow';
+						#if(function_exists('force_database_aditional_tables_share'))
+						#	force_database_aditional_tables_share(NULL);
+						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
+						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
+						?>
+					
+						<?php 
+						if(function_exists('set_shared_database_schema'))
+							set_shared_database_schema();
+
+						the_widget('WP_Widget_Recent_Posts', 'number=6');  
+						#'before_title' => '<span class="hidden">','after_title' => '</span>',
+						?>
+
+							<?php #echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
+						</div>
 				<div id="footer-contact-form" class="col-sm-3">
 					<h3>Fale conosco</h3>
 					<?php if(!is_user_logged_in()) { ?>
@@ -141,5 +162,229 @@
 		</script>
 <!--a class="github-fork-ribbon right-bottom" href="http://url.to-your.repo" title="Fork me on GitHub">Fork me on GitHub</a-->
 	</body>
+<style type="text/css">
+	.top-authors-widget ul li {
+		height: 34px;
+		line-height: 34px;
+		border: 1px solid #CCC;
+		border-radius: 10px;
+		margin: 0 0 5px 0;
 
+	}
+	.top-authors-widget ul li a {
+		color: #666;
+		font-size: 12px;
+		font-weight: 600;
+		overflow: hidden;
+		white-space: nowrap;
+		position: absolute;
+		max-width: 80%;
+
+	}
+	.top-authors-widget ul li:nth-child(1) { border: 0;}
+	/*.top-authors-widget ul li div {
+		float: left;
+	}*/
+	.top-authors-widget ul li img {
+		border-radius: 10px;
+		margin-right: 10px;
+	}
+	.top-authors-widget ul li div:nth-child(2) {
+		/*margin: -22px 0 0 80px;*/
+	}
+	.top-authors-widget ul li h3 {
+		margin-top: 30px;
+		width: 80%;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+
+	.ta-preset li a {
+		max-width: 60% !important;
+	}
+	/*.top-authors-widget ul li:nth-child(odd) {*/
+	.ta-preset li:nth-child(odd),.ta-preset2 li:nth-child(odd) {
+		background: #CCC;
+	}
+	.ta-preset li:nth-child(even), .ta-preset2 li:nth-child(even) {
+		background: #EBEBEB;
+	}
+	/*.top-authors-widget ul li span {
+		float: right;
+		font-size: 22px;
+		margin: 15px;
+		color: #006633;
+		font-family: "Lilita One", cursive;
+	}*/
+	.pos {
+		float: left;
+		margin: 0;
+		padding: 0 2px;
+		font-size: 14px;
+		line-height: 34px;
+		font-weight: bold;
+		color: #666;
+		width: 20px;
+		text-align: center;
+	}
+	/*.first {
+		background: #983;
+	}*/
+</style>
+<script type="text/javascript">
+
+jQuery( document ).ready(function() {
+	largura = 800;
+	//primeiro = jQuery("li:nth-child(2)").find('span').text();
+	var regExp = /\(([^)]+)\)/;
+	primeiro = jQuery(".ta-preset li:nth-child(1)").text();
+	//var matches = parseInt(regExp.exec());
+	var matches = regExp.exec(primeiro);
+	var primeiro = parseInt(matches[1]);
+	//alert(primeiro);
+	//jQuery( ".top-authors-widget").find( "li" ).each(function(i) {
+		
+	jQuery( ".ta-preset li").each(
+		function(i, b) {
+		//alert(b);
+		//jQuery( "li" ).each(function(i) {
+		/*alert( jQuery(this).find('span').text() );
+		jQuery( this ).width( jQuery(this).find('span').text() );/
+		*/
+		//alert(i);
+
+		jQuery(this).prepend("<span class=pos>"+(i+1)+"</span>");
+		qtddpomo_parentisis = (jQuery(this).text());
+		//alert(qtddpomo_parentisis);
+		//var patt = /\((\d)\)/;
+		
+		//var qtddpomo = qtddpomo_parentisis.match(patt)[0].replace("(", "").replace(")","");
+		
+		
+		
+		var matches = regExp.exec(qtddpomo_parentisis);
+
+		//matches[1] contains the value between the parentheses
+		//console.log(matches[1]);
+
+		qtddpomo= parseInt(matches[1]);
+		//res = 25 + ((((qtddpomo/primeiro)/4)*3)*100);
+		//res = 50 + ((((qtddpomo/primeiro)/2)*1)*100);
+		
+		res = 80 + ((((qtddpomo/primeiro)/10)*2)*100);
+		//alert(res);
+		jQuery( this ).width( (res) + "%" );
+		//jQuery( this ).css('backgroundColor', "CCC");
+		
+
+
+		/*if(i>0) {
+			jQuery( this ).before( '<span style="float: left;font-family: Lilita One, cursive;width: 30px;font-size: 20px;line-height: 30px;text-align: center;background: #009933;color: #FFF;border-radius: 50px;padding: 0;margin: 20px 10px;">'+i+"</span" );
+		}*/
+	});
+	jQuery(".ta-preset li:nth-child(1)").css({
+			"background":"#FFF379",
+			"color": "#9B7529",
+	});
+	jQuery(".ta-preset li:nth-child(1) .pos").css({
+		"color": "#9B7529",
+		"font-size": "30px"
+	});
+	jQuery(".ta-preset li:nth-child(1) a").css("color", "#9B7529");
+
+
+	jQuery(".ta-preset li:nth-child(2)").css({
+			"background":"#98969B",
+			"color": "#D0D8D7"
+	});
+	jQuery(".ta-preset li:nth-child(2) .pos").css({
+		"color": "#D0D8D7",
+		"font-size": "26px"
+	});
+	jQuery(".ta-preset li:nth-child(2) a").css("color", "#D0D8D7");
+
+
+	jQuery(".ta-preset li:nth-child(3)").css({
+			"background":"#F1AB66",
+			"color": "#50352F"
+	});
+	jQuery(".ta-preset li:nth-child(3) .pos").css({
+		"color": "#50352F",
+		"font-size": "22px"
+	});
+	jQuery(".ta-preset li:nth-child(3) a").css("color", "#50352F");
+	
+	///******************************GAMB****************FAST CLONE*/************
+jQuery( ".ta-preset2 li").each(
+		function(i, b) {
+		//alert(b);
+		//jQuery( "li" ).each(function(i) {
+		/*alert( jQuery(this).find('span').text() );
+		jQuery( this ).width( jQuery(this).find('span').text() );/
+		*/
+		//alert(i);
+
+		jQuery(this).prepend("<span class=pos>"+(i+1)+"</span>");
+		qtddpomo_parentisis = (jQuery(this).text());
+		//alert(qtddpomo_parentisis);
+		//var patt = /\((\d)\)/;
+		
+		//var qtddpomo = qtddpomo_parentisis.match(patt)[0].replace("(", "").replace(")","");
+		
+		
+		
+		var matches = regExp.exec(qtddpomo_parentisis);
+
+		//matches[1] contains the value between the parentheses
+		//console.log(matches[1]);
+
+		qtddpomo= parseInt(matches[1]);
+		//res = 25 + ((((qtddpomo/primeiro)/4)*3)*100);
+		//res = 50 + ((((qtddpomo/primeiro)/2)*1)*100);
+		
+		res = 80 + ((((qtddpomo/primeiro)/10)*2)*100);
+		//alert(res);
+		jQuery( this ).width( (res) + "%" );
+		//jQuery( this ).css('backgroundColor', "CCC");
+		
+
+
+		/*if(i>0) {
+			jQuery( this ).before( '<span style="float: left;font-family: Lilita One, cursive;width: 30px;font-size: 20px;line-height: 30px;text-align: center;background: #009933;color: #FFF;border-radius: 50px;padding: 0;margin: 20px 10px;">'+i+"</span" );
+		}*/
+	});
+	jQuery(".ta-preset2 li:nth-child(1)").css({
+			"background":"#FFF379",
+			"color": "#9B7529",
+	});
+	jQuery(".ta-preset2 li:nth-child(1) .pos").css({
+		"color": "#9B7529",
+		"font-size": "30px"
+	});
+	jQuery(".ta-preset2 li:nth-child(1) a").css("color", "#9B7529");
+
+
+	jQuery(".ta-preset2 li:nth-child(2)").css({
+			"background":"#98969B",
+			"color": "#D0D8D7"
+	});
+	jQuery(".ta-preset2 li:nth-child(2) .pos").css({
+		"color": "#D0D8D7",
+		"font-size": "26px"
+	});
+	jQuery(".ta-preset2 li:nth-child(2) a").css("color", "#D0D8D7");
+
+
+	jQuery(".ta-preset2 li:nth-child(3)").css({
+			"background":"#F1AB66",
+			"color": "#50352F"
+	});
+	jQuery(".ta-preset li:nth-child(3) .pos").css({
+		"color": "#50352F",
+		"font-size": "22px"
+	});
+	jQuery(".ta-preset2 li:nth-child(3) a").css("color", "#50352F");
+
+});
+</script>
 </html>
