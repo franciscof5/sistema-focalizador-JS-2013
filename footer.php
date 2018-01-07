@@ -379,12 +379,12 @@ jQuery( document ).ready(function() {
 	});
 	jQuery(".ta-preset2 li:nth-child(3) a").css("color", "#50352F");
 			
-	/*jQuery( ".abrir_login" ).click(function() {
+	jQuery( ".abrir_login" ).click(function() {
 		jQuery( "#loginlogbox" ).toggle("slow");
 	});
 	jQuery( "#settings_panel" ).click(function() {
 		jQuery( "#settingsbox" ).toggle("slow");
-	});*/
+	});
 });		
 
 </script>
