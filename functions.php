@@ -120,7 +120,7 @@ function default_page() {
   return '/focar';
 }
 
-add_filter('login_redirect', 'default_page');
+#add_filter('login_redirect', 'default_page');
 
 function theme_scripts() {	
 	//jquery colors
@@ -604,6 +604,7 @@ function save_modelnow () {
 		#die();
 	}
 }
+
 register_sidebar( array(
 	'name' => __( 'blog'),
 	'id' => 'blog',
@@ -613,6 +614,7 @@ register_sidebar( array(
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
+
 register_sidebar( array(
 	'name' => __( 'Geral Esquerda'),
 	'id' => 'geral',
@@ -622,6 +624,7 @@ register_sidebar( array(
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
+
 register_sidebar( array(
 	'name' => __( 'Pomodoros Direita'),
 	'id' => 'pomodoros',
@@ -641,6 +644,7 @@ register_sidebar( array(
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
+
 function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	
 	if ( ! post_type_exists( "projectimer_focus" ) ) {

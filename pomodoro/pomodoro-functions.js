@@ -7,6 +7,9 @@
 	var bigRestTime = 1800;
 	var intervalMiliseconds = 1000;
 
+	//
+	//pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
+
 	//Dynamic clock var
 	//var is_interrupt_button;
 	var m1;
@@ -121,7 +124,7 @@ function load_pomodoro_clipboard () {
 function update_pomodoro_clipboard (post_stts) {
 	//alert("update_pomodoro_clipboard");
 	//if(!title_box.value==undefined) { nao precisa porque só chama quando alterar o título
-	change_status("Salvando modificações feitas na tarefa atual...");
+	//change_status("Salvando modificações feitas na tarefa atual...");
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
 
@@ -216,7 +219,7 @@ function countdown_clock (){
 function complete() {
 	//is_interrupt_button = false;
 	pomodoro_completed_sound.play();
-	update_pomodoro_clipboard();
+	update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
 	changeTitle("Pomodoro completado!");
 	if(is_pomodoro) {
@@ -227,7 +230,7 @@ function complete() {
 			//big rest
 			pomodoro_actual=1;
 			change_button(textBigRest, "#0F0F0F");
-			change_status(txt_bigrest_countdown);
+			change_status(txt_bigrest_countdown, "suc");
 			secondsRemaining=bigRestTime;
 			changeTitle("GRANDE DESCANSO");
 			reset_indicators_display();
@@ -235,13 +238,13 @@ function complete() {
 			//normal rest
 			pomodoro_actual++;
 			change_button(textRest, "#0F0F0F");
-			change_status(txt_normalrest_countdown);
+			change_status(txt_normalrest_countdown, "suc");
 			secondsRemaining=restTime;
 			changeTitle("Hora do intervalo");
 		}
 	} else {
 		change_button(textPomodoro, "#0F0F0F");
-		change_status(txt_completed_rest);
+		change_status(txt_completed_rest, "er");
 		is_pomodoro=true;
 		secondsRemaining=pomodoroTime;
 		changeTitle("Pomodoro completado!");
@@ -268,9 +271,16 @@ function stop_clock() {
 }
 
 //Function to show status warnings at bottom of the clock
-function change_status(txt) {
+function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	alertify.log(txt);
+	
+	if(typeof stts=="undefined")
+		alertify.log(txt);
+	else if(stts=="suc")
+		alertify.success(txt);
+	else if(stts=="er")
+		alertify.error(txt);
+
 	document.getElementById("div_status").innerHTML=txt;
 }
 
@@ -290,7 +300,7 @@ function interrupt() {
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
 	if(is_pomodoro)is_pomodoro=false;
-	change_status(txt_interrupted_countdowns);
+	change_status(txt_interrupted_countdowns, "er");
 	//convertSeconds(0);
 	//flip_number();
 	change_button(textPomodoro, "#0F0F0F");
@@ -441,7 +451,7 @@ function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
 function savepomo() {
 	
 
-	change_status(txt_salving_progress);	
+	//change_status(txt_salving_progress);//EXCESSIVE	
 	
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
