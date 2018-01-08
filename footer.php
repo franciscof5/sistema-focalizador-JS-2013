@@ -81,6 +81,7 @@
 							"archive_specific" => false); 
 						the_widget("Top_Authors_Widget", $instance, "");
 						?>
+						<small>Não contabiliza pomodoros privados.</small>
 						<?php
 						/*global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 						$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
