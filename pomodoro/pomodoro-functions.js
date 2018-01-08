@@ -299,7 +299,10 @@ function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
-	if(is_pomodoro)is_pomodoro=false;
+	
+	//if(is_pomodoro)is_pomodoro=false;//NAO
+	is_pomodoro=true;//SEMPRE QUE INTERROMPER VOLTA PARA FOCAR, CERTO?
+	//
 	change_status(txt_interrupted_countdowns, "er");
 	//convertSeconds(0);
 	//flip_number();
