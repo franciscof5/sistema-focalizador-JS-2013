@@ -4,7 +4,7 @@
 
 <?php get_header() ?>
 
-<?php #get_sidebar(); ?>
+<?php /* #get_sidebar(); ?>
 
 <style type="text/css">
 	.top-authors-widget ul li {
@@ -26,13 +26,13 @@
 	.top-authors-widget ul li:nth-child(1) { border: 0;}
 	/*.top-authors-widget ul li div {
 		float: left;
-	}*/
+	}*
 	.top-authors-widget ul li img {
 		border-radius: 10px;
 		margin-right: 10px;
 	}
 	.top-authors-widget ul li div:nth-child(2) {
-		/*margin: -22px 0 0 80px;*/
+		/*margin: -22px 0 0 80px;*
 	}
 	.top-authors-widget ul li h3 {
 		margin-top: 30px;
@@ -41,7 +41,7 @@
 		overflow: hidden;
 	}
 
-	/*.top-authors-widget ul li:nth-child(odd) {*/
+	/*.top-authors-widget ul li:nth-child(odd) {*
 	.ta-preset li:nth-child(odd) {
 		background: #CCC;
 	}
@@ -54,7 +54,7 @@
 		margin: 15px;
 		color: #006633;
 		font-family: "Lilita One", cursive;
-	}*/
+	}*
 	.pos {
 		float: left;
 		margin: 0;
@@ -68,7 +68,7 @@
 	}
 	/*.first {
 		background: #983;
-	}*/
+	}*
 </style>
 <script type="text/javascript">
 
@@ -87,7 +87,7 @@ jQuery( document ).ready(function() {
 	//jQuery( "li" ).each(function(i) {
 		/*alert( jQuery(this).find('span').text() );
 		jQuery( this ).width( jQuery(this).find('span').text() );/
-		*/
+		*
 		//alert(i);
 
 		jQuery(this).prepend("<span class=pos>"+(i+1)+"</span>");
@@ -117,7 +117,7 @@ jQuery( document ).ready(function() {
 
 		/*if(i>0) {
 			jQuery( this ).before( '<span style="float: left;font-family: Lilita One, cursive;width: 30px;font-size: 20px;line-height: 30px;text-align: center;background: #009933;color: #FFF;border-radius: 50px;padding: 0;margin: 20px 10px;">'+i+"</span" );
-		}*/
+		}*
 	});
 	jQuery(".ta-preset li:nth-child(1)").css({
 			"background":"#FFF379",
@@ -153,7 +153,7 @@ jQuery( document ).ready(function() {
 
 });
 </script>
-
+*/ ?>
 <div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
 	<!--todo: chanve view to MENSAL and YEAR
 	todo:put button show only my records
