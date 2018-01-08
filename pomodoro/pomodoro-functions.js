@@ -38,6 +38,7 @@ jQuery(document).ready(function ($) {
 	load_pomodoro_clipboard();
 	//
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
+		change_status("Salvando modificações feitas na tarefa atual...");
 		update_pomodoro_clipboard();
 	});
 	jQuery("#action_button_id").val(textPomodoro);
