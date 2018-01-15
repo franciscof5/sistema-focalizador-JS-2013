@@ -95,8 +95,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 //date_default_timezone_set('America/Sao_Paulo');
 //
 #ADMIN can view the bar finally
-if(!current_user_can('administrator'))
-add_filter('show_admin_bar', '__return_false'); 
+#if(!current_user_can('administrator'))add_filter('show_admin_bar', '__return_false'); 
 
 add_action( 'login_form_middle', 'add_lost_password_link' );
 #add_action( 'admin_menu', 'edit_admin_menus' ); 
