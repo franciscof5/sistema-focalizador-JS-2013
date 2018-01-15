@@ -113,8 +113,8 @@ add_action('wp_ajax_save_modelnow', 'save_modelnow');
 add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action( 'admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
-add_action( 'init', 'createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN' );
-add_action('init', 'theme_scripts');
+add_action( 'init', 'create_post_type' );
+add_action('init', 'load_scritps');
 
 function default_page() {
   return '/focar';
@@ -122,7 +122,7 @@ function default_page() {
 
 #add_filter('login_redirect', 'default_page');
 
-function theme_scripts() {	
+function load_scritps() {	
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
 	
@@ -245,6 +245,7 @@ add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' );
 function woo_custom_order_button_text() {
     return __( 'Realizar Doação', 'woocommerce' ); 
 }
+
 // removes Order Notes Title - Additional Information
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 /*function edit_admin_menus() {  
@@ -679,7 +680,9 @@ register_sidebar( array(
 	'before_title' => '<h3 class="widget-title">',
 	'after_title' => '</h3>',
 ) );
-
+function create_post_type() {
+	createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN();
+}
 function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	
 	if ( ! post_type_exists( "projectimer_focus" ) ) {

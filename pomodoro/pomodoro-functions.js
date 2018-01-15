@@ -1,4 +1,6 @@
-//Configurantion vars, will be seted by user in future
+//BEFORE START CODE CHECK OUT README.MD OR GITHUB FOR FULL DOCUMENTATION
+
+//SYSTEM VARS
 {
 	var pomodoros_to_big_rest=4;
 
@@ -7,7 +9,7 @@
 	var bigRestTime = 1800;
 	var intervalMiliseconds = 1000;
 
-	//
+	//for testing
 	//pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
 
 	//Dynamic clock var
@@ -35,7 +37,7 @@
 
 jQuery(document).ready(function ($) {
 	//
-	load_pomodoro_clipboard();
+	load_initial_data();
 	//
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
 		change_status("Salvando modificações feitas na tarefa atual...");
@@ -45,7 +47,7 @@ jQuery(document).ready(function ($) {
 	jQuery("#action_button_id").prop('disabled', false);
 });
 
-function load_pomodoro_clipboard () {
+function load_initial_data () {
 	////procura se já tiver algum post published
 	change_status(txt_loading_initial_data);	
 	var data = {

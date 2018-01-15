@@ -23,6 +23,23 @@ Basta instalar no diretório de temas e ativar os seguintes plugins
 ranking-calendar
 ```
 
+### WP POST OBJECT
+O sistema herda as funções básica do wordpress, assim para o tipo projectimer_focus temos as seguintes definições para o objeto WP_POST
+
+```
+post_type:projectimer_focus
+post_status:
+* completed = usuário terminou um pomodoro (timer completed).
+* private = usuário terminou um pomodoro de forma privada e só ele pode ver (timer completed in private, only author can see).
+* draft = tarefa modelo para lista de tarefas abaixo da tarefa atual (task model for todo list).
+* trash = tarefa modelo completada, riscada da lista de tareras (task model completed).
+* pending_review = para registrar a tarefa atual e cada usuário do sistema só deve ter um único post deste tipo, se não tiver pelo menos um é um usuário novo que nunca usou o sistema ou antigo de uma versão anterior a este esquema, se tiver mais de um é devido a bug ou falha anterior, quando o usuário modifica o formulário da tarefa atual ele atualiza o seu único post do tipo pending_review.
+post_date: registra quando o timer encerra, verifica com o PHP a data de início (when timer rings)
+post_categories: incialmente configuradas como Estudo, Trabalho e Pessoal, podem no futuro serem customizadas pelos usuários
+post_tags: coração do sistema, já que o sistema de tags do WordPress é que permite que o Pomodoros tenha seu uso de forma inovadora, cada tag é um projeto, assim pode-se usar mais de uma tag e "etiquetar" muito melhor o seu tempo. A tag.php é o template para exibir os projetos, que carregam os dados da TAG, a tag então é o elemento mais importante do sistema, já que o usuário está mais preocupado com a visão de longo prazo.
+
+```
+
 ### USO
 
 Acesse o endereço e deverá funcionar sem configurações avançadas.
@@ -36,7 +53,8 @@ Parte da documentação mais específica para programadores.
 A estrutura dos arquivos é bastante simples
 
 ```
-## PASTAS
+#
+PASTAS
 /activity (buddypress) - para customizar a página de atividades padrão do plugin
 /assets - são os arquivos adicionais, como bibliotecas externas de javascript
 /colegas (buddypress) - para customizar a página de colegas (friends) padrão do plugin, mas o endpoint foi renomeado para colegas
@@ -45,7 +63,10 @@ A estrutura dos arquivos é bastante simples
 /languages - arquivos iniciais de linguagem, diretos em JavaScript, mas não é a melhor forma para internacionalizar, por isso foi interrompido
 /pomodoro - AQUI ESTÁ O SISTEMA FOCALIZADOR JAVASCRIPT
 /registration (buddypress) - para customizar a página de registro padrão do plugin
-## ARQUIVOS
+#
+ARQUIVOS
+tag.php - a página de visualização do projeto, já que os projetos são tags
+#SUFIXOS
 s - o sufixo 's' indica que é um sidebar, entrando em desuso já que será tudo configurado por código PHP puro.
 t - o sufixo 't' indica que é um template, uma página modelo, carregado automaticamente via endpoint, sendo assim não precisa criar páginas no wp-admin.
 
