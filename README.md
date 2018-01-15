@@ -5,9 +5,9 @@
 
 Sistema Focalizador JavaScript é um tema de WordPress para criação de um servidor de Pomodoros.
 
-Site Oficial: [Pomodoros.com.br](https:www.pomodoros.com.br) 
+Site Oficial: [Pomodoros.com.br](https://www.pomodoros.com.br) 
 
-Documentação Oficial: [F5 Sites Pomodoros Project](https:projects.f5sites.com/pomodoros.com.br) 
+Documentação Oficial: [F5 Sites Pomodoros Project](https://projects.f5sites.com/pomodoros.com.br) 
 
 Developd by: [Francisco Matelli Matulovic](https://www.franciscomat.com)
 
