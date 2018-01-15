@@ -156,6 +156,41 @@ function theme_scripts() {
 	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
 }
 
+
+function get_projectimer_tags_COPY($excludeTags) {
+	$args = array(
+		'post_type' => array("projectimer_focus"),
+		//'author'        =>  get_current_user_id(),
+		'post_status' => array("publish", "future", "pending", "draft"),
+		'posts_per_page' => -1,
+
+	);
+	$all_projectimer_tags = get_posts( $args );
+	$terms = array();
+	foreach ($all_projectimer_tags as $post) {
+		$tags = get_the_terms($post->ID, 'post_tag');
+		if($tags) {
+			foreach ($tags as $tag) {
+				//array_
+				//$t = "<option>".$tag->slug."</option>";
+				$t = $tag->slug;
+				if(!in_array($t, $terms)) {
+					if($excludeTags) {
+						if(!in_array($t, $excludeTags))
+						$terms[] = $t;
+					} else {
+						$terms[] = $t;
+					}
+
+				}
+			}
+		}
+		//$terms[] = $tags;
+	}
+	return $terms;
+}
+
+
 #
 function reset_configurations () {
 	delete_user_meta(get_current_user_id(), "pomodoroAtivo");
@@ -391,7 +426,7 @@ function load_pomo () {
 			$postReturned['post_status'] = $post[0]->post_status;
 			$postReturned['secs'] = $secs;
 			$postReturned['agora'] = $agora;
-			
+			$postReturned['tags_total'] = get_projectimer_tags_COPY(NULL);
 
 			//
 

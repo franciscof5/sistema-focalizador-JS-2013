@@ -73,6 +73,41 @@ function load_pomodoro_clipboard () {
 		status_box.value = postReturned['post_status'];
 		post_id_box.value = postReturned['ID'];
 		secundosRemainingFromPHP = postReturned['secs'];
+		//tags_total = postReturned['tags_total'];
+
+		//COPY
+		tags = postReturned['post_tags'];
+		alert(tags);
+		if(tags) {
+			jQuery('#tags_box').append('<optgroup label="In use">');
+			jQuery.each(tags, function(i) {
+				text_variable = tags[i];
+				jQuery('#tags_box').append( '<option value="'+text_variable+'" selected=selected>'+text_variable+'</option>' );
+			});
+			jQuery('#tags_box').append('</optgroup>');
+		}
+
+		tags_list = postReturned['tags_total'];
+		alert(tags_list);
+		if(tags_list) {
+			jQuery('#tags_box').append('<optgroup label="Avaiable">');
+			jQuery.each(tags_list, function(i) {
+				text_variable = tags_list[i];
+				jQuery('#tags_box').append( '<option value="'+text_variable+'">'+text_variable+'</option>' );
+			});
+			jQuery('#tags_box').append('</optgroup>');
+		}
+		jQuery('#tags_box').select2({
+			tags: true,
+			//closeOnSelect: false,
+			//maximumSelectionLength: 3
+			tokenSeparators: [","],
+			placeholder: function() {
+				jQuery(this).data('placeholder');
+			}
+		});		
+		//END COPY
+
 		//change_status(secundosRemainingFromPHP);
 		//alert("secundosRemainingFromPHP");
 		//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
