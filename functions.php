@@ -145,16 +145,16 @@ function load_scritps() {
 	wp_enqueue_style('bootstrap-css', get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css", __FILE__);
 	
 	//select2
-	wp_enqueue_script("select2-js", get_bloginfo("stylesheet_directory")."/assets/select2/select2.min.js");
+	wp_enqueue_script("select2-js", get_bloginfo("stylesheet_directory")."/assets/select2/select2.full.min.js");
 	wp_enqueue_script("select2-jsbr", get_bloginfo("stylesheet_directory")."/assets/select2/select2_locale_pt-BR.js");
-	wp_enqueue_style('select2-css', get_bloginfo("stylesheet_directory")."/assets/select2/select2.css", __FILE__);
+	wp_enqueue_style('select2-css', get_bloginfo("stylesheet_directory")."/assets/select2/select2.min.css", __FILE__);
 
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
 	
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
-	
+
 	if(function_exists("qtranxf_getLanguage")){
 	   if(qtranxf_getLanguage() == "en")
 		$filelang="en.js";
