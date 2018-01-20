@@ -37,6 +37,7 @@
 
 jQuery(document).ready(function ($) {
 	//
+	change_status(txt_loading_initial_data);
 	load_initial_data();
 	//
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
@@ -54,8 +55,9 @@ jQuery(document).ready(function ($) {
 	}
 	//EVERY 5s
 	listen_changes_on_task_form = setInterval(function() {
+		//alert("INTEGRANDO FINALMENTE");
 		load_initial_data();
-	},5000);
+	},15000);
 	// Disable wake lock at some point in the future.
 	// (does not need to be wrapped in any user input event handler)
 	//noSleep.disable();
@@ -63,7 +65,7 @@ jQuery(document).ready(function ($) {
 
 function load_initial_data() {
 	////procura se já tiver algum post published
-	change_status(txt_loading_initial_data);	
+	
 	var data = {
 		action: 'load_pomo',
 		//dataType: "json"
@@ -155,7 +157,8 @@ function load_initial_data() {
 			}
 		} else if (status_box.value=="draft") {
 			secondsRemaining = pomodoroTime;
-			change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
+			//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
+			//change_status("...");	
 		}
 		document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 		}
