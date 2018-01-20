@@ -49,19 +49,13 @@ jQuery(document).ready(function ($) {
 	var noSleep = new NoSleep();
 
 	function enableNoSleep() {
-			noSleep.enable();
-	document.removeEventListener('touchstart', enableNoSleep, false);
+		noSleep.enable();
+		document.removeEventListener('touchstart', enableNoSleep, false);
 	}
-
-	// Enable wake lock.
-	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-	document.addEventListener('touchstart', enableNoSleep, false);
-
-	// ...
 
 	// Disable wake lock at some point in the future.
 	// (does not need to be wrapped in any user input event handler)
-	noSleep.disable();
+	//noSleep.disable();
 });
 
 function load_initial_data() {
@@ -226,6 +220,9 @@ function update_pomodoro_clipboard (post_stts) {
 
 //Only one button trigger all actions for timmer manager
 function action_button() {
+	// Enable wake lock.
+	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+	document.addEventListener('touchstart', enableNoSleep, false);
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
 		interrupt();
