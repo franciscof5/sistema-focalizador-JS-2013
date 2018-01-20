@@ -112,9 +112,10 @@ function load_initial_data() {
 			jQuery('#tags_box').append('</optgroup>');
 		}
 		jQuery('#tags_box').select2({
-			//tags: true,
+			tags: true,
 			//closeOnSelect: false,
-			//maximumSelectionLength: 3
+			//maximumSelectionLength: 3,
+			//createSearchChoice: true,
 			tokenSeparators: [","],
 			placeholder: function() {
 				jQuery(this).data('placeholder');
@@ -223,7 +224,7 @@ function action_button() {
 	// Enable wake lock.
 	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
 	//document.addEventListener('touchstart', enableNoSleep, false);
-	
+
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
 		interrupt();
