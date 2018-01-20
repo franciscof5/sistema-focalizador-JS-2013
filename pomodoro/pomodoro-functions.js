@@ -56,8 +56,11 @@ jQuery(document).ready(function ($) {
 	//EVERY 5s
 	listen_changes_on_task_form = setInterval(function() {
 		//alert("INTEGRANDO FINALMENTE");
+		//jQuery("#pomopainel").each("input").dp
+		//alert(jQuery("#tags_box").data('select2').isOpen());
+		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
 		load_initial_data();
-	},15000);
+	},5000);
 	// Disable wake lock at some point in the future.
 	// (does not need to be wrapped in any user input event handler)
 	//noSleep.disable();
@@ -96,8 +99,10 @@ function load_initial_data() {
 		//COPY
 		tags = postReturned['post_tags'];
 
-		//alert(tags);
+		//alert(jQuery('#tags_box').select2());
+		jQuery('#tags_box').empty();
 		if(tags) {
+			//
 			jQuery('#tags_box').append('<optgroup label="Em uso">');
 			jQuery.each(tags, function(i) {
 				text_variable = tags[i];
