@@ -39,6 +39,9 @@ jQuery(document).ready(function ($) {
 	//
 	change_status(txt_loading_initial_data);
 	load_initial_data();
+	secondsRemaining = pomodoroTime;
+	convertSeconds(secondsRemaining);
+	flip_number(true);
 	//
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
 		change_status("Salvando modificações feitas na tarefa atual...");
@@ -161,7 +164,8 @@ function load_initial_data() {
 				//alert(secondsRemaining);
 			}
 		} else if (status_box.value=="draft") {
-			secondsRemaining = pomodoroTime;
+			//secondsRemaining = pomodoroTime;
+
 			//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 			//change_status("...");	
 		}
@@ -172,10 +176,10 @@ function load_initial_data() {
 		//alert(secundosRemainingFromPHP);
 		//secondsRemaining -= secundosRemainingFromPHP;
 	});
-	if(secondsRemaining==0)
+	/*if(secondsRemaining==0)
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining);
-	flip_number(true);
+	flip_number(true);*/
 	//se tiver um pomodoro rolando não pode alterar a data do rascunho
 	/*if(secondsRemaining!=pomodoroTime) {
 		alert("POMODORO ROLANDO"+secondsRemaining);
