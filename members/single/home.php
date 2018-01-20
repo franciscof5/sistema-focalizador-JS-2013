@@ -51,7 +51,7 @@ get_header( 'buddypress' ); ?>
 						echo "<a href='{$tag_link}' title='{$tag->name} Tag' class='{$tag->slug}'>{$tag->name}</a>";
 					}
 				}*/ ?>
-				<h3>Desempenho e Velocidade</h3>
+				
 				
 				
 				<?php /*foreach ($all_tags as $slug) {
@@ -74,6 +74,7 @@ get_header( 'buddypress' ); ?>
 				?>
 			</div>
 			<div>
+				<h3>Desempenho e Velocidade</h3>
 				<?php
 				//$usuario_alvo = bp_displayed_user_id();
 				//$GLOBALS["alvo"] = $usuario_alvo;
@@ -131,5 +132,5 @@ get_header( 'buddypress' ); ?>
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-<?php get_sidebar( 'buddypress' ); ?>
+<?php #get_sidebar( 'buddypress' ); ?>
 <?php get_footer( 'buddypress' ); ?>

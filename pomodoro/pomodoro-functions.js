@@ -45,9 +45,26 @@ jQuery(document).ready(function ($) {
 	});
 	jQuery("#action_button_id").val(textPomodoro);
 	jQuery("#action_button_id").prop('disabled', false);
+
+	var noSleep = new NoSleep();
+
+	function enableNoSleep() {
+			noSleep.enable();
+	document.removeEventListener('touchstart', enableNoSleep, false);
+	}
+
+	// Enable wake lock.
+	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+	document.addEventListener('touchstart', enableNoSleep, false);
+
+	// ...
+
+	// Disable wake lock at some point in the future.
+	// (does not need to be wrapped in any user input event handler)
+	noSleep.disable();
 });
 
-function load_initial_data () {
+function load_initial_data() {
 	////procura se já tiver algum post published
 	change_status(txt_loading_initial_data);	
 	var data = {
@@ -79,9 +96,10 @@ function load_initial_data () {
 
 		//COPY
 		tags = postReturned['post_tags'];
-		alert(tags);
+
+		//alert(tags);
 		if(tags) {
-			jQuery('#tags_box').append('<optgroup label="In use">');
+			jQuery('#tags_box').append('<optgroup label="Em uso">');
 			jQuery.each(tags, function(i) {
 				text_variable = tags[i];
 				jQuery('#tags_box').append( '<option value="'+text_variable+'" selected=selected>'+text_variable+'</option>' );
@@ -90,9 +108,9 @@ function load_initial_data () {
 		}
 
 		tags_list = postReturned['tags_total'];
-		alert(tags_list);
+		//alert(tags_list);
 		if(tags_list) {
-			jQuery('#tags_box').append('<optgroup label="Avaiable">');
+			jQuery('#tags_box').append('<optgroup label="Disponível">');
 			jQuery.each(tags_list, function(i) {
 				text_variable = tags_list[i];
 				jQuery('#tags_box').append( '<option value="'+text_variable+'">'+text_variable+'</option>' );
@@ -100,7 +118,7 @@ function load_initial_data () {
 			jQuery('#tags_box').append('</optgroup>');
 		}
 		jQuery('#tags_box').select2({
-			tags: true,
+			//tags: true,
 			//closeOnSelect: false,
 			//maximumSelectionLength: 3
 			tokenSeparators: [","],
@@ -108,7 +126,7 @@ function load_initial_data () {
 				jQuery(this).data('placeholder');
 			}
 		});		
-		//END COPY
+		//END COPY*/
 
 		//change_status(secundosRemainingFromPHP);
 		//alert("secundosRemainingFromPHP");
@@ -293,7 +311,7 @@ function complete() {
 //Just stop de contdown_clock function at certains moments
 function stop_clock() {
 	window.clearInterval(interval_clock);
-	pomodoro_completed_sound.play();
+	//pomodoro_completed_sound.play();
 	interval_clock=false;
 	update_pomodoro_clipboard();
 	//alert(is_pomodoro);
@@ -337,7 +355,7 @@ function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
-	
+	pomodoro_completed_sound.play(1);//STARTS FOWARD
 	//if(is_pomodoro)is_pomodoro=false;//NAO
 	is_pomodoro=true;//SEMPRE QUE INTERROMPER VOLTA PARA FOCAR, CERTO?
 	//

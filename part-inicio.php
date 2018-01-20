@@ -1,5 +1,3 @@
-<?php get_header() ?>
-
 	<div id="content" class="content_default  col-xs-12 col-sm-9">
 	
 		<div class="padder">
@@ -12,34 +10,35 @@
 			<?php if(is_user_logged_in()) { ?>
 				<?php $current_user = wp_get_current_user(); ?>
 				<?php 
-				/*$recent = get_posts(array(
-				    'author'=>$current_user->ID,
-				    'post_type'=>'projectimer_focus',
-				    'post_statys' => 'draft',
-				    #'orderby'=>'date',
-				    #'order'=>'desc',
-				    'numberposts'=>1
-				));*/
 				$args = array(
 		              'post_type' => 'projectimer_focus',
 		              'post_status' => 'draft',
 		              'author'   => get_current_user_id(),
-		              //'orderby'   => 'title',
-		              //'order'     => 'ASC',
+
 		              'posts_per_page' => 1,
 		            );
-				$recent = get_posts($args); #new WP_Query( $args );
-				#var_dump($post);die;
+				$recent = get_posts($args);
 				if( $recent ){
 				  $title = ", sua tarefa mais recente é <i>".get_the_title($recent[0]->ID)."</i>";
 				}else{
 				  $title = ", você ainda não começou nenhuma tarefa"; //No published posts
 				} ?>
-				<p>Olá <?php echo $current_user->display_name.$title; ?>, <a href="/focar">acessar aplicativo online e focar</a>.</p>
-			<?php } else { ?>
-				<p>Caro visitante, <a href="/register">crie sua conta grátis para acessar o aplicativo online. </a></p>
-				<p>Se já possui um usuário, <a id="testes" href="#" class="abrir_login">acesse sua conta</a></p>
-			<?php } ?>
+				
+				<?php 
+				$msg_saudacao = "Olá ".$current_user->display_name." ".$title.", <a href=/focar>acessar aplicativo online e focar</a>";
+
+				
+				?>
+			<?php } else {
+				$msg_saudacao = "Caro visitante, <a href=/register>crie sua conta GRÁTIS</a> para acessar o aplicativo online";
+				$msg_saudacao2 = "Se já possui um usuário, <a id=testes href=# class=abrir_login>acesse sua conta</a>";
+			} 
+			
+			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
+			if(isset($msg_saudacao2))
+			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao2."');</script>";
+			
+			?>
 			</div>
 			<hr />
 		<?php } ?>
@@ -48,7 +47,12 @@
 
 		<div class="page" id="blog-latest">
 
-			<?php if ( have_posts() ) : ?>
+			<?php 
+			if(function_exists('set_shared_database_schema')) {
+			       			set_shared_database_schema();
+			       		}
+
+			if ( have_posts() ) : ?>
 
 				<?php while (have_posts()) : the_post(); ?>
 
@@ -56,18 +60,29 @@
 
 					<div class="post" id="post-<?php the_ID(); ?>">
 
+							<div style="background: #222;width: 100%;">
+							<center>
+						    <a style="margin:0 auto;" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+						       <?php 
+
+						       if ( has_post_thumbnail() ) {
+						       		
+									the_post_thumbnail( array(500,200) );
+								}
+
+						       ?>
+						    </a>
+						    </center>
+						    </div>
+						<?php #endif;  ?>
 						<div class="author-box">
-							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
-							<p><?php 
-							#printf( __( 'Por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) )
-							printf( bp_core_get_userlink( $post->post_author ) ) 
-							?></p>
+							<?php echo get_avatar( get_the_author_meta( 'user_email' ), '60' ); ?>
 						</div>
 
 						<div class="post-content">
 							<h2 class="posttitle"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddypress' ) ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-							<p class="date"><?php the_time("j \d\\e F \d\\e Y") ?> <em><?php #_e( 'em', 'buddypress' ) ?> <?php #the_category(', ') ?> <?php #printf( __( 'por %s', 'buddypress' ), bp_core_get_userlink( $post->post_author ) ) ?></em></p>
+							<p class="date"><?php the_time("j \d\\e F \d\\e Y") ?></p>
 
 							<div class="entry">
 								<?php 
@@ -86,12 +101,9 @@
 
 				<?php endwhile; ?>
 
-				<div class="navigation">
-
-					<div class="alignleft"><?php next_posts_link( __( '&larr; Previous Entries', 'buddypress' ) ) ?></div>
-					<div class="alignright"><?php previous_posts_link( __( 'Next Entries &rarr;', 'buddypress' ) ) ?></div>
-
-				</div>
+				<?php 
+				#plugin: f5sites-shared-posts-tables-and-uploads-folder
+				if(function_exists("print_blog_nav_links")) print_blog_nav_links($post); ?>
 
 			<?php else : ?>
 
@@ -103,11 +115,9 @@
 			<?php endif; ?>
 		</div>
 
-		<?php do_action( 'bp_after_blog_home' ) ?>
+		<?php do_action( 'bp_after_blog_home' ); ?>
 
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
 	<?php locate_template( array( 's-blog.php' ), true ) ?>
-
-<?php get_footer() ?>

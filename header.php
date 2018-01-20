@@ -35,37 +35,14 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no">
 </head>
 
-<?php if (function_exists('mbj_notify_bar_display')) { mbj_notify_bar_display(); }?>
-<?php if (function_exists("activate_maintenance_mode")) { activate_maintenance_mode();} ?>
 
 <body <?php #body_class() ?> id="bp-default22">
 
-<script type="text/javascript">
-	var noSleep = new NoSleep();
-
-	function enableNoSleep() {
-			noSleep.enable();
-	document.removeEventListener('touchstart', enableNoSleep, false);
-	}
-
-	// Enable wake lock.
-	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-	document.addEventListener('touchstart', enableNoSleep, false);
-
-	// ...
-
-	// Disable wake lock at some point in the future.
-	// (does not need to be wrapped in any user input event handler)
-	noSleep.disable();
-</script>
 <span id='linha-fundo'></span>
 <div id="wrapper" class="container-fluid content">
 
 		<?php do_action( 'bp_before_header' ) ?>
 		
-			<!--span id='linha-fundo<?php if (is_front_page()) echo "-home" ?>'></span-->
-			
-		<?php //} ?>
 		<script type="text/javascript">
 			jQuery().ready(function($) {
 				/*$.each( "#header-content div span", function(index, value) {
@@ -216,7 +193,7 @@
 			X
 			<!--h3>Tempo do pomodoro:</h3>
 			<sub>Recomendamos aos usuários não mudarem o tempo dos pomodoros, se esforce para se adaptar aos 25 minutos que vale a pena</sub-->
-			<!--p>Você pode utilizar nossos sitema para medir o tempo de diversas maneiras, mas lembre-se, para participar dos sorteios de prêmios é preciso usar a configuraćão oficial</p-->
+			<!--p>Você pode utilizar nossos sitema para medir o tempo de diversas maneiras, mas lembre-se, para participar dos sorteios de prêmios é preciso usar a configuraćão oficial</p>
 			<p>VOLUME: </p>
 			<!--h3>Tipo de relógio</h3>
 			<p>Técnica dos Pomodoros - Configuraćões oficiais [participa em sorteios]</p>

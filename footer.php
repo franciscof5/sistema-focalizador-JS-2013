@@ -32,38 +32,16 @@
 					
 					<div class="col-sm-3 contem_last_pomodoros">
 						<h3>Últimos pomodoros</h3>
-						<?php /*#if(!is_user_logged_in()) { ?>
-						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para ver pomodoros recentes</p>
-						<?php } else {*/ ?>
-							
 							<?php 
-							
-							#$recent_posts = wp_get_recent_posts("numberposts=9&post_status=publish&post_type=projectimer_focus");
 							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 9, 'post_status' => 'publish' ); 
 							$recent_posts = get_posts( $args );
-
 							foreach( $recent_posts as $recent ){
-
-								#echo '<li>'.get_avatar($recent->post_author, 24)."<a href='/colegas/".get_the_author_meta( "user_login", $recent->post_author )."'>".get_the_author_meta( 'display_name', $recent->post_author ).'</a> - <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #WITH NAME
-								
 								echo '<li>'.get_avatar($recent->post_author, 24).' <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
 							}
-							#set_shared_database_schema();
-							if(function_exists('set_shared_database_schema'))
-								set_shared_database_schema();
+							#
+							if(function_exists('set_shared_database_schema'))set_shared_database_schema();
 							 ?>
-						<?php #} ?>
-						
 					</div>
-					<!--div class="link-group">
-						<h3>Telefones</h3>
-						<ul>
-							<li>Vendas</li>
-							<li>+55 15 33333527.77777267</li>
-							<li>Suporte</li>
-							<li>+55 15 33333527.77777267</li>
-						</ul>
-					</div-->
 				<div class="col-sm-3">
 						<h3>Ranking Top 7</h3>
 						<?php
@@ -82,38 +60,26 @@
 						the_widget("Top_Authors_Widget", $instance, "");
 						?>
 						<small>Não contabiliza pomodoros privados.</small>
-						<?php
-						/*global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
-						$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
-
-						echo do_shortcode('[product id="4530"]');  
-
-						//global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
-						$reverter_filtro_de_categoria_pra_forcar_funcionamento = false;
-						//unset($reverter_filtro_de_categoria_pra_forcar_funcionamento);*/
-						?>
 					</div>
 				<div class="col-sm-3">
-						<h3>Nosso blog</h3>
-						<?php 
-						#global $type;
-						#$type='notknow';
-						#if(function_exists('force_database_aditional_tables_share'))
-						#	force_database_aditional_tables_share(NULL);
-						#echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
-						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
-						?>
-					
-						<?php 
-						if(function_exists('set_shared_database_schema'))
-							set_shared_database_schema();
-
-						the_widget('WP_Widget_Recent_Posts', 'number=6');  
-						#'before_title' => '<span class="hidden">','after_title' => '</span>',
-						?>
-
-							<?php #echo do_shortcode("[wp-rss-aggregator limit=5]");  ?>
-						</div>
+					<h3>Nosso blog</h3>
+					<div class="widget widget_recent_entries">
+						<ul>
+						
+							<?php 
+							if(function_exists('set_shared_database_schema'))set_shared_database_schema();
+							
+							$idObj = get_category_by_slug("www.pomodoros.com.br"); 
+							$catquery = new WP_Query( 'cat='.$idObj->term_id.'&posts_per_page=6' );
+							while($catquery->have_posts()) : $catquery->the_post();
+							?>
+							
+							<li><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></li>
+							
+							<?php endwhile;	?>
+						</ul>
+					</div>
+				</div>
 				<div id="footer-contact-form" class="col-sm-3">
 					<h3>Fale conosco</h3>
 					<?php if(!is_user_logged_in()) { ?>
@@ -121,13 +87,7 @@
 					<?php } else { ?>
 						
 						<?php 
-						#global $type;
-						#$type='notknow';
-						#if(function_exists('set_shared_database_schema'))
-						#	set_shared_database_schema();
-						#echo do_shortcode( ' [contact-form-7 id="4702" title="Testando SMTP"]' );
 						echo do_shortcode( '[contact-form-7 id="1526" title="Contato"]' ); 
-						#echo do_shortcode( '[contact-form-7 id="60" title="footer"]' ); 
 						?>
 					<?php } ?>
 				</div>
@@ -149,76 +109,7 @@
 					</div>
 				</div>
 				</div>
-		
-		<style type="text/css">
-	.top-authors-widget ul li {
-		height: 34px;
-		line-height: 34px;
-		border: 1px solid #CCC;
-		border-radius: 10px;
-		margin: 0 0 5px 0;
 
-	}
-	.top-authors-widget ul li a {
-		color: #666;
-		font-size: 12px;
-		font-weight: 600;
-		overflow: hidden;
-		white-space: nowrap;
-		position: absolute;
-		max-width: 80%;
-
-	}
-	.top-authors-widget ul li:nth-child(1) { border: 0;}
-	/*.top-authors-widget ul li div {
-		float: left;
-	}*/
-	.top-authors-widget ul li img {
-		border-radius: 10px;
-		margin-right: 10px;
-	}
-	.top-authors-widget ul li div:nth-child(2) {
-		/*margin: -22px 0 0 80px;*/
-	}
-	.top-authors-widget ul li h3 {
-		margin-top: 30px;
-		width: 80%;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-
-	.ta-preset li a {
-		max-width: 60% !important;
-	}
-	/*.top-authors-widget ul li:nth-child(odd) {*/
-	.ta-preset li:nth-child(odd),.ta-preset2 li:nth-child(odd) {
-		background: #CCC;
-	}
-	.ta-preset li:nth-child(even), .ta-preset2 li:nth-child(even) {
-		background: #EBEBEB;
-	}
-	/*.top-authors-widget ul li span {
-		float: right;
-		font-size: 22px;
-		margin: 15px;
-		color: #006633;
-		font-family: "Lilita One", cursive;
-	}*/
-	.pos {
-		float: left;
-		margin: 0;
-		padding: 0 2px;
-		font-size: 14px;
-		line-height: 34px;
-		font-weight: bold;
-		color: #666;
-		width: 20px;
-		text-align: center;
-	}
-	/*.first {
-		background: #983;
-	}*/
-</style>
 <script type="text/javascript">
 
 jQuery( document ).ready(function() {

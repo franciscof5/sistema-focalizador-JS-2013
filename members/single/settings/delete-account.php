@@ -91,6 +91,6 @@
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-<?php get_sidebar( 'buddypress' ); ?>
+<?php #get_sidebar( 'buddypress' ); ?>
 
 <?php get_footer( 'buddypress' ); ?>

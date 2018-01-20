@@ -9,7 +9,7 @@
 
 get_header( 'buddypress' ); ?>
 
-	<div id="content">
+	<div id="content" class="content_default  col-xs-12">
 		<div class="padder">
 
 			<?php do_action( 'bp_before_member_settings_template' ); ?>
@@ -87,6 +87,6 @@ get_header( 'buddypress' ); ?>
 		</div><!-- .padder -->
 	</div><!-- #content -->
 
-<?php get_sidebar( 'buddypress' ); ?>
+<?php #get_sidebar( 'buddypress' ); ?>
 
 <?php get_footer( 'buddypress' ); ?>

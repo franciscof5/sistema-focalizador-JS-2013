@@ -20,7 +20,16 @@ Cria um servidor de Pomodoros usando o WordPress. Um post tipo 'projectimer_focu
 Basta instalar no diretório de temas e ativar os seguintes plugins
 
 ```
-ranking-calendar
+# FREE
+* buddypress
+* contact-form7 + honeypot
+* ical-feeds
+* advanced-excerpt
+# CUSTOM
+* fnetwork-top-authors (fork do top-authors)
+* ranking-calendar (fork do *calendar*)
+* wp-csv-pomodoros (fork do wp-csv)
+* opcional: f5sites-shared-posts-and-tax
 ```
 
 ### WP POST OBJECT
@@ -67,8 +76,9 @@ PASTAS
 ARQUIVOS
 tag.php - a página de visualização do projeto, já que os projetos são tags
 #SUFIXOS
-s - o sufixo 's' indica que é um sidebar, entrando em desuso já que será tudo configurado por código PHP puro.
-t - o sufixo 't' indica que é um template, uma página modelo, carregado automaticamente via endpoint, sendo assim não precisa criar páginas no wp-admin.
+* s - o sufixo 's' indica que é um sidebar, entrando em desuso já que será tudo configurado por código PHP puro.
+* part - identifica partes do layout do sistema
+* (desuso) t - o sufixo 't' indica que é um template, uma página modelo, carregado automaticamente via endpoint, sendo assim não precisa criar páginas no wp-admin.
 
 ```
 

@@ -1,4 +1,4 @@
-<?php get_header();;
+<?php get_header();
 /*
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>  ?>

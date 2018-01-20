@@ -34,10 +34,9 @@
 		<?php do_action( 'bp_after_blog_page' ) ?>
 
 		</div><!-- .padder -->
-		<?php } else { ?>
-			<h3  style="margin:50px;">Acesso restrito</h3>
-			<p class="bg-danger" style="margin:50px; font-size: 14px; padding:20px;"><a href="#" class="abrir_login">Acesse sua conta</a> para ver a página</p>
-		<?php } ?>
+		<?php } else { 
+			locate_template( "part-closed.php", true );
+		 } ?>
 	</div><!-- #content -->
 	
 	<?php #locate_template( array( 'sidebar.php' ), true ) ?>

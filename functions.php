@@ -65,13 +65,13 @@ function user_object_productivity ($user_id) {
 	$MES['diasFolga'] = $MES['totalDias'] - $MES['diasTrabalhados'];
 	$MES['fatorProdutividade'] = round($MES['diasTrabalhados']/$MES['totalDias'], 2);
 
-	$SETEDIAS['totalDias'] = 7;
+	$SETEDIAS['totalDias'] = 6;
 	$SETEDIAS['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$SETEDIAS['totalDias']." DAY) GROUP BY DATE (`post_date`)");
-	$SETEDIAS ['diasFolga'] = $SETEDIAS['totalDias'] - $SETEDIAS['diasTrabalhados'];
-	$SETEDIAS ['fatorProdutividade'] = round($SETEDIAS['diasTrabalhados']/$SETEDIAS['totalDias'], 2);
+	$SETEDIAS ['diasFolga'] = $SETEDIAS['totalDias'] - $SETEDIAS['diasTrabalhados'] +1;
+	$SETEDIAS ['fatorProdutividade'] = round($SETEDIAS['diasTrabalhados']/($SETEDIAS['totalDias']+1), 2);
 	
 	$SEMANA['totalDias'] = date('w') + 1;
-	$SEMANA['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$SEMANA['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	$SEMANA['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".($SEMANA['totalDias']-1)." DAY) GROUP BY DATE (`post_date`)");
 	//Its to prevent a very intersting bug, when there are 2 posts with less than 24 hours of difference but are published at 2 differents days, it will result in a 2 posts for 1 day, grouped by date, because there are 2 differente days
 	($SEMANA['diasTrabalhados']>$SEMANA['totalDias']) ? $SEMANA['diasTrabalhados'] = $SEMANA['totalDias'] : $SEMANA['diasTrabalhados'];
 	$SEMANA['diasFolga'] = $SEMANA['totalDias'] - $SEMANA['diasTrabalhados'];
@@ -115,6 +115,17 @@ add_action('wp_logout','go_home');
 add_action( 'init', 'create_post_type' );
 add_action('init', 'load_scritps');
 
+add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
+
+function force_revert_f5sites_shared() {
+	if(is_tag()) {
+	#echo $_SERVER['SERVER_NAME'];
+	#if($_SERVER['SERVER_NAME']=="www.pomodoros.com.br")
+		if(function_exists("revert_database_schema"))
+		revert_database_schema();
+	}
+}
+
 function default_page() {
   return '/focar';
 }
@@ -140,8 +151,10 @@ function load_scritps() {
 
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
-#	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
+	
+	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
+	
 	if(function_exists("qtranxf_getLanguage")){
 	   if(qtranxf_getLanguage() == "en")
 		$filelang="en.js";
@@ -153,21 +166,34 @@ function load_scritps() {
 	}
 
 	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
+
+	wp_register_script("pomodoros-js", get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro-functions.js", __FILE__);
+
+	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
 }
 
+#get_projectimer_tags_COPY();
+function get_projectimer_tags_COPY($excludeTags=NULL) {
+	
+	if(function_exists('revert_database_schema'))revert_database_schema();
+	global $please_dont_change_wpdb_woo_separated_tables;
+	$please_dont_change_wpdb_woo_separated_tables=true;
 
-function get_projectimer_tags_COPY($excludeTags) {
 	$args = array(
 		'post_type' => array("projectimer_focus"),
-		//'author'        =>  get_current_user_id(),
+		'author'        =>  get_current_user_id(),
 		'post_status' => array("publish", "future", "pending", "draft"),
 		'posts_per_page' => -1,
 
 	);
 	$all_projectimer_tags = get_posts( $args );
+	$please_dont_change_wpdb_woo_separated_tables=false;
+	#set_shared_database_schema();
+	#var_dump($all_projectimer_tags);
 	$terms = array();
 	foreach ($all_projectimer_tags as $post) {
 		$tags = get_the_terms($post->ID, 'post_tag');
+		#var_dump($tags);
 		if($tags) {
 			foreach ($tags as $tag) {
 				//array_
@@ -186,9 +212,9 @@ function get_projectimer_tags_COPY($excludeTags) {
 		}
 		//$terms[] = $tags;
 	}
+	#var_dump($terms);die;
 	return $terms;
 }
-
 
 #
 function reset_configurations () {
@@ -395,13 +421,17 @@ function load_pomo () {
 			//$post = get_post($pomodoroAtivo);
 		} else {
 
-			$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $post[0]->ID);
+			#$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $post[0]->ID);
 			
 			//}
 			
 			//var_dump($post);
 			$tags = wp_get_post_tags($post[0]->ID);
-			
+			$tags_list = array();
+			foreach ($tags as $t) {
+				# code...
+				$tags_list[]=$t->name;
+			}
 			//if($post[0]->post_status=="pending") {
 			$post[0]->post_date;
 			//echo " i ".date("Y-m-d H:i:s");//, strtotime('+25 minutes')
@@ -419,14 +449,14 @@ function load_pomo () {
 			//$secs = 1000;
 			//} 
 			$postReturned['post_title'] = $post[0]->post_title;
-			$postReturned['post_tags'] = $tags[0]->name;
+			$postReturned['post_tags'] = $tags_list;
 			$postReturned['post_content'] = $post[0]->post_content;
 			$postReturned['ID'] = $post[0]->ID;
 			$postReturned['post_date'] = $post[0]->post_date;
 			$postReturned['post_status'] = $post[0]->post_status;
 			$postReturned['secs'] = $secs;
 			$postReturned['agora'] = $agora;
-			$postReturned['tags_total'] = get_projectimer_tags_COPY(NULL);
+			$postReturned['tags_total'] = get_projectimer_tags_COPY();
 
 			//
 
@@ -722,5 +752,17 @@ function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	}
 }
 
+/*function get_user_subscription($user_id, $domain) {
+	$user_id = (!isset($user_id)) ? get_current_user_id() : $user_id;
+	$sql = "SELECT * FROM f5sites_posts WHERE post_type='subscription' AND post_author=".$user_id;
+	global $wpdb;
+	 echo "<pre>"; print_r($wpdb); echo "</pre>";
+	
+	$results = $wpdb->get_results( $sql, OBJECT );
+	var_dump($results);
+	die;
+				
+}*/
+//get_user_subscription(2, $_SERVER['REQUEST_URI']);
 
 ?>

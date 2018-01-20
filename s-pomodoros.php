@@ -1,7 +1,7 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
 <div id="sidebar_pomodoro" class="sidebar col-xs-6 col-sm-6 col-md-3 hidden-xs">
-	<center><button data-toggle="collapse" data-target="#sidebar_pomodoro_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center>
+	<!--center><button data-toggle="collapse" data-target="#sidebar_pomodoro_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center-->
 
 	<!--button data-toggle="collapse" data-target="#default_sidebar_in" class="collapse_button collapse_right" ><span class="glyphicon glyphicon-resize-horizontal"></span></button-->
 
@@ -81,12 +81,18 @@
 			?>
 		</li>
 		<li>
-		<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
-		<p><?php
-		get_author_post_tags_wpa78489(get_current_user_id());
-		?>
-		</p>
+			<h3 class="widget-title">Novo: Exportar CSV</h3>
+			<p>Tenha controle sobre seus dados, visualize seus pomodoros no Excel ou Calc</p>
+			<p><a href="/csv"><button>EXPORTAR POMODOROS</button></a></p>
 		</li>
+		<li>
+			<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
+			<p><?php get_author_post_tags_wpa78489(get_current_user_id());	?></p>
+		</li>
+		<li>
+			<p><?php the_widget( 'WP_Widget_Tag_Cloud', "title=Projetos da Comunidade", 'before_title=<h3 class="widget-title">&after_title=</h3>' ); ?> </p>
+		</li>
+		
 	<?php dynamic_sidebar( 'pomodoros' ); ?>
 	</div><!-- .padder -->
 </div><!-- #sidebar -->
