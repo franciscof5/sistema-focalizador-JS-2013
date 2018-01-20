@@ -52,7 +52,10 @@ jQuery(document).ready(function ($) {
 		noSleep.enable();
 		document.removeEventListener('touchstart', enableNoSleep, false);
 	}
-
+	//EVERY 5s
+	listen_changes_on_task_form = setInterval(function() {
+		load_initial_data();
+	},5000);
 	// Disable wake lock at some point in the future.
 	// (does not need to be wrapped in any user input event handler)
 	//noSleep.disable();
