@@ -491,7 +491,10 @@ function update_pomo () {
 	#$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 	$pomodoroAtivo =  $post[0]->ID;
 
-	$tagsinput = explode(" ", $_POST['post_tags']);
+	
+	//$tagsinput = explode(" ", $_POST['post_tags']);
+	
+
 	//$agora = date("Y-m-d H:i:s");
 	
 	/*if($_POST['ignora_data']) {
@@ -518,7 +521,7 @@ function update_pomo () {
 			'post_content' => $_POST['post_descri'],
 			'post_category' => array(1, $_POST['post_cat']),
 			//'post_author' => get_current_user_id(),
-			'tags_input' => array($_POST['post_tags']),
+			'tags_input' => $_POST['post_tags'],
 			//'post_status' => "draft",
 			//'edit_date' => true,
 			//'post_date' => $agora
@@ -560,6 +563,7 @@ function update_pomo () {
 	$postReturned['post_date'] = $post_atual_pega_data[0]->post_date;
 	$postReturned['ID'] = $post_atual_pega_data[0]->ID;
 	$postReturned['pomodoroAtivo'] = $pomodoroAtivo;
+	$postReturned['tags_recebidas'] = $_POST['post_tags'];
 	//$postReturned['psot_atual_pega_data'] = $my_post;
 	$postReturned['save_progress'] = $save_progress;
 	
