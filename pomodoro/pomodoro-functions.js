@@ -222,7 +222,8 @@ function update_pomodoro_clipboard (post_stts) {
 function action_button() {
 	// Enable wake lock.
 	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-	document.addEventListener('touchstart', enableNoSleep, false);
+	//document.addEventListener('touchstart', enableNoSleep, false);
+	
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
 		interrupt();
