@@ -163,13 +163,32 @@ function load_scritps() {
 	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	//echo $locale;die;
 
-	if($locale!="pt_BR" || $locale!="en_US")
-		$filelang = "en_US.js";
-	else
-		$filelang = $locale.".js";
 	
-		
-	   //if(qtranxf_getLanguage() == "en")
+
+	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
+	//var_dump($user_lang_pref);
+	/*if($user_lang_pref) {
+		//var_dump($user_lang_pref);die;
+		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {
+			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "pt_BR" );
+		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
+			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "en_US" );
+		}
+	} else {*/
+	if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
+		$user_lang_pref="pt_BR";
+		update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+	} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
+		$user_lang_pref="en_US";
+		update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+	}
+
+	if($user_lang_pref!=$locale) {
+		$locale=$user_lang_pref;
+	}
+	$filelang = $locale.".js";
+	
+	//if(qtranxf_getLanguage() == "en")
 		//$filelang="en.js";
 	   //else if(qtranxf_getLanguage() == "pt")
 		//$filelang="pt-br.js";
