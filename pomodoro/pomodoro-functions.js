@@ -10,7 +10,7 @@
 	var intervalMiliseconds = 1000;
 
 	//for testing
-	//pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
+	pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
 
 	//Dynamic clock var
 	//var is_interrupt_button;
@@ -251,7 +251,7 @@ function start_clock() {
 		change_status(txt_started_countdown + jQuery("#title_box").val());
 	} else {
 		change_button(textInterrupt, "#990000");//Chage button to "interrupt"
-		change_status(txt_normalrest_countdown);
+		change_status(txt_rest_started);
 	}
 }
 
@@ -288,7 +288,7 @@ function complete() {
 			//big rest
 			pomodoro_actual=1;
 			change_button(textBigRest, "#0F0F0F");
-			change_status(txt_bigrest_countdown, "suc");
+			change_status(txt_bigrest_countdown);
 			secondsRemaining=bigRestTime;
 			changeTitle(txt_title_big_rest);
 			reset_indicators_display();
@@ -296,7 +296,7 @@ function complete() {
 			//normal rest
 			pomodoro_actual++;
 			change_button(textRest, "#0F0F0F");
-			change_status(txt_normalrest_countdown, "suc");
+			change_status(txt_normalrest_countdown);
 			secondsRemaining=restTime;
 			changeTitle(txt_title_rest);
 		}
