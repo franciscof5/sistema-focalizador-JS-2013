@@ -35,16 +35,52 @@
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
 //jQuery.noConflict();
+// Or add multiple commands at time
+var myGroup = [
+    {
+	    indexes:["iniciar", "focar", "começar", "interromper"], // These spoken words will trigger the execution of the command
+	    action:function(){ // Action to be executed when a index match with spoken word
+	        artyom.say("Comando recebido...");
+	        action_button();
+	    }
+	},
+    {
+        indexes:["What time is it","Is too late"],
+        action:function(i){ // var i returns the index of the recognized command in the previous array
+            if(i == 0){
+                aFunctionThatSaysTheTime(new Date());
+            }else if(i == 1){
+                artyom.say("Never is too late to do something my friend !");
+            }
+        }
+    }
+];
 
-//Check if has running pomodoros
-//function check_for_running_pomodoro () {};
+// This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
+function startContinuousArtyom(){
+    artyom.fatality();// use this to stop any of
+
+    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
+         artyom.initialize({
+            lang:"pt-PT",// A lot of languages are supported. Read the docs !
+            continuous:true,// Artyom will listen forever
+            listen:true, // Start recognizing
+            debug:true, // Show everything in the console
+            speed:1 // talk normally
+        }).then(function(){
+            console.log("Ready to work !");
+        });
+    },250);
+    artyom.addCommands(myGroup);
+}
 
 jQuery(document).ready(function ($) {
-	// const artyom = require("artyom.js");
 	artyom = new Artyom();
+
 	artyom.initialize({
 	    lang:"pt-PT",
 	});
+	startContinuousArtyom();
 	//
 	change_status(txt_loading_initial_data);
 	load_initial_data();
@@ -675,4 +711,4 @@ soundManager.onready(function() {
 });
 soundManager.onerror = function() {alert(txt_sound_error+"...");}
 
-//Project Management (maybe that snippet deserves a exclusive file)
+//

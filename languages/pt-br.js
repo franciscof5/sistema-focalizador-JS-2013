@@ -31,11 +31,6 @@ var txt_loading_model = "Economia de tempo é comigo, configurei a tarefa com ba
 var txt_deleting_model = "Concluido o modelo...";
 var txt_deleting_model_sucess = "Seu modelo foi concluído, se você terminou uma tarefa meus parabéns!";
 
-//
-var txt_animating = "Ueh você veio aqui pra me ver fazer gracinha ou pra trabalhar?";
-var txt_animating2 = "OOOOO filho da mãe... isso dói, essa ponta desse mouse parece um espeto cravando na pele da gente...";
-
-
 //Frases da interface do painel
 var txt_write_task_title = "Tarefa:";
 var txt_write_task_desc = "Anotações:";
