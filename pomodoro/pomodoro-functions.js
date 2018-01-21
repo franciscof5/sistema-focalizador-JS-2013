@@ -28,6 +28,9 @@
 	var is_pomodoro = true; //is_pomodoros is when using timer for focusing (otherwise ir resting)
 	var secondsRemaining = 0;//pomodoroTime;
 	var interval_clock=false;
+
+	//
+
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
 //jQuery.noConflict();
@@ -51,11 +54,15 @@ jQuery(document).ready(function ($) {
 	jQuery("#action_button_id").prop('disabled', false);
 
 	var noSleep = new NoSleep();
-
 	function enableNoSleep() {
 		noSleep.enable();
 		document.removeEventListener('touchstart', enableNoSleep, false);
 	}
+	// Enable wake lock.
+	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
+	document.addEventListener('touchstart', enableNoSleep, false);
+
+	
 	//EVERY 5s
 	listen_changes_on_task_form = setInterval(function() {
 		//alert("INTEGRANDO FINALMENTE");
@@ -237,10 +244,6 @@ function update_pomodoro_clipboard (post_stts) {
 
 //Only one button trigger all actions for timmer manager
 function action_button() {
-	// Enable wake lock.
-	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-	//document.addEventListener('touchstart', enableNoSleep, false);
-
 	if(interval_clock) {
 		//The user clicked on Interrupt button 	-> Check if the timmer (countdown_clock()) are running
 		interrupt();
