@@ -9,12 +9,12 @@ if(!in_array($page, $pages)) {
 } else {
 	if (!is_user_logged_in()) {
 		$page = "closed";
-	} else {
+	} /*else {
 		if($page=="focar") {
 			wp_enqueue_script("sound-js");
 			wp_enqueue_script("pomodoros-js");
 		}
-	}
+	}*/
 }
 
 #echo "INDEX";die;

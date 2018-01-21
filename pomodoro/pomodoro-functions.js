@@ -35,204 +35,136 @@
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
 //jQuery.noConflict();
-// Or add multiple commands at time
-var myGroup = [
-    {
-	    indexes:["iniciar", "focar", "começar", "interromper"], // These spoken words will trigger the execution of the command
-	    action:function(){ // Action to be executed when a index match with spoken word
-	        artyom.say("Comando recebido...");
-	        action_button();
-	    }
-	},
-    {
-        indexes:["What time is it","Is too late"],
-        action:function(i){ // var i returns the index of the recognized command in the previous array
-            if(i == 0){
-                aFunctionThatSaysTheTime(new Date());
-            }else if(i == 1){
-                artyom.say("Never is too late to do something my friend !");
-            }
-        }
-    }
-];
 
-// This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
-function startContinuousArtyom(){
-    artyom.fatality();// use this to stop any of
 
-    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
-         artyom.initialize({
-            lang:"pt-PT",// A lot of languages are supported. Read the docs !
-            continuous:true,// Artyom will listen forever
-            listen:true, // Start recognizing
-            debug:true, // Show everything in the console
-            speed:1 // talk normally
-        }).then(function(){
-            console.log("Ready to work !");
-        });
-    },250);
-    artyom.addCommands(myGroup);
-}
 
 jQuery(document).ready(function ($) {
-	/*artyom.initialize({
-	    lang:"pt-PT",
-	});*/
+	//Voice recon and speech JS
 	artyom = new Artyom();
 	startContinuousArtyom();
+	//Sound library for Sound FX 
+	startSoundMan();
 	//
-	change_status(txt_loading_initial_data);
-	//
-	load_initial_data();
+	change_status(txt_loading_initial_data);	
+	load_initial_data();//
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining);
 	flip_number(true);
-	//
+	
+	//listen to changes
 	jQuery("#title_box, #description_box, #tags_box").change(function() {
-		change_status("Salvando modificações feitas na tarefa atual...");
+		change_status(txt_update_current_task);
 		update_pomodoro_clipboard();
 	});
 	jQuery("#action_button_id").val(textPomodoro);
 	jQuery("#action_button_id").prop('disabled', false);
 
+	//
 	var noSleep = new NoSleep();
-
 	function enableNoSleep() {
 	  noSleep.enable();
 	  document.removeEventListener('click', enableNoSleep, false);
 	}
-
-	// Enable wake lock.
-	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
 	document.addEventListener('click', enableNoSleep, false);
-	//
-	// Or if installed from NPM to use with a bundler
-	//import Artyom from "artyom.js"
 	
-	/*var noSleep = new NoSleep();
-	function enableNoSleep() {
-		noSleep.enable();
-		document.removeEventListener('touchstart', enableNoSleep, false);
-	}
-	// Enable wake lock.
-	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
-	document.addEventListener('touchstart', enableNoSleep, false);*/
-
-	
-	//EVERY 5s
+	//Check updates on task every 15s (if not on focus)
 	listen_changes_on_task_form = setInterval(function() {
-		//alert("INTEGRANDO FINALMENTE");
-		//jQuery("#pomopainel").each("input").dp
-		//alert(jQuery("#tags_box").data('select2').isOpen());
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
 		load_initial_data();
-	},5000);
-	// Disable wake lock at some point in the future.
-	// (does not need to be wrapped in any user input event handler)
-	//noSleep.disable();
+	},15000);
 });
 
 function load_initial_data() {
-	////procura se já tiver algum post published
-	
 	var data = {
 		action: 'load_pomo',
 		//dataType: "json"
 	};
-	//alert("AAAA ");
 	jQuery.post(ajaxurl, data, function(response) {
-		//alert(response.slice( 0, - 1 ));
-		//rex = response.split("$^$ ");
-		//change_status(rex[0]);
 		if(response==0) {
-			alertify.error("Tarefa não encontrada");
-			change_status("Não encontrei nenhuma tarefa iniciada, escreva abaixo e clique em FOCAR acima para iniciar.");	
+			//alertify.error("Tarefa não encontrada");
+			change_status(txt_no_task_found);	
 		} else {
+			var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
+			
+			//alert(postReturned['ID']);
+			title_box.value = postReturned['post_title'];
+			tags_box.value  = postReturned['post_tags'];
+			description_box.value = postReturned['post_content'];
+			data_box.value = postReturned['post_data'];
+			status_box.value = postReturned['post_status'];
+			post_id_box.value = postReturned['ID'];
+			secundosRemainingFromPHP = postReturned['secs'];
+			//tags_total = postReturned['tags_total'];
 
-		
-		var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
-		
-		//alert(postReturned['ID']);
-		title_box.value = postReturned['post_title'];
-		tags_box.value  = postReturned['post_tags'];
-		description_box.value = postReturned['post_content'];
-		data_box.value = postReturned['post_data'];
-		status_box.value = postReturned['post_status'];
-		post_id_box.value = postReturned['ID'];
-		secundosRemainingFromPHP = postReturned['secs'];
-		//tags_total = postReturned['tags_total'];
+			//COPY
+			tags = postReturned['post_tags'];
 
-		//COPY
-		tags = postReturned['post_tags'];
-
-		//alert(jQuery('#tags_box').select2());
-		jQuery('#tags_box').empty();
-		if(tags) {
-			//
-			jQuery('#tags_box').append('<optgroup label="Em uso">');
-			jQuery.each(tags, function(i) {
-				text_variable = tags[i];
-				jQuery('#tags_box').append( '<option value="'+text_variable+'" selected=selected>'+text_variable+'</option>' );
-			});
-			jQuery('#tags_box').append('</optgroup>');
-		}
-
-		tags_list = postReturned['tags_total'];
-		//alert(tags_list);
-		if(tags_list) {
-			jQuery('#tags_box').append('<optgroup label="Disponível">');
-			jQuery.each(tags_list, function(i) {
-				text_variable = tags_list[i];
-				jQuery('#tags_box').append( '<option value="'+text_variable+'">'+text_variable+'</option>' );
-			});
-			jQuery('#tags_box').append('</optgroup>');
-		}
-		jQuery('#tags_box').select2({
-			tags: true,
-			//closeOnSelect: false,
-			//maximumSelectionLength: 3,
-			//createSearchChoice: true,
-			tokenSeparators: [","],
-			placeholder: function() {
-				jQuery(this).data('placeholder');
+			//alert(jQuery('#tags_box').select2());
+			jQuery('#tags_box').empty();
+			if(tags) {
+				//
+				jQuery('#tags_box').append('<optgroup label="'+txt_in_use+'">');
+				jQuery.each(tags, function(i) {
+					text_variable = tags[i];
+					jQuery('#tags_box').append( '<option value="'+text_variable+'" selected=selected>'+text_variable+'</option>' );
+				});
+				jQuery('#tags_box').append('</optgroup>');
 			}
-		});		
-		//END COPY*/
 
-		//change_status(secundosRemainingFromPHP);
-		//alert("secundosRemainingFromPHP");
-		//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
-		
-		if(secundosRemainingFromPHP<0)
-			secundosRemainingFromPHP*=-1;
-		//alert(secundosRemainingFromPHP);
-		if(status_box.value=="pending") {
-			//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
-			if(secundosRemainingFromPHP) {
-				//pomodoroTime = 18000;
-				//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
-				if(secundosRemainingFromPHP>pomodoroTime) {
-					secondsRemaining = pomodoroTime;
-					delete_model(postReturned['ID']);
-					change_status("Você perdeu um pomodoro na última sessão. Você iniciou esse pomodoro há " + Math.round(((secundosRemainingFromPHP/60)/60)) + " horas.");	
-				} else {
-					secondsRemaining = pomodoroTime-secundosRemainingFromPHP;
-					//alert(secondsRemaining + " d " + pomodoroTime);
-					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
-					change_status("Você fechou o navegador com o pomodoro rolando, já se passaram " + Math.round(secundosRemainingFromPHP/60) + " minutos");	
-					
-					//alert(secondsRemaining);
-					start_clock();
+			tags_list = postReturned['tags_total'];
+			//alert(tags_list);
+			if(tags_list) {
+				jQuery('#tags_box').append('<optgroup label="'+txt_available+'">');
+				jQuery.each(tags_list, function(i) {
+					text_variable = tags_list[i];
+					jQuery('#tags_box').append( '<option value="'+text_variable+'">'+text_variable+'</option>' );
+				});
+				jQuery('#tags_box').append('</optgroup>');
+			}
+			jQuery('#tags_box').select2({
+				tags: true,
+				//closeOnSelect: false,
+				//maximumSelectionLength: 3,
+				//createSearchChoice: true,
+				tokenSeparators: [","],
+				placeholder: function() {
+					jQuery(this).data('placeholder');
 				}
-				//alert(secondsRemaining);
-			}
-		} else if (status_box.value=="draft") {
-			//secondsRemaining = pomodoroTime;
+			});
+			//change_status(secundosRemainingFromPHP);
+			//alert("secundosRemainingFromPHP");
+			//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
+			
+			if(secundosRemainingFromPHP<0)
+				secundosRemainingFromPHP*=-1;
+			//alert(secundosRemainingFromPHP);
+			if(status_box.value=="pending") {
+				//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
+				if(secundosRemainingFromPHP) {
+					//pomodoroTime = 18000;
+					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
+					if(secundosRemainingFromPHP>pomodoroTime) {
+						secondsRemaining = pomodoroTime;
+						delete_model(postReturned['ID']);
+						change_status(txt_time_losted + Math.round(((secundosRemainingFromPHP/60)/60)) + txt_hours_ago);	
+					} else {
+						secondsRemaining = pomodoroTime-secundosRemainingFromPHP;
+						//alert(secondsRemaining + " d " + pomodoroTime);
+						//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
+						change_status(txt_time_found + Math.round(secundosRemainingFromPHP/60) + txt_minutes);
+						
+						//alert(secondsRemaining);
+						start_clock();
+					}
+					//alert(secondsRemaining);
+				}
+			} else if (status_box.value=="draft") {
+				//secondsRemaining = pomodoroTime;
 
-			//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
-			//change_status("...");	
-		}
-		document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
+				//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
+				//change_status("...");	
+			}
+			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 		}
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
@@ -251,12 +183,8 @@ function load_initial_data() {
 }
 
 function update_pomodoro_clipboard (post_stts) {
-	//alert("update_pomodoro_clipboard");
-	//if(!title_box.value==undefined) { nao precisa porque só chama quando alterar o título
-	//change_status("Salvando modificações feitas na tarefa atual...");
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
-
 	var data = {
 		action: 'update_pomo',
 		post_titulo: title_box.value,
@@ -281,7 +209,7 @@ function update_pomodoro_clipboard (post_stts) {
 	jQuery.post(ajaxurl, data, function(response) {
 		rex = response.split("$^$ ");
 		change_status("Os dados foram salvados " + rex[0]);
-		alert(response['ID']);
+		//alert(response['ID']);
 		status_box.value = rex[1];
 		data_box.value = rex[2].slice(0, -1);
 		//title_box.value = rex[0];
@@ -349,9 +277,9 @@ function countdown_clock (){
 function complete() {
 	//is_interrupt_button = false;
 	pomodoro_completed_sound.play();
-	update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
+	//update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
-	changeTitle("Pomodoro completado!");
+	//changeTitle(txt_title_done);
 	if(is_pomodoro) {
 		turn_on_pomodoro_indicator(pomodoro_actual);
 		savepomo();
@@ -362,7 +290,7 @@ function complete() {
 			change_button(textBigRest, "#0F0F0F");
 			change_status(txt_bigrest_countdown, "suc");
 			secondsRemaining=bigRestTime;
-			changeTitle("GRANDE DESCANSO");
+			changeTitle(txt_title_big_rest);
 			reset_indicators_display();
 		} else {
 			//normal rest
@@ -370,14 +298,14 @@ function complete() {
 			change_button(textRest, "#0F0F0F");
 			change_status(txt_normalrest_countdown, "suc");
 			secondsRemaining=restTime;
-			changeTitle("Hora do intervalo");
+			changeTitle(txt_title_rest);
 		}
 	} else {
 		change_button(textPomodoro, "#0F0F0F");
 		change_status(txt_completed_rest, "er");
 		is_pomodoro=true;
 		secondsRemaining=pomodoroTime;
-		changeTitle("Pomodoro completado!");
+		changeTitle(txt_title_done);
 	}
 }
 
@@ -447,7 +375,6 @@ function interrupt() {
 	//alert(pomodoroTime);
 	//is_interrupt_button=false;
 	//if(!is_pomodoro)is_pomodoro=true;
-	
 }
 
 //Auxiliar function to countdown_clock() function
@@ -489,7 +416,7 @@ function reset_pomodoro_session() {
 	session_reseted_sound.play();
 	reset_indicators_display();
 	//changeTitle("Sessão de pomodoros reiniciada...");
-	change_status("Pronto, sessão reiniciada. O sistema está pronto para uma nova contagem!");
+	change_status(txt_session_reseted);
 }
 
 //Function to "light" one pomodoro
@@ -586,13 +513,8 @@ function flip (upperId, lowerId, changeNumber, pathUpper, pathLower){
 
 //The real life at pomodoros: jQuery calling php function on functions.php
 function savepomo() {
-	
-
-	//change_status(txt_salving_progress);//EXCESSIVE	
-	
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
-	
 	//TODO: verificar se o último post publicado já faz mais que pomodoroTime (25min), evitando flood e 2 navegadores abertos
 	var data = {
 		action: 'save_progress',
@@ -605,9 +527,9 @@ function savepomo() {
 
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response)		
-		change_status(txt_save_success);
+		change_status(txt_save_success, "suc");
 		else
-		change_status(txt_save_error);
+		change_status(txt_save_error, "er");
 		/*Append the fresh completed pomodoro at the end of the list, simulating the data
 		var d=new Date();
 		data = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getUTCHours()+":"+d.getUTCMinutes()+":"+d.getUTCSeconds();//new Date(year, month, day, hours, minutes, seconds);
@@ -644,30 +566,30 @@ function save_model () {
 	});
 }
 
-function delete_model(qualmodelo) {
-	//PHP deletar post qualmodelo
+function delete_model(task_model_id) {
+	//PHP deletar post task_model_id
 	change_status(txt_deleting_model);
 	var data = {
 		action: 'save_modelnow',
-		post_para_deletar: qualmodelo
+		post_para_deletar: task_model_id
 	};
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response) {
 			change_status(txt_deleting_model_sucess);
-			jQuery("#modelo-carregado-"+qualmodelo).remove();
+			jQuery("#modelo-carregado-"+task_model_id).remove();
 		} else {
 			change_status(txt_save_error);
 		}
 	});
 }
 
-function load_model(qualmodelo) {
-	//alert(jQuery("#bxtitle"+qualmodelo).text());
-	jQuery("#title_box").val(jQuery("#bxtitle"+qualmodelo).text());
-	jQuery("#description_box").val(jQuery("#bxcontent"+qualmodelo).text());
+function load_model(task_model_id) {
+	//alert(jQuery("#bxtitle"+task_model_id).text());
+	jQuery("#title_box").val(jQuery("#bxtitle"+task_model_id).text());
+	jQuery("#description_box").val(jQuery("#bxcontent"+task_model_id).text());
 	
-	if(jQuery("#bxtag"+qualmodelo))
-	jQuery("#tags_box").val(jQuery("#bxtag"+qualmodelo).text());
+	if(jQuery("#bxtag"+task_model_id))
+	jQuery("#tags_box").val(jQuery("#bxtag"+task_model_id).text());
 	else
 	jQuery("#tags_box").val("");
 	
@@ -676,12 +598,12 @@ function load_model(qualmodelo) {
 }
 
 //Change the <title> of the document
-function changeTitle (novotity) {
-	if(!novotity) {
+function changeTitle (newtit) {
+	if(!newtit) {
 		var task_name = document.getElementById('title_box');
 		document.title = Math.round(m1)+""+Math.round(m2)+":"+s1+""+s2 + " - " + task_name.value;
 	} else {
-		document.title = novotity;
+		document.title = newtit;
 	}
 }
 
@@ -700,14 +622,60 @@ function getRadioCheckedValue(radio_name){
 
 
 //Sound configuration
-soundManager.url = 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/assets/soundmanager2.swf';
-soundManager.onready(function() {
-	// Ready to use; soundManager.createSound() etc. can now be called.
-	active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
-	//active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/77711__sorohanro__solo-trumpet-06in-f-90bpm.mp3',});
-	pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3',});
-	session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
-});
-soundManager.onerror = function() {alert(txt_sound_error+"...");}
-
+function startSoundMan() {
+	soundManager.url = 'https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/assets/soundmanager2.swf';
+	soundManager.onready(function() {
+		// Ready to use; soundManager.createSound() etc. can now be called.
+		active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
+		//active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/77711__sorohanro__solo-trumpet-06in-f-90bpm.mp3',});
+		pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3',});
+		session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
+	});
+	soundManager.onerror = function() {alert(txt_sound_error+"...");}
+}
 //
+//
+var grupoDeComandos = [{
+	    indexes:["iniciar", "focar", "começar", "interromper"], // These spoken words will trigger the execution of the command
+	    action:function(){ // Action to be executed when a index match with spoken word
+	        artyom.say("Pois não");//era: comando recebido
+	        action_button();
+	    }
+	},
+];
+
+var groupOfCommands = [{
+	    indexes:["start", "focus", "begin", "interrupt", "stop"], // These spoken words will trigger the execution of the command
+	    action:function(){ // Action to be executed when a index match with spoken word
+	        artyom.say("Ok");
+	        action_button();
+	    }
+	},
+];
+
+// This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
+function startContinuousArtyom(){
+    artyom.fatality();// use this to stop any of
+    //
+    if(data_from_php.php_locale=="pt_BR")
+    	artyom_lang = "pt-PT";
+    else
+    	artyom_lang = "en-US";
+    //
+    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
+         artyom.initialize({
+            lang:artyom_lang,// A lot of languages are supported. Read the docs !
+            continuous:true,// Artyom will listen forever
+            listen:true, // Start recognizing
+            debug:true, // Show everything in the console
+            speed:1 // talk normally
+        }).then(function(){
+            console.log("Ready to work !");
+        });
+    },250);
+    //
+    if(data_from_php.php_locale=="pt_BR")
+    	artyom.addCommands(grupoDeComandos);
+    else
+    	artyom.addCommands(groupOfCommands);
+}

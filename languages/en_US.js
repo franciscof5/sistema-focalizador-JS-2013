@@ -10,7 +10,7 @@ var textInterrupt = "INTERRUPT";
 var txt_mat_introducing = "Hello, my name is Foca, and I am here to help, write down the task you are working on and click on FOCAR!";
 var txt_loading_initial_data = "Dowloading your data...";
 var txt_mat_load_return = "I loaded the last activity from your, just hit FOCUS button and start to work. Last session was ";
-var txt_started_countdown = "Timmer started!";
+var txt_started_countdown = "Timer started for task ";
 var txt_salving_pomodoros = "Saving progress...";
 var txt_interrupted_countdowns = "Timmer stopped, restart it when you are ready!";
 //var txt_interrupted_rest = "Descanso interrompido! Isso não é uma boa idéia!";
@@ -22,6 +22,19 @@ var txt_bigrest_countdown = "You reached a hole session of 4 pomodoros, that's g
 var txt_sound_error = "Error trying to reproduce sounds, the visual alert is enabled!";
 var txt_save_success = "Progress saved with success!";
 var txt_save_error = "Error establishing connection, are you connected to internet?";
+var txt_update_current_task = "Saving changes...";
+var txt_no_task_found = "No task found";
+var txt_time_losted = "You lost last session time";
+var txt_hours_ago = " hours ago";
+var txt_time_found = "Time recovered, setting ";
+var txt_minutes = " minutes";
+var txt_session_reseted = "Session reseted";
+
+//titles
+var txt_title_done = "Pomodoro done!";
+var txt_title_rest = "Rest Time";
+var txt_title_big_rest = "BIG REST";
+
 
 //Frases da interface do painel
 var txt_write_task_title = "Task title:";
@@ -41,6 +54,8 @@ var txt_sidebar_projects = "Your projects";
 var txt_register = "Register";
 var txt_login = "Login";
 var txt_logout = "Logout";
+var txt_in_use = "In Use";
+var txt_available = "Available";
 
 //Registration
 var txt_register_heading = "Use your facebook or create a free account";

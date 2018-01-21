@@ -159,21 +159,42 @@ function load_scritps() {
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
 
-	if(function_exists("qtranxf_getLanguage")){
-	   if(qtranxf_getLanguage() == "en")
-		$filelang="en.js";
-	   else if(qtranxf_getLanguage() == "pt")
-		$filelang="pt-br.js";
-	} else {
+	//if(function_exists("qtranxf_getLanguage")){
+	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	//echo $locale;die;
+
+	if($locale!="pt_BR" || $locale!="en_US")
+		$filelang = "en_US.js";
+	else
+		$filelang = $locale.".js";
+	
+		
+	   //if(qtranxf_getLanguage() == "en")
+		//$filelang="en.js";
+	   //else if(qtranxf_getLanguage() == "pt")
+		//$filelang="pt-br.js";
+	//} else {
 		//If the function doesnt exists then call the default language
-		$filelang="pt-br.js";
-	}
+		//$filelang="pt-br.js";
+	//}
 
 	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
 
+	// Register the script
+	//wp_register_script( 'some_handle', 'path/to/myscript.js' );
 	wp_register_script("pomodoros-js", get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro-functions.js", __FILE__);
 
-	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
+	// Localize the script with new data
+	$translation_array = array(
+		'php_locale' => $locale,
+	);
+	wp_localize_script( 'pomodoros-js', 'data_from_php', $translation_array );
+
+	// Enqueued script with localized data.
+	wp_enqueue_script( 'pomodoros-js' );
+
+	//
+	wp_enqueue_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
 }
 
 #get_projectimer_tags_COPY();

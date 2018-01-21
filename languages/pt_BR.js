@@ -30,6 +30,18 @@ var txt_salving_model_task_null = "Sou eu que preciso de óculos ou você não e
 var txt_loading_model = "Economia de tempo é comigo, configurei a tarefa com base no modelo escolhido, hora de produzir!";
 var txt_deleting_model = "Concluido o modelo...";
 var txt_deleting_model_sucess = "Seu modelo foi concluído, se você terminou uma tarefa meus parabéns!";
+var txt_update_current_task = "Salvando modificações...";// feitas na tarefa atual";
+var txt_no_task_found = "Não encontrei nenhuma tarefa iniciada";
+var txt_time_losted = "Você perdeu um pomodoro na última sessão ";
+var txt_hours_ago = " horas atrás";
+var txt_time_found = "Tempo recuperado, ajustado para ";
+var txt_minutes = " minutos";
+var txt_session_reseted = "Sessão reiniciada";
+
+//titles
+var txt_title_done = "Pomodoro completado!";
+var txt_title_rest = "Hora do intervalo";
+var txt_title_big_rest = "GRANDE DESCANSO";
 
 //Frases da interface do painel
 var txt_write_task_title = "Tarefa:";
@@ -49,6 +61,8 @@ var txt_sidebar_projects = "Seus projetos";
 var txt_register = "Registre-se";
 var txt_login = "Entrar";
 var txt_logout = "Sair";
+var txt_in_use = "Em Uso";
+var txt_available = "Disponível";
 
 //Registro
 var txt_register_heading = "Conecte pelo facebook ou crie uma conta";
