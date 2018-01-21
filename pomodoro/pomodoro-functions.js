@@ -666,7 +666,7 @@ function startContinuousArtyom(){
     else
     	artyom_lang = "en-US";
     //
-    setInterval(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
+    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
          artyom.initialize({
             lang:artyom_lang,// A lot of languages are supported. Read the docs !
             continuous:true,// Artyom will listen forever
@@ -677,7 +677,7 @@ function startContinuousArtyom(){
         }).then(function(){
             console.log("Ready to work !");
         });
-    },2500);
+    },250);
     //
     if(data_from_php.php_locale=="pt_BR")
     	artyom.addCommands(grupoDeComandos);
