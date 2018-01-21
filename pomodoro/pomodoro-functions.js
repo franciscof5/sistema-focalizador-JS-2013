@@ -686,15 +686,14 @@ function startContinuousArtyom(){
 
     artyom.addCommands(groupSwith);
 
-    artyom.when("COMMAND_RECOGNITION_END",function(status){
+    /*artyom.when("COMMAND_RECOGNITION_END",function(status){
 	          startContinuousArtyom();
 	   
 	});
 	artyom.when("SPEECH_SYNTHESIS_END",function(){
 	          startContinuousArtyom();
 	    
-	});
-
+	});*/
 }
 
 
