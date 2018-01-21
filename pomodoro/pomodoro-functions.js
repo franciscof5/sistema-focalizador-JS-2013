@@ -692,11 +692,9 @@ function startContinuousArtyom(){
 	        startContinuousArtyom();
 	    }
 	});
-	artyom.when("SPEECH_SYNTHESIS_END",function(status){
-	    if(status.code == "continuous_mode_enabled"){
-	        console.info("Command reconition finalized, restarting because the continuous mode is enabled");
-	        startContinuousArtyom();
-	    }
+	artyom.when("SPEECH_SYNTHESIS_END",function(){
+	          startContinuousArtyom();
+	    
 	});
 
 }
