@@ -75,14 +75,14 @@ function startContinuousArtyom(){
 }
 
 jQuery(document).ready(function ($) {
-	artyom = new Artyom();
-
 	/*artyom.initialize({
 	    lang:"pt-PT",
 	});*/
+	artyom = new Artyom();
 	startContinuousArtyom();
 	//
 	change_status(txt_loading_initial_data);
+	//
 	load_initial_data();
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining);
@@ -403,8 +403,8 @@ function stop_clock() {
 //Function to show status warnings at bottom of the clock
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	//if(artyom)
-	//artyom.say(txt);
+	if(artyom)
+	artyom.say(txt);
 	if(typeof stts=="undefined")
 		alertify.log(txt);
 	else if(stts=="suc")
