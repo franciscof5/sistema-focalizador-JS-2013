@@ -159,7 +159,7 @@ function load_scritps() {
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
 
-	//if(function_exists("qtranxf_getLanguage")){
+	if(function_exists("locale_accept_from_http"))
 	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	//echo $locale;die;
 
@@ -187,7 +187,7 @@ function load_scritps() {
 		$locale=$user_lang_pref;
 	}
 	$filelang = $locale.".js";
-	
+
 	//if(qtranxf_getLanguage() == "en")
 		//$filelang="en.js";
 	   //else if(qtranxf_getLanguage() == "pt")
