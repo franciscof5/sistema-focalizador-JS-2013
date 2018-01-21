@@ -160,7 +160,9 @@ function load_scritps() {
 	//inter8
 
 	if(function_exists("locale_accept_from_http"))
-	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+		$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	else
+		$locale = "pt_BR";
 	//echo $locale;die;
 
 	

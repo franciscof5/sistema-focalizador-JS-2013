@@ -332,8 +332,8 @@ function stop_clock() {
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
 	if(artyom) {
-		artyom.fatality();
-		artyom.say(txt);
+		//artyom.fatality();
+		//artyom.say(txt);
 	}
 	
 	if(typeof stts=="undefined")
