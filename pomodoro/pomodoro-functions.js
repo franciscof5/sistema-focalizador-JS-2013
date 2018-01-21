@@ -439,12 +439,11 @@ function interrupt() {
 	//flip_number();
 	change_button(textPomodoro, "#0F0F0F");
 	//
-
+	stop_clock();
 	//secondsRemaining=0;
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining); //ALWASY 25 MIN WHEN INTERRUPT
-
-	stop_clock();
+	flip_number(secondsRemaining);
 	//alert(pomodoroTime);
 	//is_interrupt_button=false;
 	//if(!is_pomodoro)is_pomodoro=true;
