@@ -216,6 +216,7 @@ function load_scritps() {
 	$translation_array = array(
 		'php_locale' => $locale,
 	);
+	
 	wp_localize_script( 'pomodoros-js', 'data_from_php', $translation_array );
 
 	// Enqueued script with localized data.

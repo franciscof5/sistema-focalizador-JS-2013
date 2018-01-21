@@ -30,7 +30,7 @@
 	var interval_clock=false;
 
 	//
-	var artyom;
+	var artyom = new Artyom();
 
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
@@ -40,7 +40,7 @@
 
 jQuery(document).ready(function ($) {
 	//Voice recon and speech JS
-	artyom = new Artyom();
+	
 	startContinuousArtyom();
 	//Sound library for Sound FX 
 	startSoundMan();
@@ -240,7 +240,7 @@ function action_button() {
 
 //Start countdown
 function start_clock() {
-	//active_sound.play();
+	active_sound.play();
 	//TODO: post_status="future;"
 	interval_clock = setInterval('countdown_clock()', intervalMiliseconds);
 
@@ -276,8 +276,8 @@ function countdown_clock (){
 //This is the reason of all the code, the time when user complete a pomodoro, these satisfaction!
 function complete() {
 	//is_interrupt_button = false;
-	//pomodoro_completed_sound.stop();
-	//pomodoro_completed_sound.play();
+	pomodoro_completed_sound.stop();
+	pomodoro_completed_sound.play();
 	//update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
 	//changeTitle(txt_title_done);
