@@ -217,10 +217,10 @@ function load_scritps() {
 	wp_localize_script( 'pomodoros-js', 'data_from_php', $translation_array );
 
 	// Enqueued script with localized data.
-	wp_enqueue_script( 'pomodoros-js' );
+	//wp_enqueue_script( 'pomodoros-js' );
 
 	//
-	wp_enqueue_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
+	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
 }
 
 #get_projectimer_tags_COPY();

@@ -276,6 +276,7 @@ function countdown_clock (){
 //This is the reason of all the code, the time when user complete a pomodoro, these satisfaction!
 function complete() {
 	//is_interrupt_button = false;
+	pomodoro_completed_sound.stop();
 	pomodoro_completed_sound.play();
 	//update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
@@ -332,8 +333,8 @@ function stop_clock() {
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
 	if(artyom) {
-		//artyom.fatality();
-		//artyom.say(txt);
+		artyom.shutUp();
+		artyom.say(txt);
 	}
 	
 	if(typeof stts=="undefined")
@@ -672,6 +673,7 @@ function startContinuousArtyom(){
             listen:true, // Start recognizing
             debug:true, // Show everything in the console
             speed:1 // talk normally
+            //name: "pomodoros"
         }).then(function(){
             console.log("Ready to work !");
         });
@@ -681,4 +683,27 @@ function startContinuousArtyom(){
     	artyom.addCommands(grupoDeComandos);
     else
     	artyom.addCommands(groupOfCommands);
+
+    artyom.addCommands(groupSwith);
+
+    artyom.when("COMMAND_RECOGNITION_END",function(status){
+	    if(status.code == "continuous_mode_enabled"){
+	        console.info("Command reconition finalized, restarting because the continuous mode is enabled");
+	        startContinuousArtyom();
+	    }
+	});
+
 }
+
+
+var groupSwith = [{
+    // note that if you're in spanish for example
+    // the command should be instead : "Iniciar en ingles, Iniciar en alemán" etc...
+    indexes:["switch to portuguese","switch to english"],
+    action: function(i){
+        switch(i){
+            case 0: start("pt-PT"); break;
+            case 1: start("en-US"); break;
+        }
+    }
+}];
