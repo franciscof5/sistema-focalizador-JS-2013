@@ -58,7 +58,7 @@ var myGroup = [
 
 // This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
 function startContinuousArtyom(){
-    artyom.fatality();// use this to stop any of
+    //artyom.fatality();// use this to stop any of
 
     setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
          artyom.initialize({
