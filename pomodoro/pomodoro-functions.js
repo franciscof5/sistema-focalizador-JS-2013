@@ -335,7 +335,14 @@ function change_status(txt, stts) {
 	console.log("change_status: " + txt);
 	if(artyom) {
 		artyom.shutUp();
-		artyom.say(txt);
+		artyom.say(txt, {
+			onStart() {
+		        window.artyom.dontObey();
+		    },
+		    onEnd() {
+		        window.artyom.obey();
+		    }
+		});
 	}
 	
 	if(typeof stts=="undefined")
