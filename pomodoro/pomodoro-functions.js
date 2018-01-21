@@ -77,9 +77,9 @@ function startContinuousArtyom(){
 jQuery(document).ready(function ($) {
 	artyom = new Artyom();
 
-	artyom.initialize({
+	/*artyom.initialize({
 	    lang:"pt-PT",
-	});
+	});*/
 	startContinuousArtyom();
 	//
 	change_status(txt_loading_initial_data);
