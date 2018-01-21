@@ -193,6 +193,8 @@ function load_scritps() {
 	if($user_lang_pref!=$locale) {
 		$locale=$user_lang_pref;
 	}
+	if($locale=="")
+		$locale=="en_US";
 	$filelang = $locale.".js";
 
 	//if(qtranxf_getLanguage() == "en")
