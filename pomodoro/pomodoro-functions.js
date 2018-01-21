@@ -58,7 +58,7 @@ var myGroup = [
 
 // This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
 function startContinuousArtyom(){
-    //artyom.fatality();// use this to stop any of
+    artyom.fatality();// use this to stop any of
 
     setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
          artyom.initialize({
@@ -403,8 +403,8 @@ function stop_clock() {
 //Function to show status warnings at bottom of the clock
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	if(artyom)
-	artyom.say(txt);
+	//if(artyom)
+	//artyom.say(txt);
 	if(typeof stts=="undefined")
 		alertify.log(txt);
 	else if(stts=="suc")
