@@ -30,6 +30,7 @@
 	var interval_clock=false;
 
 	//
+	var artyom;
 
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
@@ -39,6 +40,11 @@
 //function check_for_running_pomodoro () {};
 
 jQuery(document).ready(function ($) {
+	// const artyom = require("artyom.js");
+	artyom = new Artyom();
+	artyom.initialize({
+	    lang:"pt-PT",
+	});
 	//
 	change_status(txt_loading_initial_data);
 	load_initial_data();
@@ -63,6 +69,9 @@ jQuery(document).ready(function ($) {
 	// Enable wake lock.
 	// (must be wrapped in a user input event handler e.g. a mouse or touch handler)
 	document.addEventListener('click', enableNoSleep, false);
+	//
+	// Or if installed from NPM to use with a bundler
+	//import Artyom from "artyom.js"
 	
 	/*var noSleep = new NoSleep();
 	function enableNoSleep() {
@@ -275,7 +284,7 @@ function start_clock() {
 	if(is_pomodoro) {
 		change_button(textInterrupt, "#006633");//Chage button to "interrupt"
 		update_pomodoro_clipboard("pending");
-		change_status(txt_started_countdown);
+		change_status(txt_started_countdown + jQuery("#title_box").val());
 	} else {
 		change_button(textInterrupt, "#990000");//Chage button to "interrupt"
 		change_status(txt_normalrest_countdown);
@@ -358,7 +367,8 @@ function stop_clock() {
 //Function to show status warnings at bottom of the clock
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	
+	if(artyom)
+	artyom.say(txt);
 	if(typeof stts=="undefined")
 		alertify.log(txt);
 	else if(stts=="suc")

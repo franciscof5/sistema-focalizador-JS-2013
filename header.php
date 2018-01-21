@@ -1,6 +1,5 @@
-<!DOCTYPE html <?php language_attributes(); ?>>
+<!DOCTYPE html>
 
-<!--html xmlns="http://www.w3.org/1999/xhtml"-->
 	<head profile="http://gmpg.org/xfn/11">
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
@@ -32,11 +31,13 @@
 		<!--link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'-->
 		<?php wp_head(); ?>
 
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-</head>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+	</head>
 
 
 <body <?php #body_class() ?> id="bp-default22">
+
+<!--div id="audio"></div-->
 
 <span id='linha-fundo'></span>
 <div id="wrapper" class="container-fluid content">
