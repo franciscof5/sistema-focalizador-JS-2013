@@ -175,13 +175,16 @@ function load_scritps() {
 			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "en_US" );
 		}
 	} else {*/
-	if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
-		$user_lang_pref="pt_BR";
-		update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
-	} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
-		$user_lang_pref="en_US";
-		update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+	if($_GET) {
+		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
+			$user_lang_pref="pt_BR";
+			update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
+			$user_lang_pref="en_US";
+			update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+		}
 	}
+	
 
 	if($user_lang_pref!=$locale) {
 		$locale=$user_lang_pref;

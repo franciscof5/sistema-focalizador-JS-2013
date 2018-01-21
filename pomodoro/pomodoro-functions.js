@@ -10,7 +10,7 @@
 	var intervalMiliseconds = 1000;
 
 	//for testing
-	pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
+	//pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
 
 	//Dynamic clock var
 	//var is_interrupt_button;
@@ -331,8 +331,11 @@ function stop_clock() {
 //Function to show status warnings at bottom of the clock
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	if(artyom)
-	artyom.say(txt);
+	if(artyom) {
+		artyom.fatality();
+		artyom.say(txt);
+	}
+	
 	if(typeof stts=="undefined")
 		alertify.log(txt);
 	else if(stts=="suc")
