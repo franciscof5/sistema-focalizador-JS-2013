@@ -39,11 +39,12 @@
 
 
 jQuery(document).ready(function ($) {
+	//Sound library for Sound FX 
+	startSoundMan();
 	//Voice recon and speech JS
 	
 	startContinuousArtyom();
-	//Sound library for Sound FX 
-	startSoundMan();
+	
 	//
 	change_status(txt_loading_initial_data);	
 	load_initial_data();//
