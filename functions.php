@@ -168,6 +168,8 @@ function load_scritps() {
 	
 
 	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
+	if($user_lang_pref=="")
+		$user_lang_pref="pt_BR";
 	//var_dump($user_lang_pref);
 	/*if($user_lang_pref) {
 		//var_dump($user_lang_pref);die;
