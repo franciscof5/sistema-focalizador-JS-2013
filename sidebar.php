@@ -71,6 +71,8 @@
 
 	show_lang_options(true);
 
+	the_widget("cp_pointsWidget", "title=Pontuacao", 'before_title=<h3 class="widget-title">&after_title=</h3>');
+
 	dynamic_sidebar( 'geral' ); ?>
 
 <?php
