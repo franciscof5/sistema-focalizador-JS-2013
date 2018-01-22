@@ -4,7 +4,8 @@
 var textPomodoro = "FOCUS";
 var textRest = "REST";
 var textBigRest = "BIR REST";
-var textInterrupt = "INTERRUPT";
+var textInterruptFocus = "INTERRUPT";
+var textInterruptRest = "STOP REST";
 
 //Mat status
 var txt_mat_introducing = "Hello, my name is Foca, and I am here to help, write down the task you are working on and click on FOCAR!";

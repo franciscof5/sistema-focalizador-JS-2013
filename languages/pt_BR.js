@@ -4,7 +4,8 @@
 var textPomodoro = "FOCAR!";
 var textRest = "DESCANSAR!";
 var textBigRest = "GRANDE DESCANSO";
-var textInterrupt = "INTERROMPER";
+var textInterruptFocus = "INTERROMPER";
+var textInterruptRest = "PARAR DESCANSO";
 
 //Frases de status do Mate
 var txt_mat_introducing = "Olá, eu sou o foca Loggo, estou aqui para te ajudar, escreva a tarefa que irá realizar e clique em FOCAR!"

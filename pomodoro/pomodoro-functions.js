@@ -243,11 +243,11 @@ function start_clock() {
 
 	//is_pomodoros is when using 25min for focusing
 	if(is_pomodoro) {
-		change_button(textInterrupt, "#006633");//Chage button to "interrupt"
+		change_button(textInterruptFocus, "#006633");//Chage button to "interrupt"
 		update_pomodoro_clipboard("pending");
 		change_status(txt_started_countdown + jQuery("#title_box").val());
 	} else {
-		change_button(textInterrupt, "#990000");//Chage button to "interrupt"
+		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
 	}
 }
