@@ -53,11 +53,16 @@ principal dark color: #096;
 }
 
 .posttitle, .widget-title {
-	font-family: Forte;
-	font-weight: 500 !important;
+	/*font-family: Forte;**/
+	font-family: "Helvetica Neue",​ Helvetica, ​Arial,​sans-serif;
+	
+	font-weight: 700 !important;
+	color: 	rgb(51,​ 51,​ 51);
+
 }
 .widget-title {
-	font-size: 18px !important;
+	margin-top: 10px;
+	font-size: 14px !important;
 }
 .posttitle a {
 	color: #333 !important;
@@ -104,9 +109,9 @@ img.avatar {
 		padding: 4px 8px;
 		font-size: 12px;
 		clear: left;
-                border-top: 1px solid #ccc;
-                color: #111;
-                font-weight: bold;
+        /*border-top: 1px solid #ccc;*/
+        color: #111;
+        font-weight: bold;
 	}
 .sidebar {background: rgba(255,255,255, 0.8);/*border-radius:15px !important;*/}
 .sidebar li {width: 100%;clear: both;}
@@ -148,13 +153,13 @@ img.avatar {
 	color: #FFF !important;*/
 }
 .button {
-	padding: 10px 15px  !important;
+	padding: 5px 15px  !important;
 	font-weight: bold  !important;
 	font-size: 15px  !important;
 	text-transform: uppercase  !important;
 	background: #333 !important;
 	color: #FFF !important;
-	font-family: Forte;
+	/*font-family: Forte;*/
 }
 .woocommerce-breadcrumb, .related {
 	display: none;
@@ -184,10 +189,11 @@ img.avatar {
 }
  
 #pomopainel {
-	background: rgba(255,255,255, 0.8);
+	/*background: rgba(255,255,255, 0.8);
 	padding: 20px 22px;
 	margin-top: 30px;
-	border-radius: 15px;
+	border-radius: 15px;*/
+	margin-top: 10px;
 }
 #secondsRemaining_box{width: 50px;text-align: center;background: transparent;border: none; float:left;}
 
@@ -819,14 +825,12 @@ div#sidebar {
         border-right: 1px solid #d8dee9;*/
 }	
 	div#sidebar-me {
-		height: 60px;
+		margin: 10px 0;
 		
 	}
 		/*clear: both;*/
 	
-	div#sidebar-me h4 {
-		padding-top: 20px;
-	}
+
 	/*.qtranxs_widget {
 		float: left;
 	    /*margin: -36px 12px 0 0;*

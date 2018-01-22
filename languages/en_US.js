@@ -50,9 +50,9 @@ var txt_write_task_model = "TODO list";
 var txt_write_task_model_desc = "You can save your tasks for later";
 
 //Frases da interface do painel
-var txt_write_task_title = "Task title:";
+var txt_write_task_title = "Task";
 var txt_write_task_desc = "Notes";
-var txt_write_task_tags = "Project or discipline:";
+var txt_write_task_tags = "Project tags";
 var txt_write_task_category = "What kind of taks is that?";
 var txt_write_task_privacy = "Privacy";
 var txt_last_pomodoros_heading = "20 last pomodoros:";

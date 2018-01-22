@@ -67,12 +67,16 @@
 		</div>
 	<?php endif; ?>
 
-	
+		
 
 
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 	<hr style="clear: both" />
+
+	<?php show_lang_options(); ?>
+
+	<?php show_most_recent_task(); ?>
 
 	<?php
 	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;

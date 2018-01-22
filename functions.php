@@ -158,13 +158,14 @@ function load_scritps() {
 	
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
-
+	global $locale;
 	if(function_exists("locale_accept_from_http"))
 		$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	else
 		$locale = "pt_BR";
 	//echo $locale;die;
-
+	if($locale=="")
+		$locale=="en_US";
 	
 
 	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
@@ -193,10 +194,10 @@ function load_scritps() {
 	if($user_lang_pref!=$locale) {
 		$locale=$user_lang_pref;
 	}
-	if($locale=="")
-		$locale=="en_US";
+	
 	$filelang = $locale.".js";
-
+	
+	#var_dump($filelang."#");
 	//if(qtranxf_getLanguage() == "en")
 		//$filelang="en.js";
 	   //else if(qtranxf_getLanguage() == "pt")
@@ -224,6 +225,46 @@ function load_scritps() {
 
 	//
 	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
+}
+
+function show_lang_options() {
+	global $locale;
+	
+	if($locale!="en" && $locale!="en_US") { ?>
+		<h3 class="widget-title">Change Language</h3>
+		<a href="?lang=en_US">English</a>
+	<?php } else { ?>
+		<h3 class="widget-title">Mudar Idioma</h3>
+		<a href="?lang=pt_BR">Português</a>
+	<?php }
+}
+
+function show_most_recent_task() { ?>
+	<h3 class="widget-title">Tarefa recente</h3>
+	<?php if(is_user_logged_in()) {
+		$current_user = wp_get_current_user(); 
+		$args = array(
+		              'post_type' => 'projectimer_focus',
+		              'post_status' => 'draft',
+		              'author'   => get_current_user_id(),
+
+		              'posts_per_page' => 1,
+		            );
+		$recent = get_posts($args);
+		if( $recent ){
+		  $title = ", sua tarefa mais recente é <i>".get_the_title($recent[0]->ID)."</i>";
+		}else{
+		  $title = ", você ainda não começou nenhuma tarefa"; //No published posts
+		} 
+		$msg_saudacao = "Olá ".$current_user->display_name." ".$title.", <a href=/focar>acessar aplicativo online e focar</a>";
+	} else {
+		$msg_saudacao = "Caro visitante, <a href=/register>crie sua conta GRÁTIS</a> para acessar o aplicativo online";
+		$msg_saudacao2 = "Se já possui um usuário, <a id=testes href=# class=abrir_login>acesse sua conta</a>";
+	} 
+			
+	echo $msg_saudacao;
+	if(isset($msg_saudacao2))
+	echo $msg_saudacao2;
 }
 
 #get_projectimer_tags_COPY();
@@ -770,6 +811,7 @@ register_sidebar( array(
 function create_post_type() {
 	createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN();
 }
+
 function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	
 	if ( ! post_type_exists( "projectimer_focus" ) ) {

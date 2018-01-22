@@ -127,6 +127,7 @@ function load_initial_data() {
 				//closeOnSelect: false,
 				//maximumSelectionLength: 3,
 				//createSearchChoice: true,
+				width: '100%',
 				tokenSeparators: [","],
 				placeholder: function() {
 					jQuery(this).data('placeholder');
@@ -335,14 +336,14 @@ function change_status(txt, stts) {
 	console.log("change_status: " + txt);
 	if(artyom) {
 		artyom.shutUp();
-		artyom.say(txt, {
+		/*artyom.say(txt, {
 			onStart() {
 		        window.artyom.dontObey();
 		    },
 		    onEnd() {
 		        window.artyom.obey();
 		    }
-		});
+		});*/
 	}
 	
 	if(typeof stts=="undefined")

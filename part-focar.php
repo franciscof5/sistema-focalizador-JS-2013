@@ -56,16 +56,20 @@
 		<br />
 
 		<form name="pomopainel" id="pomopainel">
-			<label><script>document.write(txt_write_task_title)</script></label><br />
-			<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33"></input><br />
+		 	<div class="form-group">
+				<label><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> <script>document.write(txt_write_task_title)</script></label><br />
+				<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33" class="form-control"></input>
+			</div>
 			
-			<label><script>document.write(txt_write_task_tags)</script></label>
+			<div class="form-group">
+				<label><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <script>document.write(txt_write_task_tags)</script></label>
+				<select id="tags_box" class="js-example-tags " tabindex="3" multiple="multiple" placeholder="Does not work, use data-placeholder with js trick"  data-placeholder="projeto1, projeto2"></select>
+			</div>
 			
-			<select id="tags_box" class="js-example-tags " tabindex="3" multiple="multiple" placeholder="Does not work, use data-placeholder with js trick"  data-placeholder="projeto1, projeto2"></select>
-
-			<br />
-			<label><script>document.write(txt_write_task_desc)</script></label>
-			<textarea rows="4" cols="34" id="description_box" tabindex="4"></textarea><br />
+			<div class="form-group">
+				<label><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> <script>document.write(txt_write_task_desc)</script></label>
+				<textarea rows="4" cols="34" id="description_box" tabindex="4" class="form-control"></textarea>
+			</div>
 			
 			<input type="hidden" id="data_box">
 			<input type="hidden" id="status_box">
@@ -73,13 +77,13 @@
 			<input type="hidden" id="pomodoroAtivoBox" value='<?php echo get_user_meta(get_current_user_id(), "pomodoroAtivo", true); ?>'>
 			
 			<br />
-			<label><script>document.write(txt_write_task_category)</script></label><br />
+			<label><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> <script>document.write(txt_write_task_category)</script></label><br />
 			<ul>
 				<li><input type="radio" name="cat_vl" value="26"><script>document.write(txt_write_task_category_study)</script></li>
 				<li><input type="radio" name="cat_vl" value="27"><script>document.write(txt_write_task_category_work)</script></li>
 				<li><input type="radio" name="cat_vl" value="28"><script>document.write(txt_write_task_category_personal)</script></li>
 			</ul>
-			<label><script>document.write(txt_write_task_privacy)</script></label><br />
+			<label><span class="glyphicon glyphicon-eye" aria-hidden="true"></span> <script>document.write(txt_write_task_privacy)</script></label><br />
 			<ul>
 				<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
 				<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
@@ -122,9 +126,8 @@
 				</div>
 				</a>
 				<div class='col-xs-2'>
-				<?php 
-				echo "<input type='button' class='btn btn-xs btn-danger' value='x' onclick='delete_model($counter)'>";
-				#echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
+					<a href='#' class='btn btn-xs btn-danger' onclick='delete_model(<?php echo $counter ?>)'><span class="glyphicon glyphicon-ok"></span></a>
+					<?php #echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
 				</div>
 				
 				</li>

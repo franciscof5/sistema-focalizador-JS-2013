@@ -17,8 +17,8 @@
 				<?php bp_loggedin_user_avatar( 'type=thumb&width=80&height=80' ); ?>
 			</a>
 
-			<h4><?php echo bp_core_get_userlink( bp_loggedin_user_id() ); ?></h4>
-			<a class="button logout" href="<?php echo wp_logout_url( wp_guess_url() ); ?>"><?php _e( 'Log Out', 'buddypress' ); ?></a>
+			<p><?php echo bp_core_get_userlink( bp_loggedin_user_id() ); ?></p>
+			<p><a class="button logout float-right" href="<?php echo wp_logout_url( wp_guess_url() ); ?>"><?php _e( 'Log Out', 'buddypress' ); ?></a></p>
 
 			<?php do_action( 'bp_sidebar_me' ); ?>
 		</div>
@@ -67,12 +67,11 @@
 			<h3 class="widgettitle"><?php _e( 'Forum Topic Tags', 'buddypress' ); ?></h3>
 			<div id="tag-text"><?php bp_forums_tag_heat_map(); ?></div>
 		</div>
-	<?php endif; ?>
+	<?php endif;
 
+	show_lang_options();
 
-	
-
-	<?php dynamic_sidebar( 'geral' ); ?>
+	dynamic_sidebar( 'geral' ); ?>
 
 <?php
 	global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
