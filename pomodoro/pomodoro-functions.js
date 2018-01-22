@@ -64,10 +64,10 @@ jQuery(document).ready(function ($) {
 	var noSleep = new NoSleep();
 	function enableNoSleep() {
 	  noSleep.enable();
-	  document.removeEventListener('click', enableNoSleep, false);
+	  document.removeEventListener('touchstart', enableNoSleep, false);
 	}
-	document.addEventListener('click', enableNoSleep, false);
-	
+	document.addEventListener('touchstart', enableNoSleep, false);
+	noSleep.disable();
 	//Check updates on task every 15s (if not on focus)
 	listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
