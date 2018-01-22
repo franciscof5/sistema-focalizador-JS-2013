@@ -37,7 +37,33 @@
 			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
 			if(isset($msg_saudacao2))
 			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao2."');</script>";
-			
+			/*
+			?>
+			<script type="text/javascript">
+				artyom = new Artyom();
+				//
+			    artyom.fatality();// use this to stop any of
+			    //
+			    //alert(data_from_php.php_locale);
+			    //if(data_from_php.php_locale=="pt_BR")
+			    artyom_lang = <?php global $locale; echo $locale; ?>;
+			    //else
+			    	//artyom_lang = "en-US";
+			    //
+			    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
+			         artyom.initialize({
+			            lang:artyom_lang,// A lot of languages are supported. Read the docs !
+			            continuous:true,// Artyom will listen forever
+			            listen:true, // Start recognizing
+			            debug:true, // Show everything in the console
+			            speed:1, // talk normally
+			            //name: "pomodoro",
+			        }).then(function(){
+			            console.log("Ready to work !");
+			        });
+				});
+				artyom.say('<?php echo $msg_saudacao; ?>');
+			</script>*/
 			?>
 			</div>
 			<hr />
