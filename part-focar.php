@@ -91,7 +91,7 @@
 			<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
 		</form>
 
-		<h3><script>document.write(txt_write_task_model)</script></h3>
+		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
 		<p><script>document.write(txt_write_task_model_desc)</script></p>
 		
 		
