@@ -83,7 +83,7 @@
 				<li><input type="radio" name="cat_vl" value="27"><script>document.write(txt_write_task_category_work)</script></li>
 				<li><input type="radio" name="cat_vl" value="28"><script>document.write(txt_write_task_category_personal)</script></li>
 			</ul>
-			<label><span class="glyphicon glyphicon-eye" aria-hidden="true"></span> <script>document.write(txt_write_task_privacy)</script></label><br />
+			<label><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <script>document.write(txt_write_task_privacy)</script></label><br />
 			<ul>
 				<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
 				<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
