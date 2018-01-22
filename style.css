@@ -97,7 +97,7 @@ img.avatar {
 
 #sidebar-user-pass {width:148px;}
 #rbox2 {height:480px;}
-.content {width: 90%;}
+/*.content {width: 90%;}*/
 .content_default {float: right;width: 70%; background: rgba(255,255,255, 0.9);padding:10px 40px;}
 .bg-danger {color: #333; border-radius: 5px;padding: 5px 10px;}
 .bg-danger a {color: #333 !important; text-decoration: underline; font-weight: 600;}
