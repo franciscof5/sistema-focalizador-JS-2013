@@ -30,6 +30,7 @@
 	var interval_clock=false;
 
 	//
+	var noSleep;
 	var artyom;
 
 }
@@ -42,9 +43,9 @@ jQuery(document).ready(function ($) {
 	//Sound library for Sound FX 
 	startSoundMan();
 	//Voice recon and speech JS
-	
 	startContinuousArtyom();
-	
+	//
+	startNoSleepWakeLock();
 	//
 	change_status(txt_loading_initial_data);	
 	load_initial_data();//
@@ -61,13 +62,7 @@ jQuery(document).ready(function ($) {
 	jQuery("#action_button_id").prop('disabled', false);
 
 	//
-	var noSleep = new NoSleep();
-	function enableNoSleep() {
-	  noSleep.enable();
-	  document.removeEventListener('touchstart', enableNoSleep, false);
-	}
-	document.addEventListener('touchstart', enableNoSleep, false);
-	noSleep.disable();
+	
 	//Check updates on task every 15s (if not on focus)
 	listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
@@ -713,3 +708,12 @@ var groupSwith = [{
         }
     }
 }];
+
+function startNoSleepWakeLock() {
+	noSleep = new NoSleep();
+	function enableNoSleep() {
+	  noSleep.enable();
+	  document.removeEventListener('touchstart', enableNoSleep, false);
+	}
+	document.addEventListener('touchstart', enableNoSleep, false);
+}
