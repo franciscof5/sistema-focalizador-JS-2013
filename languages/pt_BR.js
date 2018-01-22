@@ -8,10 +8,10 @@ var textInterrupt = "INTERROMPER";
 
 //Frases de status do Mate
 var txt_mat_introducing = "Olá, eu sou o foca Loggo, estou aqui para te ajudar, escreva a tarefa que irá realizar e clique em FOCAR!"
-var txt_loading_initial_data = "Baixando os dados da sua conta...";
+var txt_loading_initial_data = "Bem vindo ao Pomodoros.com.br";
 var txt_mat_load_return = "Dados carregados, clique em FOCAR para iniciar. Última sessão há ";
 //var txt_started_countdown = "Contagem ativada. Agora você deve se concentrar na sua tarefa. Nada pode te atrapalhar, evite interrupções!";
-var txt_started_countdown = "Contagem ativada. Agora você deve se concentrar em ";
+var txt_started_countdown = "Pomodoros iniciado para tarefa ";
 var txt_salving_pomodoros = "Salvando pomodoro...";
 //var txt_interrupted_countdowns = "Contagem interrompida! Ative o relógio quanto estiver pronto!";
 var txt_interrupted_countdowns = "Contagem interrompida!";
@@ -25,12 +25,12 @@ var txt_bigrest_countdown = "Sessão de 4 pomodoros encerrada, meus parabéns, v
 var txt_sound_error = 'Erro ao reproduzir o som: Alerta visual ativado! Clique em ok para continuar!';
 var txt_save_success = "Progresso salvado";
 var txt_save_error = "Problema ao salvar, você está conectado na internet?"; //usado duas vezes, também na hora de salvar modelo quando da errado
-var txt_salving_model = "Salvando modelo";
-var txt_salving_model_success = "Pronto, agora eu guardei o seu modelo e você poderá utilizar mais tarde quantas vezes quiser!";
+var txt_salving_model = "Salvando";
+var txt_salving_model_success = "Pronto, agora poderá carregar esta tarefa depois, quantas vezes quiser!";
 var txt_salving_model_task_null = "Sou eu que preciso de óculos ou você não escreveu nada no título da tarefa?";
-var txt_loading_model = "Economia de tempo é comigo, configurei a tarefa com base no modelo escolhido, hora de produzir!";
-var txt_deleting_model = "Concluido o modelo...";
-var txt_deleting_model_sucess = "Seu modelo foi concluído, se você terminou uma tarefa meus parabéns!";
+var txt_loading_model = "Tarefa carregada, hora de produzir!";
+var txt_deleting_model = "Pronto";
+var txt_deleting_model_sucess = "Se você terminou uma tarefa meus parabéns!";
 var txt_update_current_task = "Salvando modificações...";// feitas na tarefa atual";
 var txt_no_task_found = "Não encontrei nenhuma tarefa iniciada";
 var txt_time_losted = "Você perdeu um pomodoro na última sessão ";
@@ -43,6 +43,9 @@ var txt_session_reseted = "Sessão reiniciada";
 var txt_title_done = "Pomodoro completado!";
 var txt_title_rest = "Hora do intervalo";
 var txt_title_big_rest = "GRANDE DESCANSO";
+var txt_write_task_category_study = "Estudo";
+var txt_write_task_category_work = "Trabalho";
+var txt_write_task_category_personal = "Pessoal";
 
 //Frases da interface do painel
 var txt_write_task_title = "Tarefa:";
@@ -53,6 +56,10 @@ var txt_write_task_privacy = "Privacidade";
 var txt_last_pomodoros_heading = "Últimos 20 pomodoros:";
 var txt_last_pomodoros_of_community = "Últimos pomodoros";
 var txt_total_pomodoros_of_community = "Pomodoros completados";
+var txt_write_task_privacy_pub = "Público - todos podem ver";
+var txt_write_task_privacy_pri = "Privado - somente você pode ver";
+var txt_write_task_model = "Lista de Tarefa (TODO)";
+var txt_write_task_model_desc = "Ficou mais fácil guardar uma tarefa para depois, salve-a na lista de tarefa";
 
 //Sidebar
 var txt_sidebar_stats = "Estatísticas de";

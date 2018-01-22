@@ -75,20 +75,20 @@
 			<br />
 			<label><script>document.write(txt_write_task_category)</script></label><br />
 			<ul>
-				<li><input type="radio" name="cat_vl" value="26">Estudo</li>
-				<li><input type="radio" name="cat_vl" value="27">Trabalho</li>
-				<li><input type="radio" name="cat_vl" value="28">Pessoal</li>
+				<li><input type="radio" name="cat_vl" value="26"><script>document.write(txt_write_task_category_study)</script></li>
+				<li><input type="radio" name="cat_vl" value="27"><script>document.write(txt_write_task_category_work)</script></li>
+				<li><input type="radio" name="cat_vl" value="28"><script>document.write(txt_write_task_category_personal)</script></li>
 			</ul>
 			<label><script>document.write(txt_write_task_privacy)</script></label><br />
 			<ul>
-				<li><input type="radio" name="priv_vl" value="publish" CHECKED>Público - todos podem ver.</li>
-				<li><input type="radio" name="priv_vl" value="private" >Privado - somente você pode ver. </li>
+				<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
+				<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
 			</ul>
 			<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
 		</form>
 
-		<h3>Tarefas modelo</h3>
-		<p>Ficou mais fácil recomeçar uma tarefa, salve a tarefa como um modelo e reutilize quantas vezes quiser. Confira sua lista de modelos:</p>
+		<h3><script>document.write(txt_write_task_model)</script></h3>
+		<p><script>document.write(txt_write_task_model_desc)</script></p>
 		
 		
 		<ul id="contem-modelos" class="row">
@@ -115,15 +115,21 @@
 				    	$taglist.=$tag->name;
 				    }
 				}
-				echo "<div class='col-xs-9'>";
-				echo "<strong id=bxtag$counter>".$taglist."</strong> <span id=bxtitle$counter>".get_the_title()."</span>, <span id=bxcontent$counter>".get_the_content()."</span>";
-				echo "</div>";
-				echo "<div class='col-xs-3'>";
-				echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>";
-				echo "</div>";
-				echo '</li>';
-				#echo '</ul>';
+				?>
+				<a href="#" onclick='load_model(<?php echo $counter ?>)'>
+				<div class='col-xs-10'>
+				<?php echo "<strong id=bxtag$counter>".$taglist."</strong> <span id=bxtitle$counter>".get_the_title()."</span>, <span id=bxcontent$counter>".get_the_content()."</span>"; ?>
+				</div>
+				</a>
+				<div class='col-xs-2'>
+				<?php 
+				echo "<input type='button' class='btn btn-xs btn-danger' value='x' onclick='delete_model($counter)'>";
+				#echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
+				</div>
 				
+				</li>
+				
+			<?php 
 			endwhile;
 			// Reset Post Data
 			wp_reset_postdata();

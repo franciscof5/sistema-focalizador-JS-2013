@@ -30,7 +30,7 @@
 	var interval_clock=false;
 
 	//
-	var artyom = new Artyom();
+	var artyom;
 
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
@@ -667,8 +667,11 @@ var groupOfCommands = [{
 
 // This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
 function startContinuousArtyom(){
+	artyom = new Artyom();
+	//
     artyom.fatality();// use this to stop any of
     //
+    //alert(data_from_php.php_locale);
     if(data_from_php.php_locale=="pt_BR")
     	artyom_lang = "pt-PT";
     else
@@ -680,8 +683,8 @@ function startContinuousArtyom(){
             continuous:true,// Artyom will listen forever
             listen:true, // Start recognizing
             debug:true, // Show everything in the console
-            speed:1 // talk normally
-            //name: "pomodoros"
+            speed:1, // talk normally
+            //name: "pomodoro",
         }).then(function(){
             console.log("Ready to work !");
         });
