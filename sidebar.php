@@ -69,7 +69,7 @@
 		</div>
 	<?php endif;
 
-	show_lang_options();
+	show_lang_options(true);
 
 	dynamic_sidebar( 'geral' ); ?>
 

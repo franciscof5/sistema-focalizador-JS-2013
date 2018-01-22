@@ -38,6 +38,7 @@ var txt_hours_ago = " horas atrás";
 var txt_time_found = "Tempo recuperado, ajustado para ";
 var txt_minutes = " minutos";
 var txt_session_reseted = "Sessão reiniciada";
+var txt_write_task_save = "Salvar Tarefa";
 
 //titles
 var txt_title_done = "Pomodoro completado!";

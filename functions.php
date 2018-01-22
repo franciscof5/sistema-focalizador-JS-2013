@@ -227,14 +227,22 @@ function load_scritps() {
 	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
 }
 
-function show_lang_options() {
+function show_lang_options($showtitle) {
 	global $locale;
 	
 	if($locale!="en" && $locale!="en_US") { ?>
-		<h3 class="widget-title">Change Language</h3>
+		<?php if($showtitle) { ?>
+			<h3 class="widget-title">Change Language</h3>
+		<?php } else { ?>
+			<strong>Change Language:</strong>
+		<?php } ?>
 		<a href="?lang=en_US">English</a>
 	<?php } else { ?>
-		<h3 class="widget-title">Mudar Idioma</h3>
+		<?php if($showtitle) { ?>
+			<h3 class="widget-title">Mudar Idioma</h3>
+		<?php } else { ?>
+			<strong>Mudar Idioma:</strong>
+		<?php } ?>
 		<a href="?lang=pt_BR">Português</a>
 	<?php }
 }

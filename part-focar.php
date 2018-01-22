@@ -88,7 +88,7 @@
 				<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
 				<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
 			</ul>
-			<input type="button" value="Salvar tarefa" class="btn btn-primary" onclick="save_model()" id="botao-salvar-modelo" />
+			<a href="#" class="button btn btn-dark" onclick="save_model()" id="botao-salvar-modelo"> <script>document.write(txt_write_task_save)</script> </a>
 		</form>
 
 		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
@@ -126,7 +126,7 @@
 				</div>
 				</a>
 				<div class='col-xs-2'>
-					<a href='#' class='btn btn-xs btn-danger' onclick='delete_model(<?php echo $counter ?>)'><span class="glyphicon glyphicon-ok"></span></a>
+					<a href='#' class='btn btn-xs btn-danger' onclick='delete_model(<?php echo $counter ?>)'><span class="glyphicon glyphicon-trash"></span></a>
 					<?php #echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
 				</div>
 				

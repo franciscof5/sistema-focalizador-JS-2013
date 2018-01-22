@@ -74,7 +74,7 @@
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
 	<hr style="clear: both" />
 
-	<?php show_lang_options(); ?>
+	<?php show_lang_options(true); ?>
 
 	<?php show_most_recent_task(); ?>
 
