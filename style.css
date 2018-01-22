@@ -93,7 +93,7 @@ img.avatar {
 .register_div_box:hover {background:#EEE;}
 .register_div_box h3{color:#333; text-align:center;}
 
-#div_status {border:3px solid #000; width:140px; float:right; padding:0 2px;border-radius: 10px;background:#FFF;}
+#div_status {border:3px solid #000; width:160px; float:right; padding:0 2px;border-radius: 10px;background:#FFF;}
 
 #sidebar-user-pass {width:148px;}
 #rbox2 {height:480px;}
