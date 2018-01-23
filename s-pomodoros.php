@@ -83,7 +83,7 @@
 		<li>
 			<h3 class="widget-title">Novo: Exportar CSV</h3>
 			<p>Tenha controle sobre seus dados, visualize seus pomodoros no Excel ou Calc</p>
-			<p><a href="/csv"><button>EXPORTAR POMODOROS</button></a></p>
+			<p><a href="/csv" class="btn button">EXPORTAR POMODOROS</a></p>
 		</li>
 		<li>
 			<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>

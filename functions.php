@@ -95,7 +95,8 @@ if ( function_exists( 'add_theme_support' ) ) {
 //date_default_timezone_set('America/Sao_Paulo');
 //
 #ADMIN can view the bar finally
-#if(!current_user_can('administrator'))add_filter('show_admin_bar', '__return_false'); 
+#if(!current_user_can('administrator'))
+#add_filter('show_admin_bar', '__return_false'); 
 
 add_action( 'login_form_middle', 'add_lost_password_link' );
 #add_action( 'admin_menu', 'edit_admin_menus' ); 
@@ -180,7 +181,7 @@ function load_scritps() {
 			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "en_US" );
 		}
 	} else {*/
-	if($_GET) {
+	if($_GET && isset($_GET["lang"])) {
 		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
 			$user_lang_pref="pt_BR";
 			update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
@@ -448,7 +449,15 @@ function save_progress () {
 		'post_date_gmt' => $agora,
 		//'post_category' => array(0)
 	);
+
+	if($my_post) {
+		if(function_exists("cp_module_notify_displayNoticesFor"))
+		cp_module_notify_displayNoticesFor(cp_currentUser());
+	}
+
 	echo wp_insert_post( $my_post );
+	//echo wp_publish_post( $my_post );
+
 	/*$sql = "INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES ";
 	$sql .= "(' ','".$current_user->ID."',"."'".$agora."',"."'".$agora."',"."'".$_POST['post_descri']."',"."'".$_POST['post_titulo']."',"."'".$post_excerpt."',"."'".$post_status."',"."'".$comment_status."',"."'".$ping_status."',"."'".$posd_password."',"."'".$post_name."',"."'".$to_ping."',"."'".$pinged."',"."'".$post_modified."',"."'".$post_modified_gmt."',"."'".$post_content_filtered."',"."'".$post_parent."',"."'".$guid."',"."'".$menu_order."',"."'projectimer_focus',"."'".$post_mime_type."',"."'".$comment_count."'),";
 
