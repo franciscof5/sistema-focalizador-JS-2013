@@ -245,8 +245,35 @@ img.avatar {
 	font-weight: bold;
 	display:block;
 }
-#loginlogbox input[type="text"],#loginlogbox input[type="password"] {width:160px;}
-#loginlogbox input[type="submit"] {top: -10px;position: relative;}
+input[type="text"], input[type="password"] {
+	/*width:80%;
+	border-radius: 2px;*/
+	box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 7px;
+    outline: none;
+
+}
+#loginlogbox input[type="submit"] {
+	top: -10px;position: relative;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    background-color: lightblue;
+}
+
+#sidebar-login-form input[type="text"],#sidebar-login-form input[type="password"] {
+	width: 90%;
+}
+
 .widget_loginlogout #loginform {display:none;}
 
 #settingsbox {
@@ -333,7 +360,7 @@ html {
 	padding-bottom: 8px;
 }
 #loginform input[type="text"], #loginform input[type="password"] {
-	width: 200px;
+	/*width: 200px;*/
 	display: block;
 }
 #login #nav {
