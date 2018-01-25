@@ -250,6 +250,7 @@ function start_clock() {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
 	}
+	startContinuousArtyom();
 }
 
 //Function called every second when pomodoros are running

@@ -1,6 +1,7 @@
 <?php
 //
 //remove_filter('template_redirect', 'redirect_canonical');
+show_admin_bar( false );
 add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );
 function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 	if ( preg_match("/ranking/",$redirect_url) ) {
