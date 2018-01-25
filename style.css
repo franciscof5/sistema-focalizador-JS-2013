@@ -188,10 +188,11 @@ img.avatar {
 */
 .content_nosidebar {	
 	background:rgba(255,255,255, 0.8);
-	border-radius:10px;
+	/*border-radius:10px;*/
 	padding:10px 30px !important;
 	font-size:12px;
-	width: 90%;
+	/*width: 90%;*/
+	width: 98%;
 	margin: 0 auto !important;
 }
  
@@ -419,15 +420,15 @@ ul {
     padding: 0;
     list-style-type: none;
 }
-/*li.activity-item  {
+li.activity-item  {
 	border-radius: 30px;*
 	border-radius: 48px 60px;
 	width: 25%;
 	float: left;
 	/**
 	background: #CCC;
-	position: relative;*
-}*/
+	position: relative;**/
+}
 .activity-header p {
 	height: 50px;
 	margin: 2px 0px 0px -10px;

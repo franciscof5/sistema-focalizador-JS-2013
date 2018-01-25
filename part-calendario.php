@@ -39,7 +39,7 @@
 </script>
 
 	
-<div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
+<div class="content_nosidebar">
 	<!--todo: chanve view to MENSAL and YEAR
 	todo:put button show only my records
 	todo:put on configuration optionS above

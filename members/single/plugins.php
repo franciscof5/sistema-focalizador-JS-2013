@@ -15,7 +15,7 @@
 
 <?php get_header( 'buddypress' ); ?>
 
-	<div id="content">
+	<div class="content_nosidebar">
 		<div class="padder">
 
 			<?php do_action( 'bp_before_member_plugin_template' ); ?>

@@ -1,5 +1,6 @@
-<div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
+<div class="content_nosidebar col-xs-12 col-sm-6">
 	<?php 
+	#style="width: 104%;left: -2%;"
 	$instance = array(
 		"title" => "Ranking (top 100)",
 		"count" => "100",

@@ -1,6 +1,14 @@
 <?php
 //
-remove_filter('template_redirect', 'redirect_canonical');
+//remove_filter('template_redirect', 'redirect_canonical');
+add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );
+function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
+	if ( preg_match("/ranking/",$redirect_url) ) {
+		return FALSE;
+	} else {
+		return $redirect_url;
+	}
+}
 //
 add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
 

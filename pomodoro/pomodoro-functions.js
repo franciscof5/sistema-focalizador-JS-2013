@@ -10,7 +10,7 @@
 	var intervalMiliseconds = 1000;
 
 	//for testing
-	pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
+	//pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
 
 	//Dynamic clock var
 	//var is_interrupt_button;

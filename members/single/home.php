@@ -9,7 +9,7 @@
 
 get_header( 'buddypress' ); ?>
 
-	<div id="content">
+	<div class="content_nosidebar col-xs-12 col-sm-6" style="width: 104%;left: -2%;" >
 		<div class="padder">
 
 			<?php do_action( 'bp_before_member_home_content' ); ?>
