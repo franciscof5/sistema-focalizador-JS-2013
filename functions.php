@@ -11,6 +11,9 @@ function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 	}
 }
 //
+
+
+if(function_exists("set_shared_database_schema"))
 add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
 
 function get_author_post_tags_wpa78489($author_id,$taxonomy = 'post_tag'){
@@ -459,12 +462,39 @@ function save_progress () {
 		//'post_category' => array(0)
 	);
 
-	if($my_post) {
+	$ok = wp_insert_post( $my_post );
+
+	if($ok) {
 		if(function_exists("cp_module_notify_displayNoticesFor"))
 		cp_module_notify_displayNoticesFor(cp_currentUser());
+
+		
+		//$id = get_current_postid_for_user(get_current_user_id());
+		$id = $ok;
+		$current_user = get_currentuserinfo();
+		$namefull = $current_user->user_firstname." ".$current_user->user_lastname;
+		$user_id = $current_user->ID;
+
+		$act_args = array(
+			'user_id' => $user_id,
+			'item_id' => $id,
+			'component' => 'projectimer',
+			);
+		if($_POST["post_priv"]=="private")
+			$act_args['hide_sitewide'] = true;
+
+		$act_args['action'] = "<p><span class=activity_title>".$namefull."</span><a href='".get_permalink($ok)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
+	
+		$act_args['type'] = 'projectimer_start';
+		//var_dump($act_args);
+		$ac = bp_activity_add( $act_args );
+		//
+		echo "ATIVI:".$ac;
+	} else {
+		//echo " ERROR NOT PUBLISHED"; #NOT RESPONSE FOR ERROR
 	}
 
-	echo wp_insert_post( $my_post );
+	
 	//echo wp_publish_post( $my_post );
 
 	/*$sql = "INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES ";

@@ -266,9 +266,9 @@ input[type="text"], input[type="password"] {
 	top: -10px;position: relative;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+/*input[type="text"]:focus, input[type="password"]:focus {
     background-color: lightblue;
-}
+}*/
 
 #sidebar-login-form input[type="text"],#sidebar-login-form input[type="password"] {
 	width: 90%;

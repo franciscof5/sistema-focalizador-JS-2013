@@ -32,6 +32,7 @@
 	//
 	var noSleep;
 	var artyom;
+	var stopWarningNoTaskFound=false;
 
 }
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
@@ -76,9 +77,22 @@ function load_initial_data() {
 		//dataType: "json"
 	};
 	jQuery.post(ajaxurl, data, function(response) {
-		if(response==0) {
+		if(response==0 && !stopWarningNoTaskFound) {
 			//alertify.error("Tarefa não encontrada");
-			change_status(txt_no_task_found);	
+			change_status(txt_no_task_found);
+
+			jQuery('#tags_box').select2({
+				tags: true,
+				//closeOnSelect: false,
+				//maximumSelectionLength: 3,
+				//createSearchChoice: true,
+				width: '100%',
+				tokenSeparators: [","],
+				placeholder: function() {
+					jQuery(this).data('placeholder');
+				}
+			});
+			stopWarningNoTaskFound=true;
 		} else {
 			var postReturned = jQuery.parseJSON( response.slice( 0, - 1 ) );
 			
@@ -250,7 +264,7 @@ function start_clock() {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
 	}
-	startContinuousArtyom();
+	//startContinuousArtyom();
 }
 
 //Function called every second when pomodoros are running
