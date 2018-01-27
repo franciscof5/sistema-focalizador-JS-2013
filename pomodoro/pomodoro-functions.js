@@ -250,7 +250,7 @@ function action_button() {
 		start_clock();
 	}
 	startNoSleepWakeLock();
-	startContinuousArtyom();
+	//startContinuousArtyom();//BROKES SLOW DEVICES
 	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data		
 }
 
