@@ -15,7 +15,7 @@ if (!is_user_logged_in()) {
 					</div>
 					<div class="col-sm-4">
 						<p><strong> <?php the_title(); ?></strong></p>
-						<p><?php the_author_posts_link(); ?></p>
+						<p><?php get_the_author_meta('ID'); ?></p>
 					</div>
 				</div>
 				<div class="row" style="text-align: center;">

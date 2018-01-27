@@ -479,13 +479,14 @@ function save_progress () {
 			'user_id' => $user_id,
 			'item_id' => $id,
 			'component' => 'projectimer',
-			);
+			'type' => 'projectimer_start',
+		);
+		//
 		if($_POST["post_priv"]=="private")
 			$act_args['hide_sitewide'] = true;
-
-		$act_args['action'] = "<p><span class=activity_title>".$namefull."</span><a href='".get_permalink($ok)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
+		//
+		$act_args['action'] = "<p><a href='/colegas/".$current_user->user_login."'><span class=activity_title>".$namefull."</span></a> completou <a href='".get_permalink($ok)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
 	
-		$act_args['type'] = 'projectimer_start';
 		//var_dump($act_args);
 		$ac = bp_activity_add( $act_args );
 		//

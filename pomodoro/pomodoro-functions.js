@@ -35,6 +35,9 @@
 	var stopWarningNoTaskFound=false;
 
 }
+function startTest() {
+	pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
+}
 //With that line jQuery can use the selector ($) and jQuery use the selector (jQuery), without conflict
 //jQuery.noConflict();
 
@@ -246,6 +249,7 @@ function action_button() {
 		//The user clicked on Pomodoro or Rest button
 		start_clock();
 	}
+	startNoSleepWakeLock();
 	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data		
 }
 
@@ -729,6 +733,8 @@ function startNoSleepWakeLock() {
 	function enableNoSleep() {
 	  noSleep.enable();
 	  document.removeEventListener('touchstart', enableNoSleep, false);
+	  document.removeEventListener('click', enableNoSleep, false);
 	}
 	document.addEventListener('touchstart', enableNoSleep, false);
+	document.addEventListener('click', enableNoSleep, false);
 }
