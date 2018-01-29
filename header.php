@@ -186,6 +186,7 @@
 		<div id="loginlogbox">
 			<?php wp_login_form(); ?>
 			<div style="margin-top:-10px;">
+				<?php do_action( 'wordpress_social_login' ); ?> 
 				<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 			</div>
 		</div>

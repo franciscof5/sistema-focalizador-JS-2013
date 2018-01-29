@@ -226,7 +226,7 @@ img.avatar {
 
 #loginlogbox {
 	display:none;
-	width: 250px;
+	width: 280px;
 	height: 320px;
 	position: absolute;
 	background: #FFFFFF;
@@ -360,8 +360,29 @@ html {
 	padding-bottom: 8px;
 }
 #loginform input[type="text"], #loginform input[type="password"] {
-	/*width: 200px;*/
+	width: 220px;
 	display: block;
+}
+#loginform input[type="password"] {
+	margin-bottom: -10px;
+}
+#loginform input[type="submit"] {
+	padding: 5px 20px;
+	border: 0;
+	border-radius: 4px;
+}
+#loginform a {
+	/*ESQUECI A SENHA/FORGOT PASS*/
+	font-size: 10px;
+}
+#loginform input[type="checkbox"] {
+	float: left;
+	margin: 2px 5px 10px 0;
+}
+#loginform .login-remember {
+	display: block;
+	height: 30px;
+	margin-top: 10px;
 }
 #login #nav {
 	float:none;

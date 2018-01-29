@@ -54,7 +54,7 @@
 			<input type="submit" name="wp-submit" id="sidebar-wp-submit" value="<?php _e( 'Log In', 'buddypress' ); ?>" tabindex="100" />
 			<input type="hidden" name="testcookie" value="1" />
 		</form>
-
+		<?php do_action( 'wordpress_social_login' ); ?> 
 		<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 
 	<?php endif; ?>
