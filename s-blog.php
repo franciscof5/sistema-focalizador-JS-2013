@@ -51,10 +51,13 @@
 			<p class="forgetmenot"><label><input name="rememberme" type="checkbox" id="sidebar-rememberme" value="forever" tabindex="99" /> <?php _e( 'Remember Me', 'buddypress' ); ?></label></p>
 
 			<?php do_action( 'bp_sidebar_login_form' ); ?>
-			<input type="submit" name="wp-submit" id="sidebar-wp-submit" value="<?php _e( 'Log In', 'buddypress' ); ?>" tabindex="100" />
+			<?php do_action( 'wordpress_social_login' ); ?>
+			<input type="submit" class="button btn btn-black" name="wp-submit" id="sidebar-wp-submit" value="<?php _e( 'Log In', 'buddypress' ); ?>" tabindex="100" />
+
 			<input type="hidden" name="testcookie" value="1" />
 		</form>
-		<?php do_action( 'wordpress_social_login' ); ?> 
+
+		 
 		<?php do_action( 'bp_after_sidebar_login_form' ); ?>
 
 	<?php endif; ?>
@@ -72,7 +75,7 @@
 
 
 	<?php do_action( 'bp_inside_after_sidebar' ); ?>
-	<hr style="clear: both" />
+	
 
 	<?php show_lang_options(true); ?>
 

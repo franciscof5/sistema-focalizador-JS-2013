@@ -2723,3 +2723,10 @@ h3.rpwe-title a {
 	/*.first {
 		background: #983;
 	}*/
+
+/*****/
+.wp-social-login-widget {
+	float: right;
+	padding: 0;
+	margin-top: -10px;
+}
