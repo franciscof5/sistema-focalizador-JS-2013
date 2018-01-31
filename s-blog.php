@@ -29,7 +29,7 @@
 
 	<?php else : ?>
 
-		<?php do_action( 'bp_before_sidebar_login_form' ); ?>
+		<?php #do_action( 'bp_before_sidebar_login_form' ); ?>
 
 		<?php if ( bp_get_signup_allowed() ) : ?>
 		
