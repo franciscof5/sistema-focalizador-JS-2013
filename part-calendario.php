@@ -45,5 +45,12 @@
 	todo:put on configuration optionS above
 	h2>Calenario mensal</h2>
 	<p>Visualizar <a>calendario anual</a></p-->
+	<h3>Integration</h3>
+	<a href="https://www.pomodoros.com.br/?ical&posttype=projectimer_focus">TODOS</a>
+
+	<a href="https://www.pomodoros.com.br/?ical&posttype=projectimer_focus&author_id=2">SEUS</a>
+	<p>Precisa de Ajuda?
+	<br />
+	<a href="https://support.google.com/calendar/answer/37100?co=GENIE.Platform%3DDesktop&hl=en">Como adicionar no Google Calendar</a></p>https://support.google.com/calendar/answer/37648?hl=pt-BR
 	<?php echo do_shortcode("[ranking-calendar]"); ?>
 </div><!-- #content -->

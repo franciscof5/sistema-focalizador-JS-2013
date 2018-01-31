@@ -260,9 +260,9 @@ function show_lang_options($showtitle) {
 	<?php }
 }
 
-function show_most_recent_task() { ?>
-	<h3 class="widget-title">Tarefa recente</h3>
-	<?php if(is_user_logged_in()) {
+function show_most_recent_task() {
+	echo '<h3 class="widget-title">Tarefa recente</h3>';
+	if(is_user_logged_in()) {
 		$current_user = wp_get_current_user(); 
 		$args = array(
 		              'post_type' => 'projectimer_focus',
@@ -286,6 +286,7 @@ function show_most_recent_task() { ?>
 	echo $msg_saudacao;
 	if(isset($msg_saudacao2))
 	echo $msg_saudacao2;
+	#die();
 }
 
 #get_projectimer_tags_COPY();
@@ -406,7 +407,15 @@ function myEndSession() {
 }*/
 
 
+function checkLogin() {
+	if(!get_current_user_id()) {
+		header('Content-type: application/json');//CRUCIAL
+		echo json_encode("NOTIN");
+		die();
+	}
+}
 function save_progress () {
+	checkLogin();
 	//$pomo_completed = date("Y-m-d H:i")."|".$_POST['descri'];
 	//$save_progress = add_user_meta(get_current_user_id(), "pomodoro_completed", $pomo_completed);
 	
@@ -512,6 +521,7 @@ function save_progress () {
 
 #
 function load_pomo () {
+	checkLogin();
 	//checa se já existe um rascunho, caso não cria o primeiro
 	
 	
@@ -628,6 +638,7 @@ function load_pomo () {
 }
 
 function update_pomo () {
+	checkLogin();
 	//UPDATE DRAFT POMODOROS ON TASK FORM
 	$args = array(
 	          'post_type' => 'projectimer_focus',
@@ -728,6 +739,7 @@ function update_pomo () {
 }
 
 function update_pomo_active () {
+	checkLogin();
 	//echo "update_pomo";
 	$tagsinput = explode(" ", $_POST['post_tags']);
 	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
@@ -805,6 +817,7 @@ function update_pomo_active () {
 }
 
 function save_modelnow () {
+	checkLogin();
 	if(function_exists("revert_database_schema"))revert_database_schema();
 	if(isset($_POST['post_para_deletar'])) {
 		#echo "deletando: ".$_POST['post_para_deletar'];
@@ -921,5 +934,3 @@ function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 				
 }*/
 //get_user_subscription(2, $_SERVER['REQUEST_URI']);
-
-?>

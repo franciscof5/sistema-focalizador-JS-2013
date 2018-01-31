@@ -1,6 +1,4 @@
-
 <?php get_sidebar(); ?>
-
 
 <div class="content_pomodoro col-xs-12 col-sm-6">
 		

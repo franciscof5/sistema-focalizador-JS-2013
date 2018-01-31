@@ -80,6 +80,8 @@ function load_initial_data() {
 		//dataType: "json"
 	};
 	jQuery.post(ajaxurl, data, function(response) {
+		if(response=="NOTIN")window.location.href = "/";
+
 		if(response==0 && !stopWarningNoTaskFound) {
 			//alertify.error("Tarefa não encontrada");
 			change_status(txt_no_task_found);
@@ -221,6 +223,7 @@ function update_pomodoro_clipboard (post_stts) {
 	} 
 	
 	jQuery.post(ajaxurl, data, function(response) {
+		alert(response);if(response=="NOTIN")window.location.href = "/";
 		rex = response.split("$^$ ");
 		change_status("Os dados foram salvados " + rex[0]);
 		//alert(response['ID']);
@@ -547,6 +550,7 @@ function savepomo() {
 	};
 
 	jQuery.post(ajaxurl, data, function(response) {
+		alert(response);if(response=="NOTIN")window.location.href = "/";
 		if(response)		
 		change_status(txt_save_success, "suc");
 		else
@@ -569,6 +573,7 @@ function save_model () {
 		post_tags: tags_box.value
 	};
 	jQuery.post(ajaxurl, data, function(response) {
+		alert(response);if(response=="NOTIN")window.location.href = "/";
 		if(response) {
 			if(response==0) {
 				change_status(txt_salving_model_task_null);
@@ -595,6 +600,7 @@ function delete_model(task_model_id) {
 		post_para_deletar: task_model_id
 	};
 	jQuery.post(ajaxurl, data, function(response) {
+		alert(response);if(response=="NOTIN")window.location.href = "/";
 		if(response) {
 			change_status(txt_deleting_model_sucess);
 			jQuery("#modelo-carregado-"+task_model_id).remove();
