@@ -238,7 +238,7 @@ function load_scritps() {
 	// Enqueued script with localized data.
 	//wp_enqueue_script( 'pomodoros-js' );
 		#echo get_template_directory()."/pomodoro/projectimer-pomodoros-shared-parts.js";
-	wp_enqueue_script("projectimer-pomodoros-shared-parts-js", get_bloginfo("stylesheet_directory")."/pomodoro/projectimer-pomodoros-shared-parts.js", __FILE__);
+	wp_register_script("projectimer-pomodoros-shared-parts-js", get_bloginfo("stylesheet_directory")."/pomodoro/projectimer-pomodoros-shared-parts.js", __FILE__);
 	#
 	#VIA CSS wp_enqueue_style("projectimer-pomodoros-shared-parts-css", get_template_directory()."/pomodoro/projectimer-pomodoros-shared-parts.css", __FILE__);
 
