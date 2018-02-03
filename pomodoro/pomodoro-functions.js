@@ -33,6 +33,7 @@
 	var noSleep;
 	var artyom;
 	var stopWarningNoTaskFound=false;
+	var volumeLevel;
 
 }
 function startTest() {
@@ -46,12 +47,12 @@ function startTest() {
 jQuery(document).ready(function ($) {
 	//
 	jQuery('input[type="range"]').rangeslider();
-	//Sound library for Sound FX 
-	startSoundMan();
 	//Voice recon and speech JS
 	startContinuousArtyom();
 	//
 	startNoSleepWakeLock();
+	//Sound library for Sound FX 
+	startSoundMan();
 	//
 	change_status(txt_loading_initial_data);	
 	load_initial_data();//
@@ -64,6 +65,8 @@ jQuery(document).ready(function ($) {
 		change_status(txt_update_current_task);
 		update_pomodoro_clipboard();
 	});
+	
+	//
 	jQuery("#action_button_id").val(textPomodoro);
 	jQuery("#action_button_id").prop('disabled', false);
 
@@ -184,7 +187,10 @@ function load_initial_data() {
 			}
 			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 			//
-			jQuery("#rangeVolume").val(postReturned['range_volume']);
+			volumeLevel=postReturned['range_volume'];
+			jQuery("#rangeVolume").val(volumeLevel);
+			soundManager.setVolume(volumeLevel);
+			artyom.volume = volumeLevel/100;
 		}
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
@@ -227,6 +233,11 @@ function update_pomodoro_clipboard (post_stts) {
 		data["post_status"] = post_stts;
 	} 
 	
+
+	volumeLevel = jQuery("#rangeVolume").val();
+	soundManager.setVolume(volumeLevel);
+	artyom.volume = volumeLevel/100;
+
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
 		rex = response.split("$^$ ");
@@ -658,11 +669,12 @@ function startSoundMan() {
 	soundManager.url = 'https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/assets/soundmanager2.swf';
 	soundManager.onready(function() {
 		// Ready to use; soundManager.createSound() etc. can now be called.
-		active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
+		active_sound = soundManager.createSound({id: 'mySound2',url: 'https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/crank-2.mp3',});
 		//active_sound = soundManager.createSound({id: 'mySound2',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/77711__sorohanro__solo-trumpet-06in-f-90bpm.mp3',});
-		pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3',});
-		session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
+		pomodoro_completed_sound = soundManager.createSound({id:'mySound3',url: 'https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/23193__kaponja__10trump-tel.mp3',});
+		session_reseted_sound = soundManager.createSound({id:'mySound4',url: 'https://www.pomodoros.com.br/wp-content/themes/sistema-focalizador-javascript/pomodoro/sounds/magic-chime-02.mp3',});
 	});
+	//soundManager.setVolume(volumeLevel);
 	soundManager.onerror = function() {alert(txt_sound_error+"...");}
 }
 //
