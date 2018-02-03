@@ -246,7 +246,6 @@ function update_pomodoro_clipboard (post_stts) {
 	/*pomodoro_completed_sound.setVolume(volumeLevel);
 	active_sound.setVolume(volumeLevel);
 	session_reseted_sound.setVolume(volumeLevel);*/
-	alert(volumeLevel/100);
 	artyom_voice.volume = volumeLevel/100;
 
 	jQuery.post(ajaxurl, data, function(response) {
