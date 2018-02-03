@@ -42,12 +42,30 @@ principal dark color: #096;
 
 @import url(pomodoro/pomodoro.css );
 
+@import url(pomodoro/projectimer-pomodoros-shared-parts.css );
+
 @import url(assets/fonts/stylesheet.css);
 
 @media (min-width: 1200px) {
 
 }
 
+/*Chrome*/
+
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #00B852; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: #9a905d;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #00B852; 
+}
+input[type="range"]::-ms-fill-upper {  
+  background-color: #9a905d;
+}
 .btn-link {
 	color: #FFF !important;
 }

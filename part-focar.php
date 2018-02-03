@@ -52,8 +52,25 @@
 		<div id="div_status"><script>document.write(txt_mat_introducing)</script></div>
 		<img src="<?php bloginfo('stylesheet_directory'); ?>/images/mascote_foca.png" />
 		<br />
+		<br />
+		
 
 		<form name="pomopainel" id="pomopainel">
+			<div class="form-group">
+				<label><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Volume</label><br />
+				<div class="row">
+					<div class="col-xs-1">
+						<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-9">
+						<input type="range" id="rangeVolume">
+					</div>
+					<div class="col-xs-1">
+						<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+					</div>
+				</div>			
+			</div>
+			
 		 	<div class="form-group">
 				<label><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> <script>document.write(txt_write_task_title)</script></label><br />
 				<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33" class="form-control"></input>

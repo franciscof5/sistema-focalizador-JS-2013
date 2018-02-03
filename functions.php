@@ -6,6 +6,8 @@ add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );
 function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 	if ( preg_match("/ranking/",$redirect_url) ) {
 		return FALSE;
+	} elseif ( preg_match("/calendar/",$redirect_url) ) {
+		return FALSE;
 	} else {
 		return $redirect_url;
 	}
@@ -117,10 +119,10 @@ add_action( 'login_form_middle', 'add_lost_password_link' );
 #add_action('wp_login', 'myEndSession');
 add_action('wp_ajax_save_progress', 'save_progress');
 add_action('wp_ajax_nopriv_save_progress', 'save_progress');
-add_action('wp_ajax_load_pomo', 'load_pomo');
-add_action('wp_ajax_nopriv_load_pomo', 'load_pomo');
-add_action('wp_ajax_update_pomo', 'update_pomo');
-add_action('wp_ajax_nopriv_update_pomo', 'update_pomo');
+add_action('wp_ajax_load_session', 'load_session');
+add_action('wp_ajax_nopriv_load_session', 'load_session');
+add_action('wp_ajax_update_session', 'update_session');
+add_action('wp_ajax_nopriv_update_session', 'update_session');
 add_action('wp_ajax_save_modelnow', 'save_modelnow');
 add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action( 'admin_menu', 'my_remove_menu_pages' );
@@ -235,9 +237,16 @@ function load_scritps() {
 
 	// Enqueued script with localized data.
 	//wp_enqueue_script( 'pomodoros-js' );
+		#echo get_template_directory()."/pomodoro/projectimer-pomodoros-shared-parts.js";
+	wp_enqueue_script("projectimer-pomodoros-shared-parts-js", get_bloginfo("stylesheet_directory")."/pomodoro/projectimer-pomodoros-shared-parts.js", __FILE__);
+	#
+	#VIA CSS wp_enqueue_style("projectimer-pomodoros-shared-parts-css", get_template_directory()."/pomodoro/projectimer-pomodoros-shared-parts.css", __FILE__);
 
 	//
 	wp_register_script("sound-js", get_bloginfo("stylesheet_directory")."/assets/soundmanager2-nodebug-jsmin.js", __FILE__);
+
+	wp_register_script("rangeslider-js", get_bloginfo("stylesheet_directory")."/assets/rangeslider.min.js", __FILE__);
+	
 }
 
 function show_lang_options($showtitle) {
@@ -520,7 +529,7 @@ function save_progress () {
 }
 
 #
-function load_pomo () {
+function load_session () {
 	checkLogin();
 	//checa se já existe um rascunho, caso não cria o primeiro
 	
@@ -620,6 +629,10 @@ function load_pomo () {
 			$postReturned['agora'] = $agora;
 			$postReturned['tags_total'] = get_projectimer_tags_COPY();
 
+			$vol = get_user_meta(get_current_user_id(), "rangeVolume", true);
+			if($vol<0 || $vol>100 || $vol=="")
+				$vol=100;
+			$postReturned['range_volume'] = $vol;
 			//
 
 			//header('Content-type: application/json');//CRUCIAL
@@ -637,7 +650,7 @@ function load_pomo () {
 	//echo "META[pomodoativo]:".$reqweasdasd.get_current_user_id();
 }
 
-function update_pomo () {
+function update_session () {
 	checkLogin();
 	//UPDATE DRAFT POMODOROS ON TASK FORM
 	$args = array(
@@ -730,7 +743,9 @@ function update_pomo () {
 	//$postReturned['psot_atual_pega_data'] = $my_post;
 	$postReturned['save_progress'] = $save_progress;
 	
+	$vok = update_user_meta(get_current_user_id(), "rangeVolume", $_POST['range_volume']);
 
+	$postReturned['volume_ok'] = $vok;
 	//
 
 	header('Content-type: application/json');//CRUCIAL

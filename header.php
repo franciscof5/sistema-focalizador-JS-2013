@@ -95,37 +95,27 @@
 		      	<div class="contem-icone ">
 		      		<a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador">
 		      			<div href="" id="icone-foc"><span class="icone-legenda hidden-lg">Focar</span></div>
-		      		
 		      		<span class="hidden-sm hidden-md">Focar</span>
 		      		</a>
 		      	</div>
 		       </li>
-
 		       <li>
 		       	<div class="contem-icone ">
 		       		<a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_login  ?>">
-		       		
 		       			<div href="" id="icone-gauge">
 		       				<span class="icone-legenda hidden-lg">Produtividade</span>
 		       			</div>
-		       			
-		       		
 		       			<span class="hidden-sm hidden-md">Produtividade</span>
 		       		</a>
 		       	</div>
 		       </li>
-
-		     
 		      <li>
 		      	<div class="contem-icone ">
 			      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
 			      		<div href="" id="icone-amigo">
 			      			<span class="icone-legenda hidden-lg">Colegas</span>
 			      		</div>
-			      		
 			      		<span class="hidden-sm hidden-md">Colegas</span>
-			      		
-			      		
 			      	</a>
 			    </div>
 		      </li>
@@ -136,7 +126,6 @@
 		      		<div href="" id="icone-rank">
 		      			<span class="icone-legenda hidden-lg">Ranking</span>
 		      		</div>
-		      		
 		      		<span class="hidden-sm hidden-md">Ranking</span>
 		      	</a>
 		      	</div>
@@ -144,12 +133,10 @@
 
 		      <li>
 		      	<div class="contem-icone">
-		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendario/">
+		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/">
 		      		<div href="" id="icone-calend">
 		      			<span class="icone-legenda hidden-lg">Calendário</span>
 		      		</div>
-		      		
-		      		
 		      		<span class="hidden-sm hidden-md">Calendário</span>
 		      	</a>
 		      	</div>

@@ -44,6 +44,8 @@ function startTest() {
 
 
 jQuery(document).ready(function ($) {
+	//
+	jQuery('input[type="range"]').rangeslider();
 	//Sound library for Sound FX 
 	startSoundMan();
 	//Voice recon and speech JS
@@ -58,7 +60,7 @@ jQuery(document).ready(function ($) {
 	flip_number(true);
 	
 	//listen to changes
-	jQuery("#title_box, #description_box, #tags_box").change(function() {
+	jQuery("#title_box, #description_box, #tags_box, #rangeVolume").change(function() {
 		change_status(txt_update_current_task);
 		update_pomodoro_clipboard();
 	});
@@ -76,7 +78,7 @@ jQuery(document).ready(function ($) {
 
 function load_initial_data() {
 	var data = {
-		action: 'load_pomo',
+		action: 'load_session',
 		//dataType: "json"
 	};
 	jQuery.post(ajaxurl, data, function(response) {
@@ -181,6 +183,8 @@ function load_initial_data() {
 				//change_status("...");	
 			}
 			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
+			//
+			jQuery("#rangeVolume").val(postReturned['range_volume']);
 		}
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
@@ -202,7 +206,7 @@ function update_pomodoro_clipboard (post_stts) {
 	var postcat=getRadioCheckedValue("cat_vl");
 	var privornot=getRadioCheckedValue("priv_vl");
 	var data = {
-		action: 'update_pomo',
+		action: 'update_session',
 		post_titulo: title_box.value,
 		post_descri: description_box.value,
 		//post_tags: tags_box.value,
@@ -211,6 +215,7 @@ function update_pomodoro_clipboard (post_stts) {
 		//post_id: post_id_box.value,
 		//post_data: data_box.value,
 		post_priv: privornot,
+		range_volume: jQuery('#rangeVolume').val(),
 	};
 	
 	if(interval_clock) {
@@ -255,8 +260,8 @@ function action_button() {
 	startNoSleepWakeLock();
 	//startContinuousArtyom();//BROKES SLOW DEVICES
 	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data		
-}
 
+}
 //Start countdown
 function start_clock() {
 	active_sound.play();
@@ -661,87 +666,3 @@ function startSoundMan() {
 	soundManager.onerror = function() {alert(txt_sound_error+"...");}
 }
 //
-//
-var grupoDeComandos = [{
-	    indexes:["iniciar", "focar", "começar", "interromper"], // These spoken words will trigger the execution of the command
-	    action:function(){ // Action to be executed when a index match with spoken word
-	        artyom.say("Pois não");//era: comando recebido
-	        action_button();
-	    }
-	},
-];
-
-var groupOfCommands = [{
-	    indexes:["start", "focus", "begin", "interrupt", "stop"], // These spoken words will trigger the execution of the command
-	    action:function(){ // Action to be executed when a index match with spoken word
-	        artyom.say("Ok");
-	        action_button();
-	    }
-	},
-];
-
-// This function activates artyom and will listen all that you say forever (requires https conection, otherwise a dialog will request if you allow the use of the microphone)
-function startContinuousArtyom(){
-	artyom = new Artyom();
-	//
-    artyom.fatality();// use this to stop any of
-    //
-    //alert(data_from_php.php_locale);
-    if(data_from_php.php_locale=="pt_BR")
-    	artyom_lang = "pt-PT";
-    else
-    	artyom_lang = "en-US";
-    //
-    setTimeout(function(){// if you use artyom.fatality , wait 250 ms to initialize again.
-         artyom.initialize({
-            lang:artyom_lang,// A lot of languages are supported. Read the docs !
-            continuous:true,// Artyom will listen forever
-            listen:true, // Start recognizing
-            debug:true, // Show everything in the console
-            speed:1, // talk normally
-            //name: "pomodoro",
-        }).then(function(){
-            console.log("Ready to work !");
-        });
-    },250);
-    //
-    if(data_from_php.php_locale=="pt_BR")
-    	artyom.addCommands(grupoDeComandos);
-    else
-    	artyom.addCommands(groupOfCommands);
-
-    artyom.addCommands(groupSwith);
-
-    /*artyom.when("COMMAND_RECOGNITION_END",function(status){
-	          startContinuousArtyom();
-	   
-	});
-	artyom.when("SPEECH_SYNTHESIS_END",function(){
-	          startContinuousArtyom();
-	    
-	});*/
-}
-
-
-var groupSwith = [{
-    // note that if you're in spanish for example
-    // the command should be instead : "Iniciar en ingles, Iniciar en alemán" etc...
-    indexes:["switch to portuguese","switch to english"],
-    action: function(i){
-        switch(i){
-            case 0: start("pt-PT"); break;
-            case 1: start("en-US"); break;
-        }
-    }
-}];
-
-function startNoSleepWakeLock() {
-	noSleep = new NoSleep();
-	function enableNoSleep() {
-	  noSleep.enable();
-	  document.removeEventListener('touchstart', enableNoSleep, false);
-	  document.removeEventListener('click', enableNoSleep, false);
-	}
-	document.addEventListener('touchstart', enableNoSleep, false);
-	document.addEventListener('click', enableNoSleep, false);
-}
