@@ -197,7 +197,8 @@ function load_initial_data() {
 			pomodoro_completed_sound.setVolume(volumeLevel);
 			active_sound.setVolume(volumeLevel);
 			session_reseted_sound.setVolume(volumeLevel);
-			//if(artyom_voice!=undefined)
+			if(artyom_voice!=undefined)
+				artyom_voice.initialize({volume:volumeLevel/100});
 			//artyom_voice.volume = volumeLevel/100;
 		}
 		//Functions to make the effect of flip on countdown_clock
@@ -247,7 +248,8 @@ function update_pomodoro_clipboard (post_stts) {
 	pomodoro_completed_sound.setVolume(volumeLevel);
 	active_sound.setVolume(volumeLevel);
 	session_reseted_sound.setVolume(volumeLevel);
-	//if(artyom_voice!=undefined)
+	if(artyom_voice!=undefined)
+		artyom_voice.initialize({volume:volumeLevel/100});
 	//artyom_voice.volume = volumeLevel/100;
 
 	jQuery.post(ajaxurl, data, function(response) {
