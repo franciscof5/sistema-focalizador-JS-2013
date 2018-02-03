@@ -381,7 +381,7 @@ function change_status(txt, stts) {
 	console.log("change_status: " + txt);
 	if(artyom_voice) {
 		artyom_voice.shutUp();
-		artyom_voice.initialize({volume:0.1});
+		//artyom_voice.initialize({volume:0.1});
 		artyom_voice.say(txt, {onStart() {window.artyom_voice.dontObey();},onEnd() {window.artyom_voice.obey();}});
 	}
 	
