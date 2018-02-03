@@ -16,7 +16,7 @@ if(!in_array($page, $pages)) {
 		if($page=="focar") {
 			wp_enqueue_script("sound-js");
 			wp_enqueue_script("pomodoros-js");
-			wp_enqueue_script("projectimer-pomodoros-shared-parts-js");
+			#wp_enqueue_script("projectimer-pomodoros-shared-parts-js");
 			wp_enqueue_script("rangeslider-js");
 		}
 	}
