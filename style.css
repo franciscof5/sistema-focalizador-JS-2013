@@ -2189,8 +2189,7 @@ div.post {
 			border: 4px solid #fff;
 		}
 		.author-box {
-			/*height: 70px;
-			overflow: hidden;*/
+			padding-top: 20px;
 		}
 	div.post div.post-content, div.comment-content {
 		/*margin-left: 105px; f5sites regra lazarenta*/
