@@ -31,8 +31,9 @@
 
 	//
 	var noSleep;
-	var artyom;
+	var artyom_voice;
 	var stopWarningNoTaskFound=false;
+	var soundManager;
 	var volumeLevel;
 
 }
@@ -190,7 +191,7 @@ function load_initial_data() {
 			volumeLevel=postReturned['range_volume'];
 			jQuery("#rangeVolume").val(volumeLevel);
 			soundManager.setVolume(volumeLevel);
-			artyom.volume = volumeLevel/100;
+			artyom_voice.volume = volumeLevel/100;
 		}
 		//Functions to make the effect of flip on countdown_clock
 		//change_status(response);
@@ -236,7 +237,7 @@ function update_pomodoro_clipboard (post_stts) {
 
 	volumeLevel = jQuery("#rangeVolume").val();
 	soundManager.setVolume(volumeLevel);
-	artyom.volume = volumeLevel/100;
+	artyom_voice.volume = volumeLevel/100;
 
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
@@ -368,9 +369,9 @@ function stop_clock() {
 //Function to show status warnings at bottom of the clock
 function change_status(txt, stts) {
 	console.log("change_status: " + txt);
-	if(artyom) {
-		artyom.shutUp();
-		artyom.say(txt, {onStart() {window.artyom.dontObey();},onEnd() {window.artyom.obey();}});
+	if(artyom_voice) {
+		artyom_voice.shutUp();
+		artyom_voice.say(txt, {onStart() {window.artyom_voice.dontObey();},onEnd() {window.artyom_voice.obey();}});
 	}
 	
 	if(typeof stts=="undefined")
