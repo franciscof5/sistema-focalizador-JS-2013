@@ -15,14 +15,14 @@
 			<?php 
 			$produtividade_usuario = user_object_productivity(bp_displayed_user_id());
 			?>
-			<!--h4>Registro</h4>
+			<!--p>Registro</p-->
 			<ul>
-				<li>Membro ha dias: <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> </li>
+				<li>Membro há <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> dias</li>
 				<li>Dias de trabalho: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']; ?> </li>
 				<li>Dias sem trabalho: <?php echo $produtividade_usuario["sempre"]['diasFolga']; ?> </li>
 			</ul>
-			<h4>Produtividade</h4-->
-			<p>Dia trabalhados/total dias no período, fator desempenho (%)</p>
+			<!--p>Produtividade</p-->
+			<!--p>Dia trabalhados/total dias no período, fator desempenho (%)</p-->
 			<ul>
 				<!--li>Hoje :<?php echo $produtividade_usuario["semana"]['totalDias']; ?> </li-->
 				<li>Ultimos sete dias: <?php echo $produtividade_usuario["setedias"]['diasTrabalhados']."/7".", ".($produtividade_usuario["setedias"]['fatorProdutividade']*100)."%"; ?> </li>
@@ -81,9 +81,14 @@
 			?>
 		</li>
 		<li>
-			<h3 class="widget-title">Novo: Exportar CSV</h3>
-			<p>Tenha controle sobre seus dados, visualize seus pomodoros no Excel ou Calc</p>
-			<p><a href="/csv" class="btn button">EXPORTAR POMODOROS</a></p>
+			<h3 class="widget-title">Novo: Exportar Calendário</h3>
+			<p>Veja seus pomodoros nos calendários da Google, Apple, Microsoft e outros.</p>
+			<p><a href="/calendar" class="btn btn-xs">EXPORTAR CALENDÁRIO</a></p>
+		</li>
+		<li>
+			<h3 class="widget-title">Novo: Exportar Planilha</h3>
+			<p>Tenha controle sobre seus dados, visualize seus pomodoros no Microsoft Excel, LibreOffice Calc e outros.</p>
+			<p><a href="/csv" class="btn btn-xs">EXPORTAR PLANILHA</a></p>
 		</li>
 		<li>
 			<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
