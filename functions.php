@@ -128,7 +128,7 @@ add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action( 'admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
 add_action( 'init', 'create_post_type' );
-add_action('wp_enqueue_scripts', 'load_scritps');
+add_action('init', 'load_scritps');
 
 add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
 
@@ -145,7 +145,7 @@ function default_page() {
   return '/focar';
 }
 
-#add_filter('login_redirect', 'default_page');
+add_filter('login_redirect', 'default_page');
 
 function load_scritps() {	
 	//jquery colors
@@ -298,7 +298,7 @@ function show_most_recent_task() {
 	#die();
 }
 
-#get_projectimer_tags_COPY();die;
+#get_projectimer_tags_COPY();
 function get_projectimer_tags_COPY($excludeTags=NULL) {
 	
 	if(function_exists('revert_database_schema'))revert_database_schema();
@@ -315,7 +315,7 @@ function get_projectimer_tags_COPY($excludeTags=NULL) {
 	$all_projectimer_tags = get_posts( $args );
 	$please_dont_change_wpdb_woo_separated_tables=false;
 	#set_shared_database_schema();
-	#var_dump($all_projectimer_tags);die;
+	#var_dump($all_projectimer_tags);
 	$terms = array();
 	foreach ($all_projectimer_tags as $post) {
 		$tags = get_the_terms($post->ID, 'post_tag');
