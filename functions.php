@@ -2,9 +2,29 @@
 //f5 sites shared posts e tables compatibility plugin
 if(function_exists("set_shared_database_schema")) {
 	add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
+	#add_action("wp_delete_post", "force_database_aditional_tables_share", 10, 2);
+	#add_action("wp_trash_post", "force_database_aditional_tables_share", 10, 2);
+	#add_action("admin-init", "set_shared_database_schema", 10, 2);
 	add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
+	#add_action('init', 'force_database_aditional_tables_share');
 }
 
+function my_function() {
+	force_database_aditional_tables_share();
+	echo "DASDAS";
+    global $post;
+    var_dump($post);die;
+    if('projectimer_focus' == $post->post_type) {
+        // do your stuff here
+        
+    }
+}
+add_action("trash_projectimer_focus", "my_function", 10, 2);
+add_action("wp_delete_post", "my_function", 10, 2);
+add_action("wp_trash_post", "my_function", 10, 2);
+add_action('publish_to_trash', 'my_function');
+add_action('draft_to_trash',   'my_function');
+add_action('future_to_trash',  'my_function');
 //date_default_timezone_set('America/Sao_Paulo');
 
 //
@@ -352,7 +372,10 @@ function get_projectimer_tags_COPY($excludeTags=NULL) {
 		}
 		//$terms[] = $tags;
 	}
-	return $terms;
+	if($terms)
+		return $terms;
+	else
+		return "projeto-inicial";
 }
 
 #
@@ -576,7 +599,7 @@ function load_session () {
 		//} else {
 		#$post = get_post($pomodoroAtivo);
 
-
+		$agora = strtotime(current_time("Y-m-d H:i:s"));
 		#date_default_timezone_set('America/Sao_Paulo');
 		$args = array(
 		              'post_type' => 'projectimer_focus',
@@ -592,6 +615,27 @@ function load_session () {
 			//$pomodoroAtivo = 2;//LOST POMODORO
 			//reset_configurations();
 			echo "0";
+			$argsnew = array(
+					'post_type' => 'projectimer_focus',
+		            'post_status' => 'draft',
+		            'author'   => get_current_user_id(),
+		            'post_title' => 'Testar aplicativo Pomodoros',
+		            //'post_tags' => 'projeto-inicial',
+		            'post_content' => 'Bem vindo ao Pomodoros, descreva aqui o que precisa fazer para terminar a tarefa, use este campo como anotações',
+				);
+			$ok = wp_insert_post($argsnew);
+			if($ok) {
+				wp_set_post_tags( $f, 'projeto-inicial' );
+				$postReturned['post_title'] = $argsnew->post_title;
+				$postReturned['post_tags'] = 'projeto-inicial';
+				$postReturned['post_content'] = $argsnew->post_content;
+				$postReturned['ID'] = $f;
+				$postReturned['post_date'] = "now";
+				$postReturned['post_status'] = $argsnew->post_status;
+				$postReturned['secs'] = 0;
+				$postReturned['agora'] = $agora;
+				$postReturned['tags_total'] = get_projectimer_tags_COPY();
+			}
 			//$post = get_post($pomodoroAtivo);
 		} else {
 
@@ -611,10 +655,10 @@ function load_session () {
 			$timePost  = strtotime($post[0]->post_date);
 			//echo " i ";
 			
-			$agora = strtotime(current_time("Y-m-d H:i:s"));
+			
 			
 			//echo " S:";
-			$secs = ($timePost - $agora);
+			$secs = ($agora - $timePost);
 
 			/*$date = new DateTime( $post[0]->post_date_gmt );
 			$date2 = new DateTime( "2014-01-13 04:29:10" );
@@ -629,18 +673,17 @@ function load_session () {
 			$postReturned['post_status'] = $post[0]->post_status;
 			$postReturned['secs'] = $secs;
 			$postReturned['agora'] = $agora;
-			$postReturned['tags_total'] = get_projectimer_tags_COPY();
-
-			$vol = get_user_meta(get_current_user_id(), "rangeVolume", true);
-			if($vol<0 || $vol>100 || $vol=="")
-				$vol=100;
-			$postReturned['range_volume'] = $vol;
-			//
-
-			//header('Content-type: application/json');//CRUCIAL
-			//if($pomodoroAtivo)
-			echo json_encode($postReturned);
+			$postReturned['tags_total'] = get_projectimer_tags_COPY();	
 		}
+		$vol = get_user_meta(get_current_user_id(), "rangeVolume", true);
+		if($vol<0 || $vol>100 || $vol=="")
+			$vol=100;
+		$postReturned['range_volume'] = $vol;
+		//
+
+		//header('Content-type: application/json');//CRUCIAL
+		//if($pomodoroAtivo)
+		echo json_encode($postReturned);
 		#echo "Carreguei sua última tarefa, basta acionar o botão FOCAR! e arregaçar as mangas."."$^$ ".$post->post_title."$^$ ".$tags[0]->name."$^$ ".$post->post_content."$^$ ".$post->post_date."$^$ ".$post->post_status."$^$ ".$post->ID."$^$ ".$secs;
 		//}
 	//}
@@ -953,3 +996,27 @@ function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 				
 }*/
 //get_user_subscription(2, $_SERVER['REQUEST_URI']);
+foreach( array( 'projectimer_focus' ) as $hook )
+    add_filter( "views_edit-$hook", 'modified_views_so_15799171' );
+
+function modified_views_so_15799171( $views ) 
+{
+    $views['all'] = str_replace( 'All ', 'Tutti ', $views['all'] );
+
+    if( isset( $views['publish'] ) )
+        $views['publish'] = str_replace( 'Published ', 'Online ', $views['publish'] );
+
+    if( isset( $views['future'] ) )
+        $views['future'] = str_replace( 'Scheduled ', 'Future ', $views['future'] );
+
+    if( isset( $views['draft'] ) )
+        $views['draft'] = str_replace( 'Drafts ', 'Clipboard ', $views['draft'] );
+
+    if( isset( $views['pending_review'] ) )
+        $views['trash'] = str_replace( 'Pending ', 'Models ', $views['trash'] );
+
+    if( isset( $views['trash'] ) )
+        $views['trash'] = str_replace( 'Trash ', 'Done ', $views['trash'] );
+
+    return $views;
+}

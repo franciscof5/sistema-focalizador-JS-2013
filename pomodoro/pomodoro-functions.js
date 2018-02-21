@@ -162,9 +162,9 @@ function load_initial_data() {
 			
 			
 			/*if(secundosRemainingFromPHP<0) {
-				//alertify.log("time lost");
+				//It has to be negative, because the PHP logic
 				secundosRemainingFromPHP*=-1;
-			}
+			}*/
 			//alert(status_box.value);
 			if(status_box.value=="draft") {//era pending
 				//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
@@ -192,7 +192,7 @@ function load_initial_data() {
 
 				//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 				//change_status("...");	
-			}*/
+			}
 			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 			//
 			volumeLevel=postReturned['range_volume'];
