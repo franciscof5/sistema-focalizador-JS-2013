@@ -59,7 +59,7 @@ jQuery(document).ready(function ($) {
 	startSoundMan();
 	//
 	change_status(txt_loading_initial_data);	
-	load_initial_data();//
+	//load_initial_data();//
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining);
 	flip_number(true);
@@ -79,7 +79,7 @@ jQuery(document).ready(function ($) {
 	//Check updates on task every 15s (if not on focus)
 	listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
-		load_initial_data();
+		//load_initial_data();
 	},15000);
 });
 
