@@ -246,7 +246,7 @@ function update_pomodoro_clipboard (post_stts) {
 	}
 	
 	if(post_stts) {
-		data["post_status"] = post_stts;
+		//data["post_status"] = post_stts;
 	} 
 	
 
