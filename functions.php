@@ -134,12 +134,21 @@ add_action('wp_ajax_update_session', 'update_session');
 add_action('wp_ajax_nopriv_update_session', 'update_session');
 add_action('wp_ajax_save_modelnow', 'save_modelnow');
 add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
-add_action( 'admin_menu', 'my_remove_menu_pages' );
+add_action('admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
-add_action( 'init', 'create_post_type' );
+add_action('init', 'create_post_type' );
 add_action('init', 'load_scritps');
-
 add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
+
+/*add_action( 'muplugins_loaded', function()
+{
+    $files = get_included_files();
+    foreach ( $files as $f )
+        echo $f.'<br>';
+
+    // or...
+    var_dump( $files );
+});*/
 
 function force_revert_f5sites_shared() {
 	if(is_tag()) {
