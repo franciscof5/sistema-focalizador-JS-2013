@@ -1,8 +1,42 @@
 <?php
+//f5 sites shared posts e tables compatibility plugin
+if(function_exists("set_shared_database_schema")) {
+	add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
+	add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
+}
+
+//date_default_timezone_set('America/Sao_Paulo');
+
 //
-//remove_filter('template_redirect', 'redirect_canonical');
 show_admin_bar( false );
+
+//
 add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );
+add_filter('login_redirect', 'default_page');
+add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' ); 
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+//
+add_action( 'init', 'blockusers_init' );
+add_action( 'login_form_middle', 'add_lost_password_link' );
+#add_action( 'admin_menu', 'edit_admin_menus' ); 
+#add_action('init', 'myStartSession', 1);
+#add_action('wp_logout', 'myEndSession');
+#add_action('wp_login', 'myEndSession');
+add_action('wp_ajax_save_progress', 'save_progress');
+add_action('wp_ajax_nopriv_save_progress', 'save_progress');
+add_action('wp_ajax_load_session', 'load_session');
+add_action('wp_ajax_nopriv_load_session', 'load_session');
+add_action('wp_ajax_update_session', 'update_session');
+add_action('wp_ajax_nopriv_update_session', 'update_session');
+add_action('wp_ajax_save_modelnow', 'save_modelnow');
+add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
+add_action('admin_menu', 'my_remove_menu_pages' );
+add_action('wp_logout','go_home');
+add_action('init', 'create_post_type' );
+add_action('init', 'load_scritps');
+
+
+//
 function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 	if ( preg_match("/ranking/",$redirect_url) ) {
 		return FALSE;
@@ -13,11 +47,6 @@ function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 	}
 }
 //
-
-
-if(function_exists("set_shared_database_schema"))
-add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
-
 function get_author_post_tags_wpa78489($author_id,$taxonomy = 'post_tag'){
     //get author's posts
     $posts = get_posts(array(
@@ -98,48 +127,21 @@ function user_object_productivity ($user_id) {
 		"setedias" => $SETEDIAS,
 		"semana" => $SEMANA
 	);
-	//var_dump($new_object_productivity);
 	return $new_object_productivity;
 }
 
 if ( function_exists( 'add_theme_support' ) ) { 
-  add_theme_support( 'post-thumbnails' ); 
+	add_theme_support( 'post-thumbnails' ); 
 }
 
-
-
-add_action( 'init', 'blockusers_init' );
 function blockusers_init() {
 	if ( is_admin() && ! current_user_can( ‘administrator’ ) && ! ( defined( ‘DOING_AJAX’ ) && DOING_AJAX ) ) {
 		wp_redirect( home_url() );
 		exit;
 	}
 }
-//date_default_timezone_set('America/Sao_Paulo');
+
 //
-#ADMIN can view the bar finally
-#if(!current_user_can('administrator'))
-#add_filter('show_admin_bar', '__return_false'); 
-
-add_action( 'login_form_middle', 'add_lost_password_link' );
-#add_action( 'admin_menu', 'edit_admin_menus' ); 
-#add_action('init', 'myStartSession', 1);
-#add_action('wp_logout', 'myEndSession');
-#add_action('wp_login', 'myEndSession');
-add_action('wp_ajax_save_progress', 'save_progress');
-add_action('wp_ajax_nopriv_save_progress', 'save_progress');
-add_action('wp_ajax_load_session', 'load_session');
-add_action('wp_ajax_nopriv_load_session', 'load_session');
-add_action('wp_ajax_update_session', 'update_session');
-add_action('wp_ajax_nopriv_update_session', 'update_session');
-add_action('wp_ajax_save_modelnow', 'save_modelnow');
-add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
-add_action('admin_menu', 'my_remove_menu_pages' );
-add_action('wp_logout','go_home');
-add_action('init', 'create_post_type' );
-add_action('init', 'load_scritps');
-add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
-
 /*add_action( 'muplugins_loaded', function()
 {
     $files = get_included_files();
@@ -147,7 +149,6 @@ add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
         echo $f.'<br>';
 
     // or...
-    var_dump( $files );
 });*/
 
 function force_revert_f5sites_shared() {
@@ -163,7 +164,7 @@ function default_page() {
   return '/focar';
 }
 
-add_filter('login_redirect', 'default_page');
+
 
 function load_scritps() {	
 	//jquery colors
@@ -204,9 +205,7 @@ function load_scritps() {
 	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
 	if($user_lang_pref=="")
 		$user_lang_pref="pt_BR";
-	//var_dump($user_lang_pref);
 	/*if($user_lang_pref) {
-		//var_dump($user_lang_pref);die;
 		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {
 			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "pt_BR" );
 		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
@@ -230,7 +229,6 @@ function load_scritps() {
 	
 	$filelang = $locale.".js";
 	
-	#var_dump($filelang."#");
 	//if(qtranxf_getLanguage() == "en")
 		//$filelang="en.js";
 	   //else if(qtranxf_getLanguage() == "pt")
@@ -333,11 +331,9 @@ function get_projectimer_tags_COPY($excludeTags=NULL) {
 	$all_projectimer_tags = get_posts( $args );
 	$please_dont_change_wpdb_woo_separated_tables=false;
 	#set_shared_database_schema();
-	#var_dump($all_projectimer_tags);
 	$terms = array();
 	foreach ($all_projectimer_tags as $post) {
 		$tags = get_the_terms($post->ID, 'post_tag');
-		#var_dump($tags);
 		if($tags) {
 			foreach ($tags as $tag) {
 				//array_
@@ -356,15 +352,10 @@ function get_projectimer_tags_COPY($excludeTags=NULL) {
 		}
 		//$terms[] = $tags;
 	}
-	#var_dump($terms);die;
 	return $terms;
 }
 
 #
-function reset_configurations () {
-	delete_user_meta(get_current_user_id(), "pomodoroAtivo");
-}
-
 function add_lost_password_link() {
     return '<a href="/wp-login.php?action=lostpassword">Esqueci a senha (forgot password)</a>';
 }
@@ -409,14 +400,6 @@ function my_remove_menu_pages() {
 	}
 }
 
-add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' ); 
-
-function woo_custom_order_button_text() {
-    return __( 'Realizar Doação', 'woocommerce' ); 
-}
-
-// removes Order Notes Title - Additional Information
-add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 /*function edit_admin_menus() {  
 	global $menu;  
 	$menu[5][0] = 'Pomodoros'; // Change Posts to Pomodoros
@@ -476,7 +459,6 @@ function save_progress () {
 	$wpdb->term_relationships=$prefix."term_relationships";
 	$wpdb->termmeta=$prefix."termmeta";
 	$wpdb->taxonomy=$prefix."taxonomy";*/
-	//var_dump($wpdb);
 	#force_database_aditional_tables_share();
 	//
 	#define(FORCE_NOT_PUBLISH_SHARED, true);
@@ -524,7 +506,6 @@ function save_progress () {
 		//
 		$act_args['action'] = "<p><a href='/colegas/".$current_user->user_login."'><span class=activity_title>".$namefull."</span></a> completou <a href='".get_permalink($ok)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
 	
-		//var_dump($act_args);
 		$ac = bp_activity_add( $act_args );
 		//
 		echo "ATIVI:".$ac;
@@ -547,6 +528,11 @@ function save_progress () {
 	die(); 
 }
 
+function woo_custom_order_button_text() {
+    return __( 'Realizar Doação', 'woocommerce' ); 
+}
+
+
 #
 function load_session () {
 	checkLogin();
@@ -566,7 +552,6 @@ function load_session () {
 		
 
 		//$res = get_post($pomodoroAtivo);
-		//var_dump($res);
 		if (count($any_post)==0) {
 			echo "É a sua primeira visita? Configurei uma tarefa como exemplo abaixo! $^$ Organizar ambiente$^$ projeto-organizacao$^$ Organizar mesa e gaveta, arquivar papéis do ano passado. Nessa área você pode escrever mais detalhes da tarefa. Uma curiosidade, organizar o ambiente é a tarefa número 1 de quem usa o Pomodoros.com.br pela primeira vez $^$ ".date("Y-m-d H:i:s")."$^$ $^$ $^$ ";
 			//echo "É a sua primeira visita? Vou configurar um pomodoro como exemplo"
@@ -602,11 +587,10 @@ function load_session () {
 		              'posts_per_page' => 1,
 		            );
 		$post = get_posts($args); #new WP_Query( $args );
-		#var_dump($post);die;
 
 		if(!$post) {
 			//$pomodoroAtivo = 2;//LOST POMODORO
-			reset_configurations();
+			//reset_configurations();
 			echo "0";
 			//$post = get_post($pomodoroAtivo);
 		} else {
@@ -615,7 +599,6 @@ function load_session () {
 			
 			//}
 			
-			//var_dump($post);
 			$tags = wp_get_post_tags($post[0]->ID);
 			$tags_list = array();
 			foreach ($tags as $t) {
@@ -686,7 +669,6 @@ function update_session () {
 		echo wp_trash_post($post[0]->ID);
 		die();
 	}
-	#var_dump($post);die;
 	#$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 	$pomodoroAtivo =  $post[0]->ID;
 
@@ -967,7 +949,6 @@ function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 	 echo "<pre>"; print_r($wpdb); echo "</pre>";
 	
 	$results = $wpdb->get_results( $sql, OBJECT );
-	var_dump($results);
 	die;
 				
 }*/

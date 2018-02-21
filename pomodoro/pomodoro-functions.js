@@ -160,7 +160,8 @@ function load_initial_data() {
 			//alert(secundosRemainingFromPHP);
 			//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
 			
-			if(secundosRemainingFromPHP<0) {
+			
+			/*if(secundosRemainingFromPHP<0) {
 				//alertify.log("time lost");
 				secundosRemainingFromPHP*=-1;
 			}
@@ -181,8 +182,8 @@ function load_initial_data() {
 						//change_status(txt_time_found + Math.round(secundosRemainingFromPHP/60) + txt_minutes);
 						
 						//alert(secondsRemaining);
-						if(!interval_clock)
-						start_clock();
+						//if(!interval_clock)
+						//start_clock();
 					}
 					//alert(secondsRemaining);
 				}
@@ -191,7 +192,7 @@ function load_initial_data() {
 
 				//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 				//change_status("...");	
-			}
+			}*/
 			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 			//
 			volumeLevel=postReturned['range_volume'];
@@ -290,7 +291,7 @@ function action_button() {
 	}
 	startNoSleepWakeLock();
 	//startContinuousArtyom();//BROKES SLOW DEVICES
-	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data		
+	//update_pomodoro_clipboard();//Isso sim é a verdadeira gambiarra, aplicada ao nível extremo, como não salva a data quando usa "pending", então salva um rascunho com a data de agora e altera para pending que não mexe na data
 
 }
 //Start countdown
@@ -302,7 +303,7 @@ function start_clock() {
 	//is_pomodoros is when using 25min for focusing
 	if(is_pomodoro) {
 		change_button(textInterruptFocus, "#006633");//Chage button to "interrupt"
-		update_pomodoro_clipboard("pending");
+		//update_pomodoro_clipboard("pending");
 		change_status(txt_started_countdown + jQuery("#title_box").val());
 	} else {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
@@ -372,7 +373,7 @@ function stop_clock() {
 	window.clearInterval(interval_clock);
 	//pomodoro_completed_sound.play();
 	interval_clock=false;
-	update_pomodoro_clipboard();
+	//update_pomodoro_clipboard();
 	//alert(is_pomodoro);
 	//Functions to make the effect of flip on countdown_clock
 	if(is_pomodoro) {
@@ -428,7 +429,7 @@ function interrupt() {
 	//convertSeconds(0);
 	//flip_number();
 	change_button(textPomodoro, "#0F0F0F");
-	update_pomodoro_clipboard("trash");
+	//update_pomodoro_clipboard("trash");
 	//
 	stop_clock();
 	//secondsRemaining=0;
