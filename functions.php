@@ -3,24 +3,33 @@
 if(function_exists("set_shared_database_schema")) {
 	add_action("wpcf7_init", "set_shared_database_schema", 10, 2);
 	#add_action("wp_delete_post", "force_database_aditional_tables_share", 10, 2);
-	#add_action("wp_trash_post", "force_database_aditional_tables_share", 10, 2);
+	add_action("wp_trash_post", "force_revert_f5sites_shared", 10, 2);
 	#add_action("admin-init", "set_shared_database_schema", 10, 2);
 	add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
 	#add_action('init', 'force_database_aditional_tables_share');
 }
 
-function my_function() {
-	force_database_aditional_tables_share();
-	echo "DASDAS";
-    global $post;
-    var_dump($post);die;
-    if('projectimer_focus' == $post->post_type) {
-        // do your stuff here
-        
-    }
+function my_function($args) {
+	if($args) {
+		$is_trashing = substr($args,0,10);
+		$id = substr($args,11);
+		if($is_trashing) {
+			revert_database_schema();
+			$foi = wp_trash_post($id);
+			if($foi)
+				wp_redirect("/wp-admin/edit.php?post_type=projectimer_focus");
+		}
+	}
 }
+
+add_action( 'check_admin_referer', 'my_function', 10, 2 );
+add_action( 'post_action_trash', 'my_function' );
+#add_action( 'admin_init', 'my_function' );
+add_action( 'before_delete_post', 'my_function' );
+add_action( 'before_trash_post', 'my_function' );
 add_action("trash_projectimer_focus", "my_function", 10, 2);
 add_action("wp_delete_post", "my_function", 10, 2);
+add_action("wp_trash_post_projectimer_focus", "my_function", 10, 2);
 add_action("wp_trash_post", "my_function", 10, 2);
 add_action('publish_to_trash', 'my_function');
 add_action('draft_to_trash',   'my_function');
@@ -614,7 +623,7 @@ function load_session () {
 		if(!$post) {
 			//$pomodoroAtivo = 2;//LOST POMODORO
 			//reset_configurations();
-			echo "0";
+			//echo "0";
 			$argsnew = array(
 					'post_type' => 'projectimer_focus',
 		            'post_status' => 'draft',
@@ -625,13 +634,13 @@ function load_session () {
 				);
 			$ok = wp_insert_post($argsnew);
 			if($ok) {
-				wp_set_post_tags( $f, 'projeto-inicial' );
-				$postReturned['post_title'] = $argsnew->post_title;
-				$postReturned['post_tags'] = 'projeto-inicial';
-				$postReturned['post_content'] = $argsnew->post_content;
+				wp_set_post_tags( $ok, 'projeto-inicial' );
+				$postReturned['post_title'] = $argsnew['post_title'];
+				$postReturned['post_tags'] = array('projeto-inicial');
+				$postReturned['post_content'] = $argsnew['post_content'];
 				$postReturned['ID'] = $f;
 				$postReturned['post_date'] = "now";
-				$postReturned['post_status'] = $argsnew->post_status;
+				$postReturned['post_status'] = $argsnew['post_status'];
 				$postReturned['secs'] = 0;
 				$postReturned['agora'] = $agora;
 				$postReturned['tags_total'] = get_projectimer_tags_COPY();
