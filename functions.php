@@ -8,7 +8,7 @@ if(function_exists("set_shared_database_schema")) {
 //date_default_timezone_set('America/Sao_Paulo');
 
 //
-show_admin_bar( false );
+#show_admin_bar( false );
 
 //
 add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );
@@ -16,7 +16,7 @@ add_filter('login_redirect', 'default_page');
 add_filter( 'woocommerce_order_button_text', 'woo_custom_order_button_text' ); 
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 //
-add_action( 'init', 'blockusers_init' );
+#add_action( 'init', 'blockusers_from_wp_admin' );
 add_action( 'login_form_middle', 'add_lost_password_link' );
 #add_action( 'admin_menu', 'edit_admin_menus' ); 
 #add_action('init', 'myStartSession', 1);
@@ -134,7 +134,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' ); 
 }
 
-function blockusers_init() {
+function blockusers_from_wp_admin() {
 	if ( is_admin() && ! current_user_can( ‘administrator’ ) && ! ( defined( ‘DOING_AJAX’ ) && DOING_AJAX ) ) {
 		wp_redirect( home_url() );
 		exit;
