@@ -106,6 +106,15 @@ if ( function_exists( 'add_theme_support' ) ) {
   add_theme_support( 'post-thumbnails' ); 
 }
 
+
+
+add_action( 'init', 'blockusers_init' );
+function blockusers_init() {
+	if ( is_admin() && ! current_user_can( ‘administrator’ ) && ! ( defined( ‘DOING_AJAX’ ) && DOING_AJAX ) ) {
+		wp_redirect( home_url() );
+		exit;
+	}
+}
 //date_default_timezone_set('America/Sao_Paulo');
 //
 #ADMIN can view the bar finally
@@ -423,6 +432,7 @@ function checkLogin() {
 		die();
 	}
 }
+
 function save_progress () {
 	checkLogin();
 	//$pomo_completed = date("Y-m-d H:i")."|".$_POST['descri'];
@@ -663,6 +673,10 @@ function update_session () {
 	        );
 	$post = get_posts($args); #new WP_Query( $args );
 
+	if($_POST['post_status']=="trash") {
+		echo wp_trash_post($post[0]->ID);
+		die();
+	}
 	#var_dump($post);die;
 	#$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
 	$pomodoroAtivo =  $post[0]->ID;
@@ -717,8 +731,8 @@ function update_session () {
 	if($pomodoroAtivo=="") {
 		//Não tem pomodoro ativo
 		$save_progress = wp_insert_post( $my_post );
-		update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
-		$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
+		//update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
+		//$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 		//$pomodoroAtivo = "NAO ACHOU";
 		//$pomodoroAtivo = $save_progress;
 		//echo "Salvando pela primeira vez.";

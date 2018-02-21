@@ -157,13 +157,15 @@ function load_initial_data() {
 				}
 			});
 			//change_status(secundosRemainingFromPHP);
-			//alert("secundosRemainingFromPHP");
+			//alert(secundosRemainingFromPHP);
 			//secundosRemainingFromPHP = secundosRemainingFromPHP.substring(rex[5], str.length - 1);
 			
-			if(secundosRemainingFromPHP<0)
+			if(secundosRemainingFromPHP<0) {
+				//alertify.log("time lost");
 				secundosRemainingFromPHP*=-1;
-			//alert(secundosRemainingFromPHP);
-			if(status_box.value=="pending") {
+			}
+			//alert(status_box.value);
+			if(status_box.value=="draft") {//era pending
 				//alert("secundosRemainingFromPHP"+secundosRemainingFromPHP+" pomodoroTime:"+pomodoroTime);
 				if(secundosRemainingFromPHP) {
 					//pomodoroTime = 18000;
@@ -176,9 +178,10 @@ function load_initial_data() {
 						secondsRemaining = pomodoroTime-secundosRemainingFromPHP;
 						//alert(secondsRemaining + " d " + pomodoroTime);
 						//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
-						change_status(txt_time_found + Math.round(secundosRemainingFromPHP/60) + txt_minutes);
+						//change_status(txt_time_found + Math.round(secundosRemainingFromPHP/60) + txt_minutes);
 						
 						//alert(secondsRemaining);
+						if(!interval_clock)
 						start_clock();
 					}
 					//alert(secondsRemaining);
@@ -197,7 +200,10 @@ function load_initial_data() {
 			pomodoro_completed_sound.setVolume(volumeLevel);
 			active_sound.setVolume(volumeLevel);
 			session_reseted_sound.setVolume(volumeLevel);
-			if(artyom_voice!=undefined)
+			//alert(volumeLevel);
+			//if(volumeLevel>1)
+				//startContinuousArtyom();
+			if(artyom_voice!=undefined && volumeLevel>1 )
 				artyom_voice.initialize({volume:volumeLevel/100});
 			//artyom_voice.volume = volumeLevel/100;
 		}
@@ -248,7 +254,7 @@ function update_pomodoro_clipboard (post_stts) {
 	pomodoro_completed_sound.setVolume(volumeLevel);
 	active_sound.setVolume(volumeLevel);
 	session_reseted_sound.setVolume(volumeLevel);
-	if(artyom_voice!=undefined)
+	if(artyom_voice!=undefined && volumeLevel>1)
 		artyom_voice.initialize({volume:volumeLevel/100});
 	//artyom_voice.volume = volumeLevel/100;
 
@@ -385,6 +391,7 @@ function change_status(txt, stts) {
 	if(artyom_voice) {
 		artyom_voice.shutUp();
 		//artyom_voice.initialize({volume:0.1});
+		if(volumeLevel>1)
 		artyom_voice.say(txt, {onStart() {window.artyom_voice.dontObey();},onEnd() {window.artyom_voice.obey();}});
 	}
 	
@@ -421,6 +428,7 @@ function interrupt() {
 	//convertSeconds(0);
 	//flip_number();
 	change_button(textPomodoro, "#0F0F0F");
+	update_pomodoro_clipboard("trash");
 	//
 	stop_clock();
 	//secondsRemaining=0;
