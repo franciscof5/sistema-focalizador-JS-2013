@@ -77,10 +77,10 @@ jQuery(document).ready(function ($) {
 	//
 	
 	//Check updates on task every 15s (if not on focus)
-	listen_changes_on_task_form = setInterval(function() {
+	/*listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
 		load_initial_data();
-	},15000);
+	},15000);*/
 });
 
 function load_initial_data() {
@@ -193,7 +193,7 @@ function load_initial_data() {
 				//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 				//change_status("...");	
 			}*/
-			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
+			//document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 			//
 			volumeLevel=postReturned['range_volume'];
 			jQuery("#rangeVolume").val(volumeLevel);
