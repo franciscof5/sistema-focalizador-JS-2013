@@ -259,7 +259,7 @@ function update_pomodoro_clipboard (post_stts) {
 		artyom_voice.initialize({volume:volumeLevel/100});
 	//artyom_voice.volume = volumeLevel/100;
 
-	jQuery.post(ajaxurl, data, function(response) {
+	/*jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
 		rex = response.split("$^$ ");
 		change_status("Os dados foram salvados " + rex[0]);
@@ -269,7 +269,7 @@ function update_pomodoro_clipboard (post_stts) {
 		//title_box.value = rex[0];
 		//tags_box.value  = rex[1];
 		//description_box.value = rex[2];
-	});
+	});*/
 	/*} else {
 		if(!$primeiroAviso) {
 			$primeiroAviso=true;
