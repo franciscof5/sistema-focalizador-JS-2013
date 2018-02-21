@@ -67,7 +67,7 @@ jQuery(document).ready(function ($) {
 	//listen to changes
 	jQuery("#title_box, #description_box, #tags_box, #rangeVolume").change(function() {
 		change_status(txt_update_current_task);
-		update_pomodoro_clipboard();
+		//update_pomodoro_clipboard();
 	});
 	
 	//
@@ -77,10 +77,10 @@ jQuery(document).ready(function ($) {
 	//
 	
 	//Check updates on task every 15s (if not on focus)
-	/*listen_changes_on_task_form = setInterval(function() {
+	listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
 		load_initial_data();
-	},15000);*/
+	},15000);
 });
 
 function load_initial_data() {
