@@ -59,7 +59,7 @@ jQuery(document).ready(function ($) {
 	startSoundMan();
 	//
 	change_status(txt_loading_initial_data);	
-	//load_initial_data();//
+	load_initial_data();//
 	secondsRemaining = pomodoroTime;
 	convertSeconds(secondsRemaining);
 	flip_number(true);
@@ -67,7 +67,7 @@ jQuery(document).ready(function ($) {
 	//listen to changes
 	jQuery("#title_box, #description_box, #tags_box, #rangeVolume").change(function() {
 		change_status(txt_update_current_task);
-		//update_pomodoro_clipboard();
+		update_pomodoro_clipboard();
 	});
 	
 	//
@@ -79,7 +79,7 @@ jQuery(document).ready(function ($) {
 	//Check updates on task every 15s (if not on focus)
 	listen_changes_on_task_form = setInterval(function() {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
-		//load_initial_data();
+		load_initial_data();
 	},15000);
 });
 
@@ -193,7 +193,7 @@ function load_initial_data() {
 				//change_status(txt_mat_load_return +  Math.round(((secundosRemainingFromPHP/60)/60)) + " h");	
 				//change_status("...");	
 			}*/
-			//document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
+			document.getElementById("secondsRemaining_box").value=secondsRemaining + "s";
 			//
 			volumeLevel=postReturned['range_volume'];
 			jQuery("#rangeVolume").val(volumeLevel);
@@ -246,7 +246,7 @@ function update_pomodoro_clipboard (post_stts) {
 	}
 	
 	if(post_stts) {
-		//data["post_status"] = post_stts;
+		data["post_status"] = post_stts;
 	} 
 	
 
@@ -259,7 +259,7 @@ function update_pomodoro_clipboard (post_stts) {
 		artyom_voice.initialize({volume:volumeLevel/100});
 	//artyom_voice.volume = volumeLevel/100;
 
-	/*jQuery.post(ajaxurl, data, function(response) {
+	jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
 		rex = response.split("$^$ ");
 		change_status("Os dados foram salvados " + rex[0]);
@@ -269,7 +269,7 @@ function update_pomodoro_clipboard (post_stts) {
 		//title_box.value = rex[0];
 		//tags_box.value  = rex[1];
 		//description_box.value = rex[2];
-	});*/
+	});
 	/*} else {
 		if(!$primeiroAviso) {
 			$primeiroAviso=true;
