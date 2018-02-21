@@ -309,7 +309,11 @@ function start_clock() {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
 	}
+	window.onbeforeunload = myConfirmation;
 	//startContinuousArtyom();
+}
+function myConfirmation() {
+    return 'Are you sure you want to quit? You have time left on timer';
 }
 
 //Function called every second when pomodoros are running
@@ -421,6 +425,7 @@ function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
+	window.onbeforeunload = "";
 	pomodoro_completed_sound.play(1);//STARTS FOWARD
 	//if(is_pomodoro)is_pomodoro=false;//NAO
 	is_pomodoro=true;//SEMPRE QUE INTERROMPER VOLTA PARA FOCAR, CERTO?
