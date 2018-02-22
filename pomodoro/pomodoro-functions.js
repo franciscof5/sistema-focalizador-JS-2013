@@ -171,7 +171,7 @@ function load_initial_data() {
 				if(secundosRemainingFromPHP) {
 					//pomodoroTime = 18000;
 					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
-					if(secundosRemainingFromPHP>pomodoroTime) {
+					/*if(secundosRemainingFromPHP>pomodoroTime) {
 						secondsRemaining = pomodoroTime;
 						//delete_model(postReturned['ID']);
 						//change_status(txt_time_losted + Math.round(((secundosRemainingFromPHP/60)/60)) + txt_hours_ago);	
@@ -184,7 +184,7 @@ function load_initial_data() {
 						//alert(secondsRemaining);
 						//if(!interval_clock)
 						//start_clock();
-					}
+					}*/
 					//alert(secondsRemaining);
 				}
 			} else if (status_box.value=="draft") {

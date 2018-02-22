@@ -1,4 +1,4 @@
-<div class="content_nosidebar col-xs-12 col-sm-6">
+<div class="content_nosidebar col-xs-12">
 	<?php 
 	#style="width: 104%;left: -2%;"
 	$instance = array(

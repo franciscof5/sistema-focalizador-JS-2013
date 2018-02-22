@@ -4,7 +4,7 @@ get_header();
 //$page = strtok(basename($_SERVER["REQUEST_URI"]),'?');
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
 $page = basename($uri_parts[0]);
-$pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite");
+$pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket");
 
 if(!in_array($page, $pages)) {
 	$page = "inicio";

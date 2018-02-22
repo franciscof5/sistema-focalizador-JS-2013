@@ -628,7 +628,7 @@ function load_session () {
 					'post_type' => 'projectimer_focus',
 		            'post_status' => 'draft',
 		            'author'   => get_current_user_id(),
-		            'post_title' => 'Testar aplicativo Pomodoros',
+		            'post_title' => 'Testar Pomodoros',
 		            //'post_tags' => 'projeto-inicial',
 		            'post_content' => 'Bem vindo ao Pomodoros, descreva aqui o que precisa fazer para terminar a tarefa, use este campo como anotações',
 				);
