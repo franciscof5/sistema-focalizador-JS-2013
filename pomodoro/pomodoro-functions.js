@@ -173,8 +173,8 @@ function load_initial_data() {
 					//alert("1111"+secundosRemainingFromPHP+" pt:"+pomodoroTime);
 					if(secundosRemainingFromPHP>pomodoroTime) {
 						secondsRemaining = pomodoroTime;
-						delete_model(postReturned['ID']);
-						change_status(txt_time_losted + Math.round(((secundosRemainingFromPHP/60)/60)) + txt_hours_ago);	
+						//delete_model(postReturned['ID']);
+						//change_status(txt_time_losted + Math.round(((secundosRemainingFromPHP/60)/60)) + txt_hours_ago);	
 					} else {
 						secondsRemaining = pomodoroTime-secundosRemainingFromPHP;
 						//alert(secondsRemaining + " d " + pomodoroTime);

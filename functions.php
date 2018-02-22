@@ -1021,11 +1021,17 @@ function modified_views_so_15799171( $views )
     if( isset( $views['draft'] ) )
         $views['draft'] = str_replace( 'Drafts ', 'Clipboard ', $views['draft'] );
 
-    if( isset( $views['pending_review'] ) )
+    if( isset( $views['pending'] ) )
         $views['trash'] = str_replace( 'Pending ', 'Models ', $views['trash'] );
 
     if( isset( $views['trash'] ) )
         $views['trash'] = str_replace( 'Trash ', 'Done ', $views['trash'] );
+    #PT
+    if( isset( $views['draft'] ) )
+        $views['draft'] = str_replace( 'Rascunhos ', 'Clipboard ', $views['draft'] );
+
+    if( isset( $views['pending'] ) )
+        $views['pending'] = str_replace( 'Pendentes ', 'Modelos ', $views['pending'] );
 
     return $views;
 }
