@@ -158,9 +158,9 @@
 		      <!--li>
 		      	<button title="Settings" id="settingsbutton" class="btn btn-link" href="/blog" style="padding-top: 10px;"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
 		      </li-->
-		      <!--li>
+		      <li>
 		      		<a title="Open Ticket" id="settingsbutton" class="btn btn-link" href="<?php bloginfo('url'); ?>/ticket" style="padding-top: 10px;"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <span class="hidden-sm hidden-md">Support</span></a>
-		      </li-->
+		      </li>
 		      <li>
 		      	<a title="Desconectar-se" class="btn btn-link" href="<?php echo wp_logout_url(); ?>" style="padding-top: 10px;"><script>document.write(txt_logout)</script></a>
 		      </li>
