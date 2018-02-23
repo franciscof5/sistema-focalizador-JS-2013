@@ -1,4 +1,4 @@
-	<div id="content" class="content_default  col-xs-12 col-sm-9">
+	<div id="content" class="content_default col col-xs-12 col-sm-9">
 	
 		<div class="padder">
 		<?php if(is_home()) { ?>

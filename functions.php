@@ -123,27 +123,27 @@ function user_object_productivity ($user_id) {
 
 	/*It must be splitted because it uses itself values, and it cant be accessed in real time*/
 	$SEMPRE['totalDias'] = floor($datediff/(60*60*24));
-	$SEMPRE['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' GROUP BY DATE (`post_date`)');
+	$SEMPRE['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' GROUP BY DATE (`post_date_gmt`)');
 	$SEMPRE['diasFolga'] = $SEMPRE['totalDias'] - $SEMPRE ['diasTrabalhados'];
 	$SEMPRE['fatorProdutividade'] = round($SEMPRE['diasTrabalhados']/$SEMPRE['totalDias'], 2);
 	
 	$TRINTADIAS['totalDias'] = 30;
-	$TRINTADIAS['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' AND post_date > DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY DATE (`post_date`)');
+	$TRINTADIAS['diasTrabalhados'] = $wpdb->query('SELECT * FROM `pomodoros_posts` WHERE `post_author` = '.$user_id.' AND post_date_gmt > DATE_SUB(NOW(), INTERVAL 30 DAY) GROUP BY DATE (`post_date_gmt`)');
 	$TRINTADIAS['diasFolga'] = $TRINTADIAS['totalDias'] - $TRINTADIAS['diasTrabalhados'];
 	$TRINTADIAS['fatorProdutividade'] = round($TRINTADIAS['diasTrabalhados']/$TRINTADIAS['totalDias'], 2);
 
 	$MES['totalDias'] = date("j");
-	$MES['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$MES['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	$MES['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date_gmt > DATE_SUB(NOW(), INTERVAL ".$MES['totalDias']." DAY) GROUP BY DATE (`post_date_gmt`)");
 	$MES['diasFolga'] = $MES['totalDias'] - $MES['diasTrabalhados'];
 	$MES['fatorProdutividade'] = round($MES['diasTrabalhados']/$MES['totalDias'], 2);
 
 	$SETEDIAS['totalDias'] = 6;
-	$SETEDIAS['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".$SETEDIAS['totalDias']." DAY) GROUP BY DATE (`post_date`)");
+	$SETEDIAS['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date_gmt > DATE_SUB(NOW(), INTERVAL ".$SETEDIAS['totalDias']." DAY) GROUP BY DATE (`post_date_gmt`)");
 	$SETEDIAS ['diasFolga'] = $SETEDIAS['totalDias'] - $SETEDIAS['diasTrabalhados'] +1;
 	$SETEDIAS ['fatorProdutividade'] = round($SETEDIAS['diasTrabalhados']/($SETEDIAS['totalDias']+1), 2);
 	
 	$SEMANA['totalDias'] = date('w') + 1;
-	$SEMANA['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date > DATE_SUB(NOW(), INTERVAL ".($SEMANA['totalDias']-1)." DAY) GROUP BY DATE (`post_date`)");
+	$SEMANA['diasTrabalhados'] = $wpdb->query("SELECT * FROM `pomodoros_posts` WHERE `post_author` = ".$user_id." AND post_date_gmt > DATE_SUB(NOW(), INTERVAL ".($SEMANA['totalDias']-1)." DAY) GROUP BY DATE (`post_date_gmt`)");
 	//Its to prevent a very intersting bug, when there are 2 posts with less than 24 hours of difference but are published at 2 differents days, it will result in a 2 posts for 1 day, grouped by date, because there are 2 differente days
 	($SEMANA['diasTrabalhados']>$SEMANA['totalDias']) ? $SEMANA['diasTrabalhados'] = $SEMANA['totalDias'] : $SEMANA['diasTrabalhados'];
 	$SEMANA['diasFolga'] = $SEMANA['totalDias'] - $SEMANA['diasTrabalhados'];
@@ -204,6 +204,10 @@ function load_scritps() {
 	wp_enqueue_style('alertify-css', get_bloginfo("stylesheet_directory")."/assets/alertify.core_and_default_merged.css", __FILE__);
 	
 	//bootstrap
+	/*wp_dequeue_script('bootstrap-css');
+	wp_dequeue_script('bootstrap-scripts');
+	wp_dequeue_style('bootstrap-js');
+	wp_dequeue_style('bootstrap-style');*/
 	wp_enqueue_script("bootstrap-js", get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.js");
 	wp_enqueue_style('bootstrap-css', get_bloginfo("stylesheet_directory")."/assets/bootstrap.min.css", __FILE__);
 	
@@ -499,7 +503,15 @@ function save_progress () {
 	if(!$_POST['post_priv'])
 		$_POST['post_priv']="publish";
 	$tagsinput = explode(" ", $_POST['post_tags']);
-	$agora = date("Y-m-d H:i:s");
+	
+	
+	#date_default_timezone_set('America/Sao_Paulo');
+	#$agora = current_time("Y-m-d H:i:s");
+	#date_default_timezone_set('UTC');
+	#$agora_gmt = current_time("Y-m-d H:i:s");
+	$agora = current_time("mysql");
+	$agora_gmt = current_time("mysql", true);
+	#echo "agora:".$agora.", agora_gmt:".$agora_gmt;die;
 	$my_post = array(
 		'post_type' => 'projectimer_focus',
 		'post_title' => $_POST['post_titulo'],
@@ -509,7 +521,7 @@ function save_progress () {
 		'post_author' => $current_user->ID,
 		'tags_input' => array($_POST['post_tags']),
 		'post_date' => $agora,
-		'post_date_gmt' => $agora,
+		'post_date_gmt' => $agora_gmt
 		//'post_category' => array(0)
 	);
 
@@ -563,8 +575,14 @@ function save_progress () {
 function woo_custom_order_button_text() {
     return __( 'Realizar Doação', 'woocommerce' ); 
 }
-
-
+/*
+echo date_default_timezone_get();
+date_default_timezone_set('UTC');
+		echo $agora = (current_time("Y-m-d H:i:s"));
+		echo "<br>";
+		date_default_timezone_set('America/Sao_Paulo');
+		echo date_default_timezone_get();
+		echo $agora_gmt = (current_time("Y-m-d H:i:s"));die;*/
 #
 function load_session () {
 	checkLogin();
@@ -607,9 +625,10 @@ function load_session () {
 			//$post = get_post($pomodoroAtivo);
 		//} else {
 		#$post = get_post($pomodoroAtivo);
+		
 
-		$agora = strtotime(current_time("Y-m-d H:i:s"));
-		#date_default_timezone_set('America/Sao_Paulo');
+		$agora = current_time("mysql");
+		$agora_gmt = current_time("mysql", true);
 		$args = array(
 		              'post_type' => 'projectimer_focus',
 		              'post_status' => 'draft',
@@ -643,6 +662,7 @@ function load_session () {
 				$postReturned['post_status'] = $argsnew['post_status'];
 				$postReturned['secs'] = 0;
 				$postReturned['agora'] = $agora;
+				$postReturned['agora_gmt'] = $agora_gmt;
 				$postReturned['tags_total'] = get_projectimer_tags_COPY();
 			}
 			//$post = get_post($pomodoroAtivo);
@@ -664,10 +684,10 @@ function load_session () {
 			$timePost  = strtotime($post[0]->post_date);
 			//echo " i ";
 			
-			
+			$agora_strtotime = strtotime($agora);
 			
 			//echo " S:";
-			$secs = ($agora - $timePost);
+			$secs = ($agora_strtotime - $timePost);
 
 			/*$date = new DateTime( $post[0]->post_date_gmt );
 			$date2 = new DateTime( "2014-01-13 04:29:10" );
@@ -815,8 +835,13 @@ function update_pomo_active () {
 	//echo "update_pomo";
 	$tagsinput = explode(" ", $_POST['post_tags']);
 	$pomodoroAtivo = get_user_meta(get_current_user_id(), "pomodoroAtivo", true);
-	$agora = date("Y-m-d H:i:s");
+	#date_default_timezone_set('America/Sao_Paulo');
+	#$agora = strtotime(current_time("Y-m-d H:i:s"));
+	#date_default_timezone_set('UTC');
+	#$agora_gmt = strtotime(current_time("Y-m-d H:i:s"));
 	
+	$agora = current_time("mysql");
+	$agora_gmt = current_time("mysql", true);
 	/*if($_POST['ignora_data']) {
 		//echo "com o pomodoro rolando. ";
 		$my_post = array(
@@ -844,7 +869,8 @@ function update_pomo_active () {
 			'tags_input' => array($_POST['post_tags']),
 			//'post_status' => "draft",
 			'edit_date' => true,
-			'post_date' => $agora
+			'post_date' => $agora,
+			'post_date_gmt' => $agora_gmt
 			//'post_date' => $_POST["post_data"]
 			//'post_category' => array(0)
 		);

@@ -35,16 +35,10 @@
 	</head>
 
 
-<body <?php #body_class() ?> id="bp-default22">
+<body <?php #body_class()  id="bp-default22" ?>>
 
 <!--div id="audio"></div-->
-
-<span id='linha-fundo'></span>
-<div id="" class="container-fluid content">
-
-		<?php do_action( 'bp_before_header' ) ?>
-		
-		<script type="text/javascript">
+<script type="text/javascript">
 			jQuery().ready(function($) {
 				/*$.each( "#header-content div span", function(index, value) {
 					$(this).hide();
@@ -77,9 +71,17 @@
 				});*/
 			});
 		</script>
+
+<span id='linha-fundo'></span>
+<div id="" class="container-fluid content">
+
+		<?php do_action( 'bp_before_header' ) ?>
+		
+		<?php /**/ ?>
 		<nav class="navbar navbar-inverse ">
 		  <div class="container-fluid">
 		    <div class="navbar-header" style="margin-top: 5px">
+		    
 		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pomoNavbar">
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
@@ -171,7 +173,7 @@
 		  </div>		
 		 
 		</nav>
-		
+		<?php /**/ ?>
 
 		<div id="loginlogbox">
 			<?php wp_login_form(); ?>
