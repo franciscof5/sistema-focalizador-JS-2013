@@ -34,7 +34,8 @@ add_action("wp_trash_post", "my_function", 10, 2);
 add_action('publish_to_trash', 'my_function');
 add_action('draft_to_trash',   'my_function');
 add_action('future_to_trash',  'my_function');
-//date_default_timezone_set('America/Sao_Paulo');
+date_default_timezone_set('UTC');
+#date_default_timezone_set('America/Sao_Paulo');
 
 //
 #show_admin_bar( false );
