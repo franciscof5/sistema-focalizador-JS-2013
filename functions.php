@@ -460,9 +460,7 @@ function checkLogin() {
 		die();
 	}
 }
-echo $agora = current_time("mysql");
-echo $agora_gmt = current_time("mysql", true);
-die;
+
 function save_progress () {
 	checkLogin();
 	//$pomo_completed = date("Y-m-d H:i")."|".$_POST['descri'];
