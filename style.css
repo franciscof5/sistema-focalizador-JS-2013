@@ -2747,3 +2747,7 @@ h3.rpwe-title a {
 	padding: 0;
 	margin-top: -10px;
 }
+
+.white-link a {
+	color: #FFF;
+}
