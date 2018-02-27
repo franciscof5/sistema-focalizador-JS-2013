@@ -103,6 +103,14 @@
 						<?php show_lang_options(false); ?>
 					</div>
 				</div>
+
+				<div  class="row white-link">
+				<?php
+				#force_database_aditional_tables_share();
+				#echo do_shortcode('[product id="4530"]');  
+				#revert_database_schema();
+				?>
+				</div>
 				
 				<div  class="row white-link">
 					<div class="col-sm-6">

@@ -23,6 +23,7 @@ function my_function($args) {
 }
 
 add_action( 'check_admin_referer', 'my_function', 10, 2 );
+/*
 add_action( 'post_action_trash', 'my_function' );
 #add_action( 'admin_init', 'my_function' );
 add_action( 'before_delete_post', 'my_function' );
@@ -33,7 +34,7 @@ add_action("wp_trash_post_projectimer_focus", "my_function", 10, 2);
 add_action("wp_trash_post", "my_function", 10, 2);
 add_action('publish_to_trash', 'my_function');
 add_action('draft_to_trash',   'my_function');
-add_action('future_to_trash',  'my_function');
+add_action('future_to_trash',  'my_function');*/
 #date_default_timezone_set('UTC');
 #date_default_timezone_set('America/Sao_Paulo');
 
@@ -510,6 +511,9 @@ function save_progress () {
 	#$agora = current_time("Y-m-d H:i:s");
 	#date_default_timezone_set('UTC');
 	#$agora_gmt = current_time("Y-m-d H:i:s");
+
+
+
 	$agora = current_time("mysql");
 	$agora_gmt = current_time("mysql", true);
 	#echo "agora:".$agora.", agora_gmt:".$agora_gmt;die;

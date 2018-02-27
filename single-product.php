@@ -52,8 +52,9 @@ get_header( 'shop' ); ?>
 		 * @hooked woocommerce_get_sidebar - 10
 		 */
 		#do_action( 'woocommerce_sidebar' );
+		#<br style="clear: both;" class="corrigi_wrapper_negative_margin" />
 	?>
-<br style="clear: both;" class="corrigi_wrapper_negative_margin" />
+
 <?php get_footer( 'shop' );
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
 

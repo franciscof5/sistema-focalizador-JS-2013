@@ -3,9 +3,21 @@ get_header();
 
 //$page = strtok(basename($_SERVER["REQUEST_URI"]),'?');
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$page = basename($uri_parts[0]);
-$pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket");
-
+#var_dump(dirname($uri_parts[0]));die;
+if(dirname($uri_parts[0])!="/") {
+	$page = explode("/", dirname($uri_parts[0]));
+	$page = $page[1];
+} else {
+	$page = basename($uri_parts[0]);
+}
+#var_dump($uri_parts);die;
+#$urlParts = explode("/", $_SERVER['REQUEST_URI']);
+#$rpage = explode("/", $page);
+#if(isset($rpage[0]))
+#$page = $rpage[0];
+#echo $page;die;
+$pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket", "product");
+#var_dump($uri_parts);die;
 if(!in_array($page, $pages)) {
 	$page = "inicio";
 } else {
