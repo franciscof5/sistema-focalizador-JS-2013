@@ -68,7 +68,8 @@ add_action('init', 'load_scritps');
 
 
 //
-function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
+#function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
+function custom_disable_redirect_canonical( $redirect_url ) {
 	if ( preg_match("/ranking/",$redirect_url) ) {
 		return FALSE;
 	} elseif ( preg_match("/calendar/",$redirect_url) ) {
@@ -186,8 +187,10 @@ function force_revert_f5sites_shared() {
 	if(is_tag()) {
 	#echo $_SERVER['SERVER_NAME'];
 	#if($_SERVER['SERVER_NAME']=="www.pomodoros.com.br")
-		if(function_exists("revert_database_schema"))
-		revert_database_schema();
+		if(is_home() || is_singular()) {
+			if(function_exists("revert_database_schema"))
+			revert_database_schema();	
+		}
 	}
 }
 
@@ -578,7 +581,8 @@ function save_progress () {
 }
 
 function woo_custom_order_button_text() {
-    return __( 'Realizar Doação', 'woocommerce' ); 
+    #return __( 'Realizar Doação', 'woocommerce' ); 
+    return __( 'Realizar Pagamento', 'woocommerce' ); 
 }
 /*
 echo date_default_timezone_get();

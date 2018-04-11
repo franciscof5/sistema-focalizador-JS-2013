@@ -185,29 +185,6 @@
 			</div>
 		</div>
 		
-		<div id="settingsbox">
-			X
-			<!--h3>Tempo do pomodoro:</h3>
-			<sub>Recomendamos aos usuários não mudarem o tempo dos pomodoros, se esforce para se adaptar aos 25 minutos que vale a pena</sub-->
-			<!--p>Você pode utilizar nossos sitema para medir o tempo de diversas maneiras, mas lembre-se, para participar dos sorteios de prêmios é preciso usar a configuraćão oficial</p>
-			<p>VOLUME: </p>
-			<!--h3>Tipo de relógio</h3>
-			<p>Técnica dos Pomodoros - Configuraćões oficiais [participa em sorteios]</p>
-			<p>Técnica dos Pomodoros - ConfiguraćÕes do usuário</p>
-			<div>
-				<form>
-				Tempo do pomodoro:
-				Tempo do descanso:
-				Intervalo entre pomodoros:
-				checkbox - Declaro que não participarei dos sorteios
-				</form>
-			</div>
-			<p>Crônometro convencional com intervalo regressivo</p>
-			<p>Crônometro convencional sem intervalo</p>
-			<h3>Marcador de ponto</h3>
-			<p>Ativar marcador de entrada e saída de expediente?</p-->
-		</div>
-		
 		<?php do_action( 'bp_header' ) ?>
 
 

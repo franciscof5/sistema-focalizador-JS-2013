@@ -19,7 +19,13 @@ if(dirname($uri_parts[0])!="/") {
 $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket", "product");
 #var_dump($uri_parts);die;
 if(!in_array($page, $pages)) {
+	echo do_shortcode('[rev_slider alias="pomo1"]');
 	$page = "inicio";
+	?>
+	<style type="text/css">
+		.navbar {margin-bottom: 0px;}
+	</style>
+	<?php
 } else {
 	if (!is_user_logged_in()) {
 		$page = "closed";

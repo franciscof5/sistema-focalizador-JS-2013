@@ -99,6 +99,9 @@
 	<?php do_shortcode('[recent_products per_page="12" columns="4"]');  ?>	
 	<?php do_shortcode('[product id="3966"]');*/  ?>
 
+	<h3 class="widget-title">Apoie-nos</h3>
+	<?php echo do_shortcode('[product id="5160"]'); ?>
+	
 	<?php dynamic_sidebar( 'blog' ); ?>
 	<?php #the_widget('WP_Widget_Recent_Posts', 'title=Posts Recentes');  ?>
 
