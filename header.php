@@ -87,7 +87,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="" title="Pomodoros.com.br" href="<?php bloginfo('url'); ?>">
+		      <a class="" title="Blog do Pomodoros" href="<?php bloginfo('url'); ?>">
 						<img src="<?php bloginfo('stylesheet_directory'); ?>/images/pomodoro-logo-topo.png" id="pomodoros-topo">
 					</a>
 		    </div>

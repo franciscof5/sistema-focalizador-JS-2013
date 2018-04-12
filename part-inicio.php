@@ -3,9 +3,9 @@
 		<div class="padder">
 		<?php if(is_home()) { ?>
 			<div id="blog-welcome">
-			<h3 style="font-family: Forte;">Blog do pomodoros</h3>
+			<h3 style="font-family: Forte;"><script>document.write(txt_blog_header)</script></h3>
 			
-			<p>Novidades e histórico do projeto, no ar desde 2010.</p>
+			<p><script>document.write(txt_blog_desc)</script></p>
 			
 			<?php if(is_user_logged_in()) { ?>
 				<?php $current_user = wp_get_current_user(); ?>

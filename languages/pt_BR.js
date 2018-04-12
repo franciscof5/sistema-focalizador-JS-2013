@@ -1,5 +1,9 @@
 //Português
 
+//Blog
+var txt_blog_header = "Blog do pomodoros";
+var txt_blog_desc = "Novidades e histórico do projeto, no ar desde 2010.";
+
 //Botão de ação
 var textPomodoro = "FOCAR!";
 var textRest = "DESCANSAR!";

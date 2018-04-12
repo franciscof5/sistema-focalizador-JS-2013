@@ -1,5 +1,9 @@
 //English
 
+//Blog
+var txt_blog_header = "Pomodoros Blog";
+var txt_blog_desc = "News and history of project, online since 2010.";
+
 //Action button
 var textPomodoro = "FOCUS";
 var textRest = "REST";
