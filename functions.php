@@ -398,7 +398,7 @@ function get_projectimer_tags_COPY($excludeTags=NULL) {
 
 #
 function add_lost_password_link() {
-    return '<a href="/wp-login.php?action=lostpassword">Esqueci a senha (forgot password)</a>';
+    return '<a href="/wp-login.php?action=lostpassword">Forgot password (esqueci a senha)</a>';
 }
 
 function go_home(){
