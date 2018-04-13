@@ -96,8 +96,8 @@
 		      <li>
 		      	<div class="contem-icone ">
 		      		<a title="Focar" href="<?php bloginfo('url'); ?>/focar/" alt="Focalizador">
-		      			<div href="" id="icone-foc"><span class="icone-legenda hidden-lg">Focar</span></div>
-		      		<span class="hidden-sm hidden-md">Focar</span>
+		      			<div href="" id="icone-foc"><span class="icone-legenda hidden-lg"><script>document.write(txt_icon_focus)</script></span></div>
+		      		<span class="hidden-sm hidden-md"><script>document.write(txt_icon_focus)</script></span>
 		      		</a>
 		      	</div>
 		       </li>
@@ -105,9 +105,9 @@
 		       	<div class="contem-icone ">
 		       		<a title="Fator produtividade" href="<?php bloginfo('url'); ?>/colegas/<?php  $current_user = wp_get_current_user(); echo $current_user->user_login  ?>">
 		       			<div href="" id="icone-gauge">
-		       				<span class="icone-legenda hidden-lg">Produtividade</span>
+		       				<span class="icone-legenda hidden-lg"><script>document.write(txt_icon_prod)</script></span>
 		       			</div>
-		       			<span class="hidden-sm hidden-md">Produtividade</span>
+		       			<span class="hidden-sm hidden-md"><script>document.write(txt_icon_prod)</script></span>
 		       		</a>
 		       	</div>
 		       </li>
@@ -115,9 +115,9 @@
 		      	<div class="contem-icone ">
 			      	<a title="Encontrar colegas" href="<?php bloginfo('url'); ?>/colegas/" alt="Amigos">
 			      		<div href="" id="icone-amigo">
-			      			<span class="icone-legenda hidden-lg">Colegas</span>
+			      			<span class="icone-legenda hidden-lg"><script>document.write(txt_icon_col)</script></span>
 			      		</div>
-			      		<span class="hidden-sm hidden-md">Colegas</span>
+			      		<span class="hidden-sm hidden-md"><script>document.write(txt_icon_col)</script></span>
 			      	</a>
 			    </div>
 		      </li>
@@ -126,9 +126,9 @@
 		      	<div class="contem-icone">
 		      	<a title="Ranking dos mais produtivos" href="<?php bloginfo('url'); ?>/ranking/">
 		      		<div href="" id="icone-rank">
-		      			<span class="icone-legenda hidden-lg">Ranking</span>
+		      			<span class="icone-legenda hidden-lg"><script>document.write(txt_icon_rank)</script></span>
 		      		</div>
-		      		<span class="hidden-sm hidden-md">Ranking</span>
+		      		<span class="hidden-sm hidden-md"><script>document.write(txt_icon_rank)</script></span>
 		      	</a>
 		      	</div>
 			  </li>
@@ -137,9 +137,9 @@
 		      	<div class="contem-icone">
 		      	<a title="Calendário de desempenho" href="<?php bloginfo('url'); ?>/calendar/">
 		      		<div href="" id="icone-calend">
-		      			<span class="icone-legenda hidden-lg">Calendário</span>
+		      			<span class="icone-legenda hidden-lg"><script>document.write(txt_icon_cal)</script></span>
 		      		</div>
-		      		<span class="hidden-sm hidden-md">Calendário</span>
+		      		<span class="hidden-sm hidden-md"><script>document.write(txt_icon_cal)</script></span>
 		      	</a>
 		      	</div>
 		      </li>

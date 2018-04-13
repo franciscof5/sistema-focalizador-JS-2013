@@ -1,5 +1,12 @@
 //Português
 
+//icons
+var txt_icon_focus = "Focar";
+var txt_icon_prod = "Produtividade";
+var txt_icon_col = "Colegas";
+var txt_icon_rank = "Ranking";
+var txt_icon_cal = "Calendário";
+
 //Blog
 var txt_blog_header = "Blog do pomodoros";
 var txt_blog_desc = "Novidades e histórico do projeto, no ar desde 2010.";
