@@ -20,7 +20,10 @@ $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats
 #var_dump($uri_parts);die;
 if(!in_array($page, $pages)) {
 	echo do_shortcode('[rev_slider alias="pomo1"]');
-	$page = "inicio";
+	if($locale=="pt_BR" || $locale=="pt")
+		$page = "inicio";
+	else
+		$page = "home";
 	?>
 	<style type="text/css">
 		.navbar {margin-bottom: 0px;}

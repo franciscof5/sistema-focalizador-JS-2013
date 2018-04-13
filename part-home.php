@@ -81,7 +81,7 @@
 			if ( have_posts() ) : ?>
 
 				<?php while (have_posts()) : the_post(); ?>
-
+					<?php if(has_tag("english")){ ?>
 					<?php do_action( 'bp_before_blog_post' ) ?>
 
 					<div class="post" id="post-<?php the_ID(); ?>">
@@ -124,7 +124,7 @@
 					</div>
 
 					<?php do_action( 'bp_after_blog_post' ) ?>
-
+					<?php } ?>
 				<?php endwhile; ?>
 
 				<?php 
