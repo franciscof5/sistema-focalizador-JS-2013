@@ -1070,3 +1070,9 @@ function modified_views_so_15799171( $views )
 
     return $views;
 }
+
+function custom_rewrite_basic() 
+{
+  add_rewrite_rule('^shop/?$', 'index.php?page_id=3487', 'top');
+}
+add_action('init', 'custom_rewrite_basic');

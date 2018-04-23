@@ -110,3 +110,8 @@ var txt_tips_last = "<b>That's all</b><br />Parabéns por chegar até aqui! Tenh
 
 //Welcome visitor
 /*var txt_visitor_welcome = "<h1>Welcome visitor!</h1><p>We want to help you focus, practice your productivity and reach goals!</p><p><a href='pomodoros.com.br/register/'>You can create a free account</a></p>";*/
+var txt_foot_last = "Last pomodoros";
+var txt_foot_blog = "Our blog";
+var txt_foot_naoc = "Doesn't count private pomodoros.";
+var txt_foot_fale = "Contact Us";
+var txt_foot_logi = '<a href="#" class="abrir_login">Login now</a> to use contact form</p>';

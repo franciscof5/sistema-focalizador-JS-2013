@@ -3,7 +3,15 @@
 	<head profile="http://gmpg.org/xfn/11">
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 
-		<title><?php the_title(); #bp_page_title() ?></title>
+		<?php
+		global $locale;
+		if($locale=="pt_BR" || $locale=="pt")
+			$apendix = "Brasil";
+		else
+			$apendix = "USA";
+		?>
+		<title>Pomodoros <?php echo $apendix;wp_title(); 
+		#bp_page_title() ?></title>
 		
 		<?php do_action( 'bp_head' ) ?>
 		

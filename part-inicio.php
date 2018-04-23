@@ -1,3 +1,25 @@
+	<?php echo do_shortcode('[rev_slider alias="pomo1"]'); ?>
+	<style type="text/css">
+		.navbar {margin-bottom: 0px;}
+	</style>
+	<div id="content" class="content_default col col-xs-12 ">
+		<div class="row">
+			<h3 style="font-family: Forte;">Compre para ajudar a manter o serviço grátis</h3>
+		</div>
+		<div class="row">
+		<div class="col-xs-6 col-md-3">
+			<?php echo do_shortcode('[product id="5160"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5432"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5434"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5157"]'); ?>
+		</div>
+	</div>
 	<div id="content" class="content_default col col-xs-12 ">
 	
 		<div class="padder">
@@ -81,7 +103,7 @@
 			if ( have_posts() ) : ?>
 
 				<?php while (have_posts()) : the_post(); ?>
-
+					<?php if(!has_tag("english")){ ?>
 					<?php do_action( 'bp_before_blog_post' ) ?>
 
 					<div class="post" id="post-<?php the_ID(); ?>">
@@ -124,12 +146,12 @@
 					</div>
 
 					<?php do_action( 'bp_after_blog_post' ) ?>
-
+					<?php } ?>
 				<?php endwhile; ?>
 
 				<?php 
 				#plugin: f5sites-shared-posts-tables-and-uploads-folder
-				if(function_exists("print_blog_nav_links")) print_blog_nav_links($post); ?>
+				if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post); ?>
 
 			<?php else : ?>
 

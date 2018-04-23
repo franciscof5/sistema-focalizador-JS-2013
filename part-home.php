@@ -1,5 +1,36 @@
-	<div id="content" class="content_default col col-xs-12 ">
+	<?php echo do_shortcode('[rev_slider alias="pomo1"]'); ?>
+	<style type="text/css">
+		.navbar {margin-bottom: -10px;}
+	</style>
 	
+	<?php
+	#force_database_aditional_tables_share(false);
+	#echo do_shortcode('[product id="5160"]');  
+	#echo do_shortcode('[products ids="4530,5160" ]');
+	#echo do_shortcode('[products]');
+	#echo do_shortcode('[products ids="5160,4530" columns="4"]');
+	#
+	#echo do_shortcode('[product_category limit="4" columns="4" orderby="popularity" product_cat="www.pomodoros.com.br"]');  
+	#revert_database_schema();#4530#5160
+	?>
+	<div id="content" class="content_default col col-xs-12 ">
+		<div class="row">
+			<h3 style="font-family: Forte;">Buy to support our free services</h3>
+		</div>
+		<div class="row">
+		<div class="col-xs-6 col-md-3">
+			<?php echo do_shortcode('[product id="5160"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5432"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5434"]'); ?>
+		</div>
+		<div class="col-xs-6 col-md-3">
+		<?php echo do_shortcode('[product id="5157"]'); ?>
+		</div>
+	</div>
 		<div class="padder">
 		<?php if(is_home()) { ?>
 			<div id="blog-welcome">
@@ -19,19 +50,19 @@
 		            );
 				$recent = get_posts($args);
 				if( $recent ){
-				  $title = ", sua tarefa mais recente é <i>".get_the_title($recent[0]->ID)."</i>";
+				  $title = ", you most recent task is <i>".get_the_title($recent[0]->ID)."</i>";
 				}else{
-				  $title = ", você ainda não começou nenhuma tarefa"; //No published posts
+				  $title = ", you did not started a task yet"; //No published posts
 				} ?>
 				
 				<?php 
-				$msg_saudacao = "Olá ".$current_user->display_name." ".$title.", <a href=/focar>acessar aplicativo online e focar</a>";
+				$msg_saudacao = "Hello ".$current_user->display_name." ".$title.", <a href=/focar>go to online app and start focus</a>";
 
 				
 				?>
 			<?php } else {
-				$msg_saudacao = "Caro visitante, <a href=/register>crie sua conta GRÁTIS</a> para acessar o aplicativo online";
-				$msg_saudacao2 = "Se já possui um usuário, <a id=testes href=# class=abrir_login>acesse sua conta</a>";
+				$msg_saudacao = "Dear visitor, <a href=/register>create your free user</a> and start focus right now";
+				$msg_saudacao2 = "If you already have an account, <a id=testes href=# class=abrir_login>login</a>";
 			} 
 			
 			echo "<script type='text/javascript'>alertify.log('".$msg_saudacao."');</script>";
@@ -113,7 +144,7 @@
 							<div class="entry">
 								<?php 
 								if(!is_single())
-								the_excerpt("... continuar lendo.");
+								the_excerpt("... keep reading.");
 								else
 								the_content( __( 'Read the rest of this entry &rarr;', 'buddypress' ) ); ?>
 							</div>
@@ -129,7 +160,7 @@
 
 				<?php 
 				#plugin: f5sites-shared-posts-tables-and-uploads-folder
-				if(function_exists("print_blog_nav_links")) print_blog_nav_links($post); ?>
+				if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post); ?>
 
 			<?php else : ?>
 

@@ -31,7 +31,7 @@
 					</div-->
 					
 					<div class="col-sm-3 contem_last_pomodoros">
-						<h3>Últimos pomodoros</h3>
+						<h3><script>document.write(txt_foot_last)</script></h3>
 							<?php 
 							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 9, 'post_status' => 'publish' ); 
 							$recent_posts = get_posts( $args );
@@ -59,10 +59,10 @@
 							"archive_specific" => false); 
 						the_widget("Top_Authors_Widget", $instance, "");
 						?>
-						<small>Não contabiliza pomodoros privados.</small>
+						<small><script>document.write(txt_foot_naoc)</script></small>
 					</div>
 				<div class="col-sm-3">
-					<h3>Nosso blog</h3>
+					<h3><script>document.write(txt_foot_blog)</script></h3>
 					<div class="widget widget_recent_entries">
 						<ul>
 						
@@ -70,7 +70,17 @@
 							if(function_exists('set_shared_database_schema'))set_shared_database_schema();
 							
 							$idObj = get_category_by_slug("www.pomodoros.com.br"); 
-							$catquery = new WP_Query( 'cat='.$idObj->term_id.'&posts_per_page=6' );
+							$arro = array(
+								'cat' => $idObj->term_id,
+								'posts_per_page' => 6
+								);
+							
+							global $locale;
+							if($locale=="en" || $locale=="en_US")
+								#$args[] = array("tag"=>"english");
+								$arro["tag"] = "english";
+
+							$catquery = new WP_Query( $arro );
 							while($catquery->have_posts()) : $catquery->the_post();
 							?>
 							
@@ -81,9 +91,9 @@
 					</div>
 				</div>
 				<div id="footer-contact-form" class="col-sm-3">
-					<h3>Fale conosco</h3>
+					<h3><script>document.write(txt_foot_fale)</script></h3>
 					<?php if(!is_user_logged_in()) { ?>
-						<p class="bg-danger"><a href="#" class="abrir_login">Acesse sua conta</a> para usar o formulário de contato</p>
+						<p class="bg-danger"><script>document.write(txt_foot_logi)</script></p>
 					<?php } else { ?>
 						
 						<?php 
@@ -120,7 +130,7 @@
 					/*<br /> Hosted by <a href="https://www.f5sites.com/pomodoros">F5 Sites</a>*/
 					?>
 					<div class="col-sm-6">
-						<p style="text-align: right;">Acompanhe o <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2">projeto Pomodoros</a> em tempo real</p>
+						<p style="text-align: right;">Watch <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2"> Pomodoros project</a> in real time</p>
 					</div>
 				</div>
 				
