@@ -84,6 +84,8 @@ var txt_login = "Entrar";
 var txt_logout = "Sair";
 var txt_in_use = "Em Uso";
 var txt_available = "Disponível";
+var txt_myaccount = "Minha Conta";
+var txt_support = "Suporte";
 
 //Registro
 var txt_register_heading = "Conecte pelo facebook ou crie uma conta";

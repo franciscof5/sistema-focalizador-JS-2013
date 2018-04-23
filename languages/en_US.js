@@ -82,6 +82,9 @@ var txt_login = "Login";
 var txt_logout = "Logout";
 var txt_in_use = "In Use";
 var txt_available = "Available";
+var txt_myaccount = "My Account";
+var txt_support = "Support";
+
 
 //Registration
 var txt_register_heading = "Use your facebook or create a free account";

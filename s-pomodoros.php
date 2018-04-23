@@ -8,6 +8,9 @@
 	<div class="padder width collapse in" id="sidebar_pomodoro_padder">
 		<li>
 			<?php 
+
+			#echo do_shortcode("[woocommerce_my_account]");
+
 			global $current_user;
 			wp_get_current_user(); 
 			?>
