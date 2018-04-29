@@ -8,7 +8,9 @@
 	<div class="padder width collapse in" id="sidebar_pomodoro_padder">
 		<li>
 			<?php 
-
+			force_database_aditional_tables_share(false);
+			echo do_shortcode('[product id="5160"]');  
+			revert_database_schema();
 			#echo do_shortcode("[woocommerce_my_account]");
 
 			global $current_user;
