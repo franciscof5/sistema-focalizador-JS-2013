@@ -2751,3 +2751,12 @@ h3.rpwe-title a {
 .white-link a {
 	color: #FFF;
 }
+
+/**********/
+.woocommerce-info {
+	background: #b5e3f0 !important;
+}
+/*.images {
+	display: none;
+}
+*/

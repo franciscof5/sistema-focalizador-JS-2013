@@ -18,6 +18,7 @@ if(dirname($uri_parts[0])!="/") {
 #echo $page;die;
 $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket", "product");
 #var_dump($uri_parts);die;
+
 if(!in_array($page, $pages)) {
 	if($locale=="pt_BR" || $locale=="pt")
 		$page = "inicio";
@@ -39,7 +40,7 @@ if(!in_array($page, $pages)) {
 	}
 }
 
-#echo "INDEX";die;
+#echo "INDEX p".$page;die;
 locate_template( "part-".$page.".php", true );
 
 get_footer();

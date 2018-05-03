@@ -1,9 +1,19 @@
 <?php get_header() ?>
+<?php
+$uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+#var_dump(dirname($uri_parts[0]));die;
+if(dirname($uri_parts[0])!="/") {
+	$page = explode("/", dirname($uri_parts[0]));
+	$page = $page[1];
+} else {
+	$page = basename($uri_parts[0]);
+}
 
+?>
 	<!--div id="content" class="content_default"-->
 
 	<div class="content_nosidebar col-xs-12">
-	<?php if (is_user_logged_in()) { ?>
+	<?php if (is_user_logged_in() || $page=="plugins-br") { ?>
 		<div class="padder">
 
 		<?php do_action( 'bp_before_blog_page' ) ?>

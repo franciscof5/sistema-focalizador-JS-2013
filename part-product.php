@@ -5,8 +5,8 @@
 			<?php 
 			#global $wp_query;
 			#var_dump($wp_query);
-			global $wpdb;
-			var_dump($wpdb);
+			#global $wpdb;
+			#var_dump($wpdb);
 			#global $reverter_filtro_de_categoria_pra_forcar_funcionamento;
 			#$reverter_filtro_de_categoria_pra_forcar_funcionamento = true;
 			#force_database_aditional_tables_share(true);
