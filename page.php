@@ -13,7 +13,7 @@ if(dirname($uri_parts[0])!="/") {
 	<!--div id="content" class="content_default"-->
 
 	<div class="content_nosidebar col-xs-12">
-	<?php if (is_user_logged_in() || $page=="plugins-br") { ?>
+	<?php if (is_user_logged_in() || $page=="plugins-br" || $page=="product") { ?>
 		<div class="padder">
 
 		<?php do_action( 'bp_before_blog_page' ) ?>

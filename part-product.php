@@ -62,7 +62,7 @@
 
 				<?php 
 				#plugin: f5sites-shared-posts-tables-and-uploads-folder
-				if(function_exists("print_blog_nav_links")) print_blog_nav_links($post); ?>
+				#if(function_exists("print_blog_nav_links")) print_blog_nav_links($post); ?>
 
 			<?php else : ?>
 
