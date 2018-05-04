@@ -29,6 +29,7 @@ if(!in_array($page, $pages)) {
 	<?php
 } else {
 	if (!is_user_logged_in()) {
+		if($page!="plugins-br" && $page!="product")
 		$page = "closed";
 	} else {
 		if($page=="focar") {
