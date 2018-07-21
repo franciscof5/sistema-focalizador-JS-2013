@@ -8,13 +8,13 @@ if(function_exists("set_shared_database_schema")) {
 	add_action('pre_get_posts', 'force_revert_f5sites_shared', 10, 2);
 	#add_action('init', 'force_database_aditional_tables_share');
 }
-add_action( 'after_setup_theme', 'yourtheme_setup' );
+/*add_action( 'after_setup_theme', 'yourtheme_setup' );
  
 function yourtheme_setup() {
 add_theme_support( 'wc-product-gallery-zoom' );
 add_theme_support( 'wc-product-gallery-lightbox' );
 add_theme_support( 'wc-product-gallery-slider' );
-}
+}*/
 function my_function($args) {
 	if($args) {
 		$is_trashing = substr($args,0,10);

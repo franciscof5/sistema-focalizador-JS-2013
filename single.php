@@ -1,4 +1,6 @@
-	<?php echo do_shortcode('[rev_slider alias="pomo1"]'); ?>
+<?php 
+get_header(); 
+# echo do_shortcode('[rev_slider alias="pomo1"]'); ?>
 	<style type="text/css">
 		.navbar {margin-bottom: 0px;}
 	</style>
@@ -82,22 +84,20 @@
 				       			set_shared_database_schema();
 				       		}
 
-				if ( have_posts() ) : ?>
-
-					<?php while (have_posts()) : the_post(); ?>
+					 while (have_posts()) : the_post(); ?>
 						<?php if(!has_tag("english")){ ?>
 						<?php do_action( 'bp_before_blog_post' ) ?>
 
 						<div class="post" id="post-<?php the_ID(); ?>">
 
-								<div style="background: #222;width: 100%;">
+								<div style="/*background: #222;*/width: 100%;">
 								<center>
 							    <a style="margin:0 auto;" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 							       <?php 
 
 							       if ( has_post_thumbnail() ) {
-							       		
-										the_post_thumbnail( array(500,200) );
+							       		if(!has_tag("video"))
+										the_post_thumbnail( /*array(500,200)*/ );
 									}
 
 							       ?>
@@ -128,21 +128,17 @@
 						</div>
 
 						<?php do_action( 'bp_after_blog_post' ) ?>
+						<?php edit_post_link( __( 'Edit this entry.', 'buddypress' ), '<p>', '</p>'); ?>
 						<?php } ?>
 					<?php endwhile; ?>
 
 					<?php 
 					#plugin: f5sites-shared-posts-tables-and-uploads-folder
 					if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post); ?>
-
-				<?php else : ?>
-
-					<h2 class="center"><?php _e( 'Not Found', 'buddypress' ) ?></h2>
-					<p class="center"><?php _e( 'Sorry, but you are looking for something that isn\'t here.', 'buddypress' ) ?></p>
-
-					<?php locate_template( array( 'searchform.php' ), true ) ?>
-
-				<?php endif; ?>
+					<?php
+					if(function_exists("revert_database_schema"))
+						revert_database_schema();
+					?>
 			</div>
 
 			<?php do_action( 'bp_after_blog_home' ); ?>
@@ -159,4 +155,6 @@
 		</div>
 	</div><!-- #content -->
 
-	<?php #locate_template( array( 's-blog.php' ), true ) ?>
+<?php #locate_template( array( 's-blog.php' ), true ) 
+get_footer();
+

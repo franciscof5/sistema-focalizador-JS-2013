@@ -119,7 +119,12 @@ img.avatar {
 #sidebar-user-pass {width:148px;}
 #rbox2 {height:480px;}
 /*.content {width: 90%;}*/
-.content_default {float: right;width: 70%; background: rgba(255,255,255, 0.9);padding:10px 40px;}
+.content_default {
+	float: right;
+	width: 70%;
+	/*background: rgba(255,255,255, 0.9);*/
+	padding:10px 40px;
+}
 .bg-danger {color: #333; border-radius: 5px;padding: 5px 10px;}
 .bg-danger a {color: #333 !important; text-decoration: underline; font-weight: 600;}
 /*div#sidebar {width:24%;}
@@ -352,7 +357,7 @@ html {
 #content_inicio {
 	/*padding-top: 40px;*/
 	position:relative;
-	background:transparent;
+	/*background:transparent;
 	/*margin-bottom: -200px;*/
 	
 	max-width: 1250px;
@@ -994,12 +999,12 @@ div#sidebar {
 
 div#content {
 	float: right;
-	padding: 20px 40px;
+	padding: 0px 40px;
 	/*width: 74% ;  /*500px f5sites 80%*/
 	/*max-width: 1000px;*
 	background: rgba(255,255,255,0.9);*/
-	/*border-radius: 15px;*/
-	background: rgba(255,255,255, 0.5);
+	/*border-radius: 15px;*
+	background: rgba(255,255,255, 0.5);*/
 	margin-bottom: 20px;
 }
 div#container {
@@ -2176,7 +2181,7 @@ div#new-topic-post {
 -------------------------------------------------------------- */
 
 div.post {
-	margin: 0 0 60px 0;
+	/*margin: 0 0 60px 0;*/
 }
 	div.post div.author-box, div.comment-avatar-box {
 		float: left;
@@ -2212,7 +2217,7 @@ div.post {
 		font-size: 11px;
 		padding: 3px 0;
 		margin: 10px 0;
-		border-top: 1px solid #e4e4e4;
+		/*border-top: 1px solid #e4e4e4;*/
 
 	}
 
@@ -2760,3 +2765,11 @@ h3.rpwe-title a {
 	display: none;
 }
 */
+h3.forte {
+	font-family: Forte;
+	/*padding: 0px 40px;*/
+}
+.semi-transparent {
+	background: rgba(255,255,255,0.3);
+}
+
