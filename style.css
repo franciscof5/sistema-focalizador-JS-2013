@@ -40,11 +40,11 @@ principal dark color: #096;
 @import url( ../../plugins/buddypress/bp-themes/bp-default/_inc/css/reset.css );
 */
 
-@import url(pomodoro/pomodoro.css );
+/*@import url(pomodoro/pomodoro.css );
 
-/*@import url(pomodoro/projectimer-pomodoros-shared-parts.css );*/
+/*@import url(pomodoro/projectimer-pomodoros-shared-parts.css );*
 
-@import url(assets/fonts/stylesheet.css);
+@import url(assets/fonts/stylesheet.css);*/
 
 @media (min-width: 1200px) {
 

@@ -207,6 +207,12 @@ function default_page() {
 
 
 function load_scritps() {	
+	//THEME CSS FOR IMPROVE SPEED
+	wp_enqueue_style('theme-css', get_bloginfo("stylesheet_directory")."/style.css", __FILE__);
+	wp_enqueue_style('pomodoro-css', get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro.css", __FILE__);
+	wp_enqueue_style('fonts-css', get_bloginfo("stylesheet_directory")."/assets/fonts/stylesheet.css", __FILE__);
+
+
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("stylesheet_directory")."/assets/jquery.color-2.1.2.min.js");
 	
@@ -318,14 +324,14 @@ function show_lang_options($showtitle) {
 		<?php } else { ?>
 			<strong>Change Language:</strong>
 		<?php } ?>
-		<a href="?lang=en_US">English</a>
+		<a href="?lang=en_US"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/us.png" alt="Language Flag"> English</a>
 	<?php } else { ?>
 		<?php if($showtitle) { ?>
 			<h3 class="widget-title">Mudar Idioma</h3>
 		<?php } else { ?>
 			<strong>Mudar Idioma:</strong>
 		<?php } ?>
-		<a href="?lang=pt_BR">Português</a>
+		<a href="?lang=pt_BR"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/br.png" alt="Bandeira de Idioma"> Português</a>
 	<?php }
 }
 
