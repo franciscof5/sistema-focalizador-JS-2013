@@ -1060,8 +1060,7 @@ function createPostTypeCOPY_FROM_PROJECTIMER_PLUGIN() {
 foreach( array( 'projectimer_focus' ) as $hook )
     add_filter( "views_edit-$hook", 'modified_views_so_15799171' );
 
-function modified_views_so_15799171( $views ) 
-{
+function modified_views_so_15799171( $views ) {
     $views['all'] = str_replace( 'All ', 'Tutti ', $views['all'] );
 
     if( isset( $views['publish'] ) )
