@@ -141,7 +141,7 @@
 						<?php do_action( 'bp_after_blog_post' ) ?>
 						<?php } ?>
 					<?php endwhile; ?>
-
+					<?php the_posts_pagination(); ?>
 					<?php 
 					#plugin: f5sites-shared-posts-tables-and-uploads-folder
 					if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post); ?>

@@ -130,7 +130,7 @@
 						<?php do_action( 'bp_after_blog_post' ) ?>
 						<?php } ?>
 					<?php endwhile; ?>
-
+					<?php the_posts_pagination(); ?>
 					<?php 
 					#plugin: f5sites-shared-posts-tables-and-uploads-folder
 					if(function_exists("print_blog_nav_links") && !is_home()) print_blog_nav_links($post); ?>
@@ -148,7 +148,7 @@
 			<?php do_action( 'bp_after_blog_home' ); ?>
 
 			</div><!-- .padder -->
-
+			
 			<div class="col-md-3 semi-transparent">
 				<h3 style="font-family: Forte;">Compre para ajudar a manter o serviço grátis</h3>
 				<?php echo do_shortcode('[product id="5160"]'); ?>
