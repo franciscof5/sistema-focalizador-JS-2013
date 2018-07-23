@@ -2779,6 +2779,8 @@ h3.forte {
 }
 .contem-thumb img{
 	width:100% !important;
-    
+    /*object-fit: cover;*/
+    object-fit: scale-down;
     height:auto !important;
+    max-height: 200px;
 }
