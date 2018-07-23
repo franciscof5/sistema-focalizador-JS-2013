@@ -75,7 +75,7 @@ add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
 add_action('admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
 add_action('init', 'create_post_type' );
-add_action('init', 'load_scritps');
+add_action('wp_enqueue_scripts', 'load_scritps');
 
 
 //
