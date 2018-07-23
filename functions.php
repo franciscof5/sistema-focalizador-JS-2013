@@ -45,7 +45,7 @@ add_action('future_to_trash',  'my_function');*/
 #date_default_timezone_set('America/Sao_Paulo');
 
 //
-#show_admin_bar( false );
+show_admin_bar( false );
 
 //
 add_filter( 'redirect_canonical','custom_disable_redirect_canonical' );

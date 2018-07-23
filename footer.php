@@ -79,7 +79,9 @@
 							if($locale=="en" || $locale=="en_US")
 								#$args[] = array("tag"=>"english");
 								$arro["tag"] = "english";
-
+							else 
+								$arro["tag__not_in"] = 579;
+							wp_reset_query();
 							$catquery = new WP_Query( $arro );
 							while($catquery->have_posts()) : $catquery->the_post();
 							?>
