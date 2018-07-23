@@ -2772,4 +2772,13 @@ h3.forte {
 .semi-transparent {
 	background: rgba(255,255,255,0.3);
 }
-
+.contem-thumb {
+	background: #222;
+	width: 100%;
+	max-width: 100%;
+}
+.contem-thumb img{
+	width:100% !important;
+    
+    height:auto !important;
+}

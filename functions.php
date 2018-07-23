@@ -43,7 +43,12 @@ add_action('draft_to_trash',   'my_function');
 add_action('future_to_trash',  'my_function');*/
 #date_default_timezone_set('UTC');
 #date_default_timezone_set('America/Sao_Paulo');
-
+function remove_img_attr ($html)
+{
+    return preg_replace('/(width|height)="\d+"\s/', "", $html);
+}
+ 
+#add_filter( 'post_thumbnail_html', 'remove_img_attr' );
 //
 show_admin_bar( false );
 

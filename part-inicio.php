@@ -90,7 +90,7 @@
 
 						<div class="post" id="post-<?php the_ID(); ?>">
 
-								<div style="background: #222;width: 100%;">
+								<div class="contem-thumb">
 								<center>
 							    <a style="margin:0 auto;" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 							       <?php 
