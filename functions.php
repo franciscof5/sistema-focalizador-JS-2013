@@ -210,7 +210,38 @@ function default_page() {
 }
 
 
+global $locale;
+if(function_exists("locale_accept_from_http"))
+	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+else
+	$locale = "en_US";
+//echo $locale;die;
+if($locale=="")
+	$locale=="en_US";
 
+
+#$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
+#if($user_lang_pref=="")
+#	$user_lang_pref="en_US";
+/*if($user_lang_pref) {
+	if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {
+		echo update_user_meta( get_current_user_id(), "pomodoros_lang", "pt_BR" );
+	} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
+		echo update_user_meta( get_current_user_id(), "pomodoros_lang", "en_US" );
+	}
+} else {*/
+if($_GET && isset($_GET["lang"])) {
+	if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
+		$user_lang_pref="pt_BR";
+		#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+	} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
+		$user_lang_pref="en_US";
+		#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+	}
+	if($user_lang_pref!=$locale) {
+		$locale=$user_lang_pref;
+	}
+}
 function load_scritps() {	
 	//THEME CSS FOR IMPROVE SPEED
 	wp_enqueue_style('theme-css', get_bloginfo("stylesheet_directory")."/style.css", __FILE__);
@@ -247,38 +278,7 @@ function load_scritps() {
 	
 	#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.0/gh-fork-ribbon.min.css" />
 	//inter8
-	global $locale;
-	if(function_exists("locale_accept_from_http"))
-		$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-	else
-		$locale = "en_US";
-	//echo $locale;die;
-	if($locale=="")
-		$locale=="en_US";
 	
-
-	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
-	if($user_lang_pref=="")
-		$user_lang_pref="en_US";
-	/*if($user_lang_pref) {
-		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {
-			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "pt_BR" );
-		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
-			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "en_US" );
-		}
-	} else {*/
-	if($_GET && isset($_GET["lang"])) {
-		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
-			$user_lang_pref="pt_BR";
-			#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
-		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
-			$user_lang_pref="en_US";
-			#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
-		}
-		if($user_lang_pref!=$locale) {
-			$locale=$user_lang_pref;
-		}
-	}
 	
 
 	
