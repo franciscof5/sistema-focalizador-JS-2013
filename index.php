@@ -27,6 +27,7 @@ if(!in_array($page, $pages)) {
 		$page = "inicio";
 	else
 		$page = "home";
+	var_dump($locale);die;
 	?>
 	
 	<?php
