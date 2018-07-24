@@ -20,6 +20,7 @@ $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats
 #var_dump($uri_parts);die;
 
 if(!in_array($page, $pages)) {
+	global $locale;
 	if($locale=="pt_BR" || $locale=="pt")
 		$page = "inicio";
 	else
