@@ -251,7 +251,7 @@ function load_scritps() {
 	if(function_exists("locale_accept_from_http"))
 		$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 	else
-		$locale = "pt_BR";
+		$locale = "en_US";
 	//echo $locale;die;
 	if($locale=="")
 		$locale=="en_US";
