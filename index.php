@@ -18,16 +18,16 @@ if(dirname($uri_parts[0])!="/") {
 #echo $page;die;
 $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket", "product");
 #var_dump($uri_parts);die;
-
+global $locale;
+if($locale=="")
+$locale=="en_US";
+var_dump($locale);die;
 if(!in_array($page, $pages)) {
-	global $locale;
-	if($locale=="")
-		$locale=="en_US";
+	
 	if($locale=="pt_BR" || $locale=="pt")
 		$page = "inicio";
 	else
 		$page = "home";
-	var_dump($locale);die;
 	?>
 	
 	<?php
