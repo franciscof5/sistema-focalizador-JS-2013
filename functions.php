@@ -330,14 +330,14 @@ function show_lang_options($showtitle) {
 		<?php } else { ?>
 			<strong>Change Language:</strong>
 		<?php } ?>
-		<a href="?lang=en_US"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/us.png" alt="Language Flag"> English</a>
+		<a href="<?php echo get_bloginfo('url'); ?>/?lang=en_US"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/us.png" alt="Language Flag"> English</a>
 	<?php } else { ?>
 		<?php if($showtitle) { ?>
 			<h3 class="widget-title">Mudar Idioma</h3>
 		<?php } else { ?>
 			<strong>Mudar Idioma:</strong>
 		<?php } ?>
-		<a href="?lang=pt_BR"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/br.png" alt="Bandeira de Idioma"> Português</a>
+		<a href="<?php echo get_bloginfo('url'); ?>/?lang=pt_BR"><img src="<?php bloginfo('stylesheet_directory'); ?>/images/br.png" alt="Bandeira de Idioma"> Português</a>
 	<?php }
 }
 
