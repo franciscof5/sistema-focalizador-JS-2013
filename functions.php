@@ -259,7 +259,7 @@ function load_scritps() {
 
 	$user_lang_pref = get_user_meta(get_current_user_id(), "pomodoros_lang", true);
 	if($user_lang_pref=="")
-		$user_lang_pref="pt_BR";
+		$user_lang_pref="en_US";
 	/*if($user_lang_pref) {
 		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {
 			echo update_user_meta( get_current_user_id(), "pomodoros_lang", "pt_BR" );
@@ -270,17 +270,18 @@ function load_scritps() {
 	if($_GET && isset($_GET["lang"])) {
 		if($_GET["lang"]=="pt" || $_GET["lang"]=="pt_BR") {	
 			$user_lang_pref="pt_BR";
-			update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+			#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
 		} elseif($_GET["lang"]=="en" || $_GET["lang"]=="en_US") {
 			$user_lang_pref="en_US";
-			update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+			#update_user_meta( get_current_user_id(), "pomodoros_lang", $user_lang_pref );
+		}
+		if($user_lang_pref!=$locale) {
+			$locale=$user_lang_pref;
 		}
 	}
 	
 
-	if($user_lang_pref!=$locale && $user_lang_pref!="") {
-		$locale=$user_lang_pref;
-	}
+	
 	
 	$filelang = $locale.".js";
 	
