@@ -172,6 +172,7 @@
 		$projetoDuracao = ceil((strtotime($projetoFinal) - strtotime($projetoInicio))/60/60/24);
 		if($projetoDuracao==0)$projetoDuracao=1;
 		$projetoDiasTrabalhados = count($query_by_post_date);
+		if($projetoDiasTrabalhados==0)$projetoDiasTrabalhados=1;
 		/*foreach(array_keys($query_by_post_title) as $key){
 			echo $key."<hr />";
 		}*/
