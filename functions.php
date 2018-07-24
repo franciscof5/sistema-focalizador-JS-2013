@@ -278,7 +278,7 @@ function load_scritps() {
 	}
 	
 
-	if($user_lang_pref!=$locale) {
+	if($user_lang_pref!=$locale && $user_lang_pref!="") {
 		$locale=$user_lang_pref;
 	}
 	
