@@ -21,6 +21,8 @@ $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats
 
 if(!in_array($page, $pages)) {
 	global $locale;
+	if($locale=="")
+		$locale=="en_US";
 	if($locale=="pt_BR" || $locale=="pt")
 		$page = "inicio";
 	else
