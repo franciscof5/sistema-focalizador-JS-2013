@@ -223,7 +223,7 @@ if(!$local) {
 }
 
 //echo $locale;die;
-if($locale=="")
+if($locale=="" || $locale=="en")
 	$locale=="en_US";
 
 
@@ -249,6 +249,7 @@ if($_GET && isset($_GET["lang"])) {
 		$locale=$user_lang_pref;
 	}
 }
+
 function load_scritps() {	
 	//THEME CSS FOR IMPROVE SPEED
 	wp_enqueue_style('theme-css', get_bloginfo("stylesheet_directory")."/style.css", __FILE__);
@@ -300,7 +301,7 @@ function load_scritps() {
 		//If the function doesnt exists then call the default language
 		//$filelang="pt-br.js";
 	//}
-
+	
 	wp_enqueue_script("pomodoros-language", get_bloginfo("stylesheet_directory")."/languages/".$filelang, __FILE__);
 
 	// Register the script

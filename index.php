@@ -19,7 +19,7 @@ if(dirname($uri_parts[0])!="/") {
 $pages = array("focar", "calendar", "ranking", "produtividade", "inicio", "stats", "csv", "metas", "premios", "game", "1invite", "ticket", "product");
 #var_dump($uri_parts);die;
 global $locale;
-if($locale=="")
+if($locale=="" || $locale=="en")
 $locale=="en_US";
 #var_dump($locale);die;
 if(!in_array($page, $pages)) {
