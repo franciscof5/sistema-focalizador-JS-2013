@@ -211,10 +211,17 @@ function default_page() {
 
 
 global $locale;
-if(function_exists("locale_accept_from_http"))
-	$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-else
-	$locale = "en_US";
+if(class_exists("WC_Geolocation")) {
+	$location = WC_Geolocation::geolocate_ip();
+	$local = $location['country'];
+}
+if(!$local) {
+	if(function_exists("locale_accept_from_http"))
+		$locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+	else
+		$locale = "en_US";
+}
+
 //echo $locale;die;
 if($locale=="")
 	$locale=="en_US";
@@ -282,7 +289,7 @@ function load_scritps() {
 	
 
 	
-	
+	global $locale;
 	$filelang = $locale.".js";
 	
 	//if(qtranxf_getLanguage() == "en")
