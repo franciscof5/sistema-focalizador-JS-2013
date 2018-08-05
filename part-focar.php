@@ -75,37 +75,39 @@
 				<label><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> <script>document.write(txt_write_task_title)</script></label><br />
 				<input type="text" id="title_box" maxlength="70" tabindex="2" name="ti33" class="form-control">
 				</input>
-				
-				
 			</div>
-			
 			<div class="form-group">
 				<label><span class="glyphicon glyphicon-tags" aria-hidden="true"></span> <script>document.write(txt_write_task_tags)</script></label>
 				<select id="tags_box" class="js-example-tags " tabindex="3" multiple="multiple" placeholder="Does not work, use data-placeholder with js trick"  data-placeholder="projeto1, projeto2"></select>
 			</div>
-			
-			<div class="form-group">
-				<label><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> <script>document.write(txt_write_task_desc)</script></label>
-				<textarea rows="4" cols="34" id="description_box" tabindex="4" class="form-control"></textarea>
+			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><strong>EXTRA</strong></button>
+			<div class="collapse" id="collapseExample">
+  				<div class="well">
+					
+					<div class="form-group">
+						<label><span class="glyphicon glyphicon-text-background" aria-hidden="true"></span> <script>document.write(txt_write_task_desc)</script></label>
+						<textarea rows="4" cols="34" id="description_box" tabindex="4" class="form-control"></textarea>
+					</div>
+					
+					<input type="hidden" id="data_box">
+					<input type="hidden" id="status_box">
+					<input type="hidden" id="post_id_box">
+					<input type="hidden" id="pomodoroAtivoBox" value='<?php echo get_user_meta(get_current_user_id(), "pomodoroAtivo", true); ?>'>
+					
+					<br />
+					<label><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> <script>document.write(txt_write_task_category)</script></label><br />
+					<ul>
+						<li><input type="radio" name="cat_vl" value="26"><script>document.write(txt_write_task_category_study)</script></li>
+						<li><input type="radio" name="cat_vl" value="27"><script>document.write(txt_write_task_category_work)</script></li>
+						<li><input type="radio" name="cat_vl" value="28"><script>document.write(txt_write_task_category_personal)</script></li>
+					</ul>
+					<label><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <script>document.write(txt_write_task_privacy)</script></label><br />
+					<ul>
+						<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
+						<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
+					</ul>
+				</div>
 			</div>
-			
-			<input type="hidden" id="data_box">
-			<input type="hidden" id="status_box">
-			<input type="hidden" id="post_id_box">
-			<input type="hidden" id="pomodoroAtivoBox" value='<?php echo get_user_meta(get_current_user_id(), "pomodoroAtivo", true); ?>'>
-			
-			<br />
-			<label><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> <script>document.write(txt_write_task_category)</script></label><br />
-			<ul>
-				<li><input type="radio" name="cat_vl" value="26"><script>document.write(txt_write_task_category_study)</script></li>
-				<li><input type="radio" name="cat_vl" value="27"><script>document.write(txt_write_task_category_work)</script></li>
-				<li><input type="radio" name="cat_vl" value="28"><script>document.write(txt_write_task_category_personal)</script></li>
-			</ul>
-			<label><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> <script>document.write(txt_write_task_privacy)</script></label><br />
-			<ul>
-				<li><input type="radio" name="priv_vl" value="publish" CHECKED><script>document.write(txt_write_task_privacy_pub)</script></li>
-				<li><input type="radio" name="priv_vl" value="private" ><script>document.write(txt_write_task_privacy_pri)</script></li>
-			</ul>
 			<a href="#" class="button btn btn-dark" onclick="save_model()" id="botao-salvar-modelo"> <script>document.write(txt_write_task_save)</script> </a>
 		</form>
 
