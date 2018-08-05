@@ -38,14 +38,14 @@
 		<input type="text" disabled="disabled" id="secondsRemaining_box">
 		
 		<ul id="pomolist">
-			<li class="pomoindi" id="pomoindi1">&nbsp;</li>							
+			<li class="pomoindi" id="pomoindi1">&nbsp;</li>		
 			<li class="pomoindi" id="pomoindi2">&nbsp;</li>
 			<li class="pomoindi" id="pomoindi3">&nbsp;</li>
 			<li class="pomoindi" id="pomoindi4">&nbsp;</li>
 		</ul>
 		
-		<button onclick="reset_pomodoro_session()" style="margin: 13px 0 0 17px;">0</button>
-		
+		<button onclick="reset_pomodoro_session()" style="margin: 8px 0 0 12px;padding: 0 2px;"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></button>
+		<button onclick="set_continuous_session()" style="margin: 8px 0 0 -2px;padding: 0 2px;" id="resetter_btn"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
 		</div><!--fecha pomodoros painel-->
 		<br />
 		
@@ -73,7 +73,10 @@
 			
 		 	<div class="form-group">
 				<label><span class="glyphicon glyphicon-paste" aria-hidden="true"></span> <script>document.write(txt_write_task_title)</script></label><br />
-				<input type="text" size="46" id="title_box" maxlength="70" tabindex="2" name="ti33" class="form-control"></input>
+				<input type="text" id="title_box" maxlength="70" tabindex="2" name="ti33" class="form-control">
+				</input>
+				
+				
 			</div>
 			
 			<div class="form-group">
@@ -109,7 +112,7 @@
 		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
 		<p><script>document.write(txt_write_task_model_desc)</script></p>
 		
-		
+		<p>Automatic cycle: <button style="float: right; margin-top: -14px;" onclick="alert('teste');"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></p>
 		<ul id="contem-modelos" class="row">
 			<?php
 			if(function_exists("revert_database_schema"))revert_database_schema();
@@ -131,7 +134,7 @@
 				$posttags = get_the_tags();
 				  if ($posttags) {
 				    foreach($posttags as $tag) {
-				    	$taglist.=$tag->name;
+				    	$taglist.="'".$tag->slug."', ";
 				    }
 				}
 				?>

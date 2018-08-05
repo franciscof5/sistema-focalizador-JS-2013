@@ -49,6 +49,8 @@ var txt_time_found = "Time recovered, setting ";
 var txt_minutes = " minutes";
 var txt_session_reseted = "Session reseted";
 var txt_write_task_save = "Save Task";
+var auto_action_enabled = "Automatic click enabled";
+var auto_action_disabled = "Automatic click disabled";
 
 //titles
 var txt_title_done = "Pomodoro done!";

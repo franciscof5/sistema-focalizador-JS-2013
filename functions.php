@@ -964,8 +964,9 @@ function save_modelnow () {
 			'post_content' => $_POST['post_descri'],
 			'post_status' => "pending",
 			'post_author' => $current_user->ID,
-			'tags_input' => array($_POST['post_tags'])
+			'tags_input' => ($_POST['post_tags'])
 		);
+		#var_dump(($_POST['post_tags']));
 		$idofpost = wp_insert_post( $my_post );
 		echo $idofpost;
 		#die();

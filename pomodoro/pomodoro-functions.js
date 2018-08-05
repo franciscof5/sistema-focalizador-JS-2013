@@ -38,7 +38,7 @@
 	var pomodoro_completed_sound;
 	var active_sound;
 	var session_reseted_sound;
-
+	var autoAction=false; //if true dont need to click
 }
 function startTest() {
 	pomodoroTime = 15;restTime = 30;bigRestTime = 180;intervalMiliseconds = 10;
@@ -369,6 +369,8 @@ function complete() {
 		secondsRemaining=pomodoroTime;
 		changeTitle(txt_title_done);
 	}
+	if(autoAction)
+		action_button();
 }
 
 
@@ -482,10 +484,24 @@ function reset_pomodoro_session() {
 	//zerar_pomodoro()
 	interrupt();
 	pomodoro_actual=1;
+	change_status(txt_session_reseted);
 	session_reseted_sound.play();
 	reset_indicators_display();
 	//changeTitle("Sessão de pomodoros reiniciada...");
-	change_status(txt_session_reseted);
+}
+
+function set_continuous_session() {
+	if(autoAction) {
+		autoAction=false;
+		change_status(auto_action_disabled);
+		jQuery("#resetter_btn").css("background-color", "#FFF");
+		jQuery("#resetter_btn").css("color", "#222");
+	} else {
+		autoAction=true;
+		change_status(auto_action_enabled);
+		jQuery("#resetter_btn").css("background-color", "#222");
+		jQuery("#resetter_btn").css("color", "#FFF");
+	}
 }
 
 //Function to "light" one pomodoro
@@ -615,7 +631,7 @@ function save_model () {
 		action: 'save_modelnow',
 		post_titulo: title_box.value,
 		post_descri: description_box.value,
-		post_tags: tags_box.value
+		post_tags: jQuery("#tags_box").val()
 	};
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
@@ -659,12 +675,18 @@ function load_model(task_model_id) {
 	//alert(jQuery("#bxtitle"+task_model_id).text());
 	jQuery("#title_box").val(jQuery("#bxtitle"+task_model_id).text());
 	jQuery("#description_box").val(jQuery("#bxcontent"+task_model_id).text());
-	
-	if(jQuery("#bxtag"+task_model_id))
-	jQuery("#tags_box").val(jQuery("#bxtag"+task_model_id).text());
-	else
-	jQuery("#tags_box").val("");
-	
+	valinsert = "["+jQuery("#bxtag"+task_model_id).text()+"]";
+	//alert(valinsert);
+	if(jQuery("#bxtag"+task_model_id)) {
+		//jQuery("#tags_box").val("").trigger('change');;
+		jQuery("#tags_box").val(eval(valinsert)).trigger('change');
+		//jQuery("#tags_box").val(["itapemapa", "franciscomat"]).trigger('change');;
+		//jQuery("#tags_box").value(jQuery("#bxtag"+task_model_id).text());
+	} else {
+		jQuery("#tags_box").val("").trigger('change');
+		//jQuery("#tags_box").value("");
+	}
+	//jQuery("#tags_box").val(['contabilidade', ]).trigger('change');
 	jQuery("#action_button_id").focus();
 	change_status(txt_loading_model);
 }

@@ -28,9 +28,6 @@ if(!in_array($page, $pages)) {
 		$page = "inicio";
 	else
 		$page = "home";
-	?>
-	
-	<?php
 } else {
 	if (!is_user_logged_in()) {
 		if($page!="plugins-br" && $page!="product")
