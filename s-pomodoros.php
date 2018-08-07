@@ -1,6 +1,6 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
-<div id="sidebar_pomodoro" class="sidebar col-xs-6 col-sm-6 col-md-3 hidden-xs">
+<div id="sidebar-pomodoro-right" class="sidebar col-xs-6 col-sm-6 col-md-3 hidden-xs">
 	<!--center><button data-toggle="collapse" data-target="#sidebar_pomodoro_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center-->
 
 	<!--button data-toggle="collapse" data-target="#default_sidebar_in" class="collapse_button collapse_right" ><span class="glyphicon glyphicon-resize-horizontal"></span></button-->
@@ -86,12 +86,12 @@
 			?>
 		</li>
 		<li>
-			<h3 class="widget-title">Novo: Exportar Calendário</h3>
+			<h3 class="widget-title">Exportar Calendário</h3>
 			<p>Veja seus pomodoros nos calendários da Google, Apple, Microsoft e outros.</p>
 			<p><a href="/calendar" class="btn btn-xs">EXPORTAR CALENDÁRIO</a></p>
 		</li>
 		<li>
-			<h3 class="widget-title">Novo: Exportar Planilha</h3>
+			<h3 class="widget-title">Exportar Planilha</h3>
 			<p>Tenha controle sobre seus dados, visualize seus pomodoros no Microsoft Excel, LibreOffice Calc e outros.</p>
 			<p><a href="/csv" class="btn btn-xs">EXPORTAR PLANILHA</a></p>
 		</li>
@@ -99,9 +99,9 @@
 			<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
 			<p><?php get_author_post_tags_wpa78489(get_current_user_id());	?></p>
 		</li>
-		<li>
+		<!--li>
 			<p><?php the_widget( 'WP_Widget_Tag_Cloud', "title=Projetos da Comunidade", 'before_title=<h3 class="widget-title">&after_title=</h3>' ); ?> </p>
-		</li>
+		</li-->
 		
 	<?php dynamic_sidebar( 'pomodoros' ); ?>
 	</div><!-- .padder -->

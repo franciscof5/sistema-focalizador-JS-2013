@@ -304,7 +304,8 @@ function start_clock() {
 	if(is_pomodoro) {
 		change_button(textInterruptFocus, "#006633");//Chage button to "interrupt"
 		//update_pomodoro_clipboard("pending");
-		change_status(txt_started_countdown + jQuery("#title_box").val());
+		tagsv = jQuery("#tags_box").val().toString().replace(/,/g, ', ');
+		change_status(txt_started_countdown + jQuery("#title_box").val() + ", tags " + tagsv);
 	} else {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
@@ -673,6 +674,7 @@ function delete_model(task_model_id) {
 
 function load_model(task_model_id) {
 	//alert(jQuery("#bxtitle"+task_model_id).text());
+	change_status(txt_loading_model);
 	jQuery("#title_box").val(jQuery("#bxtitle"+task_model_id).text());
 	jQuery("#description_box").val(jQuery("#bxcontent"+task_model_id).text());
 	valinsert = "["+jQuery("#bxtag"+task_model_id).text()+"]";
@@ -688,7 +690,7 @@ function load_model(task_model_id) {
 	}
 	//jQuery("#tags_box").val(['contabilidade', ]).trigger('change');
 	jQuery("#action_button_id").focus();
-	change_status(txt_loading_model);
+	
 }
 
 //Change the <title> of the document

@@ -45,7 +45,7 @@
 		</ul>
 		
 		<button onclick="reset_pomodoro_session()" style="margin: 8px 0 0 12px;padding: 0 2px;"><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></button>
-		<button onclick="set_continuous_session()" style="margin: 8px 0 0 -2px;padding: 0 2px;" id="resetter_btn"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+		<button onclick="set_continuous_session()" style="margin: 8px 0 0 4px;padding: 0 2px;" id="resetter_btn"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
 		</div><!--fecha pomodoros painel-->
 		<br />
 		
@@ -111,10 +111,61 @@
 			<a href="#" class="button btn btn-dark" onclick="save_model()" id="botao-salvar-modelo"> <script>document.write(txt_write_task_save)</script> </a>
 		</form>
 
-		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
-		<p><script>document.write(txt_write_task_model_desc)</script></p>
 		
-		<p>Automatic cycle: <button style="float: right; margin-top: -14px;" onclick="alert('teste');"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></p>
+
+		<style>
+			/*ul { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+			li { margin: 5px; padding: 5px; width: 150px; }*/
+		</style>
+		<script>
+			jQuery( function() {
+				
+				jQuery( "#contem-ciclo" ).droppable({
+			        /*activeClass: "ui-state-default",
+			        hoverClass: "ui-state-hover",
+			        drop: function(event, ui) {
+			            var newClone = $(ui.helper).clone();
+			            $(this).after(newClone);
+			            $(this).height($(this).height+20);
+			        }*/
+			    });
+
+				jQuery( "#contem-ciclo" ).sortable({
+				  revert: true,
+				  	over: function() {
+				      removeIntent = false;
+				    }, //Remove function
+				    out: function() {
+				      removeIntent = true;
+				    },
+				    beforeStop: function(event, ui) {
+				      if (removeIntent == true) {
+				        ui.item.remove();
+				      }
+					}
+				});
+
+				jQuery( "#contem-modelos li" ).draggable({
+				  connectToSortable: "#contem-ciclo",
+				  snap: "#contem-ciclo",
+				  snapMode: "outer",
+				  helper: "clone",
+				  revert: "invalid",
+				  cursor: "move",
+				});
+				jQuery( "ul, li" ).disableSelection();
+			});
+		</script>
+		<h3 class="widget-title"><script>document.write("Automatic cycle")</script></h3>
+		<ul id="contem-ciclo" style="">
+  			<!--li id="draggable" class="ui-state-highlight">Drag me down</li-->
+		</ul>
+		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
+		<!--p><script>document.write(txt_write_task_model_desc)</script></p-->
+		
+		<!--p><button style="float: right; margin-top: -14px;" onclick="alert('teste');"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button></p-->
+
+		
 		<ul id="contem-modelos" class="row">
 			<?php
 			if(function_exists("revert_database_schema"))revert_database_schema();
@@ -131,7 +182,8 @@
 			
 			while ( $the_query->have_posts() ) : $the_query->the_post();
 				$counter = $post->ID;
-				echo '<li id="modelo-carregado-'.$counter.'" class="row">';
+				#echo '<li id="modelo-carregado-'.$counter.'" class="row">';
+				echo '<li id="modelo-carregado-'.$counter.'">';
 				$taglist = "";
 				$posttags = get_the_tags();
 				  if ($posttags) {
@@ -141,11 +193,16 @@
 				}
 				?>
 				<a href="#" onclick='load_model(<?php echo $counter ?>)'>
-				<div class='col-xs-10'>
-				<?php echo "<strong id=bxtag$counter>".$taglist."</strong> <span id=bxtitle$counter>".get_the_title()."</span>, <span id=bxcontent$counter>".get_the_content()."</span>"; ?>
+				<!--div class='col-xs-10'-->
+				<div style="width: 90%;float: left;">
+				<?php 
+					echo "<strong id=bxtag$counter>".$taglist."</strong>";
+					echo "<span id=bxtitle$counter>".get_the_title()."</span>";
+					echo "<p><span id=bxcontent$counter>".get_the_content()."</span></p>"; ?>
 				</div>
 				</a>
-				<div class='col-xs-2'>
+				<!--div class='col-xs-2'-->
+				<div  style="float: right;">
 					<a href='#' class='btn btn-xs btn-danger' onclick='delete_model(<?php echo $counter ?>)'><span class="glyphicon glyphicon-trash"></span></a>
 					<?php #echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
 				</div>

@@ -1,11 +1,11 @@
 <?php do_action( 'bp_before_sidebar' ); ?>
 
-<div id="sidebar22" class="sidebar col col-xs-3 hidden-sm hidden-xs" role="complementary">
+<div id="sidebar-pomodoro-left" class="sidebar col col-xs-3 hidden-sm hidden-xs" role="complementary">
 	<!--center><button data-toggle="collapse" data-target="#sidebar22_padder"><span class="glyphicon glyphicon-resize-vertical"></span></button></center-->
 	<!--button data-toggle="collapse" data-target="#sidebar22_padder" class="collapse_button collapse_left" ><span class="glyphicon glyphicon-resize-horizontal"></span></button-->
 <!--div id="sidebar22" class="sidebar col-xs-3  hidden-xs" role="complementary"-->
 	<div class="padder width collapse in" id="sidebar22_padder">
-
+	<h3 class="widget-title">Sua Conta</h3>
 	<?php do_action( 'bp_inside_before_sidebar' ); ?>
 
 	<?php if ( is_user_logged_in() ) : ?>
@@ -73,7 +73,15 @@
 
 	the_widget("cp_pointsWidget", "title=Pontuacao", 'before_title=<h3 class="widget-title">&after_title=</h3>');
 
-	dynamic_sidebar( 'geral' ); ?>
+	the_widget("BP_Core_Whos_Online_Widget", "",  'before_title=<h3 class="widget-title">&after_title=</h3>');
+
+	the_widget("BP_Core_Recently_Active_Widget", "",  'before_title=<h3 class="widget-title">&after_title=</h3>');
+	
+	if(function_exists("revert_database_schema"))
+		revert_database_schema();
+	the_widget( 'WP_Widget_Tag_Cloud', "title=Projetos da Comunidade", 'before_title=<h3 class="widget-title">&after_title=</h3>' );
+
+	#dynamic_sidebar( 'geral' ); ?>
 
 <?php
 	#global $reverter_filtro_de_categoria_pra_forcar_funcionamento;

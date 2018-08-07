@@ -277,6 +277,11 @@ function load_scritps() {
 	wp_enqueue_script("select2-jsbr", get_bloginfo("stylesheet_directory")."/assets/select2/select2_locale_pt-BR.js");
 	wp_enqueue_style('select2-css', get_bloginfo("stylesheet_directory")."/assets/select2/select2.min.css", __FILE__);
 
+	//jquery-ui
+	wp_enqueue_script("jquery-ui-js", get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.min.js");
+	wp_enqueue_style('jquery-ui-css', get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.min.css", __FILE__);
+	wp_enqueue_style('jquery-ui-theme-css', get_bloginfo("stylesheet_directory")."/assets/jquery-ui/jquery-ui.theme.min.css", __FILE__);
+
 	//no sleep
 	wp_enqueue_script("nosleep-js", get_bloginfo("stylesheet_directory")."/assets/NoSleep.min.js");
 
