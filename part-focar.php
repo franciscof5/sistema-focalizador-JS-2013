@@ -5,7 +5,7 @@
 	<div id="pomodoro-painel">		
 			
 		<div id="pomodoro-relogio">							
-		<form><input type="button" value="loading..." onclick="action_button()" id="action_button_id" tabindex="1" disabled="disabled" /></form>
+		<form><input type="button" value="loading..." id="action_button_id" tabindex="1" disabled="disabled" /></form>
 
 		<div id="relogio">
 
@@ -108,7 +108,7 @@
 					</ul>
 				</div>
 			</div>
-			<a href="#" class="button btn btn-dark" onclick="save_model()" id="botao-salvar-modelo"> <script>document.write(txt_write_task_save)</script> </a>
+			<a href="#" class="button btn btn-dark" id="botao-salvar-modelo"> <script>document.write(txt_write_task_save)</script> </a>
 		</form>
 
 		
@@ -129,7 +129,7 @@
 			            $(this).height($(this).height+20);
 			        }*/
 			    });
-
+				/*jQuery( ".sidebar li" ).sortable({});*/
 				jQuery( "#contem-ciclo" ).sortable({
 				  revert: true,
 				  	over: function() {
@@ -146,12 +146,12 @@
 				});
 
 				jQuery( "#contem-modelos li" ).draggable({
-				  connectToSortable: "#contem-ciclo",
-				  snap: "#contem-ciclo",
-				  snapMode: "outer",
-				  helper: "clone",
-				  revert: "invalid",
-				  cursor: "move",
+					connectToSortable: "#contem-ciclo",
+					snap: "#contem-ciclo",
+					snapMode: "outer",
+					helper: "clone",
+					revert: "invalid",
+					cursor: "move",
 				});
 				jQuery( "ul, li" ).disableSelection();
 			});
@@ -192,19 +192,23 @@
 				    }
 				}
 				?>
-				<a href="#" onclick='load_model(<?php echo $counter ?>)'>
+				
 				<!--div class='col-xs-10'-->
-				<div style="width: 90%;float: left;">
+				<div style="width: 90%;float: left;" class="model-container" data-modelid="<?php echo $counter ?>">
 				<?php 
 					echo "<strong id=bxtag$counter>".$taglist."</strong>";
 					echo "<span id=bxtitle$counter>".get_the_title()."</span>";
 					echo "<p><span id=bxcontent$counter>".get_the_content()."</span></p>"; ?>
 				</div>
-				</a>
+				<!--a href="#" onclick='load_model(<?php echo $counter ?>)'>
+				LO
+				</a-->
 				<!--div class='col-xs-2'-->
-				<div  style="float: right;">
-					<a href='#' class='btn btn-xs btn-danger' onclick='delete_model(<?php echo $counter ?>)'><span class="glyphicon glyphicon-trash"></span></a>
-					<?php #echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
+				<div class="delete-task-model" style="float: right;">
+					<a href='#' class='btn btn-xs btn-danger delete-task-model-btn' data-modelid="<?php echo $counter ?>"><span class="glyphicon glyphicon-trash"></span></a>
+					<?php 
+					#onclick='delete_model(<?php echo $counter ?)' 
+					#echo "<input type='button' class='btn btn-xs btn-primary' value='carregar' onclick='load_model($counter)'><br /> <br /><input type='button' class='btn btn-xs btn-success' value='concluir' onclick='delete_model($counter)'>"; ?>
 				</div>
 				
 				</li>

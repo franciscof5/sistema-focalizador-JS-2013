@@ -129,7 +129,7 @@ img.avatar {
 .bg-danger a {color: #333 !important; text-decoration: underline; font-weight: 600;}
 /*div#sidebar {width:24%;}
 #sidebar-pomodoro-right {float:right; width: 300px;margin-left: 0;margin-top: 0px;border-right: 1px solid #d8dee9;}*/
-/*#sidebar-pomodoro-right h3,*/ .sidebar h3 {
+/*#sidebar-pomodoro-right h3,* .sidebar h3 {
 		/*margin: 25px -15px 10px -8px;
 		background: #f9f9f9;;
 		padding: 4px 8px;
@@ -146,16 +146,16 @@ img.avatar {
 	    /*background: #222;
 	    color: #D7D7D7;
 		margin: 6px 0 12px;
-	    */
+	    *
 	    background: rgba(255,255,255, 0.5);
 	    background-color: #DDD;
 	    border-bottom: 2px solid #BBB;
 	    clear: left;
 	    /*font-family: forte;
-	    font-family: 'Lilita One', cursive;*/
+	    font-family: 'Lilita One', cursive;*
 	    margin:0 0 10px 0;
 	    padding: 4px;
-	}
+	}*/
 	/*#sidebar-pomodoro-right li {
 		background: rgba(255,255,255, 0.5);
 		margin-bottom: 10px;
@@ -174,6 +174,24 @@ img.avatar {
 	padding: 4px 0 4px 0;
 	width: 110%;
 }*/
+.sidebar li {
+	background-color: #fff;
+    clear: both;
+    display: table;
+    margin-bottom: 16px;
+    padding: 2px 4px 10px;
+    width: 100%;
+}
+.sidebar h3 {
+	/*background: rgba(255,255,255, 0.5);
+	background-color: #FFF;*/
+	background-color: #f6f6f6;
+	color: #222;
+	border-bottom: 2px solid #BBB;
+	clear: left;
+    margin:0 0 10px 0;
+    padding: 4px;
+}
 #sidebar-pomodoro-right {
 	margin-left: -40px;
 }
@@ -181,16 +199,16 @@ img.avatar {
 	margin-left: 20px;
 }
 /*.sidebar {background: rgba(255,255,255, 0.8);/*border-radius:15px !important;*/}
-.sidebar li {width: 100%;clear: both;}
+/*.sidebar li {width: 100%;clear: both;}*/
 .content_pomodoro {
 	/*border-radius:15px !important;*/
 	/*background: rgba(255,255,255, 0.5);*/
 }	
-.sidebar {
-	/*background: rgba(255,255,255, 0.5);*/
+/*.sidebar {
+	background: rgba(255,255,255, 0.5);
 	background-color: #FFF;
 	padding: 0 !important;
-}
+}*/
 .widget_recent_entries li {
 	margin-bottom: 10px;
 }
@@ -514,8 +532,11 @@ border-radius: 5px;
 	height: inherit !important;
 }
 #contem-modelos p{
-text-align:center;
-margin:10px 0 0 0;
+	text-align:center;
+	margin:10px 0 0 0;
+}
+#contem-ciclo .delete-task-model {
+	display: none;
 }
 .google-visualization-table {
 	width: 100%;

@@ -21,19 +21,23 @@
 			$produtividade_usuario = user_object_productivity(bp_displayed_user_id());
 			?>
 			<!--p>Registro</p-->
-			<ul>
-				<li>Membro há <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> dias</li>
-				<li>Dias de trabalho: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']; ?> </li>
-				<li>Dias sem trabalho: <?php echo $produtividade_usuario["sempre"]['diasFolga']; ?> </li>
-			</ul>
+			<p>
+				<span>Membro há <?php echo $produtividade_usuario["sempre"]['totalDias']; ?> dias</span>
+				<br>
+				<span>Dias de trabalho: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']; ?> </span>
+				<br>
+				<span>Dias sem trabalho: <?php echo $produtividade_usuario["sempre"]['diasFolga']; ?> </span>
+			</p>
 			<!--p>Produtividade</p-->
 			<!--p>Dia trabalhados/total dias no período, fator desempenho (%)</p-->
-			<ul>
+			<p>
 				<!--li>Hoje :<?php echo $produtividade_usuario["semana"]['totalDias']; ?> </li-->
-				<li>Ultimos sete dias: <?php echo $produtividade_usuario["setedias"]['diasTrabalhados']."/7".", ".($produtividade_usuario["setedias"]['fatorProdutividade']*100)."%"; ?> </li>
-				<li>Mes atual: <?php echo $produtividade_usuario["mes"]['diasTrabalhados']."/".$produtividade_usuario["mes"]['totalDias'].", ".($produtividade_usuario["mes"]['fatorProdutividade']*100)."%"; ?> </li>
-				<li>Desde o comeco: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']."/".$produtividade_usuario["sempre"]['totalDias'].", ".($produtividade_usuario["sempre"]['fatorProdutividade']*100)."%"; ?> </li>
-			</ul>
+				<span>Ultimos sete dias: <?php echo $produtividade_usuario["setedias"]['diasTrabalhados']."/7".", ".($produtividade_usuario["setedias"]['fatorProdutividade']*100)."%"; ?> </span>
+				<br>
+				<span>Mes atual: <?php echo $produtividade_usuario["mes"]['diasTrabalhados']."/".$produtividade_usuario["mes"]['totalDias'].", ".($produtividade_usuario["mes"]['fatorProdutividade']*100)."%"; ?> </span>
+				<br>
+				<span>Desde o comeco: <?php echo $produtividade_usuario["sempre"]['diasTrabalhados']."/".$produtividade_usuario["sempre"]['totalDias'].", ".($produtividade_usuario["sempre"]['fatorProdutividade']*100)."%"; ?> </span>
+			</p>
 			<?php
 			/*
 			<h4>Comunidade</h4>
@@ -103,7 +107,7 @@
 			<p><?php the_widget( 'WP_Widget_Tag_Cloud', "title=Projetos da Comunidade", 'before_title=<h3 class="widget-title">&after_title=</h3>' ); ?> </p>
 		</li-->
 		
-	<?php dynamic_sidebar( 'pomodoros' ); ?>
+	<?php #dynamic_sidebar( 'pomodoros' ); ?>
 	</div><!-- .padder -->
 </div><!-- #sidebar -->
 

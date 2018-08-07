@@ -70,8 +70,8 @@ add_action('wp_ajax_load_session', 'load_session');
 add_action('wp_ajax_nopriv_load_session', 'load_session');
 add_action('wp_ajax_update_session', 'update_session');
 add_action('wp_ajax_nopriv_update_session', 'update_session');
-add_action('wp_ajax_save_modelnow', 'save_modelnow');
-add_action('wp_ajax_nopriv_save_modelnow', 'save_modelnow');
+add_action('wp_ajax_save_or_delete_model', 'save_or_delete_model');
+add_action('wp_ajax_nopriv_save_or_delete_model', 'save_or_delete_model');
 add_action('admin_menu', 'my_remove_menu_pages' );
 add_action('wp_logout','go_home');
 add_action('init', 'create_post_type' );
@@ -954,13 +954,16 @@ function update_pomo_active () {
 	
 }
 
-function save_modelnow () {
+function save_or_delete_model () {
 	checkLogin();
 	if(function_exists("revert_database_schema"))revert_database_schema();
+
+	//header('Content-type: application/json');//CRUCIAL
 	if(isset($_POST['post_para_deletar'])) {
 		#echo "deletando: ".$_POST['post_para_deletar'];
-		echo wp_trash_post($_POST['post_para_deletar']);
-		#die;
+		$del = wp_trash_post($_POST['post_para_deletar']);
+		echo $del;
+		die();
 	} else {
 		$tagsinput = explode(" ", $_POST['post_tags']);	
 		$my_post = array(

@@ -50,6 +50,37 @@ function startTest() {
 
 jQuery(document).ready(function ($) {
 	//
+	jQuery("#action_button_id").click(function(e) {
+		e.preventDefault();
+		//alert();
+		action_button()
+	});
+	jQuery("#botao-salvar-modelo").click(function(e) {
+		e.preventDefault();
+		save_model();
+	});
+	jQuery(".delete-task-model-btn").click(function(e) {
+		e.preventDefault();
+		delete_model(jQuery(this).data('modelid'));
+	});
+	jQuery(".model-container").click(function(e) {
+		e.preventDefault();
+		load_model(jQuery(this).data('modelid'));
+	});
+	jQuery(".delete-task-model-btn").click(function(e) {
+		e.preventDefault();
+		delete_model(jQuery(this).data('modelid'));
+	});
+	jQuery("#session-reset-btn").click(function(e) {
+		e.preventDefault();
+		reset_pomodoro_session();
+	});
+	jQuery("#continuos-session-btn").click(function(e) {
+		e.preventDefault();
+		set_continuous_session();
+	});
+	
+	//
 	jQuery('input[type="range"]').rangeslider();
 	//Voice recon and speech JS
 	startContinuousArtyom();
@@ -626,10 +657,10 @@ function savepomo() {
 }
 
 //Load e Save model function
-function save_model () {
+function save_model() {
 	change_status(txt_salving_model);
 	var data = {
-		action: 'save_modelnow',
+		action: 'save_or_delete_model',
 		post_titulo: title_box.value,
 		post_descri: description_box.value,
 		post_tags: jQuery("#tags_box").val()
@@ -645,7 +676,7 @@ function save_model () {
 				jQuery("#contem-modelos").append('<ul id="modelo-carregado-'+sessao_atual+'"><li><input type="text" value="'+title_box.value+'" disabled="disabled" id="bxtitle'+sessao_atual+'"><br /><input type="text" value="'+description_box.value+'" disabled="disabled" id="bxcontent'+sessao_atual+'"><br /><input type="text" value="'+tags_box.value+'" disabled="disabled" id="bxtag'+sessao_atual+'"><p><input type="button" value="usar modelo" onclick="load_model('+sessao_atual+')"><input type="button" value="apaga" onclick="delete_model('+sessao_atual+')"></p></li></ul>');
 				/*jQuery("#botao-salvar-modelo").val("sessão salvada com sucesso");
 				jQuery("#botao-salvar-modelo").attr('disabled', 'disabled');*/
-				document.getElementById("bxcontent"+sessao_atual).focus();
+				//document.getElementById("bxcontent"+sessao_atual).focus();
 				change_status(txt_salving_model_success);
 			}
 		}
@@ -656,16 +687,18 @@ function save_model () {
 
 function delete_model(task_model_id) {
 	//PHP deletar post task_model_id
+	//Query("#modelo-carregado-"+task_model_id).css("background-color", "#222");
+	jQuery("#modelo-carregado-"+task_model_id).hide(1000);
 	change_status(txt_deleting_model);
 	var data = {
-		action: 'save_modelnow',
+		action: 'save_or_delete_model',
 		post_para_deletar: task_model_id
 	};
 	jQuery.post(ajaxurl, data, function(response) {
 		if(response=="NOTIN")window.location.href = "/";
 		if(response) {
 			change_status(txt_deleting_model_sucess);
-			jQuery("#modelo-carregado-"+task_model_id).remove();
+			//jQuery("#modelo-carregado-"+task_model_id).remove();
 		} else {
 			change_status(txt_save_error);
 		}
