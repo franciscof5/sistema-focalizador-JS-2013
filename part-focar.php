@@ -158,6 +158,7 @@
 		</script>
 		<h3 class="widget-title"><script>document.write("Automatic cycle")</script></h3>
 		<ul id="contem-ciclo" style="">
+			<li>Drop tasks here</li>
   			<!--li id="draggable" class="ui-state-highlight">Drag me down</li-->
 		</ul>
 		<h3 class="widget-title"><script>document.write(txt_write_task_model)</script></h3>
