@@ -103,6 +103,12 @@
 			<h3 class="widget-title"><script>document.write(txt_sidebar_projects)</script></h3>
 			<p><?php get_author_post_tags_wpa78489(get_current_user_id());	?></p>
 		</li>
+
+		<li>
+			<h3 class="widget-title">Spotify</h3>
+			<p><iframe src="https://open.spotify.com/user/nsqx6avzxhybkmfumqb1juwmn/playlist/5jtIpYaaFTza3O9ZnaVrLa?si=Wp_OCq20RGOEPj2JFFwYoQ" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe></p>
+		</li>
+		
 		<!--li>
 			<p><?php the_widget( 'WP_Widget_Tag_Cloud', "title=Projetos da Comunidade", 'before_title=<h3 class="widget-title">&after_title=</h3>' ); ?> </p>
 		</li-->

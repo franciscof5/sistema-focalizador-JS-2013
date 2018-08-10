@@ -551,7 +551,7 @@ function save_progress () {
 
 
 
-	$agora = current_time("mysql");
+	$agora = current_time('Y-m-d H:i:s');#current_time("mysql");
 	$agora_gmt = current_time("mysql", true);
 	#echo "agora:".$agora.", agora_gmt:".$agora_gmt;die;
 	$my_post = array(
@@ -567,15 +567,18 @@ function save_progress () {
 		//'post_category' => array(0)
 	);
 
-	$ok = wp_insert_post( $my_post );
+	$save_progress = wp_insert_post( $my_post );
 
-	if($ok) {
+	if($save_progress) {
+		if($save_progress) {
+			update_post_meta( $save_progress, 'post_location', $_POST['post_local'] );
+		}
 		if(function_exists("cp_module_notify_displayNoticesFor"))
 		cp_module_notify_displayNoticesFor(cp_currentUser());
 
 		
 		//$id = get_current_postid_for_user(get_current_user_id());
-		$id = $ok;
+		$id = $save_progress;
 		$current_user = get_currentuserinfo();
 		$namefull = $current_user->user_firstname." ".$current_user->user_lastname;
 		$user_id = $current_user->ID;
@@ -590,7 +593,7 @@ function save_progress () {
 		if($_POST["post_priv"]=="private")
 			$act_args['hide_sitewide'] = true;
 		//
-		$act_args['action'] = "<p><a href='/colegas/".$current_user->user_login."'><span class=activity_title>".$namefull."</span></a> completou <a href='".get_permalink($ok)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
+		$act_args['action'] = "<p><a href='/colegas/".$current_user->user_login."'><span class=activity_title>".$namefull."</span></a> completou <a href='".get_permalink($save_progress)."'><span class=hidden>$id</span>".$_POST['post_titulo']." (25 min)</a></p>";
 	
 		$ac = bp_activity_add( $act_args );
 		//
@@ -837,6 +840,9 @@ function update_session () {
 	if($pomodoroAtivo=="") {
 		//Não tem pomodoro ativo
 		$save_progress = wp_insert_post( $my_post );
+		/*if($save_progress) {
+			update_post_meta( $save_progress, 'post_location', $_POST['post_local'] );
+		}*/
 		//update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 		//$pomodoroAtivo = update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 		//$pomodoroAtivo = "NAO ACHOU";
@@ -929,7 +935,11 @@ function update_pomo_active () {
 		$save_progress = wp_insert_post( $my_post );
 		update_user_meta(get_current_user_id(), "pomodoroAtivo", $save_progress);
 		$pomodoroAtivo = $save_progress;
+		if($save_progress) {
+			update_post_meta( $save_progress, 'post_location', $_POST['post_local'] );
+		}
 		//echo "Salvando pela primeira vez.";
+
 	} else {
 		//Atualiza o pomodoro ativo
 		$my_post["ID"] = $pomodoroAtivo;

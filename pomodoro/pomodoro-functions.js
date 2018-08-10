@@ -112,6 +112,13 @@ jQuery(document).ready(function ($) {
 		if(!jQuery("#title_box").is(":focus") && !jQuery("#tags_box").data('select2').isOpen() && !jQuery("#description_box").is(":focus"))
 		load_initial_data();
 	},15000);
+
+	jQuery.get("https://ipinfo.io?token=e7e9316dfdc5fa", function (response) {
+		    //console.log("IP: " + response.ip);
+			//console.log("Location: " + response.city + ", " + response.region);
+			//console.log(JSON.stringify(response, null, 4));
+			jQuery("#user_location").html(response.city + ", " + response.region + ", " + response.country);
+		}, "jsonp");/*e7e9316dfdc5fa*/
 });
 
 function load_initial_data() {
@@ -342,7 +349,10 @@ function start_clock() {
 		change_button(textInterruptRest, "#990000");//Chage button to "interrupt"
 		change_status(txt_rest_started);
 	}
-	window.onbeforeunload = myConfirmation;
+	if(is_pomodoro)
+		window.onbeforeunload = myConfirmation;
+	else
+		window.onbeforeunload = null;
 	//startContinuousArtyom();
 }
 function myConfirmation() {
@@ -373,6 +383,8 @@ function complete() {
 	pomodoro_completed_sound.stop();
 	if(jQuery("#sound-switcher").is(":checked"))
 	pomodoro_completed_sound.play();
+	//
+	window.onbeforeunload = null;
 	//update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
 	//changeTitle(txt_title_done);
@@ -461,9 +473,12 @@ function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
-	var sure = confirm(txt_interrupted_ask);
-	if(!sure)
-		return;
+	if(is_pomodoro) {
+		var sure = confirm(txt_interrupted_ask);
+		if(!sure)
+			return;	
+	}
+	
 	window.onbeforeunload = "";
 	pomodoro_completed_sound.play(1);//STARTS FOWARD
 	//if(is_pomodoro)is_pomodoro=false;//NAO
@@ -645,7 +660,8 @@ function savepomo() {
 		post_descri: description_box.value,
 		post_tags: tags_box.value,
 		post_cat: postcat,
-		post_priv: privornot
+		post_priv: privornot,
+		post_local: jQuery("#user_location").text(),
 	};
 
 	jQuery.post(ajaxurl, data, function(response) {

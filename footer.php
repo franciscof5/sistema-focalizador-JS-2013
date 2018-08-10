@@ -36,7 +36,7 @@
 							$args = array( 'post_type' => 'projectimer_focus', 'posts_per_page' => 9, 'post_status' => 'publish' ); 
 							$recent_posts = get_posts( $args );
 							foreach( $recent_posts as $recent ){
-								echo '<li>'.get_avatar($recent->post_author, 24).' <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'</a> </li> '; #NO NAME
+								echo '<li>'.get_avatar($recent->post_author, 24).' <a href="' . get_permalink($recent->ID) . '" title="Look '.esc_attr($recent->post_title).'" >' . $recent->post_title.'<span class="post_location">'.get_post_meta($recent->ID, "post_location", true).'</span></a> </li> '; #NO NAME
 							}
 							#
 							if(function_exists('set_shared_database_schema'))set_shared_database_schema();
@@ -137,6 +137,7 @@
 					?>
 					<div class="col-sm-6">
 						<p style="text-align: right;">Watch <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2"> Pomodoros project</a> in real time</p>
+						<p><span id="user_location">finding location...</span></p>
 					</div>
 				</div>
 				
