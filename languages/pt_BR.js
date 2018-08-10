@@ -26,6 +26,7 @@ var txt_mat_load_return = "Dados carregados, clique em FOCAR para iniciar. Últi
 var txt_started_countdown = "Iniciar tarefa ";
 var txt_salving_pomodoros = "Salvando pomodoro...";
 //var txt_interrupted_countdowns = "Contagem interrompida! Ative o relógio quanto estiver pronto!";
+var txt_interrupted_ask = "Deseja interromper a contagem e perder o tempo contabilizado?";
 var txt_interrupted_countdowns = "Contagem interrompida!";
 //var txt_interrupted_rest = "Descanso interrompido! Isso não é uma boa idéia!";
 var txt_completed_rest = "Você completou o descanso, hora de pegar pesado!";

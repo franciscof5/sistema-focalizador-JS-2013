@@ -57,7 +57,25 @@
 
 		<form name="pomopainel" id="pomopainel">
 			<div class="form-group">
-				<label><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Volume</label><br />
+				<div class="row">
+					<div class="col-xs-4">
+						<label><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Volume</label><br />
+					</div>
+					<div class="col-xs-4">
+                        <div class="material-switch pull-right" style="float: right;">
+                            <input id="sound-switcher" name="someSwitchOption001" type="checkbox" checked="checked" />
+                            <label for="sound-switcher" class="label-success"></label>
+                        </div>
+                        <label style="float:right"><!--span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span--> FX &nbsp; </label>
+					</div>
+					<div class="col-xs-4">
+                        <div class="material-switch pull-right" style="float: right;">
+                            <input id="voice-switcher" name="someSwitchOption001" type="checkbox" checked="checked" />
+                            <label for="voice-switcher" class="label-success"></label>
+                        </div>
+                        <label style="float:right"><!--span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span--> Voice &nbsp; </label>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-xs-1">
 						<span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span>

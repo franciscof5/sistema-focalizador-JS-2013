@@ -24,6 +24,7 @@ var txt_loading_initial_data = "Welcome Pomodoros.com.br";
 var txt_mat_load_return = "I loaded the last activity from your, just hit FOCUS button and start to work. Last session was ";
 var txt_started_countdown = "Start task ";
 var txt_salving_pomodoros = "Saving progress...";
+var txt_interrupted_ask = "Are you sure you want do interrumpt timer and lost time?";
 var txt_interrupted_countdowns = "Timer stopped, restart it when you are ready!";
 //var txt_interrupted_rest = "Descanso interrompido! Isso não é uma boa idéia!";
 var txt_completed_rest = "The rest is over, time to work!";

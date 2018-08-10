@@ -114,7 +114,14 @@ img.avatar {
 .register_div_box:hover {background:#EEE;}
 .register_div_box h3{color:#333; text-align:center;}
 
-#div_status {border:3px solid #000; width:160px; float:right; padding:0 2px;border-radius: 10px;background:#FFF;}
+#div_status {
+	border:3px solid #000;
+	width:180px;
+	float:right;
+	padding:0 2px;
+	border-radius: 10px;
+	background:#FFF;
+}
 
 #sidebar-user-pass {width:148px;}
 #rbox2 {height:480px;}
@@ -267,7 +274,7 @@ img.avatar {
 }
 
 #pomodoro-painel {
-	width:300px;
+	width:320px;
 	margin:0 auto 30px auto;
 	/*padding: 30px 0 50px 0;*/
 }
@@ -2892,4 +2899,50 @@ h3.forte {
     overflow: hidden;
     padding: 5px 10px;
 	width: 300px;
+}
+
+/*****************/
+.material-switch > input[type="checkbox"] {
+    display: none;   
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative; 
+    width: 40px;  
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
 }

@@ -29,7 +29,12 @@
 #lista-projetos:hover {height:60px;}*/
 
 /**/
-#pomodoro-relogio {padding:10px;height:220px;/*width:290px;/*background:#EEE;*/margin:0 auto;}
+#pomodoro-relogio {
+	padding:20px;
+	height:220px;
+	/*width:290px;/*background:#EEE;*/
+	margin:0 auto;
+}
 
 #action_button_id {background-color:#222;/*margin:5px 0px 10px 100px;*/margin:5px 0 10px 10px;height:30px;width:242px;color: #FFF;font-weight: 600;}
 

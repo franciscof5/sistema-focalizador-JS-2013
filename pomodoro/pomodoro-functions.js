@@ -327,6 +327,7 @@ function action_button() {
 }
 //Start countdown
 function start_clock() {
+	if(jQuery("#sound-switcher").is(":checked"))
 	active_sound.play();
 	//TODO: post_status="future;"
 	interval_clock = setInterval('countdown_clock()', intervalMiliseconds);
@@ -370,6 +371,7 @@ function countdown_clock (){
 function complete() {
 	//is_interrupt_button = false;
 	pomodoro_completed_sound.stop();
+	if(jQuery("#sound-switcher").is(":checked"))
 	pomodoro_completed_sound.play();
 	//update_pomodoro_clipboard();//pensei que podia ser EXCESSIVAMENTE
 	stop_clock();	
@@ -430,7 +432,7 @@ function change_status(txt, stts) {
 	if(artyom_voice) {
 		artyom_voice.shutUp();
 		//artyom_voice.initialize({volume:0.1});
-		if(volumeLevel>1)
+		if(volumeLevel>1 && jQuery("#voice-switcher").is(":checked"))
 		artyom_voice.say(txt, {onStart() {window.artyom_voice.dontObey();},onEnd() {window.artyom_voice.obey();}});
 	}
 	
@@ -459,6 +461,9 @@ function interrupt() {
 	//pomodoro_completed_sound.play();
 	//document.getElementById("secondsRemaining_box").value = "";
 	//if(!is_pomodoro)is_pomodoro=true;
+	var sure = confirm(txt_interrupted_ask);
+	if(!sure)
+		return;
 	window.onbeforeunload = "";
 	pomodoro_completed_sound.play(1);//STARTS FOWARD
 	//if(is_pomodoro)is_pomodoro=false;//NAO
@@ -517,6 +522,7 @@ function reset_pomodoro_session() {
 	interrupt();
 	pomodoro_actual=1;
 	change_status(txt_session_reseted);
+	if(jQuery("#sound-switcher").is(":checked"))
 	session_reseted_sound.play();
 	reset_indicators_display();
 	//changeTitle("Sessão de pomodoros reiniciada...");
