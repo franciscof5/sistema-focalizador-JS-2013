@@ -137,7 +137,7 @@
 					?>
 					<div class="col-sm-6">
 						<p style="text-align: right;">Watch <a href="<?php bloginfo('url'); ?>/projeto/pomodoros-2"> Pomodoros project</a> in real time</p>
-						<p><span id="user_location">finding location...</span></p>
+						<p><span id="user_location">Not localized</span></p>
 					</div>
 				</div>
 				
