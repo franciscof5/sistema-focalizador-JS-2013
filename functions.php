@@ -252,8 +252,8 @@ if($_GET && isset($_GET["lang"])) {
 
 function load_scritps() {	
 	//THEME CSS FOR IMPROVE SPEED
-	wp_enqueue_style('theme-css', get_bloginfo("stylesheet_directory")."/style.css", __FILE__);
-	wp_enqueue_style('pomodoro-css', get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro.css", __FILE__);
+	wp_enqueue_style('theme-css', get_bloginfo("stylesheet_directory")."/style.css", __FILE__, time());
+	wp_enqueue_style('pomodoro-css', get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro.css", __FILE__, time());
 	wp_enqueue_style('fonts-css', get_bloginfo("stylesheet_directory")."/assets/fonts/stylesheet.css", __FILE__);
 
 
