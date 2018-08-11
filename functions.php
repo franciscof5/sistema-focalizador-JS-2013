@@ -314,7 +314,7 @@ function load_scritps() {
 
 	// Register the script
 	//wp_register_script( 'some_handle', 'path/to/myscript.js' );
-	wp_register_script("pomodoros-js", get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro-functions.js", __FILE__);
+	wp_register_script("pomodoros-js", get_bloginfo("stylesheet_directory")."/pomodoro/pomodoro-functions.js", __FILE__, time());
 
 	// Localize the script with new data
 	$translation_array = array(
