@@ -77,7 +77,27 @@ add_action('wp_logout','go_home');
 add_action('init', 'create_post_type' );
 add_action('wp_enqueue_scripts', 'load_scritps');
 
-
+/////////////////////--
+add_action('init', 'foo_add_rewrite_rule');
+function foo_add_rewrite_rule(){
+    add_rewrite_rule('^foobar?','index.php?is_foobar_page=1&post_type=custom_post_type','top');
+    //Customize this query string - keep is_foobar_page=1 intact
+}
+add_action('query_vars','foo_set_query_var');
+function foo_set_query_var($vars) {
+    array_push($vars, 'is_foobar_page');
+    return $vars;
+}
+add_filter('template_include', 'foo_include_template', 1000, 1);
+function foo_include_template($template){
+    if(get_query_var('is_foobar_page')){
+        $new_template = get_bloginfo('stylesheet_directory').'/t-focar.php';
+        if(file_exists($new_template))
+            $template = $new_template;
+    }
+    return $template;
+}
+/////////////////////--
 //
 #function custom_disable_redirect_canonical( $redirect_url, $requested_url ) {
 function custom_disable_redirect_canonical( $redirect_url ) {
@@ -544,7 +564,7 @@ function save_progress () {
 	$tagsinput = explode(" ", $_POST['post_tags']);
 	
 	
-	#date_default_timezone_set('America/Sao_Paulo');
+	date_default_timezone_set('America/Sao_Paulo');
 	#$agora = current_time("Y-m-d H:i:s");
 	#date_default_timezone_set('UTC');
 	#$agora_gmt = current_time("Y-m-d H:i:s");
@@ -571,7 +591,9 @@ function save_progress () {
 
 	if($save_progress) {
 		if($save_progress) {
-			update_post_meta( $save_progress, 'post_location', $_POST['post_local'] );
+			update_post_meta( $save_progress, 'post_location_city', $_POST['post_local_city'] );
+			update_post_meta( $save_progress, 'post_location_region', $_POST['post_local_region'] );
+			update_post_meta( $save_progress, 'post_location_country', $_POST['post_local_country'] );
 		}
 		if(function_exists("cp_module_notify_displayNoticesFor"))
 		cp_module_notify_displayNoticesFor(cp_currentUser());

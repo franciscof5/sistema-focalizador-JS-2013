@@ -113,12 +113,7 @@ jQuery(document).ready(function ($) {
 		load_initial_data();
 	},15000);
 
-	jQuery.get("https://ipinfo.io?token=e7e9316dfdc5fa", function (response) {
-		    //console.log("IP: " + response.ip);
-			//console.log("Location: " + response.city + ", " + response.region);
-			//console.log(JSON.stringify(response, null, 4));
-			jQuery("#user_location").html(response.city + ", " + response.region + ", " + response.country);
-		}, "jsonp");/*e7e9316dfdc5fa*/
+	
 });
 
 function load_initial_data() {
@@ -661,7 +656,9 @@ function savepomo() {
 		post_tags: tags_box.value,
 		post_cat: postcat,
 		post_priv: privornot,
-		post_local: jQuery("#user_location").text(),
+		post_local_city: jQuery("#user_location_city").text(),
+		post_local_region: jQuery("#user_location_region").text(),
+		post_local_country: jQuery("#user_location_country").text(),
 	};
 
 	jQuery.post(ajaxurl, data, function(response) {
